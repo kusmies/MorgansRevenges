@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - Win
+  - Water
+  - trigger
+  - Enemy
+  - Dog
+  - Lightning
+  - Frost
+  - BSnack
+  - Mpotion
+  - Fireball
+  - Cbag
+  - gBar
+  - Mvial
+  - Bmeal
+  - Explosion
+  - Sword
+  - WindWall
+  - PlayerAttack
+  - Hazard
+  - Loot
+  - Crit
+  - Damage2
+  - Fkey
+  - Frostkey
+  - Damage1
+  - Coin
+  - Dynamic
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Enemy
+  - PlayerAttack
+  - LootLayer
+  - Player
+  - fireBall
+  - Flag
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
