@@ -329,8 +329,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-
+    { 
+        /*
         //makes win happen
         if (collision.tag == "Player" || collision.tag == "Win")
         {
@@ -339,8 +339,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             level.changeScene(4);
         }
+        
         //adds 1 coin
-        else if (collision.gameObject.CompareTag("Coin"))
+        else*/ if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
 
