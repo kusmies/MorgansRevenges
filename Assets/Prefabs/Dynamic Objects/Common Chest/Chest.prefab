@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 2242389019705900348}
   - component: {fileID: 2242389019705900347}
   - component: {fileID: 2242389019705900346}
-  - component: {fileID: 9150424221249521262}
   - component: {fileID: 3281384329377353050}
-  - component: {fileID: 7261019343923445343}
   - component: {fileID: 141832338409469897}
   - component: {fileID: 5932781279357683419}
+  - component: {fileID: 6204725607410178412}
   m_Layer: 11
-  m_Name: chest
+  m_Name: Chest
   m_TagString: Loot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,19 +112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.411148, y: 2.8837128}
   m_EdgeRadius: 0
---- !u!114 &9150424221249521262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2242389019705900345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9127a47f22557d14a8d2817c9dc05c33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemHealth: 3
 --- !u!114 &3281384329377353050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,23 +128,6 @@ MonoBehaviour:
     type: 3}
   ExplosionSpawn: {fileID: 2242389019705900345}
   itemdrop: 0
---- !u!114 &7261019343923445343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2242389019705900345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992e42606a64fdb45bffa35719b27b3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn: {fileID: 2242389019705900348}
-  GoldCoin: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8, type: 3}
-  CoinBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
-  drop: {fileID: 3281384329377353050}
-  goldAmount: 0
 --- !u!95 &141832338409469897
 Animator:
   serializedVersion: 3
@@ -199,3 +168,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6204725607410178412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242389019705900345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631b62261aa25d24a8223b7a648e601e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 2242389019705900348}
+  GoldCoin: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8, type: 3}
+  CoinBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
+  GoldBar: {fileID: 6806969866165904133, guid: b501147b54790d4439c541085b4e2616, type: 3}
+  lootdrop: 0
+  dropchance: 0
+  ItemHealth: 1

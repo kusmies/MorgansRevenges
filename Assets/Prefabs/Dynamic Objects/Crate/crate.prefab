@@ -172,7 +172,8 @@ MonoBehaviour:
   playeref: {fileID: 3173428338938420722, guid: c37bfe1febf17d345865e072030ec2ec,
     type: 3}
   lootdrop: 0
-  ItemHealth: 3
+  dropchance: 0
+  ItemHealth: 1
 --- !u!95 &6957691465432461244
 Animator:
   serializedVersion: 3

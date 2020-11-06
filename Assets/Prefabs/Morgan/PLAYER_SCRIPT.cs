@@ -165,7 +165,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
         }
-        else  if (Input.GetAxis("Crouch") >0)
+        else  if (Input.GetKeyDown(KeyCode.S))
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
@@ -173,17 +173,18 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 lowslash = true;
             }
 
-            if (!Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyUp(KeyCode.K))
             {
 
                 lowslash = false;
             }
 
             crouch = true;
+            isMoving = false;
 
             Debug.Log("crouch");
         }
-        else if (Input.GetAxis("Crouch") < 0)
+        else if (Input.GetKeyUp(KeyCode.S))
         {
             crouch = false;
             lowslash = false;
@@ -220,6 +221,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             else
             {
                 isMoving = false;
+
                 myBody.velocity = new Vector2(0, myBody.velocity.y);
 
                 if (Input.GetKeyDown(KeyCode.K)&& crouch ==false)
@@ -329,8 +331,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-
+    { 
+        /*
         //makes win happen
         if (collision.tag == "Player" || collision.tag == "Win")
         {
@@ -339,8 +341,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             level.changeScene(4);
         }
+        
         //adds 1 coin
-        else if (collision.gameObject.CompareTag("Coin"))
+        else*/ if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
 
