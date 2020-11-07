@@ -8,6 +8,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 {
     //hp bar
     public Slider Hp;
+    public static PLAYER_SCRIPT player;
 
     //loads the level the players in
     public CHASEN_SCRIPT level;
@@ -25,6 +26,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public float thrust;
 
     Vector3 dir1;
+    public int soul;
 
     //jump box collider
     public BoxCollider2D myBox;
@@ -61,7 +63,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //additional speed
     public float bonusspeed;
     // Start is called before the first frame update
-   
+
+     void Awake()
+    {
+        player = this;
+    }
     void Start()
     {
         isLeft = false;
@@ -143,7 +149,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             lowslash = false;
         }
         //left is true
-        if (Input.GetAxis("Horizontal") > 0)
+        if (/*Input.GetAxis("Horizontal")> 0*/ Input.GetKey(KeyCode.D)  && !Input.GetKey(KeyCode.S))
         {
             if(Input.GetKeyDown(KeyCode.K))
             {
@@ -165,7 +171,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
         }
-        else  if (Input.GetKeyDown(KeyCode.S))
+        else  if (Input.GetKey(KeyCode.S)/*&& Input.GetAxis("Horizontal") == 0*/)
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
@@ -178,6 +184,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 lowslash = false;
             }
+            myBody.velocity = new Vector2(0, myBody.velocity.y);
 
             crouch = true;
             isMoving = false;
@@ -193,7 +200,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         else
         {
             //right is true
-            if (Input.GetAxis("Horizontal") < 0)
+            if (/*Input.GetAxis("Horizontal") < 0*/ Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S))
             {
                 myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
                 mySprite.flipX = false;
