@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\CHSTHP_SCRIPT.cs" />
     <Compile Include="Assets\CameraMove_Script.cs" />
+    <Compile Include="Assets\EXPLWAL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\DynamicObjectScripts\CHSTDRP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\DynamicObjectScripts\DTRYBLK_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\DynamicObjectScripts\DTRYLT_SCRIPT.cs" />
