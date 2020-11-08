@@ -22,7 +22,9 @@ public class EXPLWAL_SCRIPT : MonoBehaviour
         {
             for (int j = 0; j < rowLength; j++)
             {
-                Vector3 childSpawn = new Vector3(i, j, 0);
+                Vector3 childSpawn = new Vector3(j, i, 0);
+
+                childSpawn = (childSpawn + myTran.transform.position);
 
                 GameObject newChild = Instantiate(childExample, childSpawn, myTran.rotation);
 
