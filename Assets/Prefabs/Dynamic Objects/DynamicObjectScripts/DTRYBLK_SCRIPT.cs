@@ -10,15 +10,13 @@ public class DTRYBLK_SCRIPT : MonoBehaviour
 
     public bool isDead = false;
 
-    [SerializeField] public GameObject explosionEffect;
+    public GameObject explosionEffect;
 
-    Transform myTran;
+    public Transform myTran;
 
     void Start()
     {
-        
 
-        
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -34,15 +32,14 @@ public class DTRYBLK_SCRIPT : MonoBehaviour
 
     void Update()
     {
-        if (isDead)
+      if(isDead)
         {
-            Instantiate(explosionEffect, myTran.position, myTran.rotation);
-            
+            GameObject Explosion;
+            Explosion = (Instantiate(explosionEffect, myTran.transform.position, myTran.transform.rotation)) as GameObject;
+
             Destroy(gameObject);
-           
         }
 
     }
-
 
 }
