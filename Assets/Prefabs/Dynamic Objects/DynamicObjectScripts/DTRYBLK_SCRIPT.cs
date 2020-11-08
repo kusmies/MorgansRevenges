@@ -6,19 +6,22 @@ using UnityEngine;
 
 public class DTRYBLK_SCRIPT : MonoBehaviour
 {
+    Animator myAnimator;
+
     public EXPLWAL_SCRIPT parent;
 
     public bool isDead = false;
 
-    [SerializeField] public GameObject explosionEffect;
+    public GameObject explosionEffect;
 
-    Transform myTran;
+    public Transform myTran;
 
     void Start()
     {
-        
 
-        
+        myAnimator = GetComponent<Animator>();
+
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -26,7 +29,8 @@ public class DTRYBLK_SCRIPT : MonoBehaviour
         //Fireball destroys the brick
         if (collision.gameObject.CompareTag("Fireball"))
         {
-            parent.isExploding = true;
+            myAnimator.SetBool("Broke", true);
+
         }
     }
 
@@ -34,15 +38,17 @@ public class DTRYBLK_SCRIPT : MonoBehaviour
 
     void Update()
     {
-        if (isDead)
-        {
-            Instantiate(explosionEffect, myTran.position, myTran.rotation);
-            
-            Destroy(gameObject);
-           
-        }
+      
 
     }
 
+    void SpawnExplosion()
+    {
 
+       GameObject Explosion;
+       Explosion = (Instantiate(explosionEffect, myTran.transform.position, myTran.transform.rotation)) as GameObject;
+
+        Destroy(gameObject);
+
+    }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2051446092621105687}
   - component: {fileID: 9171961612733390082}
   - component: {fileID: 126390188513050345}
+  - component: {fileID: -4126514272075940041}
   m_Layer: 8
   m_Name: DestructibleTile
   m_TagString: Ground
@@ -126,6 +127,7 @@ MonoBehaviour:
   isDead: 0
   explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
     type: 3}
+  myTran: {fileID: 4242998219173939181}
 --- !u!50 &126390188513050345
 Rigidbody2D:
   serializedVersion: 4
@@ -147,3 +149,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &-4126514272075940041
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5055345977573089825}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3df60f9954cfcad46b1a3a0bf50edee7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
