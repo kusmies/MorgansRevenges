@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.RestService;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //hp bar
     public Slider Hp;
     public static PLAYER_SCRIPT player;
-
+    public bool shldfls;
+   public bool hlmfls;
+    public bool brnzfls;
+    public bool silvfls;
     //loads the level the players in
     public CHASEN_SCRIPT level;
     public bool castingfireball;
@@ -25,9 +29,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public bool lowslash;
     public float thrust;
 
+
     Vector3 dir1;
     public int soul;
-
+    public static int spirit;
+    public static Slider health;
     //jump box collider
     public BoxCollider2D myBox;
     //checks the sprite renderer
@@ -71,10 +77,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Start()
     {
         isLeft = false;
-        //gets coin save
-        coin = PlayerPrefs.GetInt("newcoin");
-        //gets fireunlocked save
-        fireunlock = PlayerPrefs.GetInt("unlocked");
+        LoadPlayer();
         //death timer target
         deathtimertarget = 5.0f;
         //invunerability timer target
@@ -89,10 +92,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
         struck = GetComponent<KNCKBCK_SCRIPT>();
 
     }
-
+   
     // Update is called once per frame
+
     void Update()
     {
+
         coinvalue.text = coin.ToString();
 
         if (!death)
@@ -106,6 +111,17 @@ public class PLAYER_SCRIPT : MonoBehaviour
         invulerability(); 
     }
     //checks if the players on the ground
+
+        public void SavePlayer()
+    {
+        SAVESYSTEM.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PLAYERDATA_SCRIPT data = SAVESYSTEM.LoadPlayer();
+        coin = data.coin;
+    }
     void checkForGround()
     {
         if (Input.GetKey(KeyCode.K) && isGrounded == false)
@@ -166,7 +182,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
             mySprite.flipX = true;
             isMoving = true;
             isLeft = true;
-            Debug.Log("moveleft");
             crouch = false;
 
 
@@ -189,13 +204,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
             crouch = true;
             isMoving = false;
 
-            Debug.Log("crouch");
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
             crouch = false;
             lowslash = false;
-            Debug.Log("crouch");
         }
         else
         {
@@ -211,7 +224,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.K))
                 {
 
-                    Debug.Log("slash");
                     midslash = true;
                 }
                 if (!Input.GetKeyDown(KeyCode.K))
@@ -220,7 +232,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     midslash = false;
 
                 }
-                Debug.Log("moveright");
 
 
             }
@@ -287,7 +298,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 mySprite.color = new Color32(255, 255, 255, 255);
 
                 invicibility = false;
-                Debug.Log("invicibilitygone");
                 invulnertimer = 0.0f;
 
             }
@@ -320,25 +330,32 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         if (deathtimer >= deathtimertarget)
         {
-            PlayerPrefs.SetInt("newcoin", coin);
-            PlayerPrefs.SetInt("unlocked", fireunlock);
+
 
             level.changeScene(4);
+            SavePlayer();
         }
     }
 
    public void Cost()
     {
-      //unlocks and saves unlocked when cost is hit
-       fireunlock = 1;
+        if(coin>=5)
+        {
             coin -= 5;
+            SavePlayer();
 
-        PlayerPrefs.SetInt("newcoin", coin);
-        PlayerPrefs.SetInt("unlocked", fireunlock);
+        }
+
+        else
+        {
+            SavePlayer();
+        }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    { 
+    {
         /*
         //makes win happen
         if (collision.tag == "Player" || collision.tag == "Win")
@@ -350,13 +367,34 @@ public class PLAYER_SCRIPT : MonoBehaviour
         }
         
         //adds 1 coin
-        else*/ if (collision.gameObject.CompareTag("Coin"))
+        else*/
+        if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
 
-            coinvalue.text = coin+ "$";
+            coinvalue.text = coin + "$";
+            SavePlayer();
+
+        }
+
+        else if(collision.gameObject.CompareTag("BronzeRing"))
+        {
+            brnzfls = true;
+        }
+        else if (collision.gameObject.CompareTag("SilverRing"))
+        {
+            silvfls = true;
+        }
+        else if (collision.gameObject.CompareTag("SteelShield"))
+        {
+            shldfls = true;
+        }
+        else if (collision.gameObject.CompareTag("SteelHelm"))
+        {
+            hlmfls = true;
         }
         //adds hp
+
         else if (collision.gameObject.CompareTag("BSnack"))
         {
             Hp.value += 2;
@@ -373,9 +411,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //adds 5 coins
         else if (collision.gameObject.CompareTag("Cbag"))
         {
-            coin+= 5;
+            coin += 5;
 
             coinvalue.text = coin + "$";
+            SavePlayer();
 
         }
         //kills on hazard collision

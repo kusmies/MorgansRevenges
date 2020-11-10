@@ -55,7 +55,7 @@ public class LWSWD_SCRIPT: MonoBehaviour
 
 
        
-            Debug.Log("lowSlash");
+
             //have a bullet
             GameObject blade;
 

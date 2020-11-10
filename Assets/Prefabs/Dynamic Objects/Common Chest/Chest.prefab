@@ -155,7 +155,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2242389019705900345}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -181,9 +181,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 2242389019705900348}
-  GoldCoin: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8, type: 3}
+  SteelShield: {fileID: 6188343378155309143, guid: 982a036f6d67034479004d40d09c7c62,
+    type: 3}
+  SteelHelm: {fileID: 2553107998273638436, guid: 56cb710ec39c8d94da6e9176c6bcaac5,
+    type: 3}
+  BronzeRing: {fileID: 7213970071519926385, guid: 6304766d7214ec441a009ffb44c07ab3,
+    type: 3}
+  SilverRing: {fileID: 598118339859530494, guid: e7aaa60e30eea884c985ffce4e510d80,
+    type: 3}
   CoinBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
-  GoldBar: {fileID: 6806969866165904133, guid: b501147b54790d4439c541085b4e2616, type: 3}
   lootdrop: 0
   dropchance: 0
   ItemHealth: 1

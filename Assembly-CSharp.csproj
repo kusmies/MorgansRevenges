@@ -77,6 +77,10 @@
     <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATTILE_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\NMYHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
+    <Compile Include="Assets\Prefabs\Items\Temp Items\TEMPITEMS_CLASS.cs" />
+    <Compile Include="Assets\Prefabs\Items\Temp Items\XMLDeserializer.cs" />
+    <Compile Include="Assets\Prefabs\Items\Temp Items\XMLOp.cs" />
+    <Compile Include="Assets\Prefabs\Items\Temp Items\XMLSerializer.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\FIREBLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\XPLSN_SCRIPT.cs" />
@@ -86,7 +90,6 @@
     <Compile Include="Assets\Prefabs\Morgan\PLAYERANIM_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYERDATA_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYER_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\SAVE_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\HGHSWD_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\LWSWD_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\SWD_SCRIPT.cs" />
@@ -94,9 +97,12 @@
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\SAVESYSTEM.cs" />
+    <Compile Include="Assets\Scripts\TESTBUTTON_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\XPLSN_SPAWN_SCRIPT.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Resources\TEMPITEMSXML.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />

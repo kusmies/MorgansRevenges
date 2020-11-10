@@ -218,7 +218,6 @@ public class NMYHP_SCRIPT : MonoBehaviour
             if (lootonce == true)
             {
                 lootonce = false;
-                Debug.Log("hi tim");
 
 
                 if (dropchance == 1)
@@ -294,7 +293,7 @@ public class NMYHP_SCRIPT : MonoBehaviour
                 //destroys to only spawn one object
                 myAnimator.SetBool("Death", true);
 
-
+             
 
                 //resets the drop range for the item drop
 

@@ -8,13 +8,16 @@ public class CHSTHP_SCRIPT : MonoBehaviour
 
     //animator
     Animator myAnimator;
-    public GameObject GoldCoin;
-    public GameObject CoinBag;
-    public GameObject GoldBar;
+    public GameObject SteelShield;
+    public GameObject SteelHelm;
+    public GameObject BronzeRing;
+    public GameObject SilverRing;
     // Start is called before the first frame update
 
     bool isdead;
     bool lootonce;
+
+  
 
     public int lootdrop;
     public int dropchance;
@@ -66,48 +69,59 @@ public class CHSTHP_SCRIPT : MonoBehaviour
             if (lootonce == true)
             {
                 lootonce = false;
-                Debug.Log("hi tim");
 
 
                 if (dropchance == 1)
                 {
                     //when the player collides with a test dummy drop an object from 1 to 7
-                    if (lootdrop >= 1 && lootdrop < 51)
+                    if (lootdrop >= 1 && lootdrop < 26 && PLAYER_SCRIPT.player.shldfls == false)
                     {
-                        GameObject drop7;
 
-                        drop7 = (Instantiate(GoldCoin, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop7.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
+                        GameObject stlshld;
 
+                        stlshld = (Instantiate(SteelShield, spawn.transform.position, transform.rotation)) as GameObject;
+                        stlshld.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
                     }
-            
 
 
-                    if (lootdrop >= 51)
+
+                    if (lootdrop >= 26 && lootdrop < 51 && PLAYER_SCRIPT.player.hlmfls ==false)
                     {
-                        GameObject drop6;
-                        drop6 = (Instantiate(CoinBag, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop6.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
 
+                        GameObject stlhlm;
+                        stlhlm = (Instantiate(SteelHelm, spawn.transform.position, transform.rotation)) as GameObject;
+                        stlhlm.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
                     }
-                  
+                    if (lootdrop >= 51 && lootdrop < 76 && PLAYER_SCRIPT.player.brnzfls ==false)
+                    {
+
+                        GameObject bronzrin;
+                        bronzrin = (Instantiate(BronzeRing, spawn.transform.position, transform.rotation)) as GameObject;
+                        bronzrin.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
+                    }
+
+                    if(lootdrop>=76 && lootdrop <101 && PLAYER_SCRIPT.player.silvfls ==false)
+                    {     
+
+                        GameObject silvrin;
+                       silvrin = (Instantiate(SilverRing, spawn.transform.position, transform.rotation)) as GameObject;
+                        silvrin.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
+                    }
+                    else
+                    {
+              
+                    }
+                    //destroys to only spawn one object
+                    myAnimator.SetBool("Dead", true);
+
+
+
+                    //resets the drop range for the item drop
                 }
-                else
-                {
-
 
                 }
-                //destroys to only spawn one object
-                myAnimator.SetBool("Dead", true);
-
-
-
-                //resets the drop range for the item drop
-
-
             }
         }
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerAttack"))
