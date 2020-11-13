@@ -6,8 +6,9 @@ public class ITEMHP_SCRIPT : MonoBehaviour
 {
     //spawn loacation
     public Transform spawn;
+    public GameObject explosionEffect;
 
-        //animator
+    //animator
     Animator myAnimator;
 
     //variables for combining scripts
@@ -19,7 +20,6 @@ public class ITEMHP_SCRIPT : MonoBehaviour
     public GameObject GoldCoin;
     public GameObject CoinBag;
     public GameObject GoldBar;
-    public GameObject playeref;
     
     
     bool isdead;
@@ -113,34 +113,8 @@ public class ITEMHP_SCRIPT : MonoBehaviour
                         drop6.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
 
                     }
-                    /*
-
-                    if (lootdrop == 5)
-                    {
-                        GameObject drop4;
-                        drop4 = (Instantiate(Mpotion, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop4.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
-
-                    }
-
-                    if (lootdrop == 6)
-                    {
-                        GameObject drop5;
-
-                        drop5 = (Instantiate(GoldBar, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop5.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
-
-                    }
-                    if (lootdrop == 7)
-                    {
-                        GameObject drop1;
-
-                        drop1 = (Instantiate(Bmeal, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop1.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
-
-
-                    }
-                    */
+                   
+                    
                 }
                 else
                 {
@@ -157,6 +131,14 @@ public class ITEMHP_SCRIPT : MonoBehaviour
 
             }
         }
+    }
+    void SpawnExplosion()
+    {
+
+        GameObject Explosion;
+        Explosion = (Instantiate(explosionEffect, spawn.transform.position, spawn.transform.rotation)) as GameObject;
+
+        Destroy(gameObject);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ItemDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TempItems>
+    <ItemEntry>
+      <ID>1</ID>
+      <name>bronze</name>
+      <currency>Gold</currency>
+      <price>4</price>
+      <got>true</got>
+    </ItemEntry>
+    <ItemEntry>
+      <ID>2</ID>
+      <name>silver</name>
+      <currency>Gold</currency>
+      <price>8</price>
+      <got>true</got>
+    </ItemEntry>
+    <ItemEntry>
+      <ID>3</ID>
+      <name>steelhelm</name>
+      <currency>Gold</currency>
+      <price>4</price>
+      <got>true</got>
+    </ItemEntry>
+    <ItemEntry>
+      <ID>4</ID>
+      <name>steelshield</name>
+      <currency>Gold</currency>
+      <price>2</price>
+      <got>true</got>
+    </ItemEntry>
+  </TempItems>
+</ItemDatabase>

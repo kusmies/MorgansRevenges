@@ -379,7 +379,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.06666667
-    functionName: MIDFire
+    functionName: Slash
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
