@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3629094261537491242}
   - component: {fileID: 4532351797104686668}
   - component: {fileID: 2781849695492900831}
+  - component: {fileID: 8337337806111901049}
   m_Layer: 0
   m_Name: BronzeRing
   m_TagString: BronzeRing
@@ -120,3 +121,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8337337806111901049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213970071519926385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734c0d6ac6642e4f95919e568b65578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

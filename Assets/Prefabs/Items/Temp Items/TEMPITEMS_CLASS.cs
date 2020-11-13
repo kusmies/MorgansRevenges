@@ -2,24 +2,30 @@
 
 using System;
 using System.Xml.Serialization;
+using UnityEngine;
 
 [Serializable]
 public class TEMPITEMS_CLASS
 {
+    //players id
     [XmlAttribute("ID")]
     public int ID;
-    [XmlAttribute("name")]
-
+    //player name
+    [XmlElement("name")]
     public string name;
-    [XmlAttribute("currency")]
+    //players currency
+    [XmlElement("currency")]
 
     public string currency;
-    [XmlAttribute("price")]
+    //players price
+    [XmlElement("price")]
 
+    //players get status
     public int price;
-    [XmlAttribute("got")]
+    [XmlElement("got")]
 
     public bool got;
 
 
 }
+

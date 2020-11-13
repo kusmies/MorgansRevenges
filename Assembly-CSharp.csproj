@@ -63,9 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CHSTHP_SCRIPT.cs" />
-    <Compile Include="Assets\CameraMove_Script.cs" />
-    <Compile Include="Assets\EXPLWAL_SCRIPT.cs" />
+    <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\CHSTHP_SCRIPT.cs" />
+    <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\DynamicObjectScripts\CHSTDRP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\DynamicObjectScripts\DTRYBLK_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\DynamicObjectScripts\DTRYLT_SCRIPT.cs" />
@@ -78,9 +77,6 @@
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\NMYHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Items\Temp Items\TEMPITEMS_CLASS.cs" />
-    <Compile Include="Assets\Prefabs\Items\Temp Items\XMLDeserializer.cs" />
-    <Compile Include="Assets\Prefabs\Items\Temp Items\XMLOp.cs" />
-    <Compile Include="Assets\Prefabs\Items\Temp Items\XMLSerializer.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\FIREBLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\XPLSN_SCRIPT.cs" />
@@ -95,10 +91,12 @@
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\SWD_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\CHASEN_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\ItemHandler.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SAVESYSTEM.cs" />
     <Compile Include="Assets\Scripts\TESTBUTTON_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\XMLManager.cs" />
     <Compile Include="Assets\Scripts\XPLSN_SPAWN_SCRIPT.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -114,6 +112,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\XML\item_data.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />

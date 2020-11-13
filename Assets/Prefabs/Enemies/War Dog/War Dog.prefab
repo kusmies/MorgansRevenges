@@ -171,6 +171,8 @@ MonoBehaviour:
   myBox: {fileID: 3192431363743399873}
   isGrounded: 0
   thrust: 1000
+  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
+    type: 3}
   spawn: {fileID: 3192431363743399878}
   invulnertimer: 0
   invulnertarget: 0
@@ -279,9 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed4961cb1fd1a247911826f3ae4cd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
-    type: 3}
-  ExplosionSpawn: {fileID: 3192431363743399877}
   itemdrop: 0
 --- !u!114 &6483738294092588228
 MonoBehaviour:

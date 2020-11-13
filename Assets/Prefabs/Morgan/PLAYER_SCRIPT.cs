@@ -7,6 +7,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class PLAYER_SCRIPT : MonoBehaviour
 {
+    Vector3 pushDirection;
+
+    //gets rigid body
+    public Rigidbody2D rb;
+    //knockback bool
+    public bool knockBack;
+    //thrust force added
+    public float upwardThrust;
+    public float directionatalthrust;
+    public GameObject swordPrefab;
+    public GameObject SwordSpawn;
+    //spawns the sword
+    public GameObject lowSwordSpawn;
+    public bool slash = false;
+
+    public bool shoot;
+    GameObject fireball;
+    public PLAYER_SCRIPT unlock;
+
+    public GameObject FireballPrefab;
+
+    //spawn point for the fireball
+    public GameObject FireballSpawn;
     //hp bar
     public Slider Hp;
     public static PLAYER_SCRIPT player;
@@ -76,6 +99,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
+
+
         isLeft = false;
         LoadPlayer();
         //death timer target
@@ -97,6 +123,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Update()
     {
+        knocked();
+
 
         coinvalue.text = coin.ToString();
 
@@ -121,6 +149,41 @@ public class PLAYER_SCRIPT : MonoBehaviour
     {
         PLAYERDATA_SCRIPT data = SAVESYSTEM.LoadPlayer();
         coin = data.coin;
+    }
+
+    public void CastFireball()
+    {
+        if (MP_SCRIPT.mana.Mp.value >= 1)
+        {
+            //sets the shoot equal to true
+            shoot = true;
+
+            MP_SCRIPT.mana.Mp.value -= 1;
+
+            //have a bullet
+
+            Debug.Log("normalShot");
+
+
+            //makes a bullet
+            fireball = (Instantiate(FireballPrefab, FireballSpawn.transform.position, transform.rotation)) as GameObject;
+
+            //give it force to right
+
+            if (unlock.isLeft == true)
+            {
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 0));
+            }
+            //give it force to left
+
+            if (unlock.isLeft == false)
+            {
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 0));
+            }
+            //destroy after 1 second
+            Destroy(fireball, 1.0f);
+
+        }
     }
     void checkForGround()
     {
@@ -306,68 +369,103 @@ public class PLAYER_SCRIPT : MonoBehaviour
      
 
     }
+
+    void knocked()
+    {
+        //makes knockback happen when equal true
+        if (knockBack == true)
+        {
+            knockBack = false;
+            //if intfont of player make - thrust if behind player make thrust
+
+            rb.AddForce(pushDirection * 100);
+            //rb.AddForce(transform.up * upwardThrust);
+        }
+
+    }
     void Dead()
     {
-        //kills out of bound
-        if (myBody.position.y < -20)
+        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
-            death = true;
-        }
+            //kills out of bound
+            if (myBody.position.y < -20)
+            {
+                death = true;
+            }
 
-        //kills at 0
-        if (Hp.value <= 0)
-        {
+            //kills at 0
+            if (Hp.value <= 0)
+            {
 
-            death = true;
-          
-        }
+                death = true;
 
-        //plays animation when death equals true
-        if (death == true)
-        {
-            deathtimer += Time.deltaTime;
-        }
+            }
 
-        if (deathtimer >= deathtimertarget)
-        {
+            //plays animation when death equals true
+            if (death == true)
+            {
+                deathtimer += Time.deltaTime;
+            }
 
+            if (deathtimer >= deathtimertarget)
+            {
 
-            level.changeScene(4);
-            SavePlayer();
+                item.got = false;
+                XMLManager.ins.SaveItems();
+
+                level.changeScene(4);
+                SavePlayer();
+            }
         }
     }
-
-   public void Cost()
+    public void Slash()
     {
-        if(coin>=5)
-        {
-            coin -= 5;
-            SavePlayer();
 
-        }
+        //have a bullet
+        GameObject blade;
 
-        else
-        {
-            SavePlayer();
-        }
+        Debug.Log("normalShot");
 
+        //make a bullet
+        blade = (Instantiate(swordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
+
+        //give it force
+        blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
+
+        //destroy after 0.10 seconds
+        Destroy(blade, .10f);
+        //makes slash equal true
 
     }
+    public void lowSlash()
+    {
+
+
+
+
+        //have a bullet
+        GameObject blade;
+
+
+
+        //make a bullet
+        blade = (Instantiate(swordPrefab, lowSwordSpawn.transform.position, transform.rotation)) as GameObject;
+
+        //give it force
+        blade.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
+
+        //destroy after 0.25 seconds
+        Destroy(blade, 0.25f);
+
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-        //makes win happen
-        if (collision.tag == "Player" || collision.tag == "Win")
-        {
-            PlayerPrefs.SetInt("newcoin", coin);
-            PlayerPrefs.SetInt("unlocked", fireunlock);
-
-            level.changeScene(4);
-        }
         
-        //adds 1 coin
-        else*/
+
+        //gives the player a coin
         if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
@@ -376,23 +474,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             SavePlayer();
 
         }
-
-        else if(collision.gameObject.CompareTag("BronzeRing"))
-        {
-            brnzfls = true;
-        }
-        else if (collision.gameObject.CompareTag("SilverRing"))
-        {
-            silvfls = true;
-        }
-        else if (collision.gameObject.CompareTag("SteelShield"))
-        {
-            shldfls = true;
-        }
-        else if (collision.gameObject.CompareTag("SteelHelm"))
-        {
-            hlmfls = true;
-        }
+      
         //adds hp
 
         else if (collision.gameObject.CompareTag("BSnack"))

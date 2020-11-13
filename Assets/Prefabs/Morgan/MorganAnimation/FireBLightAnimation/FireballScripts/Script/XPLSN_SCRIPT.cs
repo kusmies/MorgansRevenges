@@ -38,7 +38,7 @@ public class XPLSN_SCRIPT: MonoBehaviour
             //give it force
             Explosion.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
 
-            //destroy after 2 seconds
+            //destroy after 1 seconds
             Destroy(Explosion, 1.0f);
             timer = 0.0f;
         }

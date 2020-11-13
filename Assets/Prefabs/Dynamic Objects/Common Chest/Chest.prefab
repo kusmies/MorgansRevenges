@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2242389019705900348}
   - component: {fileID: 2242389019705900347}
   - component: {fileID: 2242389019705900346}
-  - component: {fileID: 3281384329377353050}
   - component: {fileID: 141832338409469897}
   - component: {fileID: 5932781279357683419}
   - component: {fileID: 6204725607410178412}
@@ -112,22 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.411148, y: 2.8837128}
   m_EdgeRadius: 0
---- !u!114 &3281384329377353050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2242389019705900345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed4961cb1fd1a247911826f3ae4cd46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
-    type: 3}
-  ExplosionSpawn: {fileID: 2242389019705900345}
-  itemdrop: 0
 --- !u!95 &141832338409469897
 Animator:
   serializedVersion: 3
@@ -181,6 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 2242389019705900348}
+  deseralized: {fileID: 5633572432470821563, guid: 87b3cdd1cd1de0c479fd889da8e4b724,
+    type: 3}
+  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
+    type: 3}
   SteelShield: {fileID: 6188343378155309143, guid: 982a036f6d67034479004d40d09c7c62,
     type: 3}
   SteelHelm: {fileID: 2553107998273638436, guid: 56cb710ec39c8d94da6e9176c6bcaac5,
@@ -189,7 +176,7 @@ MonoBehaviour:
     type: 3}
   SilverRing: {fileID: 598118339859530494, guid: e7aaa60e30eea884c985ffce4e510d80,
     type: 3}
-  CoinBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
+  GoldBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
   lootdrop: 0
   dropchance: 0
   ItemHealth: 1

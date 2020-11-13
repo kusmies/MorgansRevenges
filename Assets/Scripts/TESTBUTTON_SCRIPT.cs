@@ -1,62 +1,110 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 using UnityEngine;
+using System.Xml.Linq;
+using UnityEditor.Build.Content;
+using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 public class TESTBUTTON_SCRIPT : MonoBehaviour
 {
     public int ITEMID;
+    public int id,price;
+    public string Name;
+    
+    
+    
 
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
-       ITEMID = Random.Range(1, 4);
+        XMLManager.ins.LoadItems();
+        ITEMID = Random.Range(1, 5);
 
 
     }
+
+
     public void cost()
     {
+        
+        
 
-        TEMPITEMS_CLASS bronze = XMLOp.Deserialize<TEMPITEMS_CLASS>("bronze.xml");
-        // Debug.Log(bronze.name);
-        TEMPITEMS_CLASS silver = XMLOp.Deserialize<TEMPITEMS_CLASS>("silver.xml");
-        // Debug.Log(silver.name);
-        TEMPITEMS_CLASS steelhelm = XMLOp.Deserialize<TEMPITEMS_CLASS>("helm.xml");
-        // Debug.Log(steelhelm.name);
-        TEMPITEMS_CLASS steelshield = XMLOp.Deserialize<TEMPITEMS_CLASS>("shield.xml");
 
-        if(ITEMID == bronze.ID)
+
+
+        ITEMID = Random.Range(1, 5);
+        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
-            PLAYER_SCRIPT.player.coin -= bronze.price;
+            //makes the item if the ID equals the bronze ID and its not been obtained previously
+            if (ITEMID ==item.ID)
+            {
 
-            Debug.Log(bronze.name);
-
-            ITEMID = Random.Range(1, 4);
-
-        }
-
-        if (ITEMID == silver.ID)
-        {
-            PLAYER_SCRIPT.player.coin -= silver.price;
-
-            Debug.Log(silver.name);
-            ITEMID = Random.Range(1, 4);
+                if (item.got == false)
+                {
+                    Debug.Log(item.ID);
+                    Debug.Log(item.price);
+                    Debug.Log(item.name);
+                    Debug.Log(item.ID);
 
 
-        }
-        if (ITEMID == steelhelm.ID)
-        {
-            PLAYER_SCRIPT.player.coin -= steelhelm.price;
-            ITEMID = Random.Range(1, 4);
+                    //subtracts the bronze price from the player total
+                    PLAYER_SCRIPT.player.coin -= item.price;
+                }
+                item.got = true;
+                XMLManager.ins.SaveItems();
 
-            Debug.Log(steelhelm.name);
 
-        }
-        if (ITEMID == steelshield.ID)
-        {
-            PLAYER_SCRIPT.player.coin -= steelshield.price;
-            ITEMID = Random.Range(1, 4);
 
-            Debug.Log(steelshield.name);
+            }
+            //makes the item if the ID equals the silver ID and its not been obtained previously
+            
+            else if (ITEMID == item.ID)
+            {
+                /*
+                Debug.Log(item.ID);
+                Debug.Log(item.price);
+                Debug.Log(item.name);
+                Debug.Log(item.ID);
+                */
 
+            }
+            //makes the item if the ID equals the steelhelm ID and its not been obtained previously
+
+            else if (ITEMID == item.ID)
+            {/*
+                Debug.Log(item.ID);
+                Debug.Log(item.price);
+                Debug.Log(item.name);
+                Debug.Log(item.ID);
+                */
+
+
+            }
+            //makes the item if the ID equals the steelshield ID and its not been obtained previously
+
+            else if (ITEMID == item.ID)
+            {/*
+                Debug.Log(item.ID);
+                Debug.Log(item.price);
+                Debug.Log(item.name);
+                Debug.Log(item.ID);
+                */
+
+            }
+            else
+            {
+                Debug.Log("cant buy");
+            }
+            
         }
     }
+
 }
+
