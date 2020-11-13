@@ -1,15 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.RestService;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class PLAYER_SCRIPT : MonoBehaviour
 {
+    Vector3 pushDirection;
+
+    //gets rigid body
+    public Rigidbody2D rb;
+    //knockback bool
+    public bool knockBack;
+    //thrust force added
+    public float upwardThrust;
+    public float directionatalthrust;
+    public GameObject swordPrefab;
+    public GameObject SwordSpawn;
+    //spawns the sword
+    public GameObject lowSwordSpawn;
+    public bool slash = false;
+
+    public bool shoot;
+    GameObject fireball;
+    public PLAYER_SCRIPT unlock;
+
+    public GameObject FireballPrefab;
+
+    //spawn point for the fireball
+    public GameObject FireballSpawn;
     //hp bar
     public Slider Hp;
     public static PLAYER_SCRIPT player;
-
+    public bool shldfls;
+   public bool hlmfls;
+    public bool brnzfls;
+    public bool silvfls;
     //loads the level the players in
     public CHASEN_SCRIPT level;
     public bool castingfireball;
@@ -20,14 +47,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //the knockback script
     KNCKBCK_SCRIPT struck;
     //displays the coin value
-    public Text coinvalue;
+   public Text coinvalue;
     public bool highslash;
     public bool lowslash;
     public float thrust;
 
+
     Vector3 dir1;
     public int soul;
-
+    public static int spirit;
+    public static Slider health;
     //jump box collider
     public BoxCollider2D myBox;
     //checks the sprite renderer
@@ -70,11 +99,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
+
+
         isLeft = false;
-        //gets coin save
-        coin = PlayerPrefs.GetInt("newcoin");
-        //gets fireunlocked save
-        fireunlock = PlayerPrefs.GetInt("unlocked");
+        LoadPlayer();
         //death timer target
         deathtimertarget = 5.0f;
         //invunerability timer target
@@ -89,10 +118,14 @@ public class PLAYER_SCRIPT : MonoBehaviour
         struck = GetComponent<KNCKBCK_SCRIPT>();
 
     }
-
+   
     // Update is called once per frame
+
     void Update()
     {
+        knocked();
+
+
         coinvalue.text = coin.ToString();
 
         if (!death)
@@ -106,6 +139,52 @@ public class PLAYER_SCRIPT : MonoBehaviour
         invulerability(); 
     }
     //checks if the players on the ground
+
+        public void SavePlayer()
+    {
+        SAVESYSTEM.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PLAYERDATA_SCRIPT data = SAVESYSTEM.LoadPlayer();
+        coin = data.coin;
+    }
+
+    public void CastFireball()
+    {
+        if (MP_SCRIPT.mana.Mp.value >= 1)
+        {
+            //sets the shoot equal to true
+            shoot = true;
+
+            MP_SCRIPT.mana.Mp.value -= 1;
+
+            //have a bullet
+
+            Debug.Log("normalShot");
+
+
+            //makes a bullet
+            fireball = (Instantiate(FireballPrefab, FireballSpawn.transform.position, transform.rotation)) as GameObject;
+
+            //give it force to right
+
+            if (unlock.isLeft == true)
+            {
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 0));
+            }
+            //give it force to left
+
+            if (unlock.isLeft == false)
+            {
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 0));
+            }
+            //destroy after 1 second
+            Destroy(fireball, 1.0f);
+
+        }
+    }
     void checkForGround()
     {
         if (Input.GetKey(KeyCode.K) && isGrounded == false)
@@ -166,7 +245,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
             mySprite.flipX = true;
             isMoving = true;
             isLeft = true;
-           
             crouch = false;
 
 
@@ -189,13 +267,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
             crouch = true;
             isMoving = false;
 
-    
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
             crouch = false;
             lowslash = false;
-       
         }
         else
         {
@@ -211,7 +287,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.K))
                 {
 
-            
                     midslash = true;
                 }
                 if (!Input.GetKeyDown(KeyCode.K))
@@ -220,7 +295,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     midslash = false;
 
                 }
-             
 
 
             }
@@ -233,12 +307,15 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.K)&& crouch ==false)
                 {
+
+
                     midslash = true;
                 }
                 if (!Input.GetKeyDown(KeyCode.K))
 
                 {
                     midslash = false;
+
                 }
             }
         }
@@ -278,90 +355,128 @@ public class PLAYER_SCRIPT : MonoBehaviour
             invulnertimer -= Time.deltaTime;
             mySprite.color = new Color32(255, 0, 0, 255);
 
-
+            Debug.Log(invulnertimer);
             if (invulnertimer <= invulnertarget)
             {
                 mySprite.color = new Color32(255, 255, 255, 255);
 
                 invicibility = false;
-
                 invulnertimer = 0.0f;
 
             }
-
-            Physics.IgnoreLayerCollision(12, 9, true);
-        }
-        else
-        {
-            Physics.IgnoreLayerCollision(12, 9, false);
         }
 
      
 
     }
+
+    void knocked()
+    {
+        //makes knockback happen when equal true
+        if (knockBack == true)
+        {
+            knockBack = false;
+            //if intfont of player make - thrust if behind player make thrust
+
+            rb.AddForce(pushDirection * 100);
+            //rb.AddForce(transform.up * upwardThrust);
+        }
+
+    }
     void Dead()
     {
-        //kills out of bound
-        if (myBody.position.y < -20)
+        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
-            death = true;
-        }
+            //kills out of bound
+            if (myBody.position.y < -20)
+            {
+                death = true;
+            }
 
-        //kills at 0
-        if (Hp.value <= 0)
-        {
+            //kills at 0
+            if (Hp.value <= 0)
+            {
 
-            death = true;
-          
-        }
+                death = true;
 
-        //plays animation when death equals true
-        if (death == true)
-        {
-            Physics.IgnoreLayerCollision(12, 9, true);
-            deathtimer += Time.deltaTime;
+            }
 
-        }
+            //plays animation when death equals true
+            if (death == true)
+            {
+                deathtimer += Time.deltaTime;
+            }
 
-        if (deathtimer >= deathtimertarget)
-        {
-            PlayerPrefs.SetInt("newcoin", coin);
-            PlayerPrefs.SetInt("unlocked", fireunlock);
+            if (deathtimer >= deathtimertarget)
+            {
 
-            level.changeScene(4);
+                item.got = false;
+                XMLManager.ins.SaveItems();
+
+                level.changeScene(4);
+                SavePlayer();
+            }
         }
     }
-
-   public void Cost()
+    public void Slash()
     {
-      //unlocks and saves unlocked when cost is hit
-       fireunlock = 1;
-            coin -= 5;
 
-        PlayerPrefs.SetInt("newcoin", coin);
-        PlayerPrefs.SetInt("unlocked", fireunlock);
+        //have a bullet
+        GameObject blade;
+
+        Debug.Log("normalShot");
+
+        //make a bullet
+        blade = (Instantiate(swordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
+
+        //give it force
+        blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
+
+        //destroy after 0.10 seconds
+        Destroy(blade, .10f);
+        //makes slash equal true
+
     }
+    public void lowSlash()
+    {
+
+
+
+
+        //have a bullet
+        GameObject blade;
+
+
+
+        //make a bullet
+        blade = (Instantiate(swordPrefab, lowSwordSpawn.transform.position, transform.rotation)) as GameObject;
+
+        //give it force
+        blade.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
+
+        //destroy after 0.25 seconds
+        Destroy(blade, 0.25f);
+
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
-    { 
-        /*
-        //makes win happen
-        if (collision.tag == "Player" || collision.tag == "Win")
-        {
-            PlayerPrefs.SetInt("newcoin", coin);
-            PlayerPrefs.SetInt("unlocked", fireunlock);
-
-            level.changeScene(4);
-        }
+    {
         
-        //adds 1 coin
-        else*/ if (collision.gameObject.CompareTag("Coin"))
+
+        //gives the player a coin
+        if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
 
-            coinvalue.text = coin+ "$";
+            coinvalue.text = coin + "$";
+            SavePlayer();
+
         }
+      
         //adds hp
+
         else if (collision.gameObject.CompareTag("BSnack"))
         {
             Hp.value += 2;
@@ -378,9 +493,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //adds 5 coins
         else if (collision.gameObject.CompareTag("Cbag"))
         {
-            coin+= 5;
+            coin += 5;
 
             coinvalue.text = coin + "$";
+            SavePlayer();
 
         }
         //kills on hazard collision
@@ -402,7 +518,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
                 Hp.value -= damage.Damage;
                 invicibility = true;
-                invulnertimer = 4.0f;
+                invulnertimer = 2.0f;
 
 
 
@@ -412,21 +528,5 @@ public class PLAYER_SCRIPT : MonoBehaviour
         }
 
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-
-       if (collision.gameObject.CompareTag("Enemy"))
-        {
-                var target = collision.transform;
-                dir1 = (transform.position - target.position).normalized;
-                myBody.AddRelativeForce(dir1 * thrust);
-                var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-                Hp.value -= damage.Damage;
-                invicibility = true;
-                invulnertimer = 4.0f;
-        }
     }
 }

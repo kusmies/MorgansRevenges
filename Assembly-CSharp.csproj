@@ -76,7 +76,7 @@
     <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATTILE_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\NMYHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Enemies\Soldier\Animation\Temp Items\TEMPITEMS_CLASS.cs" />
+    <Compile Include="Assets\Prefabs\Items\Temp Items\TEMPITEMS_CLASS.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\FIREBLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\XPLSN_SCRIPT.cs" />

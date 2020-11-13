@@ -11,6 +11,8 @@ public class NMYHP_SCRIPT : MonoBehaviour
     public bool isGrounded = false;
     public float thrust;
     //the enemy spawn
+    public GameObject explosionEffect;
+
     public Transform spawn;
     //the enemy animator
     Animator myAnimator;
@@ -144,7 +146,7 @@ public class NMYHP_SCRIPT : MonoBehaviour
 
             }
         }
-       /* if (collision.gameObject.CompareTag("Fireball"))
+        if (collision.gameObject.CompareTag("Fireball"))
         {
             if (invicibility == false)
             {
@@ -165,10 +167,10 @@ public class NMYHP_SCRIPT : MonoBehaviour
 
 
         }
-       */
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+
 
         }
         //it detects the hazard
@@ -179,7 +181,18 @@ public class NMYHP_SCRIPT : MonoBehaviour
             Enemyhealth -= damage.Damage;
         }
     }
-    
+
+
+    void SpawnExplosion()
+    {
+
+        GameObject Explosion;
+        Explosion = (Instantiate(explosionEffect, spawn.transform.position, spawn.transform.rotation)) as GameObject;
+
+        Destroy(gameObject);
+    }
+
+
     void invulerability()
     {//invcibility when hit
         if (invicibility == true)
@@ -219,7 +232,6 @@ public class NMYHP_SCRIPT : MonoBehaviour
             if (lootonce == true)
             {
                 lootonce = false;
-                
 
 
                 if (dropchance == 1)
@@ -258,34 +270,7 @@ public class NMYHP_SCRIPT : MonoBehaviour
                         drop6.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
 
                     }
-                    /*
-
-                    if (lootdrop == 5)
-                    {
-                        GameObject drop4;
-                        drop4 = (Instantiate(Mpotion, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop4.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
-
-                    }
-
-                    if (lootdrop == 6)
-                    {
-                        GameObject drop5;
-
-                        drop5 = (Instantiate(GoldBar, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop5.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
-
-                    }
-                    if (lootdrop == 7)
-                    {
-                        GameObject drop1;
-
-                        drop1 = (Instantiate(Bmeal, spawn.transform.position, transform.rotation)) as GameObject;
-                        drop1.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
-
-
-                    }
-                    */
+                    
                 }
                 else
                 {
@@ -295,7 +280,7 @@ public class NMYHP_SCRIPT : MonoBehaviour
                 //destroys to only spawn one object
                 myAnimator.SetBool("Death", true);
 
-
+             
 
                 //resets the drop range for the item drop
 

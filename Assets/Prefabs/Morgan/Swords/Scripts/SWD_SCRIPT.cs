@@ -10,6 +10,7 @@ public class SWD_SCRIPT : MonoBehaviour
     //spawns the sword
     public GameObject SwordSpawn;
 
+    
     //makes the sword script static
     public static SWD_SCRIPT midslash;
     //the fire bool

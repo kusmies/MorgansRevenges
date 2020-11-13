@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8845030229018053355}
   - component: {fileID: 1093973890012911252}
   - component: {fileID: 6114362133429735953}
-  - component: {fileID: 7627447110703917081}
   m_Layer: 11
   m_Name: Barrel
   m_TagString: Loot
@@ -120,7 +119,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8845030229018053367}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -146,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 8845030229018053354}
+  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
+    type: 3}
   Bsnack: {fileID: 2465739114448873993, guid: ed46b2b3757693a4cbe3d1579af4af2d, type: 3}
   Bmeal: {fileID: 586773364701114417, guid: 90b6616e1915d114b962d995821a9481, type: 3}
   Mvial: {fileID: 5667388634067837605, guid: 53d0e0ac2e2a70a4b80a0a1f1634b34e, type: 3}
@@ -153,8 +154,6 @@ MonoBehaviour:
   GoldCoin: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8, type: 3}
   CoinBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
   GoldBar: {fileID: 6806969866165904133, guid: b501147b54790d4439c541085b4e2616, type: 3}
-  playeref: {fileID: 2917109951148572508, guid: 0bac9590567d7b847804ca8b569c2b7a,
-    type: 3}
   lootdrop: 0
   dropchance: 0
   ItemHealth: 1
@@ -177,19 +176,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7627447110703917081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8845030229018053367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ed4961cb1fd1a247911826f3ae4cd46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExplosionPrefab: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
-    type: 3}
-  ExplosionSpawn: {fileID: 8845030229018053367}
-  itemdrop: 0

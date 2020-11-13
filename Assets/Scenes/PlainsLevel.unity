@@ -43043,6 +43043,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1879605132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879605134}
+  - component: {fileID: 1879605133}
+  m_Layer: 0
+  m_Name: SerialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1879605133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879605132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a3f4a3404487e4d959357826388aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDB:
+    list:
+    - ID: 1
+      name: Bronze
+      currency: 0
+      price: 4
+      got: 0
+    - ID: 2
+      name: Silver
+      currency: 0
+      price: 8
+      got: 0
+    - ID: 3
+      name: SteelHelmet
+      currency: 0
+      price: 2
+      got: 0
+    - ID: 4
+      name: SteelShield
+      currency: 0
+      price: 4
+      got: 0
+--- !u!4 &1879605134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879605132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3430974, y: -0.34578833, z: -0.1709647}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2021364683
 PrefabInstance:
   m_ObjectHideFlags: 0

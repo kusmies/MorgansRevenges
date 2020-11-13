@@ -32,6 +32,11 @@ TagManager:
   - Damage1
   - Coin
   - Dynamic
+  - LSword
+  - SteelHelm
+  - SteelShield
+  - BronzeRing
+  - SilverRing
   layers:
   - Default
   - TransparentFX

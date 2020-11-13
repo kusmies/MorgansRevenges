@@ -163,10 +163,6 @@ GameObject:
   - component: {fileID: 3194736562856368177}
   - component: {fileID: 7256701329708582109}
   - component: {fileID: 6960284353168495048}
-  - component: {fileID: 5028641517227882046}
-  - component: {fileID: 8027342669809792407}
-  - component: {fileID: 2183499957446498736}
-  - component: {fileID: 3272486302583343481}
   - component: {fileID: 9120627585721326273}
   m_Layer: 12
   m_Name: Player
@@ -294,7 +290,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbf42a42120fd54e96ced9343f8b0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6012946319879546381}
+  knockBack: 0
+  upwardThrust: 500
+  directionatalthrust: 200
+  swordPrefab: {fileID: 1063632248831671897, guid: 1b0ad36ab8f792d468cc9f1cb09ee6ae,
+    type: 3}
+  SwordSpawn: {fileID: 9180885643136525512}
+  lowSwordSpawn: {fileID: 75913365382173142}
+  slash: 0
+  shoot: 0
+  unlock: {fileID: 3194736562856368177}
+  FireballPrefab: {fileID: 8340247033174744010, guid: 72e3b4952a1be0a488bcd582302a722f,
+    type: 3}
+  FireballSpawn: {fileID: 6012946320180373045}
   Hp: {fileID: 0}
+  shldfls: 0
+  hlmfls: 0
+  brnzfls: 0
+  silvfls: 0
   level: {fileID: 7256701329708582109}
   castingfireball: 0
   fireunlock: 0
@@ -302,6 +316,7 @@ MonoBehaviour:
   highslash: 0
   lowslash: 0
   thrust: 4500
+  soul: 0
   myBox: {fileID: 9120627585721326273}
   groundLayer:
     serializedVersion: 2
@@ -348,73 +363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4b55fca65589c4eb0dedc1c38b7e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5028641517227882046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012946319879546383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ce003b798489e4e93cee70a91117b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3194736562856368177}
-  swordPrefab: {fileID: 1063632248831671897, guid: 1b0ad36ab8f792d468cc9f1cb09ee6ae,
-    type: 3}
-  SwordSpawn: {fileID: 9180885643136525512}
-  slash: 0
---- !u!114 &8027342669809792407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012946319879546383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a4a753dcddee5479eb0600f589cd1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3194736562856368177}
-  swordPrefab: {fileID: 2023848422413314598, guid: 2970f28012facea4b81a6ec77f32f6d6,
-    type: 3}
-  SwordSpawn: {fileID: 75913365382173142}
-  slash: 0
---- !u!114 &2183499957446498736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012946319879546383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbbd5b4898799e9498f75869ea2ab5ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unlock: {fileID: 3194736562856368177}
-  shoot: 0
-  FireballPrefab: {fileID: 8340247033174744010, guid: 72e3b4952a1be0a488bcd582302a722f,
-    type: 3}
-  FireballSpawn: {fileID: 6012946320180373045}
---- !u!114 &3272486302583343481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6012946319879546383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e2ad0f395e4f549a8256a0ec4b4d1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 6012946319879546381}
-  knockBack: 0
-  upwardThrust: 30
-  directionatalthrust: 200
 --- !u!61 &9120627585721326273
 BoxCollider2D:
   m_ObjectHideFlags: 0
