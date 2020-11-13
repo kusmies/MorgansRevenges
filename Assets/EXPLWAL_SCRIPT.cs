@@ -12,6 +12,7 @@ public class EXPLWAL_SCRIPT : MonoBehaviour
     public GameObject[,] tileChildren;
     Transform myTran;
 
+
     // Start is called before the first frame update
     void Start()
     {

@@ -10,11 +10,14 @@ public class XPLSN_SCRIPT: MonoBehaviour
     //variables for the timer
     public float timer;
     public float timerTarget;
+
+    POWER_SCRIPT powerScript;
     // Start is called before the first frame update
     void Start()
     {
         timerTarget = 0.8f;
 
+        powerScript = GetComponent<POWER_SCRIPT>();
     }
 
     // Update is called once per frame
@@ -30,7 +33,6 @@ public class XPLSN_SCRIPT: MonoBehaviour
             //have a bullet
             GameObject Explosion;
 
-            Debug.Log("normalShot");
 
             //make a bullet
             Explosion = (Instantiate(ExplosionPrefab, ExplosionSpawn.transform.position, transform.rotation)) as GameObject;
@@ -74,8 +76,6 @@ public class XPLSN_SCRIPT: MonoBehaviour
             Destroy(gameObject);
 
             GameObject Explosion;
-
-            Debug.Log("normalShot");
 
             //make a bullet
             Explosion = (Instantiate(ExplosionPrefab, ExplosionSpawn.transform.position, transform.rotation)) as GameObject;

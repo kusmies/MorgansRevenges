@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -6470356283953952637}
   - component: {fileID: 6774942653589340337}
   - component: {fileID: 8508880525761907103}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: ExplosionHItbox
-  m_TagString: Fireball
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 4
+  type: 2
 --- !u!1001 &2616623213151143642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,12 +227,12 @@ PrefabInstance:
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerAttack
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc04b3781d7a9b34ebf6ad3210596b0b, type: 3}
@@ -326,12 +327,12 @@ PrefabInstance:
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerAttack
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc04b3781d7a9b34ebf6ad3210596b0b, type: 3}
@@ -426,12 +427,12 @@ PrefabInstance:
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerAttack
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc04b3781d7a9b34ebf6ad3210596b0b, type: 3}
@@ -526,12 +527,12 @@ PrefabInstance:
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerAttack
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc04b3781d7a9b34ebf6ad3210596b0b, type: 3}
@@ -626,12 +627,12 @@ PrefabInstance:
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerAttack
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc04b3781d7a9b34ebf6ad3210596b0b, type: 3}
@@ -726,12 +727,12 @@ PrefabInstance:
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerAttack
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc04b3781d7a9b34ebf6ad3210596b0b, type: 3}
@@ -826,12 +827,12 @@ PrefabInstance:
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_TagString
-      value: PlayerAttack
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
         type: 3}
       propertyPath: m_Layer
-      value: 13
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc04b3781d7a9b34ebf6ad3210596b0b, type: 3}
