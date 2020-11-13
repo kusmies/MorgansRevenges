@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 4
+  type: 6
 --- !u!95 &3192431363743399486
 Animator:
   serializedVersion: 3

@@ -113,21 +113,10 @@ public class CHSTHP_SCRIPT : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
 
-
             var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
             ItemHealth -= damage.Damage;
 
-
-
-        }
-        //fireball damages the barrel
-        else if (collision.gameObject.CompareTag("Fireball"))
-        {
-
-            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-
-            ItemHealth -= damage.Damage;
         }
         //hazards damage the player
         else if (collision.gameObject.CompareTag("Hazard"))
@@ -150,14 +139,6 @@ public class CHSTHP_SCRIPT : MonoBehaviour
 
 
 
-        }
-        //fireball damages the barrel
-        else if (collision.gameObject.CompareTag("Fireball"))
-        {
-
-            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-
-            ItemHealth -= damage.Damage;
         }
         //hazards damage the player
         else if (collision.gameObject.CompareTag("Hazard"))

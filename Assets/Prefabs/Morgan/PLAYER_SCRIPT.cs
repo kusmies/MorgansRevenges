@@ -20,7 +20,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //the knockback script
     KNCKBCK_SCRIPT struck;
     //displays the coin value
-   public Text coinvalue;
+    public Text coinvalue;
     public bool highslash;
     public bool lowslash;
     public float thrust;
@@ -166,7 +166,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             mySprite.flipX = true;
             isMoving = true;
             isLeft = true;
-            Debug.Log("moveleft");
+           
             crouch = false;
 
 
@@ -189,13 +189,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
             crouch = true;
             isMoving = false;
 
-            Debug.Log("crouch");
+    
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
             crouch = false;
             lowslash = false;
-            Debug.Log("crouch");
+       
         }
         else
         {
@@ -211,7 +211,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.K))
                 {
 
-                    Debug.Log("slash");
+            
                     midslash = true;
                 }
                 if (!Input.GetKeyDown(KeyCode.K))
@@ -220,7 +220,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     midslash = false;
 
                 }
-                Debug.Log("moveright");
+             
 
 
             }
@@ -233,15 +233,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.K)&& crouch ==false)
                 {
-
-
                     midslash = true;
                 }
                 if (!Input.GetKeyDown(KeyCode.K))
 
                 {
                     midslash = false;
-
                 }
             }
         }
@@ -281,16 +278,22 @@ public class PLAYER_SCRIPT : MonoBehaviour
             invulnertimer -= Time.deltaTime;
             mySprite.color = new Color32(255, 0, 0, 255);
 
-            Debug.Log(invulnertimer);
+
             if (invulnertimer <= invulnertarget)
             {
                 mySprite.color = new Color32(255, 255, 255, 255);
 
                 invicibility = false;
-                Debug.Log("invicibilitygone");
+
                 invulnertimer = 0.0f;
 
             }
+
+            Physics.IgnoreLayerCollision(12, 9, true);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(12, 9, false);
         }
 
      
@@ -315,7 +318,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //plays animation when death equals true
         if (death == true)
         {
+            Physics.IgnoreLayerCollision(12, 9, true);
             deathtimer += Time.deltaTime;
+
         }
 
         if (deathtimer >= deathtimertarget)
@@ -397,7 +402,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
                 Hp.value -= damage.Damage;
                 invicibility = true;
-                invulnertimer = 2.0f;
+                invulnertimer = 4.0f;
 
 
 
@@ -407,5 +412,21 @@ public class PLAYER_SCRIPT : MonoBehaviour
         }
 
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+
+       if (collision.gameObject.CompareTag("Enemy"))
+        {
+                var target = collision.transform;
+                dir1 = (transform.position - target.position).normalized;
+                myBody.AddRelativeForce(dir1 * thrust);
+                var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+                Hp.value -= damage.Damage;
+                invicibility = true;
+                invulnertimer = 4.0f;
+        }
     }
 }

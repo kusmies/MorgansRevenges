@@ -77,7 +77,6 @@ public class FIREBLL_SCRIPT : MonoBehaviour
 
             //have a bullet
 
-            Debug.Log("normalShot");
 
 
             //makes a bullet

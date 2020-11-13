@@ -144,7 +144,7 @@ public class NMYHP_SCRIPT : MonoBehaviour
 
             }
         }
-        if (collision.gameObject.CompareTag("Fireball"))
+       /* if (collision.gameObject.CompareTag("Fireball"))
         {
             if (invicibility == false)
             {
@@ -165,6 +165,7 @@ public class NMYHP_SCRIPT : MonoBehaviour
 
 
         }
+       */
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -218,7 +219,7 @@ public class NMYHP_SCRIPT : MonoBehaviour
             if (lootonce == true)
             {
                 lootonce = false;
-                Debug.Log("hi tim");
+                
 
 
                 if (dropchance == 1)
