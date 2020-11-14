@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.RestService;
 using UnityEditor.UIElements;
@@ -24,7 +25,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     public bool shoot;
     GameObject fireball;
-    public PLAYER_SCRIPT unlock;
 
     public GameObject FireballPrefab;
 
@@ -32,7 +32,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public GameObject FireballSpawn;
     //hp bar
     public Slider Hp;
-    public static PLAYER_SCRIPT player;
+    public Slider Mp;
+
+    public float health;
+    public float mana;
     public bool shldfls;
    public bool hlmfls;
     public bool brnzfls;
@@ -56,7 +59,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     Vector3 dir1;
     public int soul;
     public static int spirit;
-    public static Slider health;
     //jump box collider
     public BoxCollider2D myBox;
     //checks the sprite renderer
@@ -64,7 +66,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //players ground layer
     [SerializeField] public LayerMask groundLayer;
     //the coin int
-    public int coin;
+    public float coin;
     //invunerable timer ticks up
     public float invulnertimer;
     //target for the invunerable timer to equal
@@ -93,17 +95,15 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public float bonusspeed;
     // Start is called before the first frame update
 
-     void Awake()
-    {
-        player = this;
-    }
+   
     void Start()
     {
+        Load();
+
         rb = this.GetComponent<Rigidbody2D>();
-
-
+        mana = Mp.value;
+        health = Hp.value;
         isLeft = false;
-        LoadPlayer();
         //death timer target
         deathtimertarget = 5.0f;
         //invunerability timer target
@@ -118,7 +118,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
         struck = GetComponent<KNCKBCK_SCRIPT>();
 
     }
-   
+
+
+    public void Load()
+    {
+        float[] loadedStats = SaveLoadManager.LoadPlayer();
+
+        health = loadedStats[0];
+        mana = loadedStats[1];
+        coin = loadedStats[2];
+    }
     // Update is called once per frame
 
     void Update()
@@ -140,25 +149,15 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     //checks if the players on the ground
 
-        public void SavePlayer()
-    {
-        SAVESYSTEM.SavePlayer(this);
-    }
-
-    public void LoadPlayer()
-    {
-        PLAYERDATA_SCRIPT data = SAVESYSTEM.LoadPlayer();
-        coin = data.coin;
-    }
 
     public void CastFireball()
     {
-        if (MP_SCRIPT.mana.Mp.value >= 1)
+        if (mana >= 1)
         {
             //sets the shoot equal to true
             shoot = true;
-
-            MP_SCRIPT.mana.Mp.value -= 1;
+            Mp.value--;
+            mana --;
 
             //have a bullet
 
@@ -170,13 +169,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             //give it force to right
 
-            if (unlock.isLeft == true)
+            if (isLeft == true)
             {
                 fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 0));
             }
             //give it force to left
 
-            if (unlock.isLeft == false)
+            if (isLeft == false)
             {
                 fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 0));
             }
@@ -346,6 +345,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
     }
+    public void setHp(float newvalue)
+    {
+         health =newvalue;
+
+    }
+    public void setMp(float newvalue)
+    {
+        mana=newvalue;
+
+    }
     void invulerability()
     {
         //makes invincibility happen when true
@@ -414,7 +423,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 XMLManager.ins.SaveItems();
 
                 level.changeScene(4);
-                SavePlayer();
             }
         }
     }
@@ -471,7 +479,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
             coin++;
 
             coinvalue.text = coin + "$";
-            SavePlayer();
 
         }
       
@@ -479,6 +486,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("BSnack"))
         {
+            health += 2;
             Hp.value += 2;
 
 
@@ -486,7 +494,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //adds mana
         else if (collision.gameObject.CompareTag("Mvial"))
         {
-            MP_SCRIPT.mana.Mp.value += 2;
+           mana += 2;
+           Mp.value += 2;
 
 
         }
@@ -496,7 +505,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
             coin += 5;
 
             coinvalue.text = coin + "$";
-            SavePlayer();
 
         }
         //kills on hazard collision
@@ -504,7 +512,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         {
 
             var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-            Hp.value -= damage.Damage;
+            health -= damage.Damage;
         }
         //makes enemies do damage
         else if (collision.gameObject.CompareTag("Enemy"))
@@ -516,7 +524,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 dir1 = (transform.position - target.position).normalized;
                 myBody.AddRelativeForce(dir1 * thrust);
                 var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-                Hp.value -= damage.Damage;
+                health -= damage.Damage;
                 invicibility = true;
                 invulnertimer = 2.0f;
 

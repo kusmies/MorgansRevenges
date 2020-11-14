@@ -14,7 +14,7 @@ public class TESTBUTTON_SCRIPT : MonoBehaviour
     public int ITEMID;
     public int id,price;
     public string Name;
-    
+    public PLAYER_SCRIPT player;
     
     
 
@@ -55,7 +55,7 @@ public class TESTBUTTON_SCRIPT : MonoBehaviour
 
 
                     //subtracts the bronze price from the player total
-                    PLAYER_SCRIPT.player.coin -= item.price;
+                    player.coin -= item.price;
                 }
                 item.got = true;
                 XMLManager.ins.SaveItems();

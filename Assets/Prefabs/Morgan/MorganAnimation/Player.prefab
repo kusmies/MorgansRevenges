@@ -300,11 +300,13 @@ MonoBehaviour:
   lowSwordSpawn: {fileID: 75913365382173142}
   slash: 0
   shoot: 0
-  unlock: {fileID: 3194736562856368177}
   FireballPrefab: {fileID: 8340247033174744010, guid: 72e3b4952a1be0a488bcd582302a722f,
     type: 3}
   FireballSpawn: {fileID: 6012946320180373045}
   Hp: {fileID: 0}
+  Mp: {fileID: 0}
+  health: 12
+  mana: 4
   shldfls: 0
   hlmfls: 0
   brnzfls: 0
@@ -348,8 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac867303fe1d19743b2167d26df104bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: 0
-  fire: 0
+  player: {fileID: 3194736562856368177}
+  starthealth: 12
+  startmana: 4
+  startmoney: 0
   onTitle: 1
 --- !u!114 &6960284353168495048
 MonoBehaviour:

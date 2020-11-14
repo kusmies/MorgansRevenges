@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class CHASEN_SCRIPT : MonoBehaviour
 {
-    public int coin;
-    public int fire;
+   public PLAYER_SCRIPT player;
+
     public bool onTitle = true;
     string titlescreenName = "TitleScreen";
 
@@ -17,14 +17,22 @@ public class CHASEN_SCRIPT : MonoBehaviour
     public void changeScene(int index)
     {
         Scene currScene = SceneManager.GetActiveScene();
-        
 
         if (currScene.name == titlescreenName)
         {
+
+            player.health = 12;
+            player.mana = 4;
+            player.coin = 0;
+            SaveLoadManager.SavePlayer(player);
+
             PlayerPrefs.DeleteAll();
             Debug.Log("Deleted everything");
+            
         }
         
         SceneManager.LoadScene(index);
     }
+
+   
 }

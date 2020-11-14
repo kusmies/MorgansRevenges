@@ -84,7 +84,6 @@
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FrostWaveAnimation\Frost Wave\Scripts\FRSTWVE_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\WindWall\Scripts\WINWLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYERANIM_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\PLAYERDATA_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYER_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\HGHSWD_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\LWSWD_SCRIPT.cs" />
@@ -93,11 +92,10 @@
     <Compile Include="Assets\Scripts\ACTIVE_SOLDIER_BLADE_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\CHASEN_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\ItemHandler.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\SAVESYSTEM.cs" />
     <Compile Include="Assets\Scripts\SOLDIER_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\TESTBUTTON_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\XMLManager.cs" />
     <Compile Include="Assets\Scripts\XPLSN_SPAWN_SCRIPT.cs" />
