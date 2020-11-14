@@ -6,28 +6,28 @@
       <name>bronze</name>
       <currency>Gold</currency>
       <price>4</price>
-      <got>true</got>
+      <got>false</got>
     </ItemEntry>
     <ItemEntry>
       <ID>2</ID>
       <name>silver</name>
       <currency>Gold</currency>
       <price>8</price>
-      <got>true</got>
+      <got>false</got>
     </ItemEntry>
     <ItemEntry>
       <ID>3</ID>
       <name>steelhelm</name>
       <currency>Gold</currency>
       <price>4</price>
-      <got>true</got>
+      <got>false</got>
     </ItemEntry>
     <ItemEntry>
       <ID>4</ID>
       <name>steelshield</name>
       <currency>Gold</currency>
       <price>2</price>
-      <got>true</got>
+      <got>false</got>
     </ItemEntry>
   </TempItems>
 </ItemDatabase>
