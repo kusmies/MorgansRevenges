@@ -303,10 +303,12 @@ MonoBehaviour:
   FireballPrefab: {fileID: 8340247033174744010, guid: 72e3b4952a1be0a488bcd582302a722f,
     type: 3}
   FireballSpawn: {fileID: 6012946320180373045}
-  Hp: {fileID: 0}
-  Mp: {fileID: 0}
-  health: 12
-  mana: 4
+  Hp: {fileID: 8049883241688896055, guid: 76e0d707406b55345b05a7eae33b138c, type: 3}
+  Mp: {fileID: 7034468176163821997, guid: 3c2997a3171d3894e9b11461d7025c51, type: 3}
+  MaxHealth: 12
+  CurrentHealth: 0
+  MaxMana: 4
+  CurrentMana: 0
   shldfls: 0
   hlmfls: 0
   brnzfls: 0
@@ -318,6 +320,8 @@ MonoBehaviour:
   highslash: 0
   lowslash: 0
   thrust: 4500
+  slide: {fileID: 0}
+  slide2: {fileID: 0}
   soul: 0
   myBox: {fileID: 9120627585721326273}
   groundLayer:
@@ -351,9 +355,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3194736562856368177}
-  starthealth: 12
-  startmana: 4
-  startmoney: 0
   onTitle: 1
 --- !u!114 &6960284353168495048
 MonoBehaviour:

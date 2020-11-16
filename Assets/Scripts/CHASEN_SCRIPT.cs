@@ -21,18 +21,24 @@ public class CHASEN_SCRIPT : MonoBehaviour
         if (currScene.name == titlescreenName)
         {
 
-            player.health = 12;
-            player.mana = 4;
+            player.MaxHealth = 12;
+            player.MaxMana = 4;
             player.coin = 0;
             SaveLoadManager.SavePlayer(player);
 
             PlayerPrefs.DeleteAll();
             Debug.Log("Deleted everything");
-            
         }
         
         SceneManager.LoadScene(index);
     }
+    public void Load()
+    {
+        float[] loadedStats = SaveLoadManager.LoadPlayer();
 
-   
+        player.MaxHealth = loadedStats[0];
+        player.MaxMana = loadedStats[1];
+        player.coin = loadedStats[2];
+    }
+
 }

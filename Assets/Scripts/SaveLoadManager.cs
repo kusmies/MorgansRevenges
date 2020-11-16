@@ -50,8 +50,8 @@ public class PlayerData
     {
         stats = new float[4];
 
-        stats[0] = player.health;
-        stats[1] = player.mana;
+        stats[0] = player.MaxHealth;
+        stats[1] = player.MaxMana;
         stats[2] = player.coin;
     }
 

@@ -85,6 +85,7 @@
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\WindWall\Scripts\WINWLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYERANIM_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYER_SCRIPT.cs" />
+    <Compile Include="Assets\Prefabs\Morgan\SLIDER_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\HGHSWD_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\LWSWD_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\SWD_SCRIPT.cs" />

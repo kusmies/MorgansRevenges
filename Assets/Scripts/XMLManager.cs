@@ -36,6 +36,7 @@ public class ItemEntry
 {
     public int ID;
     public string name;
+    public int value;
     public Currency currency;
     public int price;
     public bool got;
