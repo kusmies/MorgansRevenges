@@ -86,9 +86,6 @@
     <Compile Include="Assets\Prefabs\Morgan\PLAYERANIM_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYER_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\SLIDER_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\HGHSWD_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\LWSWD_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\Swords\Scripts\SWD_SCRIPT.cs" />
     <Compile Include="Assets\SOLDIER_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ACTIVE_SOLDIER_BLADE_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\CHASEN_SCRIPT.cs" />

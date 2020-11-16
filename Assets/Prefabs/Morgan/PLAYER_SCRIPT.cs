@@ -47,6 +47,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public float CurrentMana;
     public GameObject swordPrefab;
     public GameObject SwordSpawn;
+    public GameObject HighSwordPrefab;
     GameObject fireball;
 
     public GameObject FireballPrefab;
@@ -438,6 +439,35 @@ public class PLAYER_SCRIPT : MonoBehaviour
             }
         }
     }
+    public void HighSlash()
+    {
+
+        //have a bullet
+        GameObject blade;
+
+        Debug.Log("normalShot");
+
+        //make a bullet
+        blade = (Instantiate(HighSwordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
+        if (isLeft == false)
+        {
+            SwordSpawn.transform.localPosition = new Vector2(-3.61f, 0f);
+        }
+        //makes the sword face left
+        else if (isLeft == true)
+        {
+            SwordSpawn.transform.localPosition = new Vector2(-0.47f,0f);
+        }
+
+        blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
+
+
+
+        //destroy after 0.10 seconds
+        Destroy(blade, .10f);
+        //makes slash equal true
+
+    }
     public void Slash()
     {
 
@@ -448,24 +478,20 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         //make a bullet
         blade = (Instantiate(swordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
-        if (isLeft == true)
-        {
-
-           
-            blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
-
-            
-           
-        }
         if (isLeft == false)
         {
-
-
-            blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
-
-            SwordSpawn.transform.TransformPoint(new Vector2(-2.5f, 0));
-
+            SwordSpawn.transform.localPosition = new Vector2(-3.61f, 2.5f);
         }
+        //makes the sword face left
+        else if (isLeft == true)
+        {
+            SwordSpawn.transform.localPosition = new Vector2(-0.47f, 2.5f);
+        }
+
+        blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
+
+
+        
         //destroy after 0.10 seconds
         Destroy(blade, .10f);
         //makes slash equal true
@@ -484,12 +510,20 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         //make a bullet
         blade = (Instantiate(swordPrefab, lowSwordSpawn.transform.position, transform.rotation)) as GameObject;
+        if (isLeft == false)
+        {
+            lowSwordSpawn.transform.localPosition = new Vector2(-3.61f, -.5f);
+        }
+        //makes the sword face left
+        else if (isLeft == true)
+        {
+            lowSwordSpawn.transform.localPosition = new Vector2(2.47f, -.5f);
+        }
+        blade.GetComponent<Rigidbody2D>().MovePosition(lowSwordSpawn.transform.position);
 
-        //give it force
-        blade.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 0));
-      
-            //destroy after 0.25 seconds
-            Destroy(blade, 0.25f);
+
+        //destroy after 0.25 seconds
+        Destroy(blade, 0.25f);
 
     }
 
