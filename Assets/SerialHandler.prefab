@@ -49,24 +49,31 @@ MonoBehaviour:
     - ID: 1
       name: bronze
       value: 1
+      item: {fileID: 7213970071519926385, guid: 6304766d7214ec441a009ffb44c07ab3,
+        type: 3}
       currency: 0
       price: 4
       got: 0
     - ID: 2
       name: silver
       value: 2
+      item: {fileID: 598118339859530494, guid: e7aaa60e30eea884c985ffce4e510d80, type: 3}
       currency: 0
       price: 8
       got: 0
     - ID: 3
       name: steelhelm
       value: 1
+      item: {fileID: 2553107998273638436, guid: 56cb710ec39c8d94da6e9176c6bcaac5,
+        type: 3}
       currency: 0
       price: 2
       got: 0
     - ID: 4
       name: steelshield
       value: 2
+      item: {fileID: 6188343378155309143, guid: 982a036f6d67034479004d40d09c7c62,
+        type: 3}
       currency: 0
       price: 4
       got: 0

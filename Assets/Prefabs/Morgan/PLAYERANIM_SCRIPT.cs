@@ -24,6 +24,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
+            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
         }
@@ -54,10 +55,10 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
 
         }
         //jumpslash end
-        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == false && myPlayerMovement.highslash == true && myPlayerMovement.death == false)
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.highslash == true && myPlayerMovement.death == false)
         {
             PLAYER_CONTROL.SetBool("Walk", false);
-            PLAYER_CONTROL.SetBool("Jump", true);
+            PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
             PLAYER_CONTROL.SetBool("HighSlash", true);
@@ -65,26 +66,8 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
 
 
         }
-        else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == false && myPlayerMovement.highslash == false && myPlayerMovement.death == false)
-        {
-            PLAYER_CONTROL.SetBool("Walk", false);
-            PLAYER_CONTROL.SetBool("Jump", true);
-            PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
-
-
-        }
-        else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == false && myPlayerMovement.highslash == true && myPlayerMovement.death == false)
-        {
-            PLAYER_CONTROL.SetBool("Walk", false);
-            PLAYER_CONTROL.SetBool("Jump", true);
-            PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("HighSlash", true);
-
-
-        }
+       
+     
         //walk slash
         else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == true && myPlayerMovement.midslash == true && myPlayerMovement.death == false)
         {
@@ -92,6 +75,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Walk", true);
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", true);
+            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
 
@@ -106,6 +90,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", true);
 
+            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
         }
@@ -119,6 +104,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", true);
+            PLAYER_CONTROL.SetBool("HighSlash", false);
 
             PLAYER_CONTROL.SetBool("LowSlash", false);
 
@@ -132,6 +118,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", true);
+            PLAYER_CONTROL.SetBool("HighSlash", false);
 
             PLAYER_CONTROL.SetBool("LowSlash", true);
 
@@ -144,6 +131,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Fireball", true);
+            PLAYER_CONTROL.SetBool("HighSlash", false);
 
             PLAYER_CONTROL.SetBool("Crouch", false);
 
@@ -177,6 +165,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("HighSlash", false);
             PLAYER_CONTROL.SetBool("Death", false);
             PLAYER_CONTROL.SetBool("Fireball", false);
+            PLAYER_CONTROL.SetBool("HighSlash", false);
 
         }
     }
