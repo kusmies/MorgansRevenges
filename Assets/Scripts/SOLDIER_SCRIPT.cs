@@ -36,12 +36,17 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
         soldierAnimatorScript = GetComponent<SOLDIER_ANIM_SCRIPT>();
+        //Debug.Log(myBox.bounds);
     }
 
     // Update is called once per frame
     void Update()
     {
         if(hp <= 0)
+        {
+            isDead = true;
+        }
+        if (myBody.position.y < -20)
         {
             isDead = true;
         }
@@ -174,43 +179,41 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     {
         if(mySprite.flipX)
         {
+            Debug.Log("Low right attack");
+
             myBody.velocity = new Vector2(35f, myBody.velocity.y);
-            if (mySprite.flipX)
-            {
-                GameObject blade;
+            
+            GameObject blade;
 
-                Vector2 bladeSpawn = new Vector2(myTran.position.x - 2.4f, myTran.position.y - .2f);
+            Vector2 bladeSpawn = new Vector2(myTran.position.x - 2.4f, myTran.position.y - .2f);
 
-                blade = Instantiate(bladePrefab, bladeSpawn, transform.rotation);
+            blade = Instantiate(bladePrefab, bladeSpawn, transform.rotation);
 
-                ACTIVE_SOLDIER_BLADE_SCRIPT bladeScript = blade.GetComponent<ACTIVE_SOLDIER_BLADE_SCRIPT>();
+            ACTIVE_SOLDIER_BLADE_SCRIPT bladeScript = blade.GetComponent<ACTIVE_SOLDIER_BLADE_SCRIPT>();
 
-                bladeScript.mySoldier = GetComponent<SOLDIER_SCRIPT>();
+            bladeScript.mySoldier = GetComponent<SOLDIER_SCRIPT>();
 
-                bladeScript.type = 1;
+            bladeScript.type = 1; //1 is low right
 
-            }
-            //makes sword face left
-            else if (!mySprite.flipX)
-            {
-                GameObject blade;
-
-                Vector2 bladeSpawn = new Vector2(myTran.position.x + 2.4f, myTran.position.y + .2f);
-
-                blade = Instantiate(bladePrefab, bladeSpawn, transform.rotation);
-
-                ACTIVE_SOLDIER_BLADE_SCRIPT bladeScript = blade.GetComponent<ACTIVE_SOLDIER_BLADE_SCRIPT>();
-
-                bladeScript.mySoldier = GetComponent<SOLDIER_SCRIPT>();
-
-                bladeScript.type = 2;
-
-            }
-
+            
         }
         else
         {
+            Debug.Log("Low left attack");
+
             myBody.velocity = new Vector2(-35f, myBody.velocity.y);
+
+            GameObject blade;
+
+            Vector2 bladeSpawn = new Vector2(myTran.position.x + 2.4f, myTran.position.y + .2f);
+
+            blade = Instantiate(bladePrefab, bladeSpawn, transform.rotation);
+
+            ACTIVE_SOLDIER_BLADE_SCRIPT bladeScript = blade.GetComponent<ACTIVE_SOLDIER_BLADE_SCRIPT>();
+
+            bladeScript.mySoldier = GetComponent<SOLDIER_SCRIPT>();
+
+            bladeScript.type = 2; //2 is low left
         }
     }
 
@@ -237,7 +240,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
             bladeScript.mySoldier = GetComponent<SOLDIER_SCRIPT>();
 
-            bladeScript.type = 3;
+            bladeScript.type = 3; //3 is air right
         }
         else
         {
@@ -253,7 +256,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
             bladeScript.mySoldier = GetComponent<SOLDIER_SCRIPT>();
 
-            bladeScript.type = 4;
+            bladeScript.type = 4; //4 is air left
         }
 
         soldierAnimatorScript.highAttackStage2();

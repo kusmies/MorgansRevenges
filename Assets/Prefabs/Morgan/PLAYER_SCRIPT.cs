@@ -375,19 +375,20 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             invulnertimer -= Time.deltaTime;
             mySprite.color = new Color32(255, 0, 0, 255);
+            
+            Physics2D.IgnoreLayerCollision(12, 9, true);
 
-            Debug.Log(invulnertimer);
             if (invulnertimer <= invulnertarget)
             {
                 mySprite.color = new Color32(255, 255, 255, 255);
-
+                Physics2D.IgnoreLayerCollision(12, 9, false);
                 invicibility = false;
                 invulnertimer = 0.0f;
+                
 
             }
         }
-
-     
+        
 
     }
 
@@ -635,8 +636,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //makes enemies do damage
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (invicibility == false)
-            {
+            
                 slide.SetBar(CurrentHealth);
 
                 var target = collision.transform;
@@ -647,13 +647,34 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 invicibility = true;
                 invulnertimer = 2.0f;
 
-
-
-            }
+            
 
 
         }
 
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+            var powerScript = collision.gameObject.GetComponent<POWER_SCRIPT>();
+
+            CurrentHealth -= powerScript.Damage;
+
+            var target = collision.transform;
+
+            dir1 = (transform.position - target.position).normalized;
+
+            myBody.AddRelativeForce(dir1 * thrust);
+
+            invicibility = true;
+
+            invulnertimer = 2.0f;
+
+        }
     }
 }
