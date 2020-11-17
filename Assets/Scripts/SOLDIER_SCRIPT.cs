@@ -23,7 +23,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     public bool isHighAttacking2 = false;
     public bool isHighAttacking3 = false;
     public GameObject explosionEffect;
-    
+    int dmgThreshold = 0;
+    float invincibilityFrames;
 
 
     // Start is called before the first frame update
@@ -268,10 +269,18 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
             
-            var powerScript = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
-            hp -= powerScript.Damage;
-            Debug.Log(hp);
+            hp -= playerPower.Damage;
+            
+            if(playerPower.Damage >= dmgThreshold)
+            {
+                
+            }
+            else
+            {
+                invincibilityFrames = 1.0f;
+            }
         }
     }
 
@@ -281,10 +290,11 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
 
-            var powerScript = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
-            hp -= powerScript.Damage;
-            Debug.Log(hp);
+            hp -= playerPower.Damage;
+            
+            
         }
     }
 
@@ -303,4 +313,6 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
     }
+
+    
 }
