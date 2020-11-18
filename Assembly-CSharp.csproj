@@ -69,6 +69,7 @@
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYBLK_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYLT_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\ITEMHP_SCRIPT.cs" />
+    <Compile Include="Assets\Prefabs\Dynamic Objects\LootList.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Pennant Flag\Flag_Win.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Water\DETHSPWN_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATBOD_SCRIPT.cs" />

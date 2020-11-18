@@ -34,6 +34,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
     }
     public void New(int index)
     {
+        Debug.Log("click");
         foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
             if(item.ID ==1)
