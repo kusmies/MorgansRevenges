@@ -12,7 +12,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     public bool isGrounded = false;
     [SerializeField] public LayerMask groundLayer;
     [SerializeField] public LayerMask playerLayer;
-    public int health = 4;
+    public int health = 6;
     SpriteRenderer mySprite;
     public bool isAttacking = false;
     float attackCD = 0f;
@@ -23,8 +23,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     public bool isHighAttacking2 = false;
     public bool isHighAttacking3 = false;
     public GameObject explosionEffect;
-    int dmgThreshold = 0;
-    float invincibilityFrames;
+    int dmgThreshold = 2;
+    float invinCD = 0;
 
 
     // Start is called before the first frame update
@@ -54,7 +54,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         checkForGround();
         if (!isDead)
         {
-            
+            invincibilty();
+
             checkForPlayer();
 
             if(!isAttacking)
@@ -149,7 +150,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
                 }
                 else
                 {
-                    myBody.velocity = new Vector2(-5f, myBody.velocity.y);
+                    myBody.velocity = new Vector2(-3f, myBody.velocity.y);
                     soldierAnimatorScript.isWalking = true;
                 }
             }
@@ -164,7 +165,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
                 }
                 else
                 {
-                    myBody.velocity = new Vector2(5f, myBody.velocity.y);
+                    myBody.velocity = new Vector2(3f, myBody.velocity.y);
                     soldierAnimatorScript.isWalking = true;
                 }
             }
@@ -275,11 +276,11 @@ public class SOLDIER_SCRIPT : MonoBehaviour
             
             if(playerPower.Damage >= dmgThreshold)
             {
-                
+                invinCD = 2.0f;
             }
             else
             {
-                invincibilityFrames = 1.0f;
+                invinCD = 2.0f;
             }
         }
     }
@@ -293,13 +294,23 @@ public class SOLDIER_SCRIPT : MonoBehaviour
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
             hp -= playerPower.Damage;
-            
-            
+
+            if (playerPower.Damage >= dmgThreshold)
+            {
+                invinCD = 2.0f;
+            }
+            else
+            {
+                invinCD = 2.0f;
+            }
+
         }
     }
 
     void killSoldier()
     {
+        mySprite.color = new Color32(255, 0, 0, 255);
+
         GameObject explosion;
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
@@ -314,5 +325,23 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
     }
 
-    
+    void invincibilty()
+    {
+        if(invinCD > 0)
+        {
+            Debug.Log("We're invincible");
+            invinCD -= Time.deltaTime;
+
+            mySprite.color = new Color32(255, 0, 0, 255);
+
+            Physics2D.IgnoreLayerCollision(9, 12, true);
+            Physics2D.IgnoreLayerCollision(9, 10, true);
+        }
+        else
+        {
+            mySprite.color = new Color32(255, 255, 255, 255);
+            Physics2D.IgnoreLayerCollision(9, 12, false);
+            Physics2D.IgnoreLayerCollision(9, 10, false);
+        }
+    }
 }

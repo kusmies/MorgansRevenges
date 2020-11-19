@@ -43,11 +43,11 @@ public class Flag_Win : MonoBehaviour
     void Won()
     {
         //after the timer hits the target the game changes state
-        FlagWaveTimer += Time.deltaTime;
-        if (FlagWaveTimer >= FlagWaveTimerTarget)
-        {
-            level.changeScene(4);
-        }
+        //FlagWaveTimer += Time.deltaTime;
+        //if (FlagWaveTimer >= FlagWaveTimerTarget)
+        //{
+            level.changeScene(3);
+        //}
 
     }
 }

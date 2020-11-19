@@ -77,6 +77,7 @@
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\NMYHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Items\Temp Items\TEMPITEMS_CLASS.cs" />
+    <Compile Include="Assets\Prefabs\Morgan\DOUR_BG_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\FIREBLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\XPLSN_SCRIPT.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="Assets\Scripts\SOLDIER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\TESTBUTTON_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\WARDOG_ANIM_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\WARDOG_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\XMLManager.cs" />
     <Compile Include="Assets\Scripts\XPLSN_SPAWN_SCRIPT.cs" />
     <Compile Include="Assets\UNIDROP_SCRIPT.cs" />
