@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Numerics;
 using UnityEditor.Experimental.RestService;
 using UnityEditor.UIElements;
@@ -18,7 +17,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public Rigidbody2D rb;
     //knockback bool
     //thrust force added
-    
     public float thrust;
     public int soul;
     public static int spirit;
@@ -31,11 +29,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //additional speed
     public float bonusspeed;
 
-    int ID;
-    int price;
-    int Value;
-    //spawn point for the fireball
-    bool got;
     //the coin int
     public float coin;
     //invunerable timer ticks up
@@ -43,7 +36,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //target for the invunerable timer to equal
     public float invulnertarget;
     //bool for players invincibility
-   
+
     // how long it takes the player to actually die
     public float deathtimer;
     //the target the death timer equals
@@ -58,6 +51,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     GameObject fireball;
 
     public GameObject FireballPrefab;
+
     //spawn point for the fireball
     public GameObject FireballSpawn;
     //hp bar
@@ -123,10 +117,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Start()
     {
-        XMLManager.ins.LoadItems();
-
-
-        rb = this.GetComponent<Rigidbody2D>();
+        
+            rb = this.GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
         slide.SetMaxBar(MaxHealth);
@@ -160,12 +152,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Update()
     {
-        slide.SetMaxBar(MaxHealth);
-        slide2.SetMaxBar(MaxMana);
         knocked();
         slide.SetBar(CurrentHealth);
-        slide2.SetBar(CurrentMana);
-
+     
 
         coinvalue.text = coin.ToString();
 
@@ -181,7 +170,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     //checks if the players on the ground
 
-   
 
     public void CastFireball()
     {
@@ -218,6 +206,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     void checkForGround()
     {
+        if (Input.GetKey(KeyCode.K) && isGrounded == false)
+        {
+
+
+            highslash = true;
+        }
         //checking for ground
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
 
@@ -225,6 +219,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         {
             //ground is true
             isGrounded = true;
+            highslash = false;
 
         }
 
@@ -240,7 +235,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void handleMovement()
 
     {
-   
         if (Input.GetKeyDown(KeyCode.K)&& crouch ==true)
         {
 
@@ -328,32 +322,20 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 isMoving = false;
 
                 myBody.velocity = new Vector2(0, myBody.velocity.y);
-                if (Input.GetKey(KeyCode.K)&& Input.GetKey(KeyCode.W))
-                {
-                    highslash = true;
 
-                }
-
-                
-               if (Input.GetKeyDown(KeyCode.K)&& crouch ==false && !Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.K)&& crouch ==false)
                 {
 
 
                     midslash = true;
                 }
-                 if (!Input.GetKeyDown(KeyCode.K))
+                if (!Input.GetKeyDown(KeyCode.K))
 
                 {
                     midslash = false;
-                }
-                 if (!Input.GetKeyDown(KeyCode.W))
 
-                {
-                  highslash = false;
                 }
             }
-            
-            
         }
 
         //jump is true
@@ -393,19 +375,20 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             invulnertimer -= Time.deltaTime;
             mySprite.color = new Color32(255, 0, 0, 255);
+            
+            Physics2D.IgnoreLayerCollision(12, 9, true);
 
-            Debug.Log(invulnertimer);
             if (invulnertimer <= invulnertarget)
             {
                 mySprite.color = new Color32(255, 255, 255, 255);
-
+                Physics2D.IgnoreLayerCollision(12, 9, false);
                 invicibility = false;
                 invulnertimer = 0.0f;
+                
 
             }
         }
-
-     
+        
 
     }
 
@@ -449,22 +432,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             if (deathtimer >= deathtimertarget)
             {
 
-                if (item.ID == 1)
-                {
-                    item.got = false;
-                }
-                if (item.ID == 2)
-                {
-                    item.got = false;
-                }
-                if (item.ID == 3)
-                {
-                    item.got = false;
-                }
-                if (item.ID == 4)
-                {
-                    item.got = false;
-                }
+                item.got = false;
                 XMLManager.ins.SaveItems();
                 SaveLoadManager.SavePlayer(this);
 
@@ -513,12 +481,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
         blade = (Instantiate(swordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
         if (isLeft == false)
         {
-            SwordSpawn.transform.localPosition = new Vector2(-3.61f, 2.0f);
+            SwordSpawn.transform.localPosition = new Vector2(-3.61f, 2.5f);
         }
         //makes the sword face left
         else if (isLeft == true)
         {
-            SwordSpawn.transform.localPosition = new Vector2(-0.47f, 2.0f);
+            SwordSpawn.transform.localPosition = new Vector2(-0.47f, 2.5f);
         }
 
         blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
@@ -565,195 +533,148 @@ public class PLAYER_SCRIPT : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+        {
+            if (item.ID == 1)
+            {
+                if (item.got == false)
+                {
+
+                    MaxMana += item.value;
+                    CurrentMana += item.value;
+                    item.got = true;
+
+                }
+            }
+            if (item.ID == 2)
+            {
+                if (item.got == false)
+                {
+
+                    MaxMana += item.value;
+                    CurrentMana += item.value;
+                    item.got = true;
+
+                }
+            }
+            if (item.ID==3 )
+            {
+                if (item.got == false)
+                {
+                    item.got = true;
 
 
-   
+                    MaxHealth += item.value;
+                    CurrentHealth +=item.value;
+                    item.got = true;
 
+                }
+            }
+            if (item.ID == 4)
+            {
+                if (item.got ==false)
+                {
+
+                    MaxHealth += item.value;
+                    CurrentHealth +=item.value;
+                    item.got = true;
+
+                }
+            }
+
+        }
             //gives the player a coin
             if (collision.gameObject.CompareTag("Coin"))
-            {
-                coin++;
-
-                coinvalue.text = coin + "$";
-
-            }
-
-            else if (collision.gameObject.CompareTag("BronzeRing"))
-            {
-                ID = 1;
-            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-            {
-
-                if (item.ID == ID)
-                {
-                    if (item.got == false)
-                    {
-                        item.got = true;
-                        MaxMana += item.value;
-                        ID = 0;
-                        XMLManager.ins.SaveItems();
-
-                    }
-                }
-
-
-
-                else
-                {
-
-                }
-
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("SilverRing"))
         {
-            ID = 2;
-            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-            {
+            coin++;
 
-                if (item.ID == ID)
-                {
-                    if (item.got == false)
-                    {
-                        item.got = true;
-                        MaxMana += item.value;
-                        ID = 0;
-                        XMLManager.ins.SaveItems();
+            coinvalue.text = coin + "$";
 
-                    }
-                }
-
-
-
-                else
-                {
-
-                }
-
-            }
         }
-
-        else if (collision.gameObject.CompareTag("SteelHelm"))
-        {
-            ID = 3;
-            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-            {
-
-                if (item.ID == ID)
-                {
-                    if (item.got == false)
-                    {
-                        item.got = true;
-                        MaxHealth += item.value;
-                        ID = 0;
-                        XMLManager.ins.SaveItems();
-
-                    }
-                }
-
-
-
-                else
-                {
-
-                }
-
-            }
-        }
-
-        else if (collision.gameObject.CompareTag("SteelShield"))
-        {
-            ID = 4;
-            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-            {
-
-                if (item.ID == ID)
-                {
-                    if (item.got == false)
-                    {
-                        item.got = true;
-                        MaxHealth += item.value;
-                        ID = 0;
-                        XMLManager.ins.SaveItems();
-
-                    }
-                }
-
-
-
-                else
-                {
-
-                }
-
-            }
-        }
+      
         //adds hp
 
         else if (collision.gameObject.CompareTag("BSnack"))
-            {
-                CurrentHealth += 2;
+        {
+            CurrentHealth += 2;
 
-                if (MaxHealth < CurrentHealth)
-                {
-                    CurrentHealth = MaxHealth;
-                }
-
-
+            if(MaxHealth < CurrentHealth)
+            { CurrentHealth = MaxHealth;
             }
-            //adds mana
-            else if (collision.gameObject.CompareTag("Mvial"))
+
+
+        }
+        //adds mana
+        else if (collision.gameObject.CompareTag("Mvial"))
+        {
+
+            CurrentMana += 2;
+
+            if (MaxMana < CurrentMana)
             {
-
-                CurrentMana += 2;
-
-                if (MaxMana < CurrentMana)
-                {
-                    CurrentMana = MaxMana;
-                }
-
-
+                CurrentMana = MaxMana;
             }
-            //adds 5 coins
-            else if (collision.gameObject.CompareTag("Cbag"))
-            {
-                coin += 5;
 
-                coinvalue.text = coin + "$";
 
-            }
-            //kills on hazard collision
-            else if (collision.gameObject.CompareTag("Hazard"))
-            {
+        }
+        //adds 5 coins
+        else if (collision.gameObject.CompareTag("Cbag"))
+        {
+            coin += 5;
+
+            coinvalue.text = coin + "$";
+
+        }
+        //kills on hazard collision
+        else if (collision.gameObject.CompareTag("Hazard"))
+        {
+            slide.SetBar(CurrentHealth);
+
+            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            CurrentHealth -= damage.Damage;
+        }
+        //makes enemies do damage
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            
                 slide.SetBar(CurrentHealth);
 
+                var target = collision.transform;
+                dir1 = (transform.position - target.position).normalized;
+                myBody.AddRelativeForce(dir1 * thrust);
                 var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
                 CurrentHealth -= damage.Damage;
-            }
-            //makes enemies do damage
-            else if (collision.gameObject.CompareTag("Enemy"))
-            {
-                if (invicibility == false)
-                {
-                    slide.SetBar(CurrentHealth);
+                invicibility = true;
+                invulnertimer = 2.0f;
 
-                    var target = collision.transform;
-                    dir1 = (transform.position - target.position).normalized;
-                    myBody.AddRelativeForce(dir1 * thrust);
-                    var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-                    CurrentHealth -= damage.Damage;
-                    invicibility = true;
-                    invulnertimer = 2.0f;
+            
 
 
-
-                }
-
-
-            }
+        }
 
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
         
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+            var powerScript = collision.gameObject.GetComponent<POWER_SCRIPT>();
+
+            CurrentHealth -= powerScript.Damage;
+
+            var target = collision.transform;
+
+            dir1 = (transform.position - target.position).normalized;
+
+            myBody.AddRelativeForce(dir1 * thrust);
+
+            invicibility = true;
+
+            invulnertimer = 2.0f;
+
+        }
     }
 }
