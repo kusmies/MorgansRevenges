@@ -198,13 +198,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             if (isLeft == true)
             {
-                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 0));
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(1200, 0));
             }
             //give it force to left
 
             if (isLeft == false)
             {
-                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 0));
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1200, 0));
             }
             //destroy after 1 second
             Destroy(fireball, 1.0f);

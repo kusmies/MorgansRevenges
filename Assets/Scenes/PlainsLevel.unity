@@ -1036,6 +1036,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndFlag
       objectReference: {fileID: 0}
+    - target: {fileID: 4709842610552408421, guid: e84da8ae6d265c547a9d675fdab50411,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 180266084}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e84da8ae6d265c547a9d675fdab50411, type: 3}
 --- !u!1 &180266080 stripped
@@ -1044,6 +1049,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 536877732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &180266084 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3194736562856368177, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 536877732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180266080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfbf42a42120fd54e96ced9343f8b0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &376522682
 PrefabInstance:
   m_ObjectHideFlags: 0
