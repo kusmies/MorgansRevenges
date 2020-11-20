@@ -18,6 +18,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //knockback bool
     //thrust force added
     public float thrust;
+    int ID;
     public int soul;
     public static int spirit;
     public float upwardThrust;
@@ -407,9 +408,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     void Dead()
     {
-        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-        {
-            //kills out of bound
+       //kills out of bound
             if (myBody.position.y < -20)
             {
                 death = true;
@@ -431,14 +430,31 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             if (deathtimer >= deathtimertarget)
             {
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
 
-                item.got = false;
+                if (item.ID == 1)
+                {
+                    item.got = false;
+                }
+                if (item.ID == 2)
+                {
+                    item.got = false;
+                }
+                if (item.ID == 3)
+                {
+                    item.got = false;
+                }
+                if (item.ID == 4)
+                {
+                    item.got = false;
+                }
                 XMLManager.ins.SaveItems();
                 SaveLoadManager.SavePlayer(this);
 
                 level.changeScene(4);
             }
-        }
+               }
     }
     public void HighSlash()
     {
@@ -535,7 +551,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
-            if (item.ID == 1)
+            if (ID == 1)
             {
                 if (item.got == false)
                 {
@@ -546,7 +562,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 }
             }
-            if (item.ID == 2)
+            if (ID == 2)
             {
                 if (item.got == false)
                 {
@@ -557,7 +573,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 }
             }
-            if (item.ID==3 )
+            if (ID==3 )
             {
                 if (item.got == false)
                 {
@@ -570,7 +586,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 }
             }
-            if (item.ID == 4)
+            if (ID == 4)
             {
                 if (item.got ==false)
                 {
@@ -583,8 +599,25 @@ public class PLAYER_SCRIPT : MonoBehaviour
             }
 
         }
-            //gives the player a coin
-            if (collision.gameObject.CompareTag("Coin"))
+
+        if(collision.gameObject.CompareTag("BronzeRing"))
+        {
+            ID = 1;
+        }
+        if (collision.gameObject.CompareTag("SilverRing"))
+        {
+            ID = 2;
+        }
+        if (collision.gameObject.CompareTag("SteelHelm"))
+        {
+            ID = 3;
+        }
+        if (collision.gameObject.CompareTag("SteelShield"))
+        {
+            ID = 4;
+        }
+        //gives the player a coin
+        else  if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
 
