@@ -152,10 +152,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
     // Update is called once per frame
 
     void Update()
+
     {
         knocked();
         slide.SetBar(CurrentHealth);
-     
+        slide2.SetBar(CurrentMana);
+
 
         coinvalue.text = coin.ToString();
 
@@ -549,72 +551,94 @@ public class PLAYER_SCRIPT : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-        {
-            if (ID == 1)
-            {
-                if (item.got == false)
-                {
-
-                    MaxMana += item.value;
-                    CurrentMana += item.value;
-                    item.got = true;
-
-                }
-            }
-            if (ID == 2)
-            {
-                if (item.got == false)
-                {
-
-                    MaxMana += item.value;
-                    CurrentMana += item.value;
-                    item.got = true;
-
-                }
-            }
-            if (ID==3 )
-            {
-                if (item.got == false)
-                {
-                    item.got = true;
-
-
-                    MaxHealth += item.value;
-                    CurrentHealth +=item.value;
-                    item.got = true;
-
-                }
-            }
-            if (ID == 4)
-            {
-                if (item.got ==false)
-                {
-
-                    MaxHealth += item.value;
-                    CurrentHealth +=item.value;
-                    item.got = true;
-
-                }
-            }
-
-        }
 
         if(collision.gameObject.CompareTag("BronzeRing"))
         {
             ID = 1;
+
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
+                if (ID == 1)
+                {
+                    if (item.got == false)
+                    {
+
+                        MaxMana += item.value;
+                        CurrentMana += item.value;
+                        item.got = true;
+                        slide2.SetBar(CurrentMana);
+
+                        ID = 0;
+
+                    }
+                }
+
+            }
         }
         if (collision.gameObject.CompareTag("SilverRing"))
         {
             ID = 2;
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
+                if (ID == 2)
+                {
+                    if (item.got == false)
+                    {
+
+                        MaxMana += item.value;
+                        CurrentMana += item.value;
+                        item.got = true;
+                        slide2.SetBar(CurrentMana);
+                        ID = 0;
+
+                    }
+                }
+
+            }
         }
         if (collision.gameObject.CompareTag("SteelHelm"))
         {
             ID = 3;
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
+                if (ID == 3)
+                {
+                    if (item.got == false)
+                    {
+
+                        MaxHealth += item.value;
+                        CurrentHealth += item.value;
+                        item.got = true;
+                        slide.SetBar(CurrentHealth);
+
+                        ID = 0;
+
+                    }
+                }
+
+            }
         }
         if (collision.gameObject.CompareTag("SteelShield"))
         {
             ID = 4;
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
+                if (ID == 4)
+                {
+                    if (item.got == false)
+                    {
+
+                        MaxHealth += item.value;
+                        CurrentHealth += item.value;
+                        item.got = true;
+                        slide.SetBar(CurrentHealth);
+
+                        ID = 0;
+
+                    }
+                }
+
+            }
         }
         //gives the player a coin
         else  if (collision.gameObject.CompareTag("Coin"))
