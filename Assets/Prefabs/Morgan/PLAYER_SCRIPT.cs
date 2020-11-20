@@ -154,9 +154,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Update()
 
     {
+        XMLManager.ins.LoadItems();
+        slide.SetMaxBar(MaxHealth);
+        slide2.SetMaxBar(MaxMana);
         knocked();
         slide.SetBar(CurrentHealth);
         slide2.SetBar(CurrentMana);
+
 
 
         coinvalue.text = coin.ToString();
@@ -552,96 +556,122 @@ public class PLAYER_SCRIPT : MonoBehaviour
     {
 
 
-        if(collision.gameObject.CompareTag("BronzeRing"))
+
+
+       if (collision.gameObject.CompareTag("BronzeRing"))
         {
             ID = 1;
-
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
-                if (ID == 1)
+
+                if (item.ID == ID)
                 {
                     if (item.got == false)
                     {
-
-                        MaxMana += item.value;
-                        CurrentMana += item.value;
                         item.got = true;
-                        slide2.SetBar(CurrentMana);
-
+                        MaxMana += item.value;
                         ID = 0;
+                        XMLManager.ins.SaveItems();
 
                     }
                 }
 
+
+
+                else
+                {
+
+                }
+
             }
         }
-        if (collision.gameObject.CompareTag("SilverRing"))
+
+        else if (collision.gameObject.CompareTag("SilverRing"))
         {
             ID = 2;
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
-                if (ID == 2)
+
+                if (item.ID == ID)
                 {
                     if (item.got == false)
                     {
-
-                        MaxMana += item.value;
-                        CurrentMana += item.value;
                         item.got = true;
-                        slide2.SetBar(CurrentMana);
+                        MaxMana += item.value;
                         ID = 0;
+                        XMLManager.ins.SaveItems();
 
                     }
                 }
 
+
+
+                else
+                {
+
+                }
+
             }
         }
-        if (collision.gameObject.CompareTag("SteelHelm"))
+
+        else if (collision.gameObject.CompareTag("SteelHelm"))
         {
             ID = 3;
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
-                if (ID == 3)
+
+                if (item.ID == ID)
                 {
                     if (item.got == false)
                     {
-
-                        MaxHealth += item.value;
-                        CurrentHealth += item.value;
                         item.got = true;
-                        slide.SetBar(CurrentHealth);
-
+                        MaxHealth += item.value;
                         ID = 0;
+                        XMLManager.ins.SaveItems();
 
                     }
                 }
 
+
+
+                else
+                {
+
+                }
+
             }
         }
-        if (collision.gameObject.CompareTag("SteelShield"))
+
+        else if (collision.gameObject.CompareTag("SteelShield"))
         {
             ID = 4;
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
-                if (ID == 4)
+
+                if (item.ID == ID)
                 {
                     if (item.got == false)
                     {
-
-                        MaxHealth += item.value;
-                        CurrentHealth += item.value;
                         item.got = true;
-                        slide.SetBar(CurrentHealth);
-
+                        MaxHealth += item.value;
                         ID = 0;
+                        XMLManager.ins.SaveItems();
 
                     }
                 }
 
+
+
+                else
+                {
+
+                }
+
             }
         }
+
         //gives the player a coin
-        else  if (collision.gameObject.CompareTag("Coin"))
+        else if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
 
