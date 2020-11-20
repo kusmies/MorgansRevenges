@@ -448,23 +448,30 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             if (deathtimer >= deathtimertarget)
             {
-
                 if (item.ID == 1)
                 {
-                    item.got = false;
+                   
+                        item.got = false;
+                    
                 }
                 if (item.ID == 2)
                 {
-                    item.got = false;
+                    
+                        item.got = false;
+                    
                 }
                 if (item.ID == 3)
                 {
-                    item.got = false;
+                        item.got = false;
+                    
                 }
                 if (item.ID == 4)
                 {
-                    item.got = false;
+                      item.got = false;
+                    
                 }
+
+
                 XMLManager.ins.SaveItems();
                 SaveLoadManager.SavePlayer(this);
 
