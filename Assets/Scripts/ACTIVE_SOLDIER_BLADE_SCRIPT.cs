@@ -79,6 +79,7 @@ public class ACTIVE_SOLDIER_BLADE_SCRIPT : MonoBehaviour
 
     void killBlade()
     {
+        
         Destroy(gameObject);
     }
 }
