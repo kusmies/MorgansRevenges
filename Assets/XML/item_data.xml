@@ -31,7 +31,7 @@
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>
-      <got>true</got>
+      <got>false</got>
     </ItemEntry>
   </TempItems>
 </ItemDatabase>
