@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using System.IO;
 using UnityEngine;
 using System.Xml.Linq;
-using UnityEditor.Build.Content;
+//using UnityEditor.Build.Content;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnityEngine.UI;
@@ -13,7 +13,7 @@ public class SHOP_SCRIPT : MonoBehaviour
 {
     public int ITEMID;
     public PLAYER_SCRIPT player;
-    public Text Name, price;
+    public Text Name, price, gold;
     public bool buyonce;
 
     private void Awake()
@@ -187,6 +187,8 @@ public class SHOP_SCRIPT : MonoBehaviour
 
     public void Display()
     {
+        gold.text = "Gold: " + player.coin.ToString();
+
         foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
 
@@ -195,27 +197,29 @@ public class SHOP_SCRIPT : MonoBehaviour
             if (ITEMID == item.ID)
             {
                 Name.text = item.name;
-                price.text = "Gold " + item.price.ToString();
+                price.text = "Cost: " + item.price.ToString();
 
             }
             if (ITEMID == item.ID)
             {
                 Name.text = item.name;
-                price.text = "Gold " + item.price.ToString();
+                price.text = "Cost: " + item.price.ToString();
 
             }
             if (ITEMID == item.ID)
             {
                 Name.text = item.name;
-                price.text = "Gold " + item.price.ToString();
+                price.text = "Cost: " + item.price.ToString();
 
             }
             if (ITEMID == item.ID)
             {
                 Name.text = item.name;
-                price.text = "Gold " + item.price.ToString();
+                price.text = "Cost: " + item.price.ToString();
 
             }
+
+            
 
         }
 
