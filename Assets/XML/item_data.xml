@@ -3,31 +3,35 @@
   <TempItems>
     <ItemEntry>
       <ID>1</ID>
-      <name>bronze</name>
+      <name>BronzeRing</name>
+      <value>1</value>
       <currency>Gold</currency>
       <price>4</price>
-      <got>false</got>
+      <got>true</got>
     </ItemEntry>
     <ItemEntry>
       <ID>2</ID>
-      <name>silver</name>
+      <name>SilverRing</name>
+      <value>2</value>
       <currency>Gold</currency>
       <price>8</price>
-      <got>false</got>
+      <got>true</got>
     </ItemEntry>
     <ItemEntry>
       <ID>3</ID>
-      <name>steelhelm</name>
+      <name>SteelHelm</name>
+      <value>1</value>
       <currency>Gold</currency>
-      <price>4</price>
-      <got>false</got>
+      <price>2</price>
+      <got>true</got>
     </ItemEntry>
     <ItemEntry>
       <ID>4</ID>
-      <name>steelshield</name>
+      <name>SteelShield</name>
+      <value>2</value>
       <currency>Gold</currency>
-      <price>2</price>
-      <got>false</got>
+      <price>4</price>
+      <got>true</got>
     </ItemEntry>
   </TempItems>
 </ItemDatabase>

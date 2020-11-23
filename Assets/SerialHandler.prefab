@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6202200516904219460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6202200516904219462}
+  - component: {fileID: 6202200516904219463}
+  - component: {fileID: 7757165925541541197}
+  m_Layer: 0
+  m_Name: SerialHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6202200516904219462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202200516904219460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.746784, y: -6.0738645, z: -81.60007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6202200516904219463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202200516904219460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a3f4a3404487e4d959357826388aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDB:
+    list:
+    - ID: 1
+      name: bronze
+      value: 1
+      item: {fileID: 7213970071519926385, guid: 6304766d7214ec441a009ffb44c07ab3,
+        type: 3}
+      currency: 0
+      price: 4
+      got: 0
+    - ID: 2
+      name: silver
+      value: 2
+      item: {fileID: 598118339859530494, guid: e7aaa60e30eea884c985ffce4e510d80, type: 3}
+      currency: 0
+      price: 8
+      got: 0
+    - ID: 3
+      name: steelhelm
+      value: 1
+      item: {fileID: 2553107998273638436, guid: 56cb710ec39c8d94da6e9176c6bcaac5,
+        type: 3}
+      currency: 0
+      price: 2
+      got: 0
+    - ID: 4
+      name: steelshield
+      value: 2
+      item: {fileID: 6188343378155309143, guid: 982a036f6d67034479004d40d09c7c62,
+        type: 3}
+      currency: 0
+      price: 4
+      got: 0
+--- !u!114 &7757165925541541197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202200516904219460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac867303fe1d19743b2167d26df104bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3194736562856368177, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f, type: 3}
+  onTitle: 1
