@@ -40,8 +40,8 @@ public class XPLSN_SCRIPT: MonoBehaviour
             //give it force
             Explosion.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
 
-            //destroy after 1 seconds
-            Destroy(Explosion, 1.0f);
+            //destroy after 0.8f seconds
+            Destroy(Explosion, 0.8f);
             timer = 0.0f;
         }
 
@@ -65,11 +65,9 @@ public class XPLSN_SCRIPT: MonoBehaviour
             //make a bullet
             Explosion = (Instantiate(ExplosionPrefab, ExplosionSpawn.transform.position, transform.rotation)) as GameObject;
 
-            //give it force
-            Explosion.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
 
-            //destroy after 2 seconds
-            Destroy(Explosion, 1.0f);
+            //destroy after 0.8f seconds
+            Destroy(Explosion, 0.8f);
         }
          if (collision.gameObject.CompareTag("Ground"))
         {
@@ -80,11 +78,9 @@ public class XPLSN_SCRIPT: MonoBehaviour
             //make a bullet
             Explosion = (Instantiate(ExplosionPrefab, ExplosionSpawn.transform.position, transform.rotation)) as GameObject;
 
-            //give it force
-            Explosion.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
 
-            //destroy after 2 seconds
-            Destroy(Explosion, 1.0f);
+            //destroy after 0.8 seconds
+            Destroy(Explosion, 0.8f);
         }
 
          if (collision.gameObject.CompareTag("Loot"))
@@ -99,10 +95,9 @@ public class XPLSN_SCRIPT: MonoBehaviour
             Explosion = (Instantiate(ExplosionPrefab, ExplosionSpawn.transform.position, transform.rotation)) as GameObject;
 
             //give it force
-            Explosion.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
 
-            //destroy after 2 seconds
-            Destroy(Explosion, 1.0f);
+            //destroy after 0.8 seconds
+            Destroy(Explosion, 0.8f);
         }
     }
 

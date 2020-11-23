@@ -12,7 +12,7 @@ public class ITEMHP_SCRIPT : MonoBehaviour
     Animator myAnimator;
 
     //variables for combining scripts
-    
+
     public GameObject Bsnack;
     public GameObject Bmeal;
     public GameObject Mvial;
@@ -20,8 +20,8 @@ public class ITEMHP_SCRIPT : MonoBehaviour
     public GameObject GoldCoin;
     public GameObject CoinBag;
     public GameObject GoldBar;
-    
-    
+
+
     bool isdead;
     bool lootonce;
     

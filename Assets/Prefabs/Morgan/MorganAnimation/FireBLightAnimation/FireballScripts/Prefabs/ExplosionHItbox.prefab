@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6470356283953952637}
   - component: {fileID: 6774942653589340337}
   - component: {fileID: 8508880525761907103}
+  - component: {fileID: 7392454175300853446}
   m_Layer: 10
   m_Name: ExplosionHItbox
   m_TagString: PlayerAttack
@@ -142,6 +143,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 4
   type: 2
+--- !u!114 &7392454175300853446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137120130738530008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f594ebe19a001884fae845baaa5a87fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2616623213151143642
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@
       <value>1</value>
       <currency>Gold</currency>
       <price>4</price>
-      <got>false</got>
+      <got>true</got>
     </ItemEntry>
     <ItemEntry>
       <ID>2</ID>
@@ -23,7 +23,7 @@
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
-      <got>false</got>
+      <got>true</got>
     </ItemEntry>
     <ItemEntry>
       <ID>4</ID>

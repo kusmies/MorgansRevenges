@@ -12,7 +12,6 @@ using Vector2 = UnityEngine.Vector2;
 public class PLAYER_SCRIPT : MonoBehaviour
 {
     Vector2 pushDirection;
-
     //gets rigid body
     public Rigidbody2D rb;
     //knockback bool
@@ -21,8 +20,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     int ID;
     public int soul;
     public static int spirit;
-    public float upwardThrust;
-    public float directionatalthrust;
     //jump height
     public float jumpforce;
     //inital speed
@@ -46,7 +43,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public float CurrentHealth;
     public float MaxMana;
     public float CurrentMana;
-    public GameObject swordPrefab;
+ 
     public GameObject SwordSpawn;
     public GameObject HighSwordPrefab;
     GameObject fireball;
@@ -60,7 +57,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public Slider Mp;
     //spawns the sword
     public GameObject lowSwordSpawn;
-    public bool slash = false;
     //checks for ground
     public bool isGrounded;
     //checks if moving
@@ -76,7 +72,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public bool crouch;
     public bool invicibility;
     public bool highslash;
-    public bool lowslash;
     //bool for players death
     public bool death;
 
@@ -86,8 +81,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //int for fireball unlock
     //the players rigid body
     Rigidbody2D myBody;
-    //the knockback script
-    KNCKBCK_SCRIPT struck;
+   
     //displays the coin value
    public Text coinvalue;
    
@@ -135,8 +129,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();       
         //how the sprites transfer
         mySprite = GetComponent<SpriteRenderer>();
-        //how knockbacks obtained
-        struck = GetComponent<KNCKBCK_SCRIPT>();
         Load();
     }
 
@@ -157,7 +149,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
         XMLManager.ins.LoadItems();
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
-        knocked();
         slide.SetBar(CurrentHealth);
         slide2.SetBar(CurrentMana);
 
@@ -178,6 +169,20 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //checks if the players on the ground
 
 
+    public IEnumerator knockback(float knockDur, float knockbackPwr, Transform obj)
+    {
+        float timer = 0;
+
+        while (knockDur> timer)
+        {
+            timer += Time.deltaTime;
+
+            Vector2 direction = new Vector2((obj.transform.position.x - this.transform.position.x), this.transform.position.y);
+            rb.AddForce(-direction * knockbackPwr);
+        }
+        yield return 0;
+
+    }
     public void CastFireball()
     {
         if (CurrentMana >= 1)
@@ -198,13 +203,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             if (isLeft == true)
             {
-                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(400, 0));
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(1200, 0));
             }
             //give it force to left
 
             if (isLeft == false)
             {
-                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400, 0));
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1200, 0));
             }
             //destroy after 1 second
             Destroy(fireball, 1.0f);
@@ -242,17 +247,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void handleMovement()
 
     {
-        if (Input.GetKeyDown(KeyCode.K)&& crouch ==true)
-        {
-
-            lowslash = true;
-        }
-
-        if (!Input.GetKeyDown(KeyCode.K) && crouch == true)
-        {
-
-            lowslash = false;
-        }
         //left is true
         if (/*Input.GetAxis("Horizontal")> 0*/ Input.GetKey(KeyCode.D)  && !Input.GetKey(KeyCode.S))
         {
@@ -277,17 +271,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
         }
         else  if (Input.GetKey(KeyCode.S)/*&& Input.GetAxis("Horizontal") == 0*/)
         {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-
-                lowslash = true;
-            }
-
-            if (Input.GetKeyUp(KeyCode.K))
-            {
-
-                lowslash = false;
-            }
             myBody.velocity = new Vector2(0, myBody.velocity.y);
 
             crouch = true;
@@ -297,7 +280,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.S))
         {
             crouch = false;
-            lowslash = false;
         }
         else
         {
@@ -399,19 +381,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     }
 
-    void knocked()
-    {
-        //makes knockback happen when equal true
-        if (knockBack == true)
-        {
-            knockBack = false;
-            //if intfont of player make - thrust if behind player make thrust
 
-            rb.AddForce(pushDirection * 100);
-            //rb.AddForce(transform.up * upwardThrust);
-        }
-
-    }
+    
     void Dead()
     {
        //kills out of bound
@@ -474,12 +445,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
         blade = (Instantiate(HighSwordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
         if (isLeft == false)
         {
-            SwordSpawn.transform.localPosition = new Vector2(-3.61f, 0f);
+            SwordSpawn.transform.localPosition = new Vector2(-5.31f, 0f);
         }
         //makes the sword face left
         else if (isLeft == true)
         {
-            SwordSpawn.transform.localPosition = new Vector2(-0.47f,0f);
+            SwordSpawn.transform.localPosition = new Vector2(2.27f,0f);
         }
 
         blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
@@ -491,64 +462,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //makes slash equal true
 
     }
-    public void Slash()
-    {
 
-        //have a bullet
-        GameObject blade;
-
-        Debug.Log("normalShot");
-
-        //make a bullet
-        blade = (Instantiate(swordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
-        if (isLeft == false)
-        {
-            SwordSpawn.transform.localPosition = new Vector2(-3.61f, 2.5f);
-        }
-        //makes the sword face left
-        else if (isLeft == true)
-        {
-            SwordSpawn.transform.localPosition = new Vector2(-0.47f, 2.5f);
-        }
-
-        blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
-
-
-        
-        //destroy after 0.10 seconds
-        Destroy(blade, .10f);
-        //makes slash equal true
-
-    }
-    public void lowSlash()
-    {
-
-
-
-
-        //have a bullet
-        GameObject blade;
-
-
-
-        //make a bullet
-        blade = (Instantiate(swordPrefab, lowSwordSpawn.transform.position, transform.rotation)) as GameObject;
-        if (isLeft == false)
-        {
-            lowSwordSpawn.transform.localPosition = new Vector2(-3.61f, -.5f);
-        }
-        //makes the sword face left
-        else if (isLeft == true)
-        {
-            lowSwordSpawn.transform.localPosition = new Vector2(2.47f, -.5f);
-        }
-        blade.GetComponent<Rigidbody2D>().MovePosition(lowSwordSpawn.transform.position);
-
-
-        //destroy after 0.25 seconds
-        Destroy(blade, 0.25f);
-
-    }
+   
 
 
 
@@ -750,13 +665,15 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             var powerScript = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
+
             CurrentHealth -= powerScript.Damage;
 
-            var target = collision.transform;
 
-            dir1 = (transform.position - target.position).normalized;
 
-            myBody.AddRelativeForce(dir1 * thrust);
+
+
+            StartCoroutine(knockback(0.5f, 50f, collision.transform)) ;
+      
 
             invicibility = true;
 
