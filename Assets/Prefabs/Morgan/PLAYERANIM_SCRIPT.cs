@@ -98,7 +98,7 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
         //stand slash end
 
         //crouch
-        else if (myPlayerMovement.crouch == true && myPlayerMovement.lowslash == false && myPlayerMovement.death == false)
+        else if (myPlayerMovement.crouch == true && myPlayerMovement.death == false)
         {
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
@@ -106,25 +106,11 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Crouch", true);
             PLAYER_CONTROL.SetBool("HighSlash", false);
 
-            PLAYER_CONTROL.SetBool("LowSlash", false);
 
 
         }
         //crouch end
-        //crouch slash
-        else if (myPlayerMovement.crouch == true && myPlayerMovement.lowslash == true && myPlayerMovement.death == false)
-        {
-            PLAYER_CONTROL.SetBool("Walk", false);
-            PLAYER_CONTROL.SetBool("Jump", false);
-            PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("Crouch", true);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
-
-            PLAYER_CONTROL.SetBool("LowSlash", true);
-
-
-        }
-        //crouch slash end
+    
         //fireball
         else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == true && myPlayerMovement.castingfireball == true && myPlayerMovement.death == false)
         {
@@ -145,7 +131,6 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
             PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("LowSlash", false);
             PLAYER_CONTROL.SetBool("HighSlash", false);
             PLAYER_CONTROL.SetBool("Death", true);
             PLAYER_CONTROL.SetBool("Fireball", false);
@@ -161,8 +146,6 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
             PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("LowSlash", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
             PLAYER_CONTROL.SetBool("Death", false);
             PLAYER_CONTROL.SetBool("Fireball", false);
             PLAYER_CONTROL.SetBool("HighSlash", false);
