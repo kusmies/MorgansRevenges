@@ -27,6 +27,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //additional speed
     public float bonusspeed;
 
+    float barsize = 160;
     //the coin int
     public float coin;
     //invunerable timer ticks up
@@ -112,12 +113,17 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Start()
     {
-        
-            rb = this.GetComponent<Rigidbody2D>();
+      
+        rb = this.GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
+
+
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
+        RectTransform HpSliderRect = Hp.GetComponent<RectTransform>();
+        HpSliderRect.sizeDelta = new Vector2(MaxHealth, HpSliderRect.sizeDelta.y);
+
         isLeft = false;
         //death timer target
         deathtimertarget = 5.0f;
@@ -152,6 +158,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         slide.SetBar(CurrentHealth);
         slide2.SetBar(CurrentMana);
 
+       
 
 
         coinvalue.text = coin.ToString();
@@ -483,11 +490,17 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
                     if (item.got == false)
                     {
+
                         item.got = true;
+
+                        var MpUp = barsize + (item.value * 10);
                         MaxMana += item.value;
+
+                        CurrentMana += item.value;
                         ID = 0;
                         XMLManager.ins.SaveItems();
-
+                        RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
+                        MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
                     }
                 }
 
@@ -512,9 +525,15 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     if (item.got == false)
                     {
                         item.got = true;
+
+                        var MpUp = barsize + (item.value * 10);
                         MaxMana += item.value;
+                        CurrentMana += item.value;
+
                         ID = 0;
                         XMLManager.ins.SaveItems();
+                        RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
+                        MpSliderRect.sizeDelta = new Vector2(MpUp,  MpSliderRect.sizeDelta.y);
 
                     }
                 }
@@ -539,10 +558,17 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
                     if (item.got == false)
                     {
+                        
                         item.got = true;
+
+                        var hpUp = barsize + (item.value*10);
                         MaxHealth += item.value;
+                        CurrentHealth += item.value;
+
                         ID = 0;
                         XMLManager.ins.SaveItems();
+                        RectTransform HpSliderRect = slide.GetComponent<RectTransform>();
+                        HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
 
                     }
                 }
@@ -568,10 +594,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     if (item.got == false)
                     {
                         item.got = true;
+
+                        var hpUp = barsize + (item.value*10);
+
                         MaxHealth += item.value;
+                        CurrentHealth += item.value;
+
                         ID = 0;
                         XMLManager.ins.SaveItems();
-
+                        RectTransform HpSliderRect = slide.GetComponent<RectTransform>();
+                        HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
                     }
                 }
 
