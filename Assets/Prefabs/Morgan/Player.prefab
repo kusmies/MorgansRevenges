@@ -292,11 +292,10 @@ MonoBehaviour:
   rb: {fileID: 6012946319879546381}
   thrust: 4500
   soul: 0
-  upwardThrust: 0
-  directionatalthrust: 50
   jumpforce: 50
-  speedforce: 0
+  speedforce: 20
   bonusspeed: 0
+  attackCD: 0
   coin: 0
   invulnertimer: 0
   invulnertarget: 0
@@ -324,8 +323,8 @@ MonoBehaviour:
   midslash: 0
   crouch: 0
   invicibility: 0
-  highslash: 0
   death: 0
+  attackstun: 0
   level: {fileID: 7256701329708582109}
   coinvalue: {fileID: 0}
   slide: {fileID: 0}
@@ -637,6 +636,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960532869661089209, guid: a889645222df6e44294e301b781602f2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960532869661089209, guid: a889645222df6e44294e301b781602f2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.27
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4811405478504069014, guid: a889645222df6e44294e301b781602f2, type: 3}

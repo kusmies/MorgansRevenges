@@ -27,6 +27,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //additional speed
     public float bonusspeed;
 
+  public float attackCD;
     float barsize = 160;
     //the coin int
     public float coin;
@@ -72,10 +73,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public bool midslash;
     public bool crouch;
     public bool invicibility;
-    public bool highslash;
     //bool for players death
     public bool death;
-
+    public bool attackstun;
  
     //loads the level the players in
     public CHASEN_SCRIPT level;
@@ -113,7 +113,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Start()
     {
-      
         rb = this.GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
@@ -225,12 +224,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     void checkForGround()
     {
-        if (Input.GetKey(KeyCode.K) && isGrounded == false)
-        {
-
-
-            highslash = true;
-        }
+       
         //checking for ground
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
 
@@ -238,7 +232,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
         {
             //ground is true
             isGrounded = true;
-            highslash = false;
 
         }
 
@@ -254,113 +247,113 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void handleMovement()
 
     {
-        //left is true
-        if (/*Input.GetAxis("Horizontal")> 0*/ Input.GetKey(KeyCode.D)  && !Input.GetKey(KeyCode.S))
+        if (midslash == true&& castingfireball ==false)
         {
-            if(Input.GetKeyDown(KeyCode.K))
+
+            attackstun = true;
+            attackCD += Time.deltaTime;
+            if (attackCD > 1)
+            {
+                attackstun = false;
+                attackCD = 0;
+                midslash = false;
+            }
+
+        }
+        if (castingfireball == true && midslash ==false)
+        {
+
+            attackstun = true;
+            attackCD += Time.deltaTime;
+            if (attackCD > 1)
+            {
+                attackstun = false;
+                attackCD = 0;
+                castingfireball = false;
+            }
+
+        }
+
+        if (attackstun == false)
+        {
+            //left is true
+            if (Input.GetAxis("Horizontal") > 0)
             {
 
-
-                midslash = true;
-            }
-            if (!Input.GetKeyDown(KeyCode.K))
-
-            { midslash = false;
-
-            }
-            myBody.velocity = new Vector2(+speedforce + bonusspeed, myBody.velocity.y);
-            mySprite.flipX = true;
-            isMoving = true;
-            isLeft = true;
-            crouch = false;
-
-
-        }
-        else  if (Input.GetKey(KeyCode.S)/*&& Input.GetAxis("Horizontal") == 0*/)
-        {
-            myBody.velocity = new Vector2(0, myBody.velocity.y);
-
-            crouch = true;
-            isMoving = false;
-
-        }
-        else if (Input.GetKeyUp(KeyCode.S))
-        {
-            crouch = false;
-        }
-        else
-        {
-            //right is true
-            if (/*Input.GetAxis("Horizontal") < 0*/ Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S))
-            {
-                myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
-                mySprite.flipX = false;
+                myBody.velocity = new Vector2(+speedforce + bonusspeed, myBody.velocity.y);
+                mySprite.flipX = true;
                 isMoving = true;
-                isLeft = false;
+                isLeft = true;
                 crouch = false;
 
-                if (Input.GetKeyDown(KeyCode.K))
-                {
-                    midslash = true;
-                }
-                if (!Input.GetKeyDown(KeyCode.K))
-
-                {
-                    midslash = false;
-
-                }
-
-
+                Debug.Log(mySprite.flipX);
             }
-            //standing still
-            else
+            else if (Input.GetAxis("Crouch") > 0)
             {
-                isMoving = false;
-
                 myBody.velocity = new Vector2(0, myBody.velocity.y);
 
-                if (Input.GetKeyDown(KeyCode.K)&& crouch ==false)
+                crouch = true;
+                isMoving = false;
+
+
+            }
+
+            else
+            {
+                //right is true
+                if (Input.GetAxis("Horizontal") < 0)
                 {
+                    myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
+                    mySprite.flipX = false;
+                    isMoving = true;
+                    isLeft = false;
+                    crouch = false;
 
 
-                    midslash = true;
+                    Debug.Log(mySprite.flipX);
+
+
                 }
-                if (!Input.GetKeyDown(KeyCode.K))
-
+                //standing still
+                else
                 {
-                    midslash = false;
+                    isMoving = false;
+
+                    myBody.velocity = new Vector2(0, myBody.velocity.y);
+
+                    Debug.Log(mySprite.flipX);
+
+                    if (Input.GetAxis("Slash") > 0)
+                    {
+
+                        midslash = true;
+                    }
+                    //stops player when O is pressed
+                    if (Input.GetAxis("FireBall") > 0)
+                    {
+                        castingfireball = true;
+                    }
 
                 }
             }
+
+            //jump is true
+            if (Input.GetAxis("Jump") > 0 && isGrounded)
+            {
+                myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
+                isMoving = false;
+
+            }
+
+
+        
+            
+
+
+
+
         }
-
-        //jump is true
-        if (Input.GetAxis("Jump") > 0 && isGrounded)
-        {
-            myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
-            isMoving = false;
-           
-        }
-
-
-        //stops player when O is pressed
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            castingfireball = true;
-            speedforce = 0;
-        }
-        //stop when O is released
-        if (!Input.GetKey(KeyCode.O))
-        {
-            castingfireball = false;
-            speedforce = 20;
-        }
-
-
-
-
     }
-    
 
 
     void invulerability()
@@ -449,23 +442,30 @@ public class PLAYER_SCRIPT : MonoBehaviour
         Debug.Log("normalShot");
 
         //make a bullet
-        blade = (Instantiate(HighSwordPrefab, SwordSpawn.transform.position, transform.rotation)) as GameObject;
-        if (isLeft == false)
+        if (mySprite.flipX == false)
         {
-            SwordSpawn.transform.localPosition = new Vector2(-5.31f, 0f);
+            Vector2 bladeSpawn = new Vector2(SwordSpawn.transform.position.x + -8.31f, SwordSpawn.transform.position.y);
+            blade = (Instantiate(HighSwordPrefab, bladeSpawn, transform.rotation)) as GameObject;
+
+            //destroy after 0.10 seconds
+            Destroy(blade, .10f);
         }
         //makes the sword face left
-        else if (isLeft == true)
+        else if (mySprite.flipX == true)
         {
+            Vector2 bladeSpawn = new Vector2(SwordSpawn.transform.position.x + 1.5f, SwordSpawn.transform.position.y);
+
             SwordSpawn.transform.localPosition = new Vector2(2.27f,0f);
+            blade = (Instantiate(HighSwordPrefab, bladeSpawn, transform.rotation)) as GameObject;
+
+            //destroy after 0.10 seconds
+            Destroy(blade, .10f);
         }
 
-        blade.GetComponent<Rigidbody2D>().MovePosition(SwordSpawn.transform.position);
 
 
 
-        //destroy after 0.10 seconds
-        Destroy(blade, .10f);
+
         //makes slash equal true
 
     }
@@ -499,6 +499,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         CurrentMana += item.value;
                         ID = 0;
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(this);
+
                         RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
                         MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
                     }
@@ -532,6 +534,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                         ID = 0;
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(this);
+
                         RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
                         MpSliderRect.sizeDelta = new Vector2(MpUp,  MpSliderRect.sizeDelta.y);
 
@@ -567,6 +571,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                         ID = 0;
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(this);
+
                         RectTransform HpSliderRect = slide.GetComponent<RectTransform>();
                         HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
 
@@ -602,6 +608,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                         ID = 0;
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(this);
+
                         RectTransform HpSliderRect = slide.GetComponent<RectTransform>();
                         HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
                     }
