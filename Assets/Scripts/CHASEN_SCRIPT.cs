@@ -42,6 +42,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 1;
                 item.got = false;
                 item.name = "BronzeRing";
+                item.description = "A bronze ring that increases mana by one.";
                 item.currency = Currency.Gold;
                 item.price = 4;
             }
@@ -50,6 +51,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 2;
                 item.got = false;
                 item.name = "SilverRing";
+                item.description = "A silver ring that increases mana by two.";
                 item.currency = Currency.Gold;
                 item.price = 8;
             }
@@ -58,6 +60,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 1;
                 item.got = false;
                 item.name = "SteelHelm";
+                item.description = "A steel helmet that increases health by one.";
+
                 item.currency = Currency.Gold;
                 item.price = 2;
             }
@@ -66,14 +70,30 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 2;
                 item.got = false;
                 item.name = "SteelShield";
+                item.description = "A steel shield that increases health by two.";
+
                 item.currency = Currency.Gold;
                 item.price = 4;
             }
 
         }
 
-        XMLManager.ins.SaveItems();
+        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+        {
+            if(item.ID ==1)
+            {
+                item.value = 0;
+                item.unlocked = false;
 
+                item.name = "FireRune";
+                item.description = "A rune crackiling with magic, unlocks the fireball uses the O key to fire.";
+                item.currency = Currency.Gold;
+                item.price = 8;
+            }
+        }
+            XMLManager.ins.SaveItems();
+
+        XMLManager.ins.PermSaveItems();
         player.MaxHealth = 12;
         player.MaxMana = 4;
         player.coin = 0;
@@ -85,7 +105,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
     {
         float[] loadedStats = SaveLoadManager.LoadPlayer();
         XMLManager.ins.LoadItems();
-
+        XMLManager.ins.PermLoadItems();
         player.MaxHealth = loadedStats[0];
         player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];

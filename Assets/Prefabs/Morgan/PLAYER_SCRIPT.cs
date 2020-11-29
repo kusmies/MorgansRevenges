@@ -151,6 +151,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Update()
 
     {
+        XMLManager.ins.PermLoadItems();
         XMLManager.ins.LoadItems();
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
@@ -260,20 +261,25 @@ public class PLAYER_SCRIPT : MonoBehaviour
             }
 
         }
-        if (castingfireball == true && midslash ==false)
-        {
+      
+                if (castingfireball == true && midslash == false) 
+        
+                  { 
 
-            attackstun = true;
-            attackCD += Time.deltaTime;
-            if (attackCD > 1)
-            {
-                attackstun = false;
-                attackCD = 0;
-                castingfireball = false;
-            }
+  
 
-        }
+                    attackstun = true;
+                    attackCD += Time.deltaTime;
+                    if (attackCD > 1)
+                    {
+                        attackstun = false;
+                        attackCD = 0;
+                        castingfireball = false;
+                    }
 
+                }
+            
+                                                                   
         if (attackstun == false)
         {
             //left is true
@@ -328,10 +334,18 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                         midslash = true;
                     }
-                    //stops player when O is pressed
-                    if (Input.GetAxis("FireBall") > 0)
+
+                    foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
                     {
-                        castingfireball = true;
+                        if (item.ID == 1)
+                        {
+
+                            //stops player when O is pressed
+                            if (Input.GetAxis("FireBall") > 0 && item.unlocked ==true)
+                            {
+                                castingfireball = true;
+                            }
+                        }
                     }
 
                 }

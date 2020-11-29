@@ -4,6 +4,7 @@
     <ItemEntry>
       <ID>1</ID>
       <name>BronzeRing</name>
+      <description>A bronze ring that increases mana by one.</description>
       <value>1</value>
       <currency>Gold</currency>
       <price>4</price>
@@ -12,6 +13,7 @@
     <ItemEntry>
       <ID>2</ID>
       <name>SilverRing</name>
+      <description>A silver ring that increases mana by two.</description>
       <value>2</value>
       <currency>Gold</currency>
       <price>8</price>
@@ -20,18 +22,20 @@
     <ItemEntry>
       <ID>3</ID>
       <name>SteelHelm</name>
+      <description>A steel helmet that increases health by one.</description>
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
-      <got>false</got>
+      <got>true</got>
     </ItemEntry>
     <ItemEntry>
       <ID>4</ID>
       <name>SteelShield</name>
+      <description>A steel shield that increases health by two.</description>
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>
-      <got>false</got>
+      <got>true</got>
     </ItemEntry>
   </TempItems>
 </ItemDatabase>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<PermItemDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PermItems>
+    <PermItemEntry>
+      <ID>1</ID>
+      <name>FireRune</name>
+      <description>A rune crackiling with magic, unlocks the fireball uses the O key to fire.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>8</price>
+      <unlocked>true</unlocked>
+    </PermItemEntry>
+  </PermItems>
+</PermItemDatabase>

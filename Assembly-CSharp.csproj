@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\HTBXDTH_SCRIPT.cs" />
+    <Compile Include="Assets\PERM_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\CHSTHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\CHSTDRP_SCRIPT.cs" />
@@ -94,9 +95,9 @@
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SOLDIER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
+    <Compile Include="Assets\Scripts\TEMP_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WARDOG_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WARDOG_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\XMLManager.cs" />
@@ -106,6 +107,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\XML\perm_item_data.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
