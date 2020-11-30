@@ -14,6 +14,7 @@ public class SOLDIER_ANIM_SCRIPT : MonoBehaviour
     public bool isWalking = false;
     bool landingReady = false;
     public bool isDead = false;
+    public bool isHitStun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +26,7 @@ public class SOLDIER_ANIM_SCRIPT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isWalking)
-        {
-            myAnim.SetBool("isWalking", true);
-        }
-        else
-        {
-            myAnim.SetBool("isWalking", false);
-        }
+        
 
         isDead = soldierScript.isDead;
 
@@ -40,7 +34,27 @@ public class SOLDIER_ANIM_SCRIPT : MonoBehaviour
         {
             myAnim.SetBool("isDead", true);
         }
+        else
+        {
+            if(!isHitStun)
+            {
+                if(isWalking)
+                {
+                    myAnim.SetBool("isWalking", true);
+                }
+                else
+                {
+                    myAnim.SetBool("isWalking", false);
+                }
+                myAnim.SetBool("isHitStun", false);
+            }
+            else
+            {
+                myAnim.SetBool("isHitStun", true);
+            }
 
+        
+        }
         highAttackStage3();
     }
 
@@ -87,7 +101,7 @@ public class SOLDIER_ANIM_SCRIPT : MonoBehaviour
         }
     }
 
-    void endAttack()
+    public void endAttack()
     {
         myAnim.SetBool("lowAttack",false);
         myAnim.SetBool("highAttack1", false);

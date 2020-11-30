@@ -25,10 +25,10 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     public GameObject explosionEffect;
     int dmgThreshold = 2;
     float invinCD = 0;
-
-
-    // Start is called before the first frame update
-    void Start()
+    bool beenActivated = false;
+    bool isHitStun = false;
+    
+    void Start() // Start is called before the first frame update
     {
         powerScript = GetComponent<POWER_SCRIPT>();
         myTran = GetComponent<Transform>();
@@ -43,7 +43,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hp <= 0)
+
+        if (hp <= 0)
         {
             isDead = true;
         }
@@ -51,30 +52,42 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         {
             isDead = true;
         }
-        checkForGround();
-        if (!isDead)
+
+        if (isPlayerNearby())
         {
-            invincibilty();
+            beenActivated = true;
+        }
 
-            checkForPlayer();
+        if(beenActivated)
+        {
+            checkForGround();
+            if (!isDead)
+            {
+                invincibilty();
 
-            if(!isAttacking)
+                checkForPlayer();
+
+                if (!isAttacking)
                 {
                     walkingAround();
                 }
-            else
+                else
                 {
                     isHighAttacking2 = soldierAnimatorScript.isHighAttacking2;
                     isHighAttacking3 = soldierAnimatorScript.isHighAttacking3;
                 }
+            }
+            else
+            {
+                mySprite.color = new Color32(255, 0, 0, 255);
+                Physics.IgnoreLayerCollision(9, 12, true);
+                Physics.IgnoreLayerCollision(9, 10, true);
+                Physics.IgnoreLayerCollision(9, 0, true);
+            }
+            
         }
-        else
-        {
-            Physics.IgnoreLayerCollision(9, 12, true);
-            Physics.IgnoreLayerCollision(9, 10, true);
-            Physics.IgnoreLayerCollision(9, 0, true);
-        }
-       
+
+        
     }
 
     void checkForGround()
@@ -137,7 +150,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
     void walkingAround()
     {
-        if(turnAroundCD <= 0)
+        if(turnAroundCD <= 0) //Check for Wall
         {
             if (!mySprite.flipX)
             {
@@ -175,14 +188,79 @@ public class SOLDIER_SCRIPT : MonoBehaviour
             turnAroundCD -= Time.deltaTime;
             soldierAnimatorScript.isWalking = false;
         }
+
+        if (turnAroundCD <= 0) //Check for Ledge
+        {
+            if (!mySprite.flipX)
+            {
+                RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
+
+                if (raycastHit2d1.collider == null)
+                {
+                    Vector2 originPoint = new Vector2(myTran.position.x - 3f, myTran.position.y);
+
+
+                    RaycastHit2D raycastHit2d2 = Physics2D.BoxCast(originPoint, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
+
+                    if (raycastHit2d2.collider == null)
+                    {
+                        mySprite.flipX = true;
+                        turnAroundCD = 2f;
+                    }
+                    else
+                    {
+                        myBody.velocity = new Vector2(-3f, myBody.velocity.y);
+                        soldierAnimatorScript.isWalking = true;
+                    }
+                    
+                }
+                else
+                {
+                    myBody.velocity = new Vector2(-3f, myBody.velocity.y);
+                    soldierAnimatorScript.isWalking = true;
+                }
+            }
+            else
+            {
+                RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
+
+                if (raycastHit2d1.collider == null)
+                {
+                    Vector2 originPoint = new Vector2(myTran.position.x + 3f, myTran.position.y);
+
+
+                    RaycastHit2D raycastHit2d2 = Physics2D.BoxCast(originPoint, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
+
+                    if (raycastHit2d2.collider == null)
+                    {
+                        mySprite.flipX = false;
+                        turnAroundCD = 2f;
+                    }
+                    else
+                    {
+                        myBody.velocity = new Vector2(3f, myBody.velocity.y);
+                        soldierAnimatorScript.isWalking = true;
+                    }
+
+                }
+                else
+                {
+                    myBody.velocity = new Vector2(3f, myBody.velocity.y);
+                    soldierAnimatorScript.isWalking = true;
+                }
+            }
+        }
+        else
+        {
+            turnAroundCD -= Time.deltaTime;
+            soldierAnimatorScript.isWalking = false;
+        }
     }
 
     void lowAttackPush()
     {
         if(mySprite.flipX)
         {
-            Debug.Log("Low right attack");
-
             myBody.velocity = new Vector2(35f, myBody.velocity.y);
             
             GameObject blade;
@@ -201,8 +279,6 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         }
         else
         {
-            Debug.Log("Low left attack");
-
             myBody.velocity = new Vector2(-35f, myBody.velocity.y);
 
             GameObject blade;
@@ -266,21 +342,24 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-            
+
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
             hp -= playerPower.Damage;
-            
-            if(playerPower.Damage >= dmgThreshold)
+
+            if (!isHitStun)
             {
-                invinCD = 2.0f;
-            }
-            else
-            {
-                invinCD = 2.0f;
+                if (playerPower.Damage >= dmgThreshold)
+                {
+                    activateHitStunState();
+                }
+                else
+                {
+                    invinCD = 1f;
+                }
             }
         }
     }
@@ -295,13 +374,16 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
             hp -= playerPower.Damage;
 
-            if (playerPower.Damage >= dmgThreshold)
+            if (!isHitStun)
             {
-                invinCD = 2.0f;
-            }
-            else
-            {
-                invinCD = 2.0f;
+                if (playerPower.Damage >= dmgThreshold)
+                {
+                    activateHitStunState();
+                }
+                else
+                {
+                    invinCD = 1f;
+                }
             }
 
         }
@@ -309,7 +391,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
     void killSoldier()
     {
-        mySprite.color = new Color32(255, 0, 0, 255);
+        
 
         GameObject explosion;
 
@@ -329,19 +411,64 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     {
         if(invinCD > 0)
         {
-            Debug.Log("We're invincible");
             invinCD -= Time.deltaTime;
 
-            mySprite.color = new Color32(255, 0, 0, 255);
+            mySprite.color = new Color32(255, 255, 0, 255);
 
             Physics2D.IgnoreLayerCollision(9, 12, true);
             Physics2D.IgnoreLayerCollision(9, 10, true);
         }
         else
         {
-            mySprite.color = new Color32(255, 255, 255, 255);
+            if(!isHitStun)
+            {
+                mySprite.color = new Color32(255, 255, 255, 255);
+            }
             Physics2D.IgnoreLayerCollision(9, 12, false);
             Physics2D.IgnoreLayerCollision(9, 10, false);
         }
+    }
+
+    bool isPlayerNearby()//This function checks if the player is close enough for this enemy to begin acting.
+    {
+        Vector2 boxCastSize = new Vector2(64f, 30f);
+
+        RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, boxCastSize, 0f, Vector2.right, 0f, playerLayer);
+
+        if (raycastHit2d1.collider != null)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+
+    void activateHitStunState()
+    {
+        mySprite.color = new Color32(0, 255, 0, 255);
+
+        soldierAnimatorScript.endAttack();
+
+        soldierAnimatorScript.isHitStun = true;
+
+        if(!mySprite)
+        {
+            myBody.velocity = new Vector2(-5f, 10f);
+        }
+        else
+        {
+            myBody.velocity = new Vector2(5f, 10f);
+        }
+    }
+
+    public void deactivateHitStunState()
+    {
+        mySprite.color = new Color32(255, 255, 255, 255);
+
+        myBody.velocity = new Vector2(0f, 0f);
+
+        invinCD = 1f;
+
+        soldierAnimatorScript.isHitStun = false;
     }
 }
