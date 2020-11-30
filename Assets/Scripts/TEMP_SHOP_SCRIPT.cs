@@ -21,17 +21,19 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
     private void Awake()
     {
-        
+        Load();
+
+
     }
     void Start()
     {
         Display();
 
-        
+
+
         XMLManager.ins.LoadItems();
         ITEMID = Random.Range(1, 5);
 
-        Load();
         Debug.Log(player.coin);
     }
     void Update()
@@ -41,13 +43,15 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
     public void Save()
     {
+
         XMLManager.ins.SaveItems();
         SaveLoadManager.SavePlayer(player);
     }
     public void Load()
     {
         float[] loadedStats = SaveLoadManager.LoadPlayer();
-
+        player.MaxHealth = loadedStats[0];
+        player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];
     }
     public void cost()
@@ -62,7 +66,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
           
                 //makes the item if the ID equals the bronze ID and its not been obtained previously
-                if (ITEMID == item.ID)
+                if (ITEMID == item.ID && item.ID ==1)
                 {
 
                     if (player.coin >= item.price)
@@ -70,6 +74,8 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                         if (item.got == false)
                         {
 
+
+                            Debug.Log(player.MaxHealth);
 
                             player.MaxMana += item.value;
                             //subtracts the bronze price from the player total
@@ -87,12 +93,13 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                 }
                 //makes the item if the ID equals the silver ID and its not been obtained previously
 
-                else if (ITEMID == item.ID)
+                 if (ITEMID == item.ID && item.ID == 2)
                 {
                     if (player.coin >= item.price)
                     {
                         if (item.got == false)
                         {
+                            Debug.Log(player.MaxHealth);
 
                             player.MaxMana += item.value;
 
@@ -108,12 +115,13 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                 }
                 //makes the item if the ID equals the steelhelm ID and its not been obtained previously
 
-                else if (ITEMID == item.ID)
+                 if (ITEMID == item.ID && item.ID == 3)
                 {
                     if (player.coin >= item.price)
                     {
                         if (item.got == false)
                         {
+                            Debug.Log(player.MaxHealth);
 
                             player.MaxHealth += item.value;
 
@@ -133,12 +141,14 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                 }
                 //makes the item if the ID equals the steelshield ID and its not been obtained previously
 
-                else if (ITEMID == item.ID)
+                 if (ITEMID == item.ID && item.ID == 4)
                 {
                     if (player.coin >= item.price)
                     {
                         if (item.got == false)
                         {
+                            Debug.Log(player.MaxHealth);
+
                             player.MaxHealth += item.value;
 
 
@@ -153,11 +163,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
                   
                 }
-                else
-                {
-                    Debug.Log("cant buy");
-
-                }
+              
 
                 buyonce = true;
 

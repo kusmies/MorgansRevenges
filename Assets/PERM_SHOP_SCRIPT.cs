@@ -31,10 +31,10 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
         Display();
 
         XMLManager.ins.PermLoadItems();
-
         XMLManager.ins.LoadItems();
 
-        PERMITEMID = 1;
+
+        PERMITEMID = Random.Range (1,4);
 
         TEMPITEMID = Random.Range(1, 5);
 
@@ -48,54 +48,98 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
     public void Save()
     {
-        XMLManager.ins.SaveItems();
+        XMLManager.ins.PermSaveItems();
+
         SaveLoadManager.SavePlayer(player);
     }
     public void Load()
     {
         float[] loadedStats = SaveLoadManager.LoadPlayer();
-
+     
         player.coin = loadedStats[2];
     }
     public void cost()
     {
-        foreach (PermItemEntry permitem in XMLManager.ins.PitemDB.list)
+        if (buyonce == false)
         {
-
-            if(PERMITEMID == permitem.ID)
-            {
-                if (player.coin >= permitem.price)
+            foreach (PermItemEntry permitem in XMLManager.ins.PitemDB.list)
+        {
+          
+                if (PERMITEMID == permitem.ID && permitem.ID ==1)
                 {
-                    if (permitem.unlocked == false)
+                    if (player.coin >= permitem.price)
                     {
+                        if (permitem.unlocked == false)
+                        {
+
+                            player.MaxHealth += permitem.value;
+
+                            player.coin -= permitem.price;
+                            TEMPITEMID = 6;
+                            permitem.unlocked = true;
+                            XMLManager.ins.PermSaveItems();
+
+                            SaveLoadManager.SavePlayer(player);
+                        }
+
+                  
 
 
-                        player.MaxMana += permitem.value;
-                        //subtracts the bronze price from the player total
-                        player.coin -= permitem.price;
-                        TEMPITEMID = 6;
-                        permitem.unlocked = true;
-                        XMLManager.ins.PermSaveItems();
+                    }
+                   
+                }
 
-                        SaveLoadManager.SavePlayer(player);
+                if (PERMITEMID == permitem.ID && permitem.ID == 2)
+                {
+                    if (player.coin >= permitem.price)
+                    {
+                        if (permitem.unlocked == false)
+                        {
+
+
+                            player.MaxHealth += permitem.value;
+                            //subtracts the bronze price from the player total
+                            player.coin -= permitem.price;
+                            TEMPITEMID = 6;
+                            permitem.unlocked = true;
+                            XMLManager.ins.PermSaveItems();
+
+                            SaveLoadManager.SavePlayer(player);
+                        }
+
+
+
+                    }
+                }
+                if (PERMITEMID == permitem.ID && permitem.ID == 3)
+                {
+                    if (player.coin >= permitem.price)
+                    {
+                        if (permitem.unlocked == false)
+                        {
+
+
+                            player.MaxMana+= permitem.value;
+                            //subtracts the bronze price from the player total
+                            player.coin -= permitem.price;
+                            TEMPITEMID = 6;
+                            permitem.unlocked = true;
+                            XMLManager.ins.PermSaveItems();
+
+                            SaveLoadManager.SavePlayer(player);
+                        }
+
+
                     }
 
                 }
-
-
-            }
-
-
-
-            if (buyonce == false && permitem.unlocked ==true)
-            {
 
                 foreach (ItemEntry item in XMLManager.ins.itemDB.list)
                 {
 
 
                     //makes the item if the ID equals the bronze ID and its not been obtained previously
-                    if (TEMPITEMID == item.ID)
+                    if (TEMPITEMID == item.ID && item.ID == 1 && permitem.unlocked ==true)
                     {
 
                         if (player.coin >= item.price)
@@ -104,10 +148,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                             {
 
 
+                                Debug.Log(player.MaxHealth);
+
                                 player.MaxMana += item.value;
                                 //subtracts the bronze price from the player total
                                 player.coin -= item.price;
-                                TEMPITEMID = 6;
                                 item.got = true;
                                 XMLManager.ins.SaveItems();
 
@@ -116,22 +161,19 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         }
 
-                        else
-                        {
-                            TEMPITEMID = 6;
-                        }
+
 
                     }
                     //makes the item if the ID equals the silver ID and its not been obtained previously
 
-                    else if (TEMPITEMID == item.ID)
+                    if (TEMPITEMID == item.ID && item.ID == 2 && permitem.unlocked == true)
                     {
                         if (player.coin >= item.price)
                         {
                             if (item.got == false)
                             {
+                                Debug.Log(player.MaxHealth);
 
-                                TEMPITEMID = 6;
                                 player.MaxMana += item.value;
 
                                 //subtracts the bronze price from the player total
@@ -142,20 +184,17 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                                 SaveLoadManager.SavePlayer(player);
                             }
                         }
-                        else
-                        {
-                            TEMPITEMID = 6;
-                        }
+
                     }
                     //makes the item if the ID equals the steelhelm ID and its not been obtained previously
 
-                    else if (TEMPITEMID == item.ID)
+                    if (TEMPITEMID == item.ID && item.ID == 3 && permitem.unlocked == true)
                     {
                         if (player.coin >= item.price)
                         {
                             if (item.got == false)
                             {
-                                TEMPITEMID = 6;
+                                Debug.Log(player.MaxHealth);
 
                                 player.MaxHealth += item.value;
 
@@ -170,21 +209,19 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         }
 
-                        else
-                        {
-                            TEMPITEMID = 6;
-                        }
+
 
                     }
                     //makes the item if the ID equals the steelshield ID and its not been obtained previously
 
-                    else if (TEMPITEMID == item.ID)
+                    if (TEMPITEMID == item.ID && item.ID == 4 && permitem.unlocked == true)
                     {
                         if (player.coin >= item.price)
                         {
                             if (item.got == false)
                             {
-                                TEMPITEMID = 6;
+                                Debug.Log(player.MaxHealth);
+
                                 player.MaxHealth += item.value;
 
 
@@ -197,32 +234,39 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                             }
                         }
 
-                        else
-                        {
-                            TEMPITEMID = 6;
-                        }
 
                     }
-                    else
-                    {
-                        Debug.Log("cant buy");
 
-                    }
 
                     buyonce = true;
 
                 }
+
+
+
+
+
+                buyonce = true;
+
+                
             }
+
+
+            if (TEMPITEMID == 6)
+            {
+
+
+                Debug.Log("SoldOut");
+            }
+
         }
 
-        if (TEMPITEMID == 6)
-        {
 
-
-            Debug.Log("SoldOut");
-        }
 
     }
+
+    
+
 
     public void Display()
     {
@@ -240,13 +284,36 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     itemspriterenderer.sprite = itemsprites[0];
                 }
             }
+            if (PERMITEMID == permitem.ID)
+            {
+                Name.text = permitem.name;
+                price.text = "Gold: " + permitem.price.ToString();
+                description.text = permitem.description.ToString();
+                if (PERMITEMID == 2)
 
+                {
+                    itemspriterenderer.sprite = itemsprites[1];
+                }
+            }
+            if (PERMITEMID == permitem.ID)
+            {
+                Name.text = permitem.name;
+                price.text = "Gold: " + permitem.price.ToString();
+                description.text = permitem.description.ToString();
+                if (PERMITEMID == 3)
+
+                {
+                    itemspriterenderer.sprite = itemsprites[2];
+                }
+
+
+            }
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
 
 
                 //makes the item if the ID equals the bronze ID and its not been obtained previously
-                if (TEMPITEMID == item.ID &&permitem.unlocked == true)
+                if (TEMPITEMID == item.ID &&permitem.unlocked ==true)
                 {
                     Name.text = item.name;
                     price.text = "Gold: " + item.price.ToString();
@@ -254,7 +321,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     if (TEMPITEMID == 1)
 
                     {
-                        itemspriterenderer.sprite = itemsprites[1];
+                        itemspriterenderer.sprite = itemsprites[3];
                     }
                 }
                 if (TEMPITEMID == item.ID && permitem.unlocked == true)
@@ -265,7 +332,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     if (TEMPITEMID == 2)
 
                     {
-                        itemspriterenderer.sprite = itemsprites[2];
+                        itemspriterenderer.sprite = itemsprites[4];
                     }
 
                 }
@@ -277,7 +344,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     if (TEMPITEMID == 3)
 
                     {
-                        itemspriterenderer.sprite = itemsprites[3];
+                        itemspriterenderer.sprite = itemsprites[5];
                     }
                 }
                 if (TEMPITEMID == item.ID && permitem.unlocked == true)
@@ -288,20 +355,28 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     if (TEMPITEMID == 4)
 
                     {
-                        itemspriterenderer.sprite = itemsprites[4];
+                        itemspriterenderer.sprite = itemsprites[6];
                     }
                 }
 
             }
 
-            if (buyonce==true )
-            {
-                Name.text = "Sold Out";
-                itemspriterenderer.sprite = itemsprites[5];
-                price.text = "Please Come Again!";
-                description.text = "";
-            }
+            if (buyonce == true )
+                    {
+                        Name.text = "Sold Out";
+                        itemspriterenderer.sprite = itemsprites[7];
+                        price.text = "Please Come Again!";
+                        description.text = "";
+                    }
+                }
 
-        }
+            
+            }
     }
-}
+
+
+
+       
+
+     
+    

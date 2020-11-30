@@ -10,5 +10,23 @@
       <price>8</price>
       <unlocked>true</unlocked>
     </PermItemEntry>
+    <PermItemEntry>
+      <ID>2</ID>
+      <name>MithrilBangil</name>
+      <description>An enchanted Bangil that makes the user feel stronger.</description>
+      <value>3</value>
+      <currency>Gold</currency>
+      <price>4</price>
+      <unlocked>true</unlocked>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>3</ID>
+      <name>ruby bracelet</name>
+      <description>A bracelet empowered by magic.</description>
+      <value>3</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+    </PermItemEntry>
   </PermItems>
 </PermItemDatabase>

@@ -84,6 +84,20 @@ MonoBehaviour:
       currency: 0
       price: 8
       unlocked: 0
+    - ID: 2
+      name: MithirilBangil
+      description: An enchanted Bangil that makes the user feel stronger
+      value: 3
+      currency: 0
+      price: 4
+      unlocked: 0
+    - ID: 3
+      name: AdamantiumBracer
+      description: A bracer that makes the user feel even stronger.
+      value: 6
+      currency: 0
+      price: 6
+      unlocked: 0
 --- !u!114 &7757165925541541197
 MonoBehaviour:
   m_ObjectHideFlags: 0

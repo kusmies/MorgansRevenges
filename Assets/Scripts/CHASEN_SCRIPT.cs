@@ -86,9 +86,31 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.unlocked = false;
 
                 item.name = "FireRune";
-                item.description = "A rune crackiling with magic, unlocks the fireball uses the O key to fire.";
+                item.description = "A rune crackiling with magic, unlocks the fireball uses the O key to fire. This item is permanent.";
                 item.currency = Currency.Gold;
-                item.price = 8;
+                item.price = 5;
+            }
+
+            if (item.ID == 2)
+            {
+                item.value = 4;
+                item.unlocked = false;
+
+                item.name = "MithrilBangil";
+                item.description = "An enchanted Bangil that makes the user feel stronger.This item is permanent.";
+                item.currency = Currency.Gold;
+                item.price = 10;
+            }
+
+            if (item.ID == 3)
+            {
+                item.value = 4;
+                item.unlocked = false;
+
+                item.name = "ruby bracelet";
+                item.description = "A bracelet empowered by magic. This item is permanent.";
+                item.currency = Currency.Gold;
+                item.price = 10;
             }
         }
             XMLManager.ins.SaveItems();

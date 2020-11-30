@@ -117,7 +117,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
 
-
+        XMLManager.ins.PermLoadItems();
+        XMLManager.ins.LoadItems();
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
         RectTransform HpSliderRect = Hp.GetComponent<RectTransform>();
@@ -151,8 +152,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Update()
 
     {
-        XMLManager.ins.PermLoadItems();
-        XMLManager.ins.LoadItems();
+ 
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
         slide.SetBar(CurrentHealth);
@@ -426,19 +426,36 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 if (item.ID == 1)
                 {
-                    item.got = false;
+                    if (item.got == true)
+                    {
+                        MaxMana -= item.value;
+                        item.got = false;
+                    }
+
                 }
                 if (item.ID == 2)
                 {
-                    item.got = false;
+                    if (item.got == true)
+                    {
+                        MaxMana -= item.value;
+                        item.got = false;
+                    }
                 }
                 if (item.ID == 3)
                 {
-                    item.got = false;
+                    if (item.got == true)
+                    {
+                        MaxHealth -= item.value;
+                        item.got = false;
+                    }
                 }
                 if (item.ID == 4)
                 {
-                    item.got = false;
+                    if (item.got == true)
+                    {
+                        MaxHealth-= item.value;
+                        item.got = false;
+                    }
                 }
                 XMLManager.ins.SaveItems();
                 SaveLoadManager.SavePlayer(this);
