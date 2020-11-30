@@ -29,12 +29,12 @@ public class DOUR_BG_SCRIPT : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal") > 0)
             {
-                Debug.Log("MovingRight");
+                
                 myTran.position = new Vector2(myTran.position.x + speed, myTran.position.y);
             }
             if(Input.GetAxis("Horizontal") < 0)
             {
-                Debug.Log("MovingLeft");
+                
                 myTran.position = new Vector2(myTran.position.x - speed, myTran.position.y);
             }
         }

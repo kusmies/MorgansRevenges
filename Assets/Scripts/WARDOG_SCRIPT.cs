@@ -19,6 +19,12 @@ public class WARDOG_SCRIPT : MonoBehaviour
     public GameObject explosionEffect;
     int dmgThreshold = 1;
     float invinCD = 0;
+    float jumpCD = 0f;
+    float prevY;
+    float prevX;
+    bool wallTry = false;
+    bool beenActivated = false;
+    bool isHitStun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +35,8 @@ public class WARDOG_SCRIPT : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
         warDogAnimScript = GetComponent<WARDOG_ANIM_SCRIPT>();
+
+        prevY = myTran.position.y;
     }
 
     // Update is called once per frame
@@ -43,24 +51,49 @@ public class WARDOG_SCRIPT : MonoBehaviour
         {
             isDead = true;
         }
-
-        checkForGround();
-
-        if(!isDead)
+        
+        if(isPlayerNearby())
         {
-            invincibilty();
-
-            walkingAround();
+            beenActivated = true;
         }
+        
+        if(beenActivated)
+        {
+            checkForGround();
+
+            if (!isDead)
+            {
+
+                invincibilty();
+                if (!isHitStun)
+                {
+                walkingAround();
+                }
+                else
+                {
+                    warDogAnimScript.isWalking = false;
+                }
+            }
+            else
+            {
+                mySprite.color = new Color32(255, 0, 0, 255);
+                Physics.IgnoreLayerCollision(9, 12, true);
+                Physics.IgnoreLayerCollision(9, 10, true);
+                Physics.IgnoreLayerCollision(9, 0, true);
+            }
+        }
+        Debug.Log(isHitStun);
     }
 
     void checkForGround()
     {
-        RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
+        Vector2 boxCastSize = new Vector2(myBox.bounds.size.x - .2f, myBox.bounds.size.y);
+
+        RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, boxCastSize, 0f, Vector2.down, .1f, groundLayer);
 
         if (raycastHit2d.collider != null)
         {
-            isGrounded = true;
+            isGrounded = true;   
         }
         else
         {
@@ -70,36 +103,90 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
     void walkingAround()
     {
-            if (!mySprite.flipX)
-            {
-                RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
+        Vector2 boxCastSize = new Vector2(myBox.bounds.size.x, myBox.bounds.size.y - .2f); //We get the size of our box cast
 
-                if (raycastHit2d.collider != null)
+        if (jumpCD >= 0) //If our jump cooldown is greater than 0 then we subtract delta time from it.
+        {  
+            jumpCD -= Time.deltaTime;
+        }
+        
+
+        if (!mySprite.flipX) //If we are facing left we throw our box cast to the left and run appropriate left facing code
+        {
+            RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, boxCastSize, 0f, Vector2.left, 1f, groundLayer); //Throw the box cast out to the left. We're looking for the ground layer.
+
+            if (raycastHit2d1.collider != null) //If we hit the ground layer then run the code
+            {
+                if(isGrounded && jumpCD <= 0) //If we are grounded and our jump cooldown is less than or equal to 0 then we run this code.
                 {
-                    mySprite.flipX = true;
+                    myBody.velocity = new Vector2(-5f, 30f); //Jump, but continue moving left.                  
+                    jumpCD = 1f; //Set the jump cooldown to 1.
+                    prevX = myTran.position.x;
+                }
+                else if(isGrounded && jumpCD > 0 && checkIfXPositionIsDifferent())
+                {
                     
+                    mySprite.flipX = true; //Flip the sprite's x direction. This will affect all other code that is based on the direction we are facing.
+                    myBody.velocity = new Vector2(5f, myBody.velocity.y); //Start moving right, keep the war dog's y velocity though.
+                    jumpCD = 0;
                 }
-                else
+            }
+            else //If we do not hit the ground layer with our left facing box case then run this code.
+            {              
+                prevY = myTran.position.y; //Record the current y position.
+                myBody.velocity = new Vector2(-5f, myBody.velocity.y); //Move left. Maintain the current Y velocity.
+                warDogAnimScript.isWalking = true; //Tell the animation script that we are still walking.
+            }
+        }
+        else
+        {
+            RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, boxCastSize, 0f, Vector2.right, 1f, groundLayer);
+
+            if (raycastHit2d1.collider != null)
                 {
-                    myBody.velocity = new Vector2(-5f, myBody.velocity.y);
-                    warDogAnimScript.isWalking = true;
+                if (isGrounded && jumpCD <= 0)
+                {     
+                    myBody.velocity = new Vector2(5f, 30f);
+                    jumpCD = 1f;
+                    prevX = myTran.position.x;
                 }
+                else if (isGrounded && jumpCD > 0 && checkIfXPositionIsDifferent())
+                {
+                    mySprite.flipX = false; //Flip the sprite's x direction. This will affect all other code that is based on the direction we are facing.
+                    myBody.velocity = new Vector2(-5f, myBody.velocity.y); //Start moving right, keep the war dog's y velocity though.
+                    jumpCD = 0;
+                }
+
+
             }
             else
             {
-                RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.right, .1f, groundLayer);
-
-                if (raycastHit2d.collider != null)
-                {
-                    mySprite.flipX = false;
-                    
-                }
-                else
-                {
-                    myBody.velocity = new Vector2(5f, myBody.velocity.y);
-                    warDogAnimScript.isWalking = true;
-                }
+                prevY = myTran.position.y;
+                myBody.velocity = new Vector2(5f, myBody.velocity.y);
+                warDogAnimScript.isWalking = true;
             }
+        }
+
+    }
+
+    bool checkIfYPositionIsDifferent()
+    {
+        if(prevY > myTran.position.y - 1f && prevY < myTran.position.y + 1f)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    bool checkIfXPositionIsDifferent()
+    {
+        if(prevX != myTran.position.x)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -112,13 +199,16 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
             hp -= playerPower.Damage;
 
-            if (playerPower.Damage >= dmgThreshold)
+            if (!isHitStun)
             {
-                invinCD = 2.0f;
-            }
-            else
-            {
-                invinCD = 2.0f;
+                if (playerPower.Damage >= dmgThreshold)
+                {
+                    activateHitStunState();
+                }
+                else
+                {
+                    invinCD = 1f;
+                }
             }
         }
     }
@@ -133,13 +223,16 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
             hp -= playerPower.Damage;
 
-            if (playerPower.Damage >= dmgThreshold)
+            if (!isHitStun)
             {
-                invinCD = 2.0f;
-            }
-            else
-            {
-                invinCD = 2.0f;
+                if (playerPower.Damage >= dmgThreshold)
+                {
+                    activateHitStunState();
+                }
+                else
+                {
+                    invinCD = 1f;
+                }
             }
 
         }
@@ -148,11 +241,10 @@ public class WARDOG_SCRIPT : MonoBehaviour
     void invincibilty()
     {
         if (invinCD > 0)
-        {
-            
+        {        
             invinCD -= Time.deltaTime;
 
-            mySprite.color = new Color32(255, 0, 0, 255);
+            mySprite.color = new Color32(255, 255, 0, 255);
 
             Physics2D.IgnoreLayerCollision(9, 12, true);
             Physics2D.IgnoreLayerCollision(9, 10, true);
@@ -167,7 +259,7 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
     void killWarDog()
     {
-        mySprite.color = new Color32(255, 0, 0, 255);
+        
 
         GameObject explosion;
 
@@ -181,5 +273,50 @@ public class WARDOG_SCRIPT : MonoBehaviour
         GameObject explosion;
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
+    }
+
+    bool isPlayerNearby()//This function checks if the player is close enough for this enemy to begin acting.
+    {
+        Vector2 boxCastSize = new Vector2(64f, 30f);
+
+        RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, boxCastSize, 0f, Vector2.right, 0f, playerLayer);
+
+        if (raycastHit2d1.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    void activateHitStunState()
+    {
+        mySprite.color = new Color32(0, 255, 0, 255);
+
+        isHitStun = true;
+
+        warDogAnimScript.isHitStun = true;
+
+        if (!mySprite)
+        {
+            myBody.velocity = new Vector2(-5f, 10f);
+        }
+        else
+        {
+            myBody.velocity = new Vector2(5f, 10f);
+        }
+    }
+
+    public void deactivateHitStunState()
+    {
+        mySprite.color = new Color32(255, 255, 255, 255);
+
+        myBody.velocity = new Vector2(0f, 0f);
+
+        invinCD = 1f;
+
+        warDogAnimScript.isHitStun = false;
+
+        isHitStun = false;
     }
 }

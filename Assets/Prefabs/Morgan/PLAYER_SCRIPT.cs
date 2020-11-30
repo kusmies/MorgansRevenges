@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
-using UnityEditor.Experimental.RestService;
-using UnityEditor.UIElements;
+//using UnityEditor.Experimental.RestService;
+//using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -171,7 +171,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
         }
 
         Dead();
-        invulerability(); 
+        invulerability();
+
     }
     //checks if the players on the ground
 
@@ -253,7 +254,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             attackstun = true;
             attackCD += Time.deltaTime;
-            if (attackCD > 1)
+            if (attackCD > .4)
             {
                 attackstun = false;
                 attackCD = 0;
@@ -270,7 +271,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                     attackstun = true;
                     attackCD += Time.deltaTime;
-                    if (attackCD > 1)
+                    if (attackCD > .4)
                     {
                         attackstun = false;
                         attackCD = 0;
@@ -282,8 +283,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
                                                                    
         if (attackstun == false)
         {
+
             //left is true
-            if (Input.GetAxis("Horizontal") > 0)
+            if (Input.GetAxisRaw("Horizontal") > 0)
             {
 
                 myBody.velocity = new Vector2(+speedforce + bonusspeed, myBody.velocity.y);
@@ -294,7 +296,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 Debug.Log(mySprite.flipX);
             }
-            else if (Input.GetAxis("Crouch") > 0)
+            else if (Input.GetAxisRaw("Crouch") > 0)
             {
                 myBody.velocity = new Vector2(0, myBody.velocity.y);
 
@@ -303,23 +305,18 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
             }
-
-            else
+            else if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                //right is true
-                if (Input.GetAxis("Horizontal") < 0)
-                {
-                    myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
-                    mySprite.flipX = false;
-                    isMoving = true;
-                    isLeft = false;
-                    crouch = false;
+                myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
+                mySprite.flipX = false;
+                isMoving = true;
+                isLeft = false;
+                crouch = false;
 
 
-                    Debug.Log(mySprite.flipX);
-
-
-                }
+                Debug.Log(mySprite.flipX);
+            }
+            
                 //standing still
                 else
                 {
@@ -349,7 +346,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     }
 
                 }
-            }
+            
 
             //jump is true
             if (Input.GetAxis("Jump") > 0 && isGrounded)
@@ -359,14 +356,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             }
 
-
-        
-            
-
-
-
-
         }
+
+
     }
 
 

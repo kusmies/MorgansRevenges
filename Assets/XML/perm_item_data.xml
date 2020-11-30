@@ -4,28 +4,28 @@
     <PermItemEntry>
       <ID>1</ID>
       <name>FireRune</name>
-      <description>A rune crackiling with magic, unlocks the fireball uses the O key to fire.</description>
+      <description>A rune crackiling with magic, unlocks the fireball uses the O key to fire. This item is permanent.</description>
       <value>0</value>
       <currency>Gold</currency>
-      <price>8</price>
-      <unlocked>true</unlocked>
+      <price>5</price>
+      <unlocked>false</unlocked>
     </PermItemEntry>
     <PermItemEntry>
       <ID>2</ID>
       <name>MithrilBangil</name>
-      <description>An enchanted Bangil that makes the user feel stronger.</description>
-      <value>3</value>
+      <description>An enchanted Bangil that makes the user feel stronger.This item is permanent.</description>
+      <value>4</value>
       <currency>Gold</currency>
-      <price>4</price>
-      <unlocked>true</unlocked>
+      <price>10</price>
+      <unlocked>false</unlocked>
     </PermItemEntry>
     <PermItemEntry>
       <ID>3</ID>
       <name>ruby bracelet</name>
-      <description>A bracelet empowered by magic.</description>
-      <value>3</value>
+      <description>A bracelet empowered by magic. This item is permanent.</description>
+      <value>4</value>
       <currency>Gold</currency>
-      <price>5</price>
+      <price>10</price>
       <unlocked>false</unlocked>
     </PermItemEntry>
   </PermItems>

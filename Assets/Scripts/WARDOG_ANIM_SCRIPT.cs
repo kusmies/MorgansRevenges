@@ -8,6 +8,8 @@ public class WARDOG_ANIM_SCRIPT : MonoBehaviour
     WARDOG_SCRIPT wardogScript;
     public bool isWalking = false;
     public bool isDead = false;
+    public bool isHitStun = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,12 @@ public class WARDOG_ANIM_SCRIPT : MonoBehaviour
     {
         if (isWalking)
         {
+            myAnim.SetBool("isHitStun", false);
             myAnim.SetBool("isWalking", true);
         }
-        else
+        else if (isHitStun)
         {
+            myAnim.SetBool("isHitStun", true);
             myAnim.SetBool("isWalking", false);
         }
 
