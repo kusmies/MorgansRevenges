@@ -22,7 +22,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
         {
 
             player.MaxHealth = 12;
-            player.MaxMana = 4;
+            player.MaxMana = 12;
             player.coin = 0;
             SaveLoadManager.SavePlayer(player);
 
@@ -44,7 +44,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.name = "BronzeRing";
                 item.description = "A bronze ring that increases mana by one.";
                 item.currency = Currency.Gold;
-                item.price = 4;
+                item.price = 2;
             }
             if (item.ID == 2)
             {
@@ -53,7 +53,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.name = "SilverRing";
                 item.description = "A silver ring that increases mana by two.";
                 item.currency = Currency.Gold;
-                item.price = 8;
+                item.price = 4;
             }
             if (item.ID == 3)
             {
@@ -117,7 +117,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
 
         XMLManager.ins.PermSaveItems();
         player.MaxHealth = 12;
-        player.MaxMana = 4;
+        player.MaxMana = 12;
         player.coin = 0;
         SaveLoadManager.SavePlayer(player);
         SceneManager.LoadScene(index);

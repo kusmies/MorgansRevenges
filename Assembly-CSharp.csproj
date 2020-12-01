@@ -67,13 +67,11 @@
     <Compile Include="Assets\PERM_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\CHSTHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\CHSTDRP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYBLK_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYLT_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\ITEMHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\LootList.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Pennant Flag\Flag_Win.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\DETHSPWN_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATBOD_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATER_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATTILE_SCRIPT.cs" />
@@ -81,7 +79,6 @@
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\DOUR_BG_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MP_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\FIREBLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\XPLSN_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\Lightning\Scripts\LIGHTN_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FrostWaveAnimation\Frost Wave\Scripts\FRSTWVE_SCRIPT.cs" />
@@ -124,43 +121,43 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

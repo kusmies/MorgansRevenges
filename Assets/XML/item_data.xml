@@ -7,7 +7,7 @@
       <description>A bronze ring that increases mana by one.</description>
       <value>1</value>
       <currency>Gold</currency>
-      <price>4</price>
+      <price>2</price>
       <got>false</got>
     </ItemEntry>
     <ItemEntry>
@@ -16,7 +16,7 @@
       <description>A silver ring that increases mana by two.</description>
       <value>2</value>
       <currency>Gold</currency>
-      <price>8</price>
+      <price>4</price>
       <got>false</got>
     </ItemEntry>
     <ItemEntry>

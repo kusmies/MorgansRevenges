@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 public class UNIDROP_SCRIPT : MonoBehaviour
 {
-    public int ID;
-    public bool object1;
-    public bool object2;
-    public bool object3;
-    public bool object4;
-    public bool lootfinallydropped;
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
-    public GameObject item4;
-     void Awake()
+
+    public DropDatabase items;
+    public int ID, Max;
+
+    public bool droppedonce;
+    void Awake()
     {
-        ID = Random.Range(1, 4);
+        ID = Random.Range(0, Max);
 
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
 
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,37 +31,37 @@ public class UNIDROP_SCRIPT : MonoBehaviour
 
     void Drop()
     {
-        if (lootfinallydropped == false)
+        if (droppedonce == false)
         {
-            if (ID == 1 && object1 == true)
+            droppedonce = true;
+            foreach (DropList item in items.list)
             {
-                Instantiate(item1);
-                lootfinallydropped = true;
-            }
-            if (ID == 2 && object2 == true)
-            {
-                Instantiate(item2);
-                lootfinallydropped = true;
-            }
-            if (ID == 3 && object3 == true)
-            {
-                Instantiate(item3);
-                lootfinallydropped = true;
-            }
-            if (ID == 4 && object4 == true)
-            {
-                Instantiate(item4);
-                lootfinallydropped = true;
-            }
+                if (item.ID == ID)
+                {
+                    Instantiate(item.dropped);
+                }
 
-
-        }
-        else
-        {
-            ID = Random.Range(1, 4);
-
+            }
         }
 
     }
 
+
+
+
+
+    [System.Serializable]
+
+    public class DropList
+    {
+        public int ID;
+        public GameObject dropped;
+
+    }
+
+    [System.Serializable]
+    public class DropDatabase
+    {
+        public List<DropList> list = new List<DropList>();
+    }
 }

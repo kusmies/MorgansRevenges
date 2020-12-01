@@ -227,15 +227,27 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                 }
             }
 
+            if (buyonce == true)
+            {
+                if (player.coin >= item.price)
+                {
+                    Name.text = "Sold Out";
+                    itemspriterenderer.sprite = itemsprites[4];
+                    price.text = "Please Come Again!";
+                    description.text = "";
+                }
+
+                if(player.coin <item.price)
+                {
+                    Name.text = "Sorry you're short.";
+                    price.text = "Come back with more gold!";
+                    description.text = "";
+
+                }
+            }
         }
 
-        if (buyonce ==true)
-        {
-            Name.text = "Sold Out";
-            itemspriterenderer.sprite = itemsprites[4];
-            price.text = "Please Come Again!";
-            description.text = "";
-        }
+   
 
     }
 }

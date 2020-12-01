@@ -295,10 +295,11 @@ MonoBehaviour:
   jumpforce: 50
   speedforce: 20
   bonusspeed: 0
-  attackCD: 0
   coin: 0
   invulnertimer: 0
+  stuntimer: 0
   invulnertarget: 0
+  stuntarget: 0
   deathtimer: 0
   deathtimertarget: 0
   MaxHealth: 12
@@ -317,19 +318,19 @@ MonoBehaviour:
   isGrounded: 0
   isMoving: 0
   knockBack: 0
-  isLeft: 1
   shoot: 0
   castingfireball: 0
   midslash: 0
   crouch: 0
   invicibility: 0
   death: 0
-  attackstun: 0
+  stun: 0
   level: {fileID: 7256701329708582109}
   coinvalue: {fileID: 0}
   slide: {fileID: 0}
   slide2: {fileID: 0}
   myBox: {fileID: 9120627585721326273}
+  mySprite: {fileID: 6012946319879546380}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256

@@ -265,7 +265,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
     }
 
-    
+
 
 
     public void Display()
@@ -306,14 +306,31 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     itemspriterenderer.sprite = itemsprites[2];
                 }
 
+                if (buyonce == true)
+                {
+                    if (player.coin >= permitem.price)
+                    {
+                        Name.text = "Sold Out";
+                        itemspriterenderer.sprite = itemsprites[7];
+                        price.text = "Please Come Again!";
+                        description.text = "";
+                    }
 
+                    if (player.coin < permitem.price)
+                    {
+                        Name.text = "Sorry you're short.";
+                        price.text = "Come back with more gold!";
+                        description.text = "";
+
+                    }
+                }
             }
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
 
 
                 //makes the item if the ID equals the bronze ID and its not been obtained previously
-                if (TEMPITEMID == item.ID &&permitem.unlocked ==true)
+                if (TEMPITEMID == item.ID && permitem.unlocked == true)
                 {
                     Name.text = item.name;
                     price.text = "Gold: " + item.price.ToString();
@@ -358,20 +375,30 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         itemspriterenderer.sprite = itemsprites[6];
                     }
                 }
-
-            }
-
-            if (buyonce == true )
+                if (buyonce == true)
+                {
+                    if (player.coin >= item.price)
                     {
                         Name.text = "Sold Out";
                         itemspriterenderer.sprite = itemsprites[7];
                         price.text = "Please Come Again!";
                         description.text = "";
                     }
-                }
 
-            
+                    if (player.coin < item.price)
+                    {
+                        Name.text = "Sorry you're short.";
+                        price.text = "Come back with more gold!";
+                        description.text = "";
+
+                    }
+                }
             }
+
+
+
+        }
+    }
     }
 
 

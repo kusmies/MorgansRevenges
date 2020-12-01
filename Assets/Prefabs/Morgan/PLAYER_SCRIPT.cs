@@ -27,14 +27,15 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //additional speed
     public float bonusspeed;
 
-  public float attackCD;
     float barsize = 160;
     //the coin int
     public float coin;
     //invunerable timer ticks up
     public float invulnertimer;
+    public float stuntimer;
     //target for the invunerable timer to equal
     public float invulnertarget;
+    public float stuntarget;
     //bool for players invincibility
 
     // how long it takes the player to actually die
@@ -66,7 +67,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //checks if facing left
     public bool knockBack;
 
-    public bool isLeft;
     public bool shoot;
     public bool castingfireball;
 
@@ -75,7 +75,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public bool invicibility;
     //bool for players death
     public bool death;
-    public bool attackstun;
+    public bool stun;
  
     //loads the level the players in
     public CHASEN_SCRIPT level;
@@ -95,7 +95,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //jump box collider
     public BoxCollider2D myBox;
     //checks the sprite renderer
-    SpriteRenderer mySprite;
+   public SpriteRenderer mySprite;
     //players ground layer
     [SerializeField] public LayerMask groundLayer;
   
@@ -108,6 +108,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
         Load();
+        var MpUp = barsize + (MaxMana * 10);
+        var hpUp = barsize + (MaxHealth * 10);
+
+        RectTransform HpSliderRect = slide.GetComponent<RectTransform>();
+        HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
+        RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
+        MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
 
     }
 
@@ -116,15 +123,19 @@ public class PLAYER_SCRIPT : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
-
+        mySprite.flipX = true;
         XMLManager.ins.PermLoadItems();
         XMLManager.ins.LoadItems();
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
-        RectTransform HpSliderRect = Hp.GetComponent<RectTransform>();
-        HpSliderRect.sizeDelta = new Vector2(MaxHealth, HpSliderRect.sizeDelta.y);
 
-        isLeft = false;
+        var MpUp = barsize + (MaxMana * 10);
+        var hpUp = barsize + (MaxHealth * 10);
+
+        RectTransform HpSliderRect = slide.GetComponent<RectTransform>();
+        HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
+        RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
+        MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
         //death timer target
         deathtimertarget = 5.0f;
         //invunerability timer target
@@ -158,9 +169,15 @@ public class PLAYER_SCRIPT : MonoBehaviour
         slide.SetBar(CurrentHealth);
         slide2.SetBar(CurrentMana);
 
-       
 
 
+        var MpUp = barsize + (MaxMana * 10);
+        var hpUp = barsize + (MaxHealth * 10);
+
+        RectTransform HpSliderRect = slide.GetComponent<RectTransform>();
+        HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
+        RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
+        MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
         coinvalue.text = coin.ToString();
 
         if (!death)
@@ -193,7 +210,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     public void CastFireball()
     {
-        if (CurrentMana >= 1)
+        if (CurrentMana >0)
         {
             //sets the shoot equal to true
             shoot = true;
@@ -209,13 +226,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             //give it force to right
 
-            if (isLeft == true)
+            if (mySprite.flipX == true)
             {
                 fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(1200, 0));
             }
             //give it force to left
 
-            if (isLeft == false)
+            if (mySprite.flipX == false)
             {
                 fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1200, 0));
             }
@@ -249,40 +266,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void handleMovement()
 
     {
-        if (midslash == true&& castingfireball ==false)
-        {
-
-            attackstun = true;
-            attackCD += Time.deltaTime;
-            if (attackCD > .4)
-            {
-                attackstun = false;
-                attackCD = 0;
-                midslash = false;
-            }
-
-        }
-      
-                if (castingfireball == true && midslash == false) 
-        
-                  { 
-
-  
-
-                    attackstun = true;
-                    attackCD += Time.deltaTime;
-                    if (attackCD > .4)
-                    {
-                        attackstun = false;
-                        attackCD = 0;
-                        castingfireball = false;
-                    }
-
-                }
-            
                                                                    
-        if (attackstun == false)
+        if (stun == false)
         {
+            midslash = false;
+            castingfireball = false;
 
             //left is true
             if (Input.GetAxisRaw("Horizontal") > 0)
@@ -291,7 +279,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 myBody.velocity = new Vector2(+speedforce + bonusspeed, myBody.velocity.y);
                 mySprite.flipX = true;
                 isMoving = true;
-                isLeft = true;
                 crouch = false;
 
                 Debug.Log(mySprite.flipX);
@@ -310,7 +297,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
                 mySprite.flipX = false;
                 isMoving = true;
-                isLeft = false;
                 crouch = false;
 
 
@@ -326,19 +312,19 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                     Debug.Log(mySprite.flipX);
 
-                    if (Input.GetAxis("Slash") > 0)
-                    {
+                if (Input.GetAxisRaw("Slash") > 0 && stun == false)
+                {
 
-                        midslash = true;
-                    }
+                    midslash = true;
+                }
 
-                    foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+                foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
                     {
                         if (item.ID == 1)
                         {
 
                             //stops player when O is pressed
-                            if (Input.GetAxis("FireBall") > 0 && item.unlocked ==true)
+                            if (Input.GetAxisRaw("FireBall") > 0 && item.unlocked ==true && stun ==false)
                             {
                                 castingfireball = true;
                             }
@@ -351,8 +337,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
             //jump is true
             if (Input.GetAxis("Jump") > 0 && isGrounded)
             {
+                if (Input.GetAxis("Slash") > 0 && stun == false)                
+                {
+
+                    midslash = true;
+                }
+
                 myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
-                isMoving = false;
 
             }
 
@@ -368,11 +359,18 @@ public class PLAYER_SCRIPT : MonoBehaviour
         if(invicibility == true)
         {
 
+            stun = true;
+            stuntimer -= Time.deltaTime;
             invulnertimer -= Time.deltaTime;
             mySprite.color = new Color32(255, 0, 0, 255);
             
             Physics2D.IgnoreLayerCollision(12, 9, true);
 
+            if(stuntimer<= stuntarget)
+            {
+                stun = false;
+                stuntimer = 0.0f;
+            }
             if (invulnertimer <= invulnertarget)
             {
                 mySprite.color = new Color32(255, 255, 255, 255);
@@ -387,6 +385,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     }
 
+   public void attackloop()
+    {
+       stun = !stun;
+    }
 
     
     void Dead()
@@ -403,10 +405,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 death = true;
 
-            }
+            myBody.velocity = new Vector2(0, myBody.velocity.y);
 
-            //plays animation when death equals true
-            if (death == true)
+        }
+
+        //plays animation when death equals true
+        if (death == true)
             {
                 deathtimer += Time.deltaTime;
             }
@@ -516,7 +520,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                         item.got = true;
 
-                        var MpUp = barsize + (item.value * 10);
+                        var MpUp = barsize + (MaxMana * 10);
                         MaxMana += item.value;
 
                         CurrentMana += item.value;
@@ -551,7 +555,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         item.got = true;
 
-                        var MpUp = barsize + (item.value * 10);
+                        var MpUp = barsize + (MaxMana * 10);
                         MaxMana += item.value;
                         CurrentMana += item.value;
 
@@ -588,7 +592,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         
                         item.got = true;
 
-                        var hpUp = barsize + (item.value*10);
+                        var hpUp = barsize + (MaxHealth*10);
                         MaxHealth += item.value;
                         CurrentHealth += item.value;
 
@@ -624,7 +628,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         item.got = true;
 
-                        var hpUp = barsize + (item.value*10);
+                        var hpUp = barsize + (MaxHealth*10);
 
                         MaxHealth += item.value;
                         CurrentHealth += item.value;
@@ -698,6 +702,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
             CurrentHealth -= damage.Damage;
         }
+       /*
         //makes enemies do damage
         else if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -717,7 +722,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         }
 
-
+    */
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -726,22 +731,22 @@ public class PLAYER_SCRIPT : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
 
-            var powerScript = collision.gameObject.GetComponent<POWER_SCRIPT>();
-
-
-            CurrentHealth -= powerScript.Damage;
-
-
-
 
 
             StartCoroutine(knockback(0.5f, 50f, collision.transform)) ;
-      
 
+
+
+            slide.SetBar(CurrentHealth);
+
+            var target = collision.transform;
+            dir1 = (transform.position - target.position).normalized;
+            myBody.AddRelativeForce(dir1 * thrust);
+            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            CurrentHealth -= damage.Damage;
             invicibility = true;
-
             invulnertimer = 2.0f;
-
+            stuntimer = 0.5f;
         }
     }
 }

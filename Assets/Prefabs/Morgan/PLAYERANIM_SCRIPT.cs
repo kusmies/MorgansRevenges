@@ -24,7 +24,6 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
         }
@@ -34,19 +33,25 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
         {
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", true);
-            PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
 
 
         }
         //move jump end
         //jump
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == false && myPlayerMovement.death == false)
+        {
+            PLAYER_CONTROL.SetBool("Walk", false);
+            PLAYER_CONTROL.SetBool("Jump", true);
+            PLAYER_CONTROL.SetBool("Crouch", false);
 
+
+        }
         //jump end
         //jumpslash
-       
-       
-     
+
+
+
         //walk slash
         else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == true && myPlayerMovement.midslash == true && myPlayerMovement.death == false)
         {
@@ -54,7 +59,6 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Walk", true);
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", true);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
 
@@ -69,12 +73,22 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", true);
 
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
         }
 
         //stand slash end
+        //jump slash
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == false && myPlayerMovement.midslash == true && myPlayerMovement.death == false)
+        {
+            PLAYER_CONTROL.SetBool("Crouch", false);
+            PLAYER_CONTROL.SetBool("Walk", false);
+            PLAYER_CONTROL.SetBool("Jump", true);
+            PLAYER_CONTROL.SetBool("Slash", true);
+
+
+
+        }
 
         //crouch
         else if (myPlayerMovement.crouch == true && myPlayerMovement.death == false)
@@ -83,7 +97,6 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", true);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
 
@@ -96,21 +109,40 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Fireball", true);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
             PLAYER_CONTROL.SetBool("Crouch", false);
 
 
         }
 
-        else if(myPlayerMovement.death ==true)
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == false && myPlayerMovement.castingfireball == true && myPlayerMovement.death == false)
+        {
+            PLAYER_CONTROL.SetBool("Walk", false);
+            PLAYER_CONTROL.SetBool("Jump", true);
+            PLAYER_CONTROL.SetBool("Fireball", true);
+
+            PLAYER_CONTROL.SetBool("Crouch", false);
+
+
+        }
+        else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == false && myPlayerMovement.castingfireball == true && myPlayerMovement.death == false)
+        {
+            PLAYER_CONTROL.SetBool("Walk", false);
+            PLAYER_CONTROL.SetBool("Jump", true);
+            PLAYER_CONTROL.SetBool("Fireball", true);
+
+            PLAYER_CONTROL.SetBool("Crouch", false);
+
+
+        }
+
+        else if (myPlayerMovement.death ==true)
         {
 
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
             PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
             PLAYER_CONTROL.SetBool("Death", true);
             PLAYER_CONTROL.SetBool("Fireball", false);
         }
@@ -127,7 +159,6 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Death", false);
             PLAYER_CONTROL.SetBool("Fireball", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
         }
     }
