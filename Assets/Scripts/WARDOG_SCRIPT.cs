@@ -211,6 +211,13 @@ public class WARDOG_SCRIPT : MonoBehaviour
                 }
             }
         }
+
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) hp = 0;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -235,6 +242,13 @@ public class WARDOG_SCRIPT : MonoBehaviour
                 }
             }
 
+        }
+
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) hp = 0;
         }
     }
 

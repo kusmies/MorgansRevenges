@@ -67,7 +67,6 @@
     <Compile Include="Assets\PERM_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\CHSTHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\CHSTDRP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYBLK_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYLT_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\ITEMHP_SCRIPT.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\DOUR_BG_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MP_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\FIREBLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\XPLSN_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\Lightning\Scripts\LIGHTN_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FrostWaveAnimation\Frost Wave\Scripts\FRSTWVE_SCRIPT.cs" />

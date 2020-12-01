@@ -12,7 +12,6 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     public bool isGrounded = false;
     [SerializeField] public LayerMask groundLayer;
     [SerializeField] public LayerMask playerLayer;
-    public int health = 6;
     SpriteRenderer mySprite;
     public bool isAttacking = false;
     float attackCD = 0f;
@@ -345,7 +344,6 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
             hp -= playerPower.Damage;
@@ -362,14 +360,19 @@ public class SOLDIER_SCRIPT : MonoBehaviour
                 }
             }
         }
+
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) hp = 0;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
-
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
             hp -= playerPower.Damage;
@@ -386,6 +389,13 @@ public class SOLDIER_SCRIPT : MonoBehaviour
                 }
             }
 
+        }
+
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) hp = 0;
         }
     }
 

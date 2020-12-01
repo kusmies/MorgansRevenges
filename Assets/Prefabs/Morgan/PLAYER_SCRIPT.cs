@@ -123,7 +123,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
-        mySprite.flipX = true;
         XMLManager.ins.PermLoadItems();
         XMLManager.ins.LoadItems();
         slide.SetMaxBar(MaxHealth);
@@ -695,12 +694,14 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         }
         //kills on hazard collision
-        else if (collision.gameObject.CompareTag("Hazard"))
+        else if (collision.gameObject.CompareTag("Water"))
         {
             slide.SetBar(CurrentHealth);
 
-            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-            CurrentHealth -= damage.Damage;
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) CurrentHealth = 0;
+            
         }
        /*
         //makes enemies do damage
@@ -747,6 +748,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
             invicibility = true;
             invulnertimer = 2.0f;
             stuntimer = 0.5f;
+        }
+
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            slide.SetBar(CurrentHealth);
+
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) CurrentHealth = 0;
+
         }
     }
 }

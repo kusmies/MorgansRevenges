@@ -8,11 +8,15 @@ public class WATSUB_SCRIPT : MonoBehaviour
 
     public bool isFrozen = false;
 
+    BoxCollider2D myBox;
+
     Animator myAnim;
     // Start is called before the first frame update
     void Start()
     {
         myAnim = GetComponent<Animator>();
+
+        myBox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -21,7 +25,9 @@ public class WATSUB_SCRIPT : MonoBehaviour
         if(isFrozen)
         {
             myAnim.SetBool("isFrozen", true);
-            Debug.Log("We're frozen now");
+            gameObject.tag = "Ground";
+            gameObject.layer = 8;
+            myBox.isTrigger = false;
         }
     }
 
@@ -35,7 +41,6 @@ public class WATSUB_SCRIPT : MonoBehaviour
             if (powerScript.type == 3)
             {
                 parent.isFrozen = true;
-                
             }
         }
 
