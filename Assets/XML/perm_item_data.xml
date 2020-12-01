@@ -17,7 +17,7 @@
       <value>4</value>
       <currency>Gold</currency>
       <price>10</price>
-      <unlocked>false</unlocked>
+      <unlocked>true</unlocked>
     </PermItemEntry>
     <PermItemEntry>
       <ID>3</ID>

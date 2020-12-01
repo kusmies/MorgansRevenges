@@ -281,7 +281,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 isMoving = true;
                 crouch = false;
 
-                Debug.Log(mySprite.flipX);
+
             }
             else if (Input.GetAxisRaw("Crouch") > 0)
             {
@@ -300,7 +300,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 crouch = false;
 
 
-                Debug.Log(mySprite.flipX);
+
             }
             
                 //standing still
@@ -310,7 +310,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                     myBody.velocity = new Vector2(0, myBody.velocity.y);
 
-                    Debug.Log(mySprite.flipX);
+
 
                 if (Input.GetAxisRaw("Slash") > 0 && stun == false)
                 {
