@@ -73,10 +73,6 @@
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\ITEMHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\LootList.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Pennant Flag\Flag_Win.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\DETHSPWN_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATBOD_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATER_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATTILE_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\NMYHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\DOUR_BG_SCRIPT.cs" />
@@ -92,6 +88,7 @@
     <Compile Include="Assets\SOLDIER_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ACTIVE_SOLDIER_BLADE_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\CHASEN_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\DETHSPWN_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
@@ -103,6 +100,9 @@
     <Compile Include="Assets\Scripts\XMLManager.cs" />
     <Compile Include="Assets\Scripts\XPLSN_SPAWN_SCRIPT.cs" />
     <Compile Include="Assets\UNIDROP_SCRIPT.cs" />
+    <Compile Include="Assets\WATBOD_SCRIPT.cs" />
+    <Compile Include="Assets\WATSUB_SCRIPT.cs" />
+    <Compile Include="Assets\WATSURF_SCRIPT.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

@@ -82,7 +82,7 @@ public class WARDOG_SCRIPT : MonoBehaviour
                 Physics.IgnoreLayerCollision(9, 0, true);
             }
         }
-        Debug.Log(isHitStun);
+
     }
 
     void checkForGround()
