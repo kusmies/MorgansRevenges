@@ -225,7 +225,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 52f94682a007a2746b850b56f09201f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3.2, y: 6.4}
@@ -316,7 +316,7 @@ MonoBehaviour:
   FireballSpawn: {fileID: 6012946320180373045}
   Hp: {fileID: 8049883241688896055, guid: 76e0d707406b55345b05a7eae33b138c, type: 3}
   Mp: {fileID: 7034468176163821997, guid: 3c2997a3171d3894e9b11461d7025c51, type: 3}
-  lowSwordSpawn: {fileID: 0}
+  playerstruck: 0
   isGrounded: 0
   isMoving: 0
   knockBack: 0
@@ -377,7 +377,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.19}
+  m_Offset: {x: 0, y: -0.18}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.52}
