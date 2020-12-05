@@ -38,7 +38,7 @@ public class WATSUB_SCRIPT : MonoBehaviour
 
             var powerScript = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
-            if (powerScript.type == 1)
+            if (powerScript.type == 3)
             {
                 parent.isFrozen = true;
             }

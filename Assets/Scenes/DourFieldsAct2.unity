@@ -41564,6 +41564,11 @@ PrefabInstance:
       propertyPath: MaxHealth
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 3194736562856368177, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f,
+        type: 3}
+      propertyPath: CurrentHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5631536938902573150, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f,
         type: 3}
       propertyPath: field of view

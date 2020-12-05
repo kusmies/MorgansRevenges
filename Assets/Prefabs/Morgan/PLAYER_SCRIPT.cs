@@ -870,27 +870,38 @@ public class PLAYER_SCRIPT : MonoBehaviour
             if (!waterScript.isFrozen) CurrentHealth = 0;
 
         }
-        /*
+        
          //makes enemies do damage
          else if (collision.gameObject.CompareTag("Enemy"))
          {
 
-                 slide.SetBar(CurrentHealth);
+            if (mySprite.flipX == true)
+            {
+                Vector2 direction = new Vector2(-1000f, myBody.velocity.y);
+                rb.AddForce(direction);
+                isMoving = false;
+            }
 
-                 var target = collision.transform;
-                 dir1 = (transform.position - target.position).normalized;
-                 myBody.AddRelativeForce(dir1 * thrust);
-                 var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-                 CurrentHealth -= damage.Damage;
-                 invicibility = true;
-                 invulnertimer = 2.0f;
+            if (mySprite.flipX == false)
+            {
+                Vector2 direction = new Vector2(1000f, myBody.velocity.y);
+                rb.AddForce(direction);
+                isMoving = false;
+            }
 
 
+            slide.SetBar(CurrentHealth);
 
+
+            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            CurrentHealth -= damage.Damage;
+            invicibility = true;
+            invulnertimer = 2.0f;
+            stuntimer = 0.5f;
 
          }
 
-     */
+     
     }
 
     void OnCollisionEnter2D(Collision2D collision)

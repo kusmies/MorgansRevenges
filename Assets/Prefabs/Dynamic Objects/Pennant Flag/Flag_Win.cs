@@ -46,7 +46,7 @@ public class Flag_Win : MonoBehaviour
         //FlagWaveTimer += Time.deltaTime;
         //if (FlagWaveTimer >= FlagWaveTimerTarget)
         //{
-            level.changeScene(3);
+            level.changeScene(5);
         //}
 
     }
