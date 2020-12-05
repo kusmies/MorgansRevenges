@@ -32,7 +32,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
 
         XMLManager.ins.LoadItems();
-        ITEMID = Random.Range(1, 5);
+        ITEMID = Random.Range(1, XMLManager.ins.itemDB.list.Count);
 
         Debug.Log(player.coin);
     }
@@ -163,7 +163,51 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
                   
                 }
-              
+                if (ITEMID == item.ID && item.ID == 5)
+                {
+                    if (player.coin >= item.price)
+                    {
+                        if (item.got == false)
+                        {
+                            Debug.Log(player.SwordDamage);
+
+                            player.SwordDamage += item.value;
+
+
+                            //subtracts the bronze price from the player total
+                            player.coin -= item.price;
+                            item.got = true;
+                            XMLManager.ins.SaveItems();
+
+                            SaveLoadManager.SavePlayer(player);
+                        }
+                    }
+
+
+                }
+                if (ITEMID == item.ID && item.ID == 6)
+                {
+                    if (player.coin >= item.price)
+                    {
+                        if (item.got == false)
+                        {
+                            Debug.Log(player.MaxHealth);
+
+                            player.SwordDamage += item.value;
+
+
+                            //subtracts the bronze price from the player total
+                            player.coin -= item.price;
+                            item.got = true;
+                            XMLManager.ins.SaveItems();
+
+                            SaveLoadManager.SavePlayer(player);
+                        }
+                    }
+
+
+                }
+
 
                 buyonce = true;
 
@@ -226,13 +270,35 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                     itemspriterenderer.sprite = itemsprites[3];
                 }
             }
+            if (ITEMID == item.ID)
+            {
+                Name.text = item.name;
+                price.text = "Gold: " + item.price.ToString();
+                description.text = item.description.ToString();
+                if (ITEMID == 5)
+
+                {
+                    itemspriterenderer.sprite = itemsprites[4];
+                }
+            }
+            if (ITEMID == item.ID)
+            {
+                Name.text = item.name;
+                price.text = "Gold: " + item.price.ToString();
+                description.text = item.description.ToString();
+                if (ITEMID == 6)
+
+                {
+                    itemspriterenderer.sprite = itemsprites[5];
+                }
+            }
 
             if (buyonce == true)
             {
                 if (player.coin >= item.price)
                 {
                     Name.text = "Sold Out";
-                    itemspriterenderer.sprite = itemsprites[4];
+                    itemspriterenderer.sprite = itemsprites[6];
                     price.text = "Please Come Again!";
                     description.text = "";
                 }

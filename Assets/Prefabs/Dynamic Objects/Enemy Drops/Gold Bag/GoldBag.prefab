@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8927851600770915267}
   - component: {fileID: -2293130165159640732}
   m_Layer: 0
-  m_Name: coinbag
+  m_Name: GoldBag
   m_TagString: Cbag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: b386e9370c912524d8ae57f555d66b4c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

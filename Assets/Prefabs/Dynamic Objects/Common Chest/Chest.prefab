@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 141832338409469897}
   - component: {fileID: 5932781279357683419}
   - component: {fileID: 6204725607410178412}
+  - component: {fileID: 6951084005157370528}
   m_Layer: 11
   m_Name: Chest
   m_TagString: Loot
@@ -163,18 +164,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631b62261aa25d24a8223b7a648e601e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 2242389019705900348}
+  ITEM_CONTROL: {fileID: 141832338409469897}
   explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
     type: 3}
-  SteelShield: {fileID: 6188343378155309143, guid: 982a036f6d67034479004d40d09c7c62,
-    type: 3}
-  SteelHelm: {fileID: 2553107998273638436, guid: 56cb710ec39c8d94da6e9176c6bcaac5,
-    type: 3}
-  BronzeRing: {fileID: 7213970071519926385, guid: 6304766d7214ec441a009ffb44c07ab3,
-    type: 3}
-  SilverRing: {fileID: 598118339859530494, guid: e7aaa60e30eea884c985ffce4e510d80,
-    type: 3}
-  GoldBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
-  lootdrop: 0
-  dropchance: 0
-  ItemHealth: 1
+  myTran: {fileID: 2242389019705900348}
+--- !u!114 &6951084005157370528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242389019705900345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79f33bd9368b8143a1c121ee1999a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: {fileID: 2242389019705900348}
+  items:
+  - {fileID: 7213970071519926385, guid: 6304766d7214ec441a009ffb44c07ab3, type: 3}
+  - {fileID: 598118339859530494, guid: e7aaa60e30eea884c985ffce4e510d80, type: 3}
+  - {fileID: 2553107998273638436, guid: 56cb710ec39c8d94da6e9176c6bcaac5, type: 3}
+  - {fileID: 6188343378155309143, guid: 982a036f6d67034479004d40d09c7c62, type: 3}
+  - {fileID: 6141632938367962746, guid: a686c1d39db71084181c6428f650f319, type: 3}
+  - {fileID: 7523429832091441668, guid: c49c53ff8cff38744b173fcd8fef8c44, type: 3}
+  - {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
+  player: {fileID: 3194736562856368177, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f, type: 3}

@@ -5,47 +5,45 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using UnityEngine.UI;
+
 public class UNIDROP_SCRIPT : MonoBehaviour
 {
 
     public DropDatabase items;
-    public int ID, Max;
+    public Transform spawn;
+    bool isdead;
+    int ID;
 
-    public bool droppedonce;
+     bool droppedonce;
     void Awake()
     {
-        ID = Random.Range(0, Max);
-
+        ID = Random.Range(1, (items.list.Count));
+       
     }
 
-    // Start is called before the first frame update
+   
+    
 
 
-    // Update is called once per frame
-    void Update()
+   public void Drop()
     {
-        Drop();
-
-
-    }
-
-    void Drop()
-    {
-        if (droppedonce == false)
-        {
-            droppedonce = true;
-            foreach (DropList item in items.list)
+         if (droppedonce == false)
             {
-                if (item.ID == ID)
+                droppedonce = true;
+                foreach (DropList item in items.list)
                 {
-                    Instantiate(item.dropped);
+                    if (item.ID == ID)
+                    {
+                        Instantiate(item.dropped, spawn.transform.position, transform.rotation);
+                    
+
                 }
 
             }
-        }
-
+            }
+        
     }
-
 
 
 

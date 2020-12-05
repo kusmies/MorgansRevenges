@@ -74,6 +74,20 @@ MonoBehaviour:
       currency: 0
       price: 4
       got: 0
+    - ID: 5
+      name: steelshield
+      description: a steel shield that increases health by two
+      value: 2
+      currency: 0
+      price: 4
+      got: 0
+    - ID: 6
+      name: steelshield
+      description: a steel shield that increases health by two
+      value: 2
+      currency: 0
+      price: 4
+      got: 0
   PitemDB:
     list:
     - ID: 1
@@ -92,6 +106,13 @@ MonoBehaviour:
       price: 4
       unlocked: 0
     - ID: 3
+      name: AdamantiumBracer
+      description: A bracer that makes the user feel even stronger.
+      value: 6
+      currency: 0
+      price: 6
+      unlocked: 0
+    - ID: 4
       name: AdamantiumBracer
       description: A bracer that makes the user feel even stronger.
       value: 6

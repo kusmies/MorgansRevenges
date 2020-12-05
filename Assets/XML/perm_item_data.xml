@@ -12,6 +12,15 @@
     </PermItemEntry>
     <PermItemEntry>
       <ID>2</ID>
+      <name>IceRune</name>
+      <description>A rune ice cold with arcanic energy, unlocks the frost wave uses the S key and  O key to summon it. This item is permanent.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>3</ID>
       <name>MithrilBangil</name>
       <description>An enchanted Bangil that makes the user feel stronger.This item is permanent.</description>
       <value>4</value>
@@ -20,7 +29,7 @@
       <unlocked>false</unlocked>
     </PermItemEntry>
     <PermItemEntry>
-      <ID>3</ID>
+      <ID>4</ID>
       <name>ruby bracelet</name>
       <description>A bracelet empowered by magic. This item is permanent.</description>
       <value>4</value>

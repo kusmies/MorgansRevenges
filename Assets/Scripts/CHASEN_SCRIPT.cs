@@ -24,6 +24,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
             player.MaxHealth = 12;
             player.MaxMana = 12;
             player.coin = 0;
+            player.SwordDamage = 0;
             SaveLoadManager.SavePlayer(player);
 
             PlayerPrefs.DeleteAll();
@@ -41,6 +42,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
             {
                 item.value = 1;
                 item.got = false;
+                item.chestdropped = false;
                 item.name = "BronzeRing";
                 item.description = "A bronze ring that increases mana by one.";
                 item.currency = Currency.Gold;
@@ -50,6 +52,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             {
                 item.value = 2;
                 item.got = false;
+                item.chestdropped = false;
+
                 item.name = "SilverRing";
                 item.description = "A silver ring that increases mana by two.";
                 item.currency = Currency.Gold;
@@ -59,6 +63,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             {
                 item.value = 1;
                 item.got = false;
+                item.chestdropped = false;
+
                 item.name = "SteelHelm";
                 item.description = "A steel helmet that increases health by one.";
 
@@ -69,13 +75,35 @@ public class CHASEN_SCRIPT : MonoBehaviour
             {
                 item.value = 2;
                 item.got = false;
+                item.chestdropped = false;
                 item.name = "SteelShield";
                 item.description = "A steel shield that increases health by two.";
-
                 item.currency = Currency.Gold;
                 item.price = 4;
             }
 
+
+            if (item.ID == 5)
+            {
+                item.value = 1;
+                item.got = false;
+                item.chestdropped = false;
+                item.name = "Dagger";
+                item.description = "A dagger that increases the players damage by one.";
+                item.currency = Currency.Gold;
+                item.price = 2;
+            }
+            if (item.ID == 6)
+            {
+                item.value = 2;
+                item.got = false; 
+                item.chestdropped = false;
+                item.name = "Long Sword";
+                item.description = "A  long sword that increases the players damage by two.";
+
+                item.currency = Currency.Gold;
+                item.price = 4;
+            }
         }
 
         foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
@@ -90,8 +118,18 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.currency = Currency.Gold;
                 item.price = 5;
             }
-
             if (item.ID == 2)
+            {
+                item.value = 0;
+                item.unlocked = false;
+
+                item.name = "IceRune";
+                item.description = "A rune ice cold with arcanic energy, unlocks the frost wave uses the S key and  O key to summon it. This item is permanent.";
+                item.currency = Currency.Gold;
+                item.price = 5;
+            }
+
+            if (item.ID == 3)
             {
                 item.value = 4;
                 item.unlocked = false;
@@ -102,7 +140,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.price = 10;
             }
 
-            if (item.ID == 3)
+            if (item.ID == 4)
             {
                 item.value = 4;
                 item.unlocked = false;
@@ -119,6 +157,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
         player.MaxHealth = 12;
         player.MaxMana = 12;
         player.coin = 0;
+        player.SwordDamage = 0;
         SaveLoadManager.SavePlayer(player);
         SceneManager.LoadScene(index);
 
@@ -131,6 +170,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
         player.MaxHealth = loadedStats[0];
         player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];
+        player.SwordDamage = loadedStats[3];
         SceneManager.LoadScene(index);
 
     }

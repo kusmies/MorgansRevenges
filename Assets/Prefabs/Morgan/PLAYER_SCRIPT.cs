@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Runtime.InteropServices.ComTypes;
 //using UnityEditor.Experimental.RestService;
 //using UnityEditor.UIElements;
 using UnityEngine;
@@ -18,8 +19,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //thrust force added
     public float thrust;
     int ID;
-    public int soul;
-    public static int spirit;
     //jump height
     public float jumpforce;
     //inital speed
@@ -46,30 +45,38 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public float CurrentHealth;
     public float MaxMana;
     public float CurrentMana;
- 
+    public float SwordDamage;
+
+    public GameObject player;
     public GameObject SwordSpawn;
     public GameObject HighSwordPrefab;
     GameObject fireball;
+    GameObject Frostwave;
+
+
+    public GameObject FrostWavePrefab;
 
     public GameObject FireballPrefab;
+    public Text itemtext;
+
+    public GameObject FrostWaveSpawn;
 
     //spawn point for the fireball
     public GameObject FireballSpawn;
     //hp bar
     public Slider Hp;
     public Slider Mp;
-    //spawns the sword
-    public GameObject lowSwordSpawn;
     //checks for ground
+    public bool playerstruck;
     public bool isGrounded;
     //checks if moving
     public bool isMoving;
     //checks if facing left
     public bool knockBack;
-
-    public bool shoot;
+    public bool landing;
     public bool castingfireball;
-
+    public bool castingfrostWave;
+    public bool jumpslash;
     public bool midslash;
     public bool crouch;
     public bool invicibility;
@@ -120,6 +127,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Start()
     {
+
         rb = this.GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
@@ -156,6 +164,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         MaxHealth = loadedStats[0];
          MaxMana = loadedStats[1];
         coin = loadedStats[2];
+        SwordDamage = loadedStats[3];
     }
     // Update is called once per frame
 
@@ -193,53 +202,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //checks if the players on the ground
 
 
-    public IEnumerator knockback(float knockDur, float knockbackPwr, Transform obj)
-    {
-        float timer = 0;
-
-        while (knockDur> timer)
-        {
-            timer += Time.deltaTime;
-
-            Vector2 direction = new Vector2((obj.transform.position.x - this.transform.position.x), this.transform.position.y);
-            rb.AddForce(-direction * knockbackPwr);
-        }
-        yield return 0;
-
-    }
-    public void CastFireball()
-    {
-        if (CurrentMana >0)
-        {
-            //sets the shoot equal to true
-            shoot = true;
-            CurrentMana --;
-            slide2.SetBar(CurrentMana);
-            //have a bullet
-
-            Debug.Log("normalShot");
-
-
-            //makes a bullet
-            fireball = (Instantiate(FireballPrefab, FireballSpawn.transform.position, transform.rotation)) as GameObject;
-
-            //give it force to right
-
-            if (mySprite.flipX == true)
-            {
-                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(1200, 0));
-            }
-            //give it force to left
-
-            if (mySprite.flipX == false)
-            {
-                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1200, 0));
-            }
-            //destroy after 1 second
-            Destroy(fireball, 1.0f);
-
-        }
-    }
+  
     void checkForGround()
     {
        
@@ -256,7 +219,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
         else
         {
           
-
             //ground is fale
             isGrounded = false;
         }
@@ -265,14 +227,32 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void handleMovement()
 
     {
-                                                                   
+     
+
         if (stun == false)
         {
             midslash = false;
             castingfireball = false;
+            castingfrostWave = false;
+            jumpslash = false;
 
+            if (Input.GetButtonDown("Jump")  && isGrounded)
+            {
+
+
+
+                myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
+              
+            }
+
+           else if (Input.GetButtonDown("JumpSlash") && !isGrounded)
+            {
+
+
+                jumpslash = true;
+            }
             //left is true
-            if (Input.GetAxisRaw("Horizontal") > 0)
+            else if (Input.GetAxisRaw("Horizontal") > 0)
             {
 
                 myBody.velocity = new Vector2(+speedforce + bonusspeed, myBody.velocity.y);
@@ -288,9 +268,25 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 crouch = true;
                 isMoving = false;
+                foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+                {
+                    if (item.ID == 2)
+                    {
+                        if (item.unlocked == true)
+                        {
+                            if (Input.GetButtonDown("FrostWave") && item.unlocked == true)
+                            {
+
+                                castingfrostWave = true;
+
+                            }
+                        }
+                    }
+                }
 
 
             }
+
             else if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
@@ -301,51 +297,57 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
             }
-            
-                //standing still
-                else
-                {
-                    isMoving = false;
 
-                    myBody.velocity = new Vector2(0, myBody.velocity.y);
+            //jump is true
 
 
+            //standing still
+            else
+            {
+                isMoving = false;
 
-                if (Input.GetAxisRaw("Slash") > 0 && stun == false)
+                myBody.velocity = new Vector2(0, myBody.velocity.y);
+
+
+
+                if (Input.GetButtonDown("Slash")&& isGrounded)
                 {
 
                     midslash = true;
+                    Debug.Log("Animation called");
                 }
 
                 foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+                {
+                    if (item.ID == 1)
                     {
-                        if (item.ID == 1)
-                        {
 
+                        if (item.unlocked == true)
+                        {
                             //stops player when O is pressed
-                            if (Input.GetAxisRaw("FireBall") > 0 && item.unlocked ==true && stun ==false)
+                            if (Input.GetButtonDown("FireBall")  && item.unlocked == true)
                             {
                                 castingfireball = true;
                             }
                         }
+                        if (item.ID == 2)
+                        {
+                            if (item.unlocked == true)
+                            {
+                                if (Input.GetButtonDown("FrostWave")  && item.unlocked == true  && crouch ==true)
+                                {
+
+                                    castingfrostWave = true;
+
+                                }
+                            }
+                        }
                     }
-
                 }
-            
-
-            //jump is true
-            if (Input.GetAxis("Jump") > 0 && isGrounded)
-            {
-                if (Input.GetAxis("Slash") > 0 && stun == false)                
-                {
-
-                    midslash = true;
-                }
-
-                myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
 
             }
 
+    
         }
 
 
@@ -357,6 +359,14 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //makes invincibility happen when true
         if(invicibility == true)
         {
+            if (stuntimer > stuntarget)
+            {
+                float horizontalInput = Input.GetAxis("Horizontal");
+                horizontalInput = 0;
+                isMoving = false;
+                playerstruck = true;
+
+            }
 
             stun = true;
             stuntimer -= Time.deltaTime;
@@ -367,6 +377,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             if(stuntimer<= stuntarget)
             {
+                playerstruck = false;
+
                 stun = false;
                 stuntimer = 0.0f;
             }
@@ -393,7 +405,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Dead()
     {
        //kills out of bound
-            if (myBody.position.y < -20)
+            if (myBody.position.y < -2000)
             {
                 death = true;
             }
@@ -448,7 +460,25 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
                     if (item.got == true)
                     {
-                        MaxHealth-= item.value;
+                        MaxHealth -= item.value;
+                        item.got = false;
+                    }
+
+
+                }
+                if (item.ID == 5)
+                {
+                    if (item.got == true)
+                    {
+                        SwordDamage -= item.value;
+                        item.got = false;
+                    }
+                }
+                if (item.ID == 6)
+                {
+                    if (item.got == true)
+                    {
+                        SwordDamage -= item.value;
                         item.got = false;
                     }
                 }
@@ -458,6 +488,83 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 level.changeScene(4);
             }
                }
+    }
+    public void CastFireball()
+    {
+        if (CurrentMana > 0)
+        {
+            //sets the shoot equal to true
+            CurrentMana--;
+            slide2.SetBar(CurrentMana);
+            //have a bullet
+
+            Debug.Log("normalShot");
+
+
+            //makes a bullet
+
+            //give it force to right
+
+            if (mySprite.flipX == true)
+            {
+
+
+                Vector2 Firespawn = new Vector2(FireballSpawn.transform.position.x + 2.9f, FireballSpawn.transform.position.y);
+
+                fireball = (Instantiate(FireballPrefab, Firespawn, transform.rotation)) as GameObject;
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(1200, 0));
+            }
+            //give it force to left
+
+            if (mySprite.flipX == false)
+            {
+                Vector2 Firespawn = new Vector2(FireballSpawn.transform.position.x - 2.9f, FireballSpawn.transform.position.y);
+
+                fireball = (Instantiate(FireballPrefab, Firespawn, transform.rotation)) as GameObject;
+                fireball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1200, 0));
+
+            }
+            //destroy after 1 second
+            Destroy(fireball, 1.0f);
+
+        }
+    }
+    public void CastFrostWave()
+    {
+        if (CurrentMana > 3)
+        {
+            //sets the shoot equal to true
+            CurrentMana-=4;
+            slide2.SetBar(CurrentMana);
+            //have a bullet
+
+            Debug.Log("normalShot");
+
+
+            //makes a bullet
+
+            //give it force to right
+
+            if (mySprite.flipX == true)
+            {
+                Vector2 FrostSpawn = new Vector2(FrostWaveSpawn.transform.position.x, FrostWaveSpawn.transform.position.y);
+
+                Frostwave = (Instantiate(FrostWavePrefab, FrostSpawn, transform.rotation)) as GameObject;
+
+
+            }
+            //give it force to left
+
+            if (mySprite.flipX == false)
+            {
+                Vector2 FrostSpawn = new Vector2(FrostWaveSpawn.transform.position.x, FrostWaveSpawn.transform.position.y);
+
+                Frostwave = (Instantiate(FrostWavePrefab, FrostSpawn, transform.rotation)) as GameObject;
+            }
+            //destroy after 1 second
+            Destroy(Frostwave, 1.0f);
+
+        }
     }
     public void HighSlash()
     {
@@ -472,6 +579,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         {
             Vector2 bladeSpawn = new Vector2(SwordSpawn.transform.position.x + -8.31f, SwordSpawn.transform.position.y);
             blade = (Instantiate(HighSwordPrefab, bladeSpawn, transform.rotation)) as GameObject;
+            blade.GetComponent<POWER_SCRIPT>().Damage += (int)SwordDamage;
 
             //destroy after 0.10 seconds
             Destroy(blade, .10f);
@@ -483,6 +591,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             SwordSpawn.transform.localPosition = new Vector2(2.27f,0f);
             blade = (Instantiate(HighSwordPrefab, bladeSpawn, transform.rotation)) as GameObject;
+            blade.GetComponent<POWER_SCRIPT>().Damage += (int)SwordDamage;
 
             //destroy after 0.10 seconds
             Destroy(blade, .10f);
@@ -538,7 +647,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
 
                 }
-
+                
             }
         }
 
@@ -650,7 +759,64 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             }
         }
+        else if (collision.gameObject.CompareTag("Dagger"))
+        {
+            ID = 5;
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
 
+                if (item.ID == ID)
+                {
+                    if (item.got == false)
+                    {
+                        item.got = true;
+
+
+                        SwordDamage += item.value;
+                        
+                        ID = 0;
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(this);
+                    }
+                }
+
+
+
+                else
+                {
+
+                }
+
+            }
+        }
+        else if (collision.gameObject.CompareTag("LongSword"))
+        {
+            ID = 6;
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
+
+                if (item.ID == ID)
+                {
+                    if (item.got == false)
+                    {
+                        item.got = true;
+
+                        SwordDamage += item.value;
+                        ID = 0;
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(this);
+                    }
+                }
+
+
+
+                else
+                {
+
+                }
+
+            }
+        }
         //gives the player a coin
         else if (collision.gameObject.CompareTag("Coin"))
         {
@@ -732,17 +898,24 @@ public class PLAYER_SCRIPT : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
 
+            if (mySprite.flipX==true)
+            {
+                Vector2 direction = new Vector2 (-1000f, myBody.velocity.y);
+                rb.AddForce(direction);
+                isMoving = false;
+            }
 
-
-            StartCoroutine(knockback(0.5f, 50f, collision.transform)) ;
-
+            if (mySprite.flipX == false)
+            {
+                Vector2 direction = new Vector2(1000f, myBody.velocity.y);
+                rb.AddForce(direction);
+                isMoving = false;
+            }
 
 
             slide.SetBar(CurrentHealth);
 
-            var target = collision.transform;
-            dir1 = (transform.position - target.position).normalized;
-            myBody.AddRelativeForce(dir1 * thrust);
+         
             var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
             CurrentHealth -= damage.Damage;
             invicibility = true;

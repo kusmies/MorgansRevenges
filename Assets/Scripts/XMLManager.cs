@@ -58,6 +58,7 @@ public class ItemEntry
     public Currency currency;
     public int price;
     public bool got;
+    public bool chestdropped;
 }
 [System.Serializable]
 public class ItemDatabase
