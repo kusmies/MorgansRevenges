@@ -174,10 +174,9 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 4096
-  health: 4
   isAttacking: 0
   isDead: 0
-  hp: 6
+  hp: 5
   bladePrefab: {fileID: 4385636101651069587, guid: 13fe7e6d96268884cb5985b70cb1328c,
     type: 3}
   isHighAttacking2: 0

@@ -22,6 +22,11 @@ public class DTRYBLK_SCRIPT : MonoBehaviour
 
     Transform myTran; //The destructible block transform. We need it to spawn the explosion effect in the right spot.
 
+    void Start()
+    {
+        myTran = GetComponent<Transform>();
+    }
+
     void OnTriggerEnter2D(Collider2D collision) //We need to check if the destructible block is being hit by a fireball explosion.
     {
         
