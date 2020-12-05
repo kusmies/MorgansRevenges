@@ -83,17 +83,17 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //bool for players death
     public bool death;
     public bool stun;
- 
+
     //loads the level the players in
     public CHASEN_SCRIPT level;
     //int for fireball unlock
     //the players rigid body
     Rigidbody2D myBody;
-   
+
     //displays the coin value
-   public Text coinvalue;
-   
-    
+    public Text coinvalue;
+
+
     public SLIDER_SCRIPT slide;
     public SLIDER_SCRIPT slide2;
 
@@ -102,12 +102,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //jump box collider
     public BoxCollider2D myBox;
     //checks the sprite renderer
-   public SpriteRenderer mySprite;
+    public SpriteRenderer mySprite;
     //players ground layer
     [SerializeField] public LayerMask groundLayer;
-  
 
-   
+
+
     // Start is called before the first frame update
 
     void Awake()
@@ -150,7 +150,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //invunerability timer start
         invulnertimer = 0.0f;
         //how rigid bodys obtained
-        myBody = GetComponent<Rigidbody2D>();       
+        myBody = GetComponent<Rigidbody2D>();
         //how the sprites transfer
         mySprite = GetComponent<SpriteRenderer>();
         Load();
@@ -162,7 +162,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         float[] loadedStats = SaveLoadManager.LoadPlayer();
 
         MaxHealth = loadedStats[0];
-         MaxMana = loadedStats[1];
+        MaxMana = loadedStats[1];
         coin = loadedStats[2];
         SwordDamage = loadedStats[3];
     }
@@ -171,7 +171,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Update()
 
     {
- 
+
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
         slide.SetBar(CurrentHealth);
@@ -191,7 +191,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         if (!death)
         {
             checkForGround();
-      
+
             handleMovement();
         }
 
@@ -202,10 +202,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //checks if the players on the ground
 
 
-  
+
     void checkForGround()
     {
-       
+
         //checking for ground
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
 
@@ -218,7 +218,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         else
         {
-          
+
             //ground is fale
             isGrounded = false;
         }
@@ -227,7 +227,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void handleMovement()
 
     {
-     
+
 
         if (stun == false)
         {
@@ -236,16 +236,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
             castingfrostWave = false;
             jumpslash = false;
 
-            if (Input.GetButtonDown("Jump")  && isGrounded)
+            if (Input.GetButtonDown("Jump") && isGrounded)
             {
 
 
 
                 myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
-              
+
             }
 
-           else if (Input.GetButtonDown("JumpSlash") && !isGrounded)
+            else if (Input.GetButtonDown("JumpSlash") && !isGrounded)
             {
 
 
@@ -310,7 +310,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
 
-                if (Input.GetButtonDown("Slash")&& isGrounded)
+                if (Input.GetButtonDown("Slash") && isGrounded)
                 {
 
                     midslash = true;
@@ -325,7 +325,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         if (item.unlocked == true)
                         {
                             //stops player when O is pressed
-                            if (Input.GetButtonDown("FireBall")  && item.unlocked == true)
+                            if (Input.GetButtonDown("FireBall") && item.unlocked == true)
                             {
                                 castingfireball = true;
                             }
@@ -334,7 +334,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         {
                             if (item.unlocked == true)
                             {
-                                if (Input.GetButtonDown("FrostWave")  && item.unlocked == true  && crouch ==true)
+                                if (Input.GetButtonDown("FrostWave") && item.unlocked == true && crouch == true)
                                 {
 
                                     castingfrostWave = true;
@@ -347,7 +347,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             }
 
-    
+
         }
 
 
@@ -357,7 +357,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void invulerability()
     {
         //makes invincibility happen when true
-        if(invicibility == true)
+        if (invicibility == true)
         {
             if (stuntimer > stuntarget)
             {
@@ -372,10 +372,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
             stuntimer -= Time.deltaTime;
             invulnertimer -= Time.deltaTime;
             mySprite.color = new Color32(255, 0, 0, 255);
-            
+
             Physics2D.IgnoreLayerCollision(12, 9, true);
 
-            if(stuntimer<= stuntarget)
+            if (stuntimer <= stuntarget)
             {
                 playerstruck = false;
 
@@ -388,33 +388,33 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 Physics2D.IgnoreLayerCollision(12, 9, false);
                 invicibility = false;
                 invulnertimer = 0.0f;
-                
+
 
             }
         }
-        
+
 
     }
 
-   public void attackloop()
+    public void attackloop()
     {
-       stun = !stun;
+        stun = !stun;
     }
 
-    
+
     void Dead()
     {
-       //kills out of bound
-            if (myBody.position.y < -2000)
-            {
-                death = true;
-            }
+        //kills out of bound
+        if (myBody.position.y < -2000)
+        {
+            death = true;
+        }
 
-            //kills at 0
-            if (CurrentHealth <= 0)
-            {
+        //kills at 0
+        if (CurrentHealth <= 0)
+        {
 
-                death = true;
+            death = true;
 
             myBody.velocity = new Vector2(0, myBody.velocity.y);
 
@@ -422,12 +422,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         //plays animation when death equals true
         if (death == true)
-            {
-                deathtimer += Time.deltaTime;
-            }
+        {
+            deathtimer += Time.deltaTime;
+        }
 
-            if (deathtimer >= deathtimertarget)
-            {
+        if (deathtimer >= deathtimertarget)
+        {
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
 
@@ -487,7 +487,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 level.changeScene(4);
             }
-               }
+        }
     }
     public void CastFireball()
     {
@@ -534,7 +534,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         if (CurrentMana > 3)
         {
             //sets the shoot equal to true
-            CurrentMana-=4;
+            CurrentMana -= 4;
             slide2.SetBar(CurrentMana);
             //have a bullet
 
@@ -589,7 +589,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         {
             Vector2 bladeSpawn = new Vector2(SwordSpawn.transform.position.x + 1.5f, SwordSpawn.transform.position.y);
 
-            SwordSpawn.transform.localPosition = new Vector2(2.27f,0f);
+            SwordSpawn.transform.localPosition = new Vector2(2.27f, 0f);
             blade = (Instantiate(HighSwordPrefab, bladeSpawn, transform.rotation)) as GameObject;
             blade.GetComponent<POWER_SCRIPT>().Damage += (int)SwordDamage;
 
@@ -605,7 +605,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     }
 
-   
+
 
 
 
@@ -615,7 +615,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
 
-       if (collision.gameObject.CompareTag("BronzeRing"))
+        if (collision.gameObject.CompareTag("BronzeRing"))
         {
             ID = 1;
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
@@ -647,7 +647,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
 
                 }
-                
+
             }
         }
 
@@ -672,7 +672,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         SaveLoadManager.SavePlayer(this);
 
                         RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
-                        MpSliderRect.sizeDelta = new Vector2(MpUp,  MpSliderRect.sizeDelta.y);
+                        MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
 
                     }
                 }
@@ -697,10 +697,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
                     if (item.got == false)
                     {
-                        
+
                         item.got = true;
 
-                        var hpUp = barsize + (MaxHealth*10);
+                        var hpUp = barsize + (MaxHealth * 10);
                         MaxHealth += item.value;
                         CurrentHealth += item.value;
 
@@ -736,7 +736,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         item.got = true;
 
-                        var hpUp = barsize + (MaxHealth*10);
+                        var hpUp = barsize + (MaxHealth * 10);
 
                         MaxHealth += item.value;
                         CurrentHealth += item.value;
@@ -773,7 +773,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
                         SwordDamage += item.value;
-                        
+
                         ID = 0;
                         XMLManager.ins.SaveItems();
                         SaveLoadManager.SavePlayer(this);
@@ -825,15 +825,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
             coinvalue.text = coin + "$";
 
         }
-      
+
         //adds hp
 
         else if (collision.gameObject.CompareTag("BSnack"))
         {
             CurrentHealth += 2;
 
-            if(MaxHealth < CurrentHealth)
-            { CurrentHealth = MaxHealth;
+            if (MaxHealth < CurrentHealth)
+            {
+                CurrentHealth = MaxHealth;
             }
 
 
@@ -867,42 +868,40 @@ public class PLAYER_SCRIPT : MonoBehaviour
             WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
 
             if (!waterScript.isFrozen) CurrentHealth = 0;
-            
+
         }
+        /*
+         //makes enemies do damage
+         else if (collision.gameObject.CompareTag("Enemy"))
+         {
 
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {
+                 slide.SetBar(CurrentHealth);
+
+                 var target = collision.transform;
+                 dir1 = (transform.position - target.position).normalized;
+                 myBody.AddRelativeForce(dir1 * thrust);
+                 var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+                 CurrentHealth -= damage.Damage;
+                 invicibility = true;
+                 invulnertimer = 2.0f;
 
 
 
-            StartCoroutine(knockback(0.5f, 50f, collision.transform));
 
+         }
 
-
-            slide.SetBar(CurrentHealth);
-
-            var target = collision.transform;
-            dir1 = (transform.position - target.position).normalized;
-            myBody.AddRelativeForce(dir1 * thrust);
-            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-            CurrentHealth -= damage.Damage;
-            invicibility = true;
-            invulnertimer = 2.0f;
-            stuntimer = 0.5f;
-        }
-
-        
+     */
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
 
-            if (mySprite.flipX==true)
+            if (mySprite.flipX == true)
             {
-                Vector2 direction = new Vector2 (-1000f, myBody.velocity.y);
+                Vector2 direction = new Vector2(-1000f, myBody.velocity.y);
                 rb.AddForce(direction);
                 isMoving = false;
             }
@@ -917,7 +916,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             slide.SetBar(CurrentHealth);
 
-         
+
             var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
             CurrentHealth -= damage.Damage;
             invicibility = true;
