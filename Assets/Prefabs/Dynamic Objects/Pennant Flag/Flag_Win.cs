@@ -9,7 +9,6 @@ public class Flag_Win : MonoBehaviour
 
     public DFACT1_HANDLER_SCRIPT actManager; //The level manager. We need to give it updates when the player touches the flag.
 
-
     void Start()
     {
         //animator for the flag

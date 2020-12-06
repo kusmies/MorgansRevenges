@@ -21,6 +21,9 @@ public class DFACT1_HANDLER_SCRIPT : MonoBehaviour
 
     public void moveToDourFieldsAct2()
     {
+        XMLManager.ins.SaveItems();
+        SaveLoadManager.SavePlayer(morgan);
+        XMLManager.ins.PermSaveItems();
         sceneChanger.changeScene(5);
     }
 }

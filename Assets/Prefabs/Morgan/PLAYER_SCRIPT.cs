@@ -401,6 +401,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
             }
         }
 
+        if (invulnertimer <= invulnertarget)
+        {
+            mySprite.color = new Color32(255, 255, 255, 255);
+            Physics2D.IgnoreLayerCollision(12, 9, false);
+            invicibility = false;
+            invulnertimer = 0.0f;
+
+
+        }
+
 
     }
 
@@ -513,11 +523,16 @@ public class PLAYER_SCRIPT : MonoBehaviour
     {
         if (CurrentMana > 0)
         {
+            
+
             //sets the shoot equal to true
-            CurrentMana--;
+            CurrentMana-=4;
             slide2.SetBar(CurrentMana);
             //have a bullet
-
+            if (CurrentMana < 0)
+            {
+                CurrentMana = 0;
+            }
             Debug.Log("normalShot");
 
 
@@ -551,10 +566,14 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     public void CastFrostWave()
     {
-        if (CurrentMana > 3)
+        if (CurrentMana > 0)
         {
             //sets the shoot equal to true
-            CurrentMana -= 4;
+            CurrentMana -= 3;
+            if(CurrentMana < 0)
+            {
+                CurrentMana = 0;
+            }
             slide2.SetBar(CurrentMana);
             //have a bullet
 
