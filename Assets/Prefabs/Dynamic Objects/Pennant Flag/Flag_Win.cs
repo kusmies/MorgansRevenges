@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class Flag_Win : MonoBehaviour
 {
-    // if the player collides with the flag it teleports them to the win state
-    public CHASEN_SCRIPT level;
-    //timer for the flags activation
-    public float FlagWaveTimer;
-    //timer target for the flags activation
-    public float FlagWaveTimerTarget;
     //flags animator
     Animator FLAG_WIN;
+
+    public DFACT1_HANDLER_SCRIPT actManager; //The level manager. We need to give it updates when the player touches the flag.
+
+
     void Start()
     {
-        //sets the timer target
-        FlagWaveTimerTarget = 2.0f;
         //animator for the flag
         FLAG_WIN = GetComponent<Animator>();
     }
@@ -29,6 +25,7 @@ public class Flag_Win : MonoBehaviour
         {
             //sets raise to true
             FLAG_WIN.SetBool("Raise", true);
+            actManager.levelComplete = true; //tell the level manager tht the level is over so it can stop enemies.
 
         }
 
@@ -42,12 +39,6 @@ public class Flag_Win : MonoBehaviour
 
     void Won()
     {
-        //after the timer hits the target the game changes state
-        //FlagWaveTimer += Time.deltaTime;
-        //if (FlagWaveTimer >= FlagWaveTimerTarget)
-        //{
-            level.changeScene(5);
-        //}
-
+        actManager.moveToDourFieldsAct2(); //Tell the level manager to move into the next scene
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5705586739172209129}
   - component: {fileID: 2185015387359083333}
+  - component: {fileID: 9136151701002850866}
   m_Layer: 0
   m_Name: DourFieldsAct2Handler
   m_TagString: Untagged
@@ -45,3 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lancelot: {fileID: 0}
   morgan: {fileID: 0}
+  playerPosition: {x: 0, y: 0}
+  lancelotDefeated: 0
+  sceneChangeScript: {fileID: 0}
+--- !u!114 &9136151701002850866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8053223415195444159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac867303fe1d19743b2167d26df104bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  onTitle: 0

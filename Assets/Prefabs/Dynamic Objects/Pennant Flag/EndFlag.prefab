@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3000732025853644489}
   - component: {fileID: 3000732025853644490}
   - component: {fileID: 1017237044834675050}
-  - component: {fileID: 4709842610552408421}
   m_Layer: 14
   m_Name: EndFlag
   m_TagString: Win
@@ -142,19 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8dce7293ed6804f8331f1e5d0e28b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 4709842610552408421}
---- !u!114 &4709842610552408421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3000732025853644534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac867303fe1d19743b2167d26df104bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coin: 0
-  fire: 0
-  onTitle: 1
+  level: {fileID: 0}
+  FlagWaveTimer: 0
+  FlagWaveTimerTarget: 0
+  actManager: {fileID: 0}
