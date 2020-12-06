@@ -63,10 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CHESTDROP_SCRIPT.cs" />
-    <Compile Include="Assets\DFACT2_HANDLER_SCRIPT.cs" />
-    <Compile Include="Assets\LANCEL_ANIM_SCRIPT.cs" />
-    <Compile Include="Assets\LBALL_SCRIPT.cs" />
+    <Compile Include="Assets\ARCHER_ANIM_SCRIPT.cs" />
+    <Compile Include="Assets\ARCHER_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\ITEMHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYBLK_SCRIPT.cs" />
@@ -86,11 +84,16 @@
     <Compile Include="Assets\Prefabs\Morgan\SLIDER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ACTIVE_SOLDIER_BLADE_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\CHASEN_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\CHESTDROP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\DETHSPWN_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\DFACT1_HANDLER_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\DFACT2_HANDLER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\HTBXDTH_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\LANCEL_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\LANCEL_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\LBALL_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\PERM_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SOLDIER_ANIM_SCRIPT.cs" />
