@@ -9,7 +9,7 @@
       <currency>Gold</currency>
       <price>2</price>
       <got>false</got>
-      <chestdropped>true</chestdropped>
+      <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
       <ID>2</ID>
@@ -19,7 +19,7 @@
       <currency>Gold</currency>
       <price>4</price>
       <got>false</got>
-      <chestdropped>true</chestdropped>
+      <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
       <ID>3</ID>
@@ -49,7 +49,7 @@
       <currency>Gold</currency>
       <price>2</price>
       <got>false</got>
-      <chestdropped>true</chestdropped>
+      <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
       <ID>6</ID>

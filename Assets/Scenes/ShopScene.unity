@@ -2002,6 +2002,7 @@ MonoBehaviour:
   itemsprites:
   - {fileID: 21300000, guid: 224deee6a1fadd548aac48e5eb987510, type: 3}
   - {fileID: 21300000, guid: 1d807548fdbab0e408b87420cdd6eb37, type: 3}
+  - {fileID: 21300000, guid: ebd85ac5a05a7514db5c1c61d7d40003, type: 3}
   - {fileID: 21300000, guid: befdd09bda785dc4999f5b4edca4ff2c, type: 3}
   - {fileID: 21300000, guid: 8959cce43181ead49aac46ab47539d78, type: 3}
   - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
@@ -3227,6 +3228,7 @@ MonoBehaviour:
   itemsprites:
   - {fileID: 21300000, guid: 224deee6a1fadd548aac48e5eb987510, type: 3}
   - {fileID: 21300000, guid: 1d807548fdbab0e408b87420cdd6eb37, type: 3}
+  - {fileID: 21300000, guid: ebd85ac5a05a7514db5c1c61d7d40003, type: 3}
   - {fileID: 21300000, guid: befdd09bda785dc4999f5b4edca4ff2c, type: 3}
   - {fileID: 21300000, guid: 8959cce43181ead49aac46ab47539d78, type: 3}
   - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
@@ -3682,6 +3684,7 @@ MonoBehaviour:
   itemsprites:
   - {fileID: 21300000, guid: 224deee6a1fadd548aac48e5eb987510, type: 3}
   - {fileID: 21300000, guid: 1d807548fdbab0e408b87420cdd6eb37, type: 3}
+  - {fileID: 21300000, guid: ebd85ac5a05a7514db5c1c61d7d40003, type: 3}
   - {fileID: 21300000, guid: befdd09bda785dc4999f5b4edca4ff2c, type: 3}
   - {fileID: 21300000, guid: 8959cce43181ead49aac46ab47539d78, type: 3}
   - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}

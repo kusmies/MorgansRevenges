@@ -14,6 +14,14 @@ public class CHASEN_SCRIPT : MonoBehaviour
     //This function changes the scene. It needs to be attached to an object in the current scene in order to function.
     //When we call this script we need to parse in the index number of the scene we want.
 
+     void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+
+        }
+    }
     public void changeScene(int index)
     {
         Scene currScene = SceneManager.GetActiveScene();
@@ -128,8 +136,17 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.currency = Currency.Gold;
                 item.price = 5;
             }
-
             if (item.ID == 3)
+            {
+                item.value = 0;
+                item.unlocked = false;
+
+                item.name = "WindRune";
+                item.description = "A breezey rune with runic powers, unlocks the wind sheathe uses O key in the air to soar with it. This item is permanent.";
+                item.currency = Currency.Gold;
+                item.price = 5;
+            }
+            if (item.ID == 4)
             {
                 item.value = 4;
                 item.unlocked = false;
@@ -140,7 +157,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.price = 10;
             }
 
-            if (item.ID == 4)
+            if (item.ID == 5)
             {
                 item.value = 4;
                 item.unlocked = false;

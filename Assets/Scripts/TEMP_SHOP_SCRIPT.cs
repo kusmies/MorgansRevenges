@@ -12,13 +12,12 @@ using UnityEngine.UI;
 public class TEMP_SHOP_SCRIPT : MonoBehaviour
 {
     public int ITEMID;
-
+    List<int> list = new List<int>();
     public Sprite[] itemsprites;
     public Image itemspriterenderer;
     public PLAYER_SCRIPT player;
     public Text Name, price,description;
     public bool buyonce;
-
     private void Awake()
     {
         Load();
@@ -29,10 +28,23 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
     {
         Display();
 
+        list = new List<int>(new int[XMLManager.ins.itemDB.list.Count]);
 
+        for (int j = 1; j < XMLManager.ins.itemDB.list.Count; j++)
+        {
+            for (int i = 0; i < XMLManager.ins.itemDB.list.Count; i++)
+            {
+                list.Add(i);
+            }
+
+            ITEMID = Random.Range(0, XMLManager.ins.itemDB.list.Count);
+            int randomNumber = list[ITEMID];
+            Debug.Log(randomNumber);
+
+
+        }
 
         XMLManager.ins.LoadItems();
-        ITEMID = Random.Range(1, XMLManager.ins.itemDB.list.Count);
 
         Debug.Log(player.coin);
     }
@@ -56,15 +68,17 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
     }
     public void cost()
     {
+       
+        list.RemoveAt(ITEMID);
 
 
-       if (buyonce == false)
+        if (buyonce == false)
         {
 
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
 
-          
+         
                 //makes the item if the ID equals the bronze ID and its not been obtained previously
                 if (ITEMID == item.ID && item.ID ==1)
                 {
@@ -316,5 +330,10 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
    
 
     }
+
+
+
+   
 }
+
 

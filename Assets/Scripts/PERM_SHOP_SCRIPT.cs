@@ -108,7 +108,30 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     }
                 }
+
                 if (ID == permitem.ID && permitem.ID == 3)
+                {
+                    if (player.coin >= permitem.price)
+                    {
+                        if (permitem.unlocked == false)
+                        {
+
+
+                            player.MaxHealth += permitem.value;
+                            //subtracts the bronze price from the player total
+                            player.coin -= permitem.price;
+                            ID = 6;
+                            permitem.unlocked = true;
+                            XMLManager.ins.PermSaveItems();
+
+                            SaveLoadManager.SavePlayer(player);
+                        }
+
+
+
+                    }
+                }
+                if (ID == permitem.ID && permitem.ID == 4)
                 {
                     if (player.coin >= permitem.price)
                     {
@@ -131,7 +154,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                 }
 
-                if (ID == permitem.ID && permitem.ID == 4)
+                if (ID == permitem.ID && permitem.ID == 5)
                 {
                     if (player.coin >= permitem.price)
                     {
@@ -238,12 +261,25 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
 
             }
+            if (ID == permitem.ID)
+            {
+                Name.text = permitem.name;
+                price.text = "Gold: " + permitem.price.ToString();
+                description.text = permitem.description.ToString();
+                if (ID == 5)
+
+                {
+                    itemspriterenderer.sprite = itemsprites[4];
+                }
+
+
+            }
             if (buyonce == true)
             {
                 if (player.coin >= permitem.price)
                 {
                     Name.text = "Sold Out";
-                    itemspriterenderer.sprite = itemsprites[4];
+                    itemspriterenderer.sprite = itemsprites[5];
                     price.text = "Please Come Again!";
                     description.text = "";
                 }

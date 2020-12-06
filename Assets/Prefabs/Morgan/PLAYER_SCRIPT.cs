@@ -262,7 +262,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
             }
-            else if (Input.GetAxisRaw("Crouch") > 0)
+            else if (Input.GetButtonDown("Crouch"))
             {
                 myBody.velocity = new Vector2(0, myBody.velocity.y);
 
@@ -284,6 +284,14 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     }
                 }
 
+
+            }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                myBody.velocity = new Vector2(0, myBody.velocity.y);
+
+                crouch = false;
+               
 
             }
 
@@ -437,6 +445,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         MaxMana -= item.value;
                         item.got = false;
+
+                        item.chestdropped = false;
                     }
 
                 }
@@ -446,6 +456,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         MaxMana -= item.value;
                         item.got = false;
+                        item.chestdropped = false;
+
                     }
                 }
                 if (item.ID == 3)
@@ -454,6 +466,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         MaxHealth -= item.value;
                         item.got = false;
+                        item.chestdropped = false;
+
                     }
                 }
                 if (item.ID == 4)
@@ -462,6 +476,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         MaxHealth -= item.value;
                         item.got = false;
+                        item.chestdropped = false;
+
                     }
 
 
@@ -472,6 +488,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         SwordDamage -= item.value;
                         item.got = false;
+                        item.chestdropped = false;
+
                     }
                 }
                 if (item.ID == 6)
@@ -480,6 +498,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     {
                         SwordDamage -= item.value;
                         item.got = false;
+                        item.chestdropped = false;
+
                     }
                 }
                 XMLManager.ins.SaveItems();
