@@ -6,9 +6,7 @@ public class ARCHER_ANIM_SCRIPT : MonoBehaviour
 {
     Animator myAnim;
     ARCHER_SCRIPT archerScript;
-    public bool isWalking = false;
-    public bool isDead = false;
-    public bool isHitStun = false;
+    public int state; //1 is walking, 2 is dead, 3 is hitstun, 4 straight shot, 5 is arc shot, 6 is idle
 
     // Start is called before the first frame update
     void Start()
@@ -20,26 +18,38 @@ public class ARCHER_ANIM_SCRIPT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isWalking)
+
+        switch(state)
         {
-            myAnim.SetBool("isWalking", true);
+            case 1: //walking
+                myAnim.SetBool("isWalking", true);
+                break;
+            case 2: //dead
+                myAnim.SetBool("isDead", true);
+                break;
+
+            case 3: //hitstun
+                myAnim.SetBool("isHitStun", true);
+                break;
+            case 4: //straight shot
+                myAnim.SetBool("isStraightShot", true);
+                break;
+            case 5: //arc shot
+                myAnim.SetBool("isArcShot", true);
+                break;
+            case 6: //idle
+                clearAllBools();
+                break;
+            default:
+                state = 1;
+                break;
         }
-        if(isDead)
-        {
-            myAnim.SetBool("isDead", true);
-        }
-        if(isHitStun)
-        {
-            myAnim.SetBool("isHitStun", true);
-        }
+
     }
 
-    public void endAttack()
-    {
 
-    }
 
-    void clearAllBools()
+    public void clearAllBools()
     {
         myAnim.SetBool("isWalking", false);
         myAnim.SetBool("isHitStun", false);

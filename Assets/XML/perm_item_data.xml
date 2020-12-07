@@ -26,7 +26,7 @@
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
-      <unlocked>true</unlocked>
+      <unlocked>false</unlocked>
     </PermItemEntry>
     <PermItemEntry>
       <ID>4</ID>
@@ -44,7 +44,7 @@
       <value>4</value>
       <currency>Gold</currency>
       <price>10</price>
-      <unlocked>true</unlocked>
+      <unlocked>false</unlocked>
     </PermItemEntry>
   </PermItems>
 </PermItemDatabase>

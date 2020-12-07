@@ -25,28 +25,24 @@ public class ARCHER_SCRIPT : MonoBehaviour
     float colorChangeCD = 0f;
     float hitStunCD = 0f;
     public DFACT1_HANDLER_SCRIPT actManager;
+    public int state = 6; //1 is walking, 2 is dead, 3 is hitstun, 4 straight shot, 5 is arc shot, 6 is idle
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        archerAnimatorScript = GetComponent<ARCHER_ANIM_SCRIPT>();
+        powerScript = GetComponent<POWER_SCRIPT>();
+        myTran = GetComponent<Transform>();
+        myBox = GetComponent<BoxCollider2D>();
+        myBody = GetComponent<Rigidbody2D>();
+        mySprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hp <= 0)
-        {
-            isDead = true;
-        }
-        if (myBody.position.y < -20)
-        {
-            isDead = true;
-        }
-        if (actManager.levelComplete)
-        {
-            isDead = true;
-        }
+
+        checkForDeath();
 
         if (isPlayerNearby())
         {
@@ -58,39 +54,38 @@ public class ARCHER_SCRIPT : MonoBehaviour
             handleColor();
 
             checkForGround();
-            if (!isDead)
+            
+            switch (state)
             {
-                if (hitStunCD <= 0)
-                {
-                    archerAnimatorScript.isHitStun = false;
-
+                case 1: //walking
+                    walkingAround();
                     checkForPlayer();
+                    break;
+                case 2: //dead
+                    killVelocity();
+                    break;
 
-                    powerScript.Damage = 3;
-
-                    if (!isAttacking)
-                    {
-                        walkingAround();
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-                else
-                {
+                case 3: //hitstun
                     hitStun();
-                }
+                    break;
+                case 4: //straight shot
+                    
+                    break;
+                case 5: //arc shot
+                    
+                    break;
+                case 6: //idle
+                    idleState();
+                    break;
+                default:
+                    state = 1;
+                    break;
             }
-            else
-            {
-                mySprite.color = new Color32(255, 0, 0, 255);
-                Physics.IgnoreLayerCollision(9, 12, true);
-                Physics.IgnoreLayerCollision(9, 10, true);
-                Physics.IgnoreLayerCollision(9, 0, true);
-            }
+            
 
         }
+
+        archerAnimatorScript.state = state;
 
     }
 
@@ -124,7 +119,6 @@ public class ARCHER_SCRIPT : MonoBehaviour
                     {
                         isAttacking = true;
                         attackCD = 2.0f;
-                        archerAnimatorScript.isWalking = false;
                         chooseAttack();
                     }
                 }
@@ -139,8 +133,7 @@ public class ARCHER_SCRIPT : MonoBehaviour
                     {
                         isAttacking = true;
                         attackCD = 2.0f;
-                        archerAnimatorScript.isWalking = false;
-
+                        chooseAttack();
                     }
                 }
             }
@@ -158,55 +151,55 @@ public class ARCHER_SCRIPT : MonoBehaviour
         {
             if (!mySprite.flipX)
             {
-                RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
+                RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
 
-                if (raycastHit2d.collider != null)
+                if (raycastHit2d1.collider != null)
                 {
+                    state = 6;
                     mySprite.flipX = true;
                     turnAroundCD = 2f;
                 }
                 else
                 {
+                    state = 1;
                     myBody.velocity = new Vector2(-3f, myBody.velocity.y);
-                    archerAnimatorScript.isWalking = true;
                 }
             }
             else
             {
-                RaycastHit2D raycastHit2d = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.right, .1f, groundLayer);
+                RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.right, .1f, groundLayer);
 
-                if (raycastHit2d.collider != null)
+                if (raycastHit2d1.collider != null)
                 {
+                    state = 6;
                     mySprite.flipX = false;
                     turnAroundCD = 2f;
                 }
                 else
                 {
+                    state = 1;
                     myBody.velocity = new Vector2(3f, myBody.velocity.y);
-                    archerAnimatorScript.isWalking = true;
                 }
             }
+
+
         }
-        else
-        {
-            turnAroundCD -= Time.deltaTime;
-            archerAnimatorScript.isWalking = false;
-        }
+        
 
         if (turnAroundCD <= 0) //Check for Ledge
         {
             if (!mySprite.flipX)
             {
-                RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
+                RaycastHit2D raycastHit2d2 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
 
-                if (raycastHit2d1.collider == null)
+                if (raycastHit2d2.collider == null)
                 {
                     Vector2 originPoint = new Vector2(myTran.position.x - 3f, myTran.position.y);
 
 
-                    RaycastHit2D raycastHit2d2 = Physics2D.BoxCast(originPoint, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
+                    RaycastHit2D raycastHit2d3 = Physics2D.BoxCast(originPoint, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
 
-                    if (raycastHit2d2.collider == null)
+                    if (raycastHit2d3.collider == null)
                     {
                         mySprite.flipX = true;
                         turnAroundCD = 2f;
@@ -214,28 +207,26 @@ public class ARCHER_SCRIPT : MonoBehaviour
                     else
                     {
                         myBody.velocity = new Vector2(-3f, myBody.velocity.y);
-                        archerAnimatorScript.isWalking = true;
                     }
 
                 }
                 else
                 {
                     myBody.velocity = new Vector2(-3f, myBody.velocity.y);
-                    archerAnimatorScript.isWalking = true;
                 }
             }
             else
             {
-                RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
+                RaycastHit2D raycastHit2d2 = Physics2D.BoxCast(myBox.bounds.center, myBox.bounds.size, 0f, Vector2.left, .1f, groundLayer);
 
-                if (raycastHit2d1.collider == null)
+                if (raycastHit2d2.collider == null)
                 {
                     Vector2 originPoint = new Vector2(myTran.position.x + 3f, myTran.position.y);
 
 
-                    RaycastHit2D raycastHit2d2 = Physics2D.BoxCast(originPoint, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
+                    RaycastHit2D raycastHit2d3 = Physics2D.BoxCast(originPoint, myBox.bounds.size, 0f, Vector2.down, .1f, groundLayer);
 
-                    if (raycastHit2d2.collider == null)
+                    if (raycastHit2d3.collider == null)
                     {
                         mySprite.flipX = false;
                         turnAroundCD = 2f;
@@ -243,21 +234,20 @@ public class ARCHER_SCRIPT : MonoBehaviour
                     else
                     {
                         myBody.velocity = new Vector2(3f, myBody.velocity.y);
-                        archerAnimatorScript.isWalking = true;
                     }
 
                 }
                 else
                 {
                     myBody.velocity = new Vector2(3f, myBody.velocity.y);
-                    archerAnimatorScript.isWalking = true;
                 }
             }
         }
-        else
+        
+        if(turnAroundCD>0)
         {
             turnAroundCD -= Time.deltaTime;
-            archerAnimatorScript.isWalking = false;
+            state = 6;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -277,7 +267,8 @@ public class ARCHER_SCRIPT : MonoBehaviour
                 if (playerPower.Damage >= dmgThreshold)
                 {
                     hitStunCD = 2f;
-                    archerAnimatorScript.endAttack();
+                    archerAnimatorScript.clearAllBools();
+                    state = 3;
                 }
                 else
                 {
@@ -315,7 +306,7 @@ public class ARCHER_SCRIPT : MonoBehaviour
                 if (playerPower.Damage >= dmgThreshold)
                 {
                     hitStunCD = 2f;
-                    archerAnimatorScript.endAttack();
+                    archerAnimatorScript.clearAllBools();
                 }
                 else
                 {
@@ -339,8 +330,6 @@ public class ARCHER_SCRIPT : MonoBehaviour
 
     void killArcher()
     {
-        archerAnimatorScript.endAttack();
-
         GameObject explosion;
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
@@ -364,11 +353,16 @@ public class ARCHER_SCRIPT : MonoBehaviour
 
     void hitStun()
     {
-        archerAnimatorScript.isHitStun = true;
+        state = 3;
         powerScript.Damage = 0;
         if (hitStunCD > 0)
         {
             hitStunCD -= Time.deltaTime;
+        }
+        else
+        {
+            powerScript.Damage = 3;
+            state = 6;
         }
 
     }
@@ -393,11 +387,120 @@ public class ARCHER_SCRIPT : MonoBehaviour
 
     void chooseAttack()
     {
+        killVelocity();
 
+        archerAnimatorScript.clearAllBools();
+
+        float whichAttack = Random.Range(0f, 1f);
+
+        if(whichAttack <=.5)
+        {
+            Debug.Log("Straight Shot");
+            state = 4;
+        }
+        else
+        {
+            Debug.Log("Arc Shot");
+            state = 5;
+        }
+    }
+
+    void killVelocity()
+    {
+        myBody.velocity = new Vector2(0f, 0f);
     }
 
     void endAttack()
     {
         attackCD = 2.0f;
+        isAttacking = false;
+        archerAnimatorScript.clearAllBools();
+        state = 6;
+    }
+
+    void idleState()
+    {
+        if(attackCD <= 0 && turnAroundCD <= 0)
+        {
+            state = 1;
+        }
+        else
+        {
+           if(attackCD > 0)
+            {
+                attackCD -= Time.deltaTime;
+            }
+
+           if(turnAroundCD > 0)
+            {
+                turnAroundCD -= Time.deltaTime;
+            }
+        }
+    }
+
+    void checkForDeath()
+    {
+        if (hp <= 0)
+        {
+            isDead = true;
+            state = 2;
+        }
+        if (myBody.position.y < -20)
+        {
+            isDead = true;
+            state = 2;
+        }
+        if (actManager.levelComplete)
+        {
+            isDead = true;
+            state = 2;
+        }
+    }
+
+    void spawnArrow()
+    {
+        Vector2 spawnLocation = new Vector2(0f,0f);
+
+        Vector2 arrowVelocity = new Vector2(0f, 0f);
+
+        if (state == 4) //Straight Shot
+        {
+            if(!mySprite.flipX)
+            {
+                spawnLocation = new Vector2(myTran.position.x - 2.15f, myTran.position.y + 0.7f);
+                arrowVelocity = new Vector2(-50f, 0f);
+            }
+            else
+            {
+                spawnLocation = new Vector2(myTran.position.x + 2.18f, myTran.position.y + 0.7f);
+                arrowVelocity = new Vector2(50f, 0f);
+            }
+        }
+        else if (state == 5) //Arc shot
+        {
+            if (!mySprite.flipX)
+            {
+                spawnLocation = new Vector2(myTran.position.x - 2.0f, myTran.position.y + 1.9f);
+                arrowVelocity = new Vector2(-50f, 50f);
+            }
+            else
+            {
+                spawnLocation = new Vector2(myTran.position.x + 2.0f, myTran.position.y + 1.9f);
+                arrowVelocity = new Vector2(50f, 50f);
+            }
+        }
+
+
+        GameObject arrowSpawned;
+
+        arrowSpawned = Instantiate(arrowPrefab, spawnLocation, transform.rotation);
+
+        ARROW_SCRIPT arrowSpawnScript = arrowSpawned.GetComponent<ARROW_SCRIPT>();
+
+        arrowSpawnScript.myBody.velocity = arrowVelocity;
+
+        arrowSpawnScript.actHandler = actManager;
+
+        
     }
 }

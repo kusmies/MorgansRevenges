@@ -118,16 +118,19 @@ MonoBehaviour:
   isGrounded: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   isAttacking: 0
   isDead: 0
   hp: 5
-  arrowPrefab: {fileID: 0}
-  explosionEffect: {fileID: 0}
+  arrowPrefab: {fileID: 2129021650270419701, guid: 2cef79cbac1d80b45bd77786c9be80dc,
+    type: 3}
+  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
+    type: 3}
   actManager: {fileID: 0}
+  state: 6
 --- !u!114 &9009062532332166151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,9 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ac5944cc37fcc498310c021856a98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWalking: 0
-  isDead: 0
-  isHitStun: 0
+  state: 0
 --- !u!95 &8867077991839606165
 Animator:
   serializedVersion: 3
@@ -196,10 +197,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.4, y: 0.5}
     oldSize: {x: 4.2, y: 6.4}
     newSize: {x: 0.21, y: 0.32}
     adaptiveTilingThreshold: 0.5
@@ -207,5 +208,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2, y: 6.4}
+  m_Size: {x: 3.2, y: 6.4}
   m_EdgeRadius: 0

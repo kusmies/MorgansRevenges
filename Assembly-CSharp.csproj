@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\ARCHER_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\ARCHER_SCRIPT.cs" />
+    <Compile Include="Assets\ARROW_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\ITEMHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYBLK_SCRIPT.cs" />
