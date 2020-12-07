@@ -24,6 +24,8 @@ public class WARDOG_SCRIPT : MonoBehaviour
     float hitStunCD = 0;
     float colorChangeCD = 0;
     public DFACT1_HANDLER_SCRIPT actManager;
+    public UNIDROP_SCRIPT dropScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,7 @@ public class WARDOG_SCRIPT : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
         warDogAnimScript = GetComponent<WARDOG_ANIM_SCRIPT>();
-
+        dropScript = GetComponent<UNIDROP_SCRIPT>();
         prevY = myTran.position.y;
     }
 
@@ -281,11 +283,11 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
     void killWarDog()
     {
-        
-
         GameObject explosion;
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
+
+        dropScript.Drop();
 
         Destroy(gameObject);
     }

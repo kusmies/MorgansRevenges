@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5740199699688231431}
   - component: {fileID: 2712374387705948783}
   - component: {fileID: 4966913531420348994}
+  - component: {fileID: 1250835360527417821}
   m_Layer: 9
   m_Name: War Dog
   m_TagString: Enemy
@@ -221,3 +222,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 3
   type: 6
+--- !u!114 &1250835360527417821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192431363743399877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e909ae6740985014bbd1ec8d85bc92f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+    list:
+    - ID: 1
+      dropped: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8,
+        type: 3}
+    - ID: 2
+      dropped: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee,
+        type: 3}
+    - ID: 3
+      dropped: {fileID: 2465739114448873993, guid: ed46b2b3757693a4cbe3d1579af4af2d,
+        type: 3}
+    - ID: 4
+      dropped: {fileID: 5667388634067837605, guid: 53d0e0ac2e2a70a4b80a0a1f1634b34e,
+        type: 3}

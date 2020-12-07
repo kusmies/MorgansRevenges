@@ -27,6 +27,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     float colorChangeCD = 0f;
     float hitStunCD = 0f;
     public DFACT1_HANDLER_SCRIPT actManager;
+    public UNIDROP_SCRIPT dropScript;
 
     void Start() // Start is called before the first frame update
     {
@@ -37,7 +38,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
         soldierAnimatorScript = GetComponent<SOLDIER_ANIM_SCRIPT>();
-        //Debug.Log(myBox.bounds);
+        dropScript = GetComponent<UNIDROP_SCRIPT>();
     }
 
     // Update is called once per frame
@@ -439,6 +440,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         GameObject explosion;
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
+
+        dropScript.Drop();
 
         Destroy(gameObject);
     }

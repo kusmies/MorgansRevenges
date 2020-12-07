@@ -11,7 +11,7 @@ public class UNIDROP_SCRIPT : MonoBehaviour
 {
 
     public DropDatabase items;
-    public Transform spawn;
+    Transform spawn;
     bool isdead;
     int ID;
 
@@ -22,11 +22,14 @@ public class UNIDROP_SCRIPT : MonoBehaviour
        
     }
 
-   
-    
+    private void Start()
+    {
+        spawn = GetComponent<Transform>();
+    }
 
 
-   public void Drop()
+
+    public void Drop()
     {
          if (droppedonce == false)
             {
