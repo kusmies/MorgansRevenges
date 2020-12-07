@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2019_3_4;UNITY_2019_3;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2019_3_4;UNITY_2019_3;UNITY_2019;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_VSTU;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -48,7 +48,7 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
-    <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2019.3.4f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -63,49 +63,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\HTBXDTH_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\CHSTHP_SCRIPT.cs" />
+    <Compile Include="Assets\ARCHER_ANIM_SCRIPT.cs" />
+    <Compile Include="Assets\ARCHER_SCRIPT.cs" />
+    <Compile Include="Assets\ARROW_SCRIPT.cs" />
+    <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\ITEMHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\CHSTDRP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYBLK_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYLT_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\ITEMHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\LootList.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Pennant Flag\Flag_Win.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\DETHSPWN_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATBOD_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATER_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Dynamic Objects\Water\WATTILE_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\NMYHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Enemies\EnemyOnly\PATROL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\DOUR_BG_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MP_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\FIREBLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\FireballScripts\Script\XPLSN_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FireBLightAnimation\Lightning\Scripts\LIGHTN_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\FrostWaveAnimation\Frost Wave\Scripts\FRSTWVE_SCRIPT.cs" />
+    <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\Frost Wave\Scripts\FRSTWVE_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\MorganAnimation\WindWall\Scripts\WINWLL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYERANIM_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYER_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\SLIDER_SCRIPT.cs" />
-    <Compile Include="Assets\SOLDIER_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ACTIVE_SOLDIER_BLADE_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\CHASEN_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\CHESTDROP_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\DETHSPWN_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\DFACT1_HANDLER_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\DFACT2_HANDLER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\HTBXDTH_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\LANCEL_ANIM_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\LANCEL_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\LBALL_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\PERM_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\SHOP_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\SOLDIER_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SOLDIER_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\SPELL_HITBOX_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
+    <Compile Include="Assets\Scripts\TEMP_SHOP_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\UNIDROP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WARDOG_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WARDOG_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\WATBOD_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\WATSUB_SCRIPT.cs" />
+    <Compile Include="Assets\Scripts\WATSURF_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\XMLManager.cs" />
-    <Compile Include="Assets\Scripts\XPLSN_SPAWN_SCRIPT.cs" />
-    <Compile Include="Assets\UNIDROP_SCRIPT.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\XML\perm_item_data.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -122,43 +130,43 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/shane/Desktop/TestMerge/MorgansRevenges/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/GDAD/Morgan's Revenge/Git Hub/MorgansRevenges/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

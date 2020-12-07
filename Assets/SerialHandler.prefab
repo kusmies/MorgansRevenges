@@ -48,35 +48,90 @@ MonoBehaviour:
     list:
     - ID: 1
       name: bronze
+      description: A bronze ring that increases mana by one
       value: 1
-      item: {fileID: 7213970071519926385, guid: 6304766d7214ec441a009ffb44c07ab3,
-        type: 3}
       currency: 0
       price: 4
       got: 0
+      chestdropped: 0
     - ID: 2
       name: silver
+      description: A silver ring that increases mana by two
       value: 2
-      item: {fileID: 598118339859530494, guid: e7aaa60e30eea884c985ffce4e510d80, type: 3}
       currency: 0
       price: 8
       got: 0
+      chestdropped: 0
     - ID: 3
       name: steelhelm
+      description: A steel helmet that increases health by one
       value: 1
-      item: {fileID: 2553107998273638436, guid: 56cb710ec39c8d94da6e9176c6bcaac5,
-        type: 3}
       currency: 0
       price: 2
       got: 0
+      chestdropped: 0
     - ID: 4
       name: steelshield
+      description: a steel shield that increases health by two
       value: 2
-      item: {fileID: 6188343378155309143, guid: 982a036f6d67034479004d40d09c7c62,
-        type: 3}
       currency: 0
       price: 4
       got: 0
+      chestdropped: 0
+    - ID: 5
+      name: steelshield
+      description: a steel shield that increases health by two
+      value: 2
+      currency: 0
+      price: 4
+      got: 0
+      chestdropped: 0
+    - ID: 6
+      name: steelshield
+      description: a steel shield that increases health by two
+      value: 2
+      currency: 0
+      price: 4
+      got: 0
+      chestdropped: 0
+  PitemDB:
+    list:
+    - ID: 1
+      name: FireRune
+      description: A rune crackiling with magic, unlocks the fireball uses the O
+        key to fire.
+      value: 0
+      currency: 0
+      price: 8
+      unlocked: 0
+    - ID: 2
+      name: MithirilBangil
+      description: An enchanted Bangil that makes the user feel stronger
+      value: 3
+      currency: 0
+      price: 4
+      unlocked: 0
+    - ID: 3
+      name: AdamantiumBracer
+      description: A bracer that makes the user feel even stronger.
+      value: 6
+      currency: 0
+      price: 6
+      unlocked: 0
+    - ID: 4
+      name: AdamantiumBracer
+      description: A bracer that makes the user feel even stronger.
+      value: 6
+      currency: 0
+      price: 6
+      unlocked: 0
+    - ID: 5
+      name: AdamantiumBracer
+      description: A bracer that makes the user feel even stronger.
+      value: 6
+      currency: 0
+      price: 6
+      unlocked: 0
 --- !u!114 &7757165925541541197
 MonoBehaviour:
   m_ObjectHideFlags: 0

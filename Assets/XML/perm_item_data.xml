@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<PermItemDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PermItems>
+    <PermItemEntry>
+      <ID>1</ID>
+      <name>FireRune</name>
+      <description>A rune crackiling with magic, unlocks the fireball uses the O key to fire. This item is permanent.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>2</ID>
+      <name>IceRune</name>
+      <description>A rune ice cold with arcanic energy, unlocks the frost wave uses the S key and  O key to summon it. This item is permanent.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>3</ID>
+      <name>WindRune</name>
+      <description>A breezey rune with runic powers, unlocks the wind sheathe uses O key in the air to soar with it. This item is permanent.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>4</ID>
+      <name>MithrilBangil</name>
+      <description>An enchanted Bangil that makes the user feel stronger.This item is permanent.</description>
+      <value>4</value>
+      <currency>Gold</currency>
+      <price>10</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>5</ID>
+      <name>ruby bracelet</name>
+      <description>A bracelet empowered by magic. This item is permanent.</description>
+      <value>4</value>
+      <currency>Gold</currency>
+      <price>10</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+  </PermItems>
+</PermItemDatabase>

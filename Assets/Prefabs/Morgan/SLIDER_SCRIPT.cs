@@ -11,11 +11,15 @@ public class SLIDER_SCRIPT : MonoBehaviour
     {
         Bar.maxValue = value;
         Bar.value = value;
+
+
+        
     }
 
     public void SetBar(float value)
     {
         Bar.value = value;
+       
     }
 
 

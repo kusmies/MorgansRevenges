@@ -37,6 +37,8 @@ TagManager:
   - SteelShield
   - BronzeRing
   - SilverRing
+  - Dagger
+  - LongSword
   layers:
   - Default
   - TransparentFX

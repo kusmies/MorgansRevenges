@@ -20,12 +20,14 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
         //just walk
         if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == true && myPlayerMovement.midslash == false && myPlayerMovement.death == false)
         {
+
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
+
             PLAYER_CONTROL.SetBool("Walk", true);
             PLAYER_CONTROL.SetBool("Jump", false);
-            PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
-
+          
 
         }
         //just walk end
@@ -34,48 +36,67 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
         {
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", true);
-            PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
+            PLAYER_CONTROL.ResetTrigger("Slash");
+
+            // PLAYER_CONTROL.SetBool("JumpSlash", true);
+            if (myPlayerMovement.jumpslash == true && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("JumpSlash"))
+            {
+
+                PLAYER_CONTROL.SetTrigger("JumpSlash");
 
 
+
+            }
+             else        
+            {
+
+                PLAYER_CONTROL.ResetTrigger("JumpSlash");
+
+
+
+            }
         }
         //move jump end
         //jump
-
-        //jump end
-        //jumpslash
-        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == false && myPlayerMovement.highslash == false && myPlayerMovement.death == false)
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == false && myPlayerMovement.death == false)
         {
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", true);
-            PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
+            PLAYER_CONTROL.ResetTrigger("Slash");
+
+            //   PLAYER_CONTROL.SetBool("JumpSlash", true);
+
+            if ( myPlayerMovement.jumpslash == true && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("JumpSlash"))
+            {
+               
+                PLAYER_CONTROL.SetTrigger("JumpSlash");
 
 
+            }
+            else
+            {
+
+                PLAYER_CONTROL.ResetTrigger("JumpSlash");
+
+
+
+            }
         }
-        //jumpslash end
-        else if (myPlayerMovement.isMoving == false && myPlayerMovement.highslash == true && myPlayerMovement.death == false)
-        {
-            PLAYER_CONTROL.SetBool("Walk", false);
-            PLAYER_CONTROL.SetBool("Jump", false);
-            PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("HighSlash", true);
+        //jump end
+        //jumpslash
 
 
 
-        }
-       
-     
         //walk slash
-        else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == true && myPlayerMovement.midslash == true && myPlayerMovement.death == false)
+        else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == true && myPlayerMovement.midslash == true && myPlayerMovement.death == false && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("Slash"))
         {
             PLAYER_CONTROL.SetBool("Crouch", false);
             PLAYER_CONTROL.SetBool("Walk", true);
             PLAYER_CONTROL.SetBool("Jump", false);
-            PLAYER_CONTROL.SetBool("Slash", true);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
+            PLAYER_CONTROL.SetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
 
 
 
@@ -83,19 +104,24 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
         //walk slash end
 
         //stand slash
-        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == true && myPlayerMovement.midslash == true && myPlayerMovement.death == false)
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == true && myPlayerMovement.midslash == true && myPlayerMovement.death == false && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("Slash"))
         {
             PLAYER_CONTROL.SetBool("Crouch", false);
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
-            PLAYER_CONTROL.SetBool("Slash", true);
+            PLAYER_CONTROL.SetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
 
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
 
         }
 
         //stand slash end
+        //jump slash
+
+
+
+
 
         //crouch
         else if (myPlayerMovement.crouch == true && myPlayerMovement.death == false)
@@ -104,36 +130,85 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Crouch", true);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
 
 
+            if (myPlayerMovement.castingfrostWave ==true && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("FrostWave"))
+            {
+                PLAYER_CONTROL.SetTrigger("FrostWave");
 
+            }
+         
         }
         //crouch end
-    
+       
+
         //fireball
-        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == true && myPlayerMovement.castingfireball == true && myPlayerMovement.death == false)
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == true && myPlayerMovement.castingfireball == true && myPlayerMovement.death == false && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("Fireball"))
         {
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
-            PLAYER_CONTROL.SetBool("Fireball", true);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
+            PLAYER_CONTROL.SetTrigger("Fireball");
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
 
             PLAYER_CONTROL.SetBool("Crouch", false);
 
 
         }
 
-        else if(myPlayerMovement.death ==true)
+        else if (myPlayerMovement.isMoving == false && myPlayerMovement.isGrounded == false && myPlayerMovement.castingfireball == true && myPlayerMovement.death == false && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("Fireball"))
+        {
+            PLAYER_CONTROL.SetBool("Walk", false);
+            PLAYER_CONTROL.SetBool("Jump", true);
+            PLAYER_CONTROL.SetTrigger("Fireball");
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
+
+            PLAYER_CONTROL.SetBool("Crouch", false);
+
+
+        }
+        else if (myPlayerMovement.isMoving == true && myPlayerMovement.isGrounded == false && myPlayerMovement.castingfireball == true && myPlayerMovement.death == false && !this.PLAYER_CONTROL.GetCurrentAnimatorStateInfo(0).IsTag("Fireball"))
+        {
+            PLAYER_CONTROL.SetBool("Walk", false);
+            PLAYER_CONTROL.SetBool("Jump", true);
+            PLAYER_CONTROL.SetTrigger("Fireball");
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
+
+            PLAYER_CONTROL.SetBool("Crouch", false);
+
+
+        }
+
+        else if (myPlayerMovement.death ==true)
         {
 
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("Slash", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
             PLAYER_CONTROL.SetBool("Death", true);
-            PLAYER_CONTROL.SetBool("Fireball", false);
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
+
+
+        }
+
+        else if (myPlayerMovement.playerstruck ==true)
+
+        {
+            PLAYER_CONTROL.SetBool("Hit", true);
+            PLAYER_CONTROL.ResetTrigger("FrostWave");
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
+            PLAYER_CONTROL.ResetTrigger("Fireball");
+            PLAYER_CONTROL.SetBool("Walk", false);
+            PLAYER_CONTROL.SetBool("Jump", false);
+            PLAYER_CONTROL.SetBool("Crouch", false);
+            PLAYER_CONTROL.SetBool("Death", false);
+
         }
         //fireball end
 
@@ -142,13 +217,16 @@ public class PLAYERANIM_SCRIPT : MonoBehaviour
 
         else
         {
+            PLAYER_CONTROL.SetBool("Hit", false);
+
+            PLAYER_CONTROL.ResetTrigger("FrostWave");
+            PLAYER_CONTROL.ResetTrigger("Slash");
+            PLAYER_CONTROL.ResetTrigger("JumpSlash");
+            PLAYER_CONTROL.ResetTrigger("Fireball");
             PLAYER_CONTROL.SetBool("Walk", false);
             PLAYER_CONTROL.SetBool("Jump", false);
             PLAYER_CONTROL.SetBool("Crouch", false);
-            PLAYER_CONTROL.SetBool("Slash", false);
             PLAYER_CONTROL.SetBool("Death", false);
-            PLAYER_CONTROL.SetBool("Fireball", false);
-            PLAYER_CONTROL.SetBool("HighSlash", false);
 
         }
     }

@@ -53,6 +53,7 @@ public class PlayerData
         stats[0] = player.MaxHealth;
         stats[1] = player.MaxMana;
         stats[2] = player.coin;
+        stats[3] = player.SwordDamage;
     }
 
 

@@ -4,42 +4,23 @@ using UnityEngine;
 
 public class DOUR_BG_SCRIPT : MonoBehaviour
 {
-
-    PLAYER_SCRIPT playerScript;
+    float parallaxEffectMultiplier = .99f;
+    public GameObject player;
     Transform myTran;
-    Vector2 prevPlayerLocation;
-    Vector2 currPlayerLocation;
-    float speed = .01f;
+    Transform playerTran;
+    Vector3 lastPlayerPosition;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        playerScript = GetComponentInParent<PLAYER_SCRIPT>();
-
+        playerTran = player.GetComponent<Transform>();
         myTran = GetComponent<Transform>();
-
-        prevPlayerLocation = playerScript.transform.position;
+        lastPlayerPosition = playerTran.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        currPlayerLocation = playerScript.transform.position;
-        if(prevPlayerLocation.x >= currPlayerLocation.x + .1f || prevPlayerLocation.x <= currPlayerLocation.x - .1f)
-        {
-            if(Input.GetAxis("Horizontal") > 0)
-            {
-                Debug.Log("MovingRight");
-                myTran.position = new Vector2(myTran.position.x + speed, myTran.position.y);
-            }
-            if(Input.GetAxis("Horizontal") < 0)
-            {
-                Debug.Log("MovingLeft");
-                myTran.position = new Vector2(myTran.position.x - speed, myTran.position.y);
-            }
-        }
-
-        prevPlayerLocation = currPlayerLocation;
-
+        Vector3 deltaMovement = playerTran.position - lastPlayerPosition;
+        myTran.position += deltaMovement * parallaxEffectMultiplier;
+        lastPlayerPosition = playerTran.position;
     }
 }

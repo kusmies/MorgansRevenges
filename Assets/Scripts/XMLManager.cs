@@ -29,6 +29,23 @@ public class XMLManager : MonoBehaviour
         itemDB = serializer.Deserialize(stream) as ItemDatabase;
         stream.Close();
     }
+
+    public PermItemDatabase PitemDB;
+    public void PermSaveItems()
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(PermItemDatabase));
+        FileStream stream = new FileStream(Application.dataPath + "/XML/perm_item_data.xml", FileMode.Create);
+        serializer.Serialize(stream, PitemDB);
+        stream.Close();
+    }
+    public void PermLoadItems()
+    {
+
+        XmlSerializer serializer = new XmlSerializer(typeof(PermItemDatabase));
+        FileStream stream = new FileStream(Application.dataPath + "/XML/perm_item_data.xml", FileMode.Open);
+        PitemDB = serializer.Deserialize(stream) as PermItemDatabase;
+        stream.Close();
+    }
 }
 
 [System.Serializable]
@@ -36,16 +53,38 @@ public class ItemEntry
 {
     public int ID;
     public string name;
+    public string description;
     public int value;
     public Currency currency;
     public int price;
     public bool got;
+    public bool displayed;
+    public bool chestdropped;
 }
 [System.Serializable]
 public class ItemDatabase
 {
     [XmlArray("TempItems")]
     public List<ItemEntry> list = new List<ItemEntry>();
+}
+
+[System.Serializable]
+public class PermItemEntry
+{
+    public int ID;
+    public string name;
+    public string description;
+    public int value;
+    public Currency currency;
+    public int price;
+    public bool unlocked;
+    public bool displayed;
+}
+[System.Serializable]
+public class PermItemDatabase
+{
+    [XmlArray("PermItems")]
+    public List<PermItemEntry> list = new List<PermItemEntry>();
 }
 public enum Currency
 {

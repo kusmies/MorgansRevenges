@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &268615465729426895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5984362526016706134}
+  m_Layer: 11
+  m_Name: spawn1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5984362526016706134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268615465729426895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.11, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8845030229018053354}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5617341436735388616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5732362016233705850}
+  m_Layer: 11
+  m_Name: Spawn2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5732362016233705850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617341436735388616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.76, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8845030229018053354}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8845030229018053367
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,8 +72,10 @@ GameObject:
   - component: {fileID: 8845030229018053353}
   - component: {fileID: 8845030229018053352}
   - component: {fileID: 8845030229018053355}
-  - component: {fileID: 1093973890012911252}
   - component: {fileID: 6114362133429735953}
+  - component: {fileID: 125835867270522192}
+  - component: {fileID: 8486455611276103730}
+  - component: {fileID: 529848448184702956}
   m_Layer: 11
   m_Name: Barrel
   m_TagString: Loot
@@ -31,7 +93,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.6, y: 1.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5984362526016706134}
+  - {fileID: 5732362016233705850}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,31 +196,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1093973890012911252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8845030229018053367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9127a47f22557d14a8d2817c9dc05c33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn: {fileID: 8845030229018053354}
-  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
-    type: 3}
-  Bsnack: {fileID: 2465739114448873993, guid: ed46b2b3757693a4cbe3d1579af4af2d, type: 3}
-  Bmeal: {fileID: 586773364701114417, guid: 90b6616e1915d114b962d995821a9481, type: 3}
-  Mvial: {fileID: 5667388634067837605, guid: 53d0e0ac2e2a70a4b80a0a1f1634b34e, type: 3}
-  Mpotion: {fileID: 181984596237373877, guid: 2f761545a091a5449a58ce89e166ca79, type: 3}
-  GoldCoin: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8, type: 3}
-  CoinBag: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
-  GoldBar: {fileID: 6806969866165904133, guid: b501147b54790d4439c541085b4e2616, type: 3}
-  lootdrop: 0
-  dropchance: 0
-  ItemHealth: 1
 --- !u!95 &6114362133429735953
 Animator:
   serializedVersion: 3
@@ -176,3 +215,73 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &125835867270522192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845030229018053367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e909ae6740985014bbd1ec8d85bc92f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+    list:
+    - ID: 1
+      dropped: {fileID: 2465739114448873993, guid: ed46b2b3757693a4cbe3d1579af4af2d,
+        type: 3}
+    - ID: 2
+      dropped: {fileID: 5667388634067837605, guid: 53d0e0ac2e2a70a4b80a0a1f1634b34e,
+        type: 3}
+    - ID: 3
+      dropped: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8,
+        type: 3}
+    - ID: 4
+      dropped: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee,
+        type: 3}
+  spawn: {fileID: 5984362526016706134}
+--- !u!114 &8486455611276103730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845030229018053367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631b62261aa25d24a8223b7a648e601e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ITEM_CONTROL: {fileID: 6114362133429735953}
+  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
+    type: 3}
+  myTran: {fileID: 8845030229018053354}
+--- !u!114 &529848448184702956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845030229018053367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e909ae6740985014bbd1ec8d85bc92f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+    list:
+    - ID: 1
+      dropped: {fileID: 2465739114448873993, guid: ed46b2b3757693a4cbe3d1579af4af2d,
+        type: 3}
+    - ID: 2
+      dropped: {fileID: 5667388634067837605, guid: 53d0e0ac2e2a70a4b80a0a1f1634b34e,
+        type: 3}
+    - ID: 3
+      dropped: {fileID: 462948464314369928, guid: 6ecc1ff0e5388f6469c65e1797ad7ea8,
+        type: 3}
+    - ID: 4
+      dropped: {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee,
+        type: 3}
+  spawn: {fileID: 5732362016233705850}

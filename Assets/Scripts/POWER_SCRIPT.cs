@@ -14,4 +14,5 @@ public class POWER_SCRIPT : MonoBehaviour
     //4 is Morgan's lightning bolt
     //5 is Morgan's wind push
     //6 is enemy damage.
+    //7 is water.
 }

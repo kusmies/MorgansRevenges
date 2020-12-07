@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3327232961473438542}
   - component: {fileID: 3327232961473438528}
   - component: {fileID: 3327232961473438531}
-  - component: {fileID: 3327232961473438530}
-  - component: {fileID: 3327232961473438541}
-  - component: {fileID: 3327232961473438529}
+  - component: {fileID: 8525335366451638448}
+  - component: {fileID: 7457719196998001834}
+  - component: {fileID: 713468607279042196}
   m_Layer: 9
   m_Name: Soldier
   m_TagString: Enemy
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 74dc4d0f8ecba3b44b3023926f417642, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3, y: 6.4}
@@ -153,52 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 6.4}
   m_EdgeRadius: 0
---- !u!114 &3327232961473438530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327232961473438537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30f8052052f03904f9c80305de120859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myTran: {fileID: 0}
-  soldierAnimatorScript: {fileID: 0}
-  isGrounded: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  health: 4
-  isAttacking: 0
-  isDead: 0
-  hp: 6
-  bladePrefab: {fileID: 4385636101651069587, guid: 13fe7e6d96268884cb5985b70cb1328c,
-    type: 3}
-  isHighAttacking2: 0
-  isHighAttacking3: 0
-  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
-    type: 3}
---- !u!114 &3327232961473438541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3327232961473438537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d44ded6b2cee694ebf2ff9ba14caacc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 4
-  type: 6
---- !u!114 &3327232961473438529
+--- !u!114 &8525335366451638448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,3 +169,49 @@ MonoBehaviour:
   isHighAttacking3: 0
   isWalking: 0
   isDead: 0
+  isHitStun: 0
+--- !u!114 &7457719196998001834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3327232961473438537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35021630ea69f314a86b3453fd8aaa88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTran: {fileID: 0}
+  soldierAnimatorScript: {fileID: 0}
+  isGrounded: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  isAttacking: 0
+  isDead: 0
+  hp: 5
+  bladePrefab: {fileID: 4385636101651069587, guid: 13fe7e6d96268884cb5985b70cb1328c,
+    type: 3}
+  isHighAttacking2: 0
+  isHighAttacking3: 0
+  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
+    type: 3}
+  actManager: {fileID: 0}
+--- !u!114 &713468607279042196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3327232961473438537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d44ded6b2cee694ebf2ff9ba14caacc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 4
+  type: 6

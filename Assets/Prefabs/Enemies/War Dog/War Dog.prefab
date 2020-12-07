@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 3192431363743399873}
   - component: {fileID: 3192431363743399487}
   - component: {fileID: 3192431363743399486}
-  - component: {fileID: 8434791503432458359}
-  - component: {fileID: 4339969149223604715}
+  - component: {fileID: 5740199699688231431}
+  - component: {fileID: 2712374387705948783}
+  - component: {fileID: 4966913531420348994}
   m_Layer: 9
   m_Name: War Dog
   m_TagString: Enemy
@@ -102,7 +103,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -167,7 +168,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8434791503432458359
+--- !u!114 &5740199699688231431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3192431363743399877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 026b344d44aa43b49bc38a8fd37fa9be, type: 3}
+  m_Script: {fileID: 11500000, guid: 867753d9cb2b2bc4bb24d555811d16b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
@@ -186,12 +187,12 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 4096
-  isAttacking: 0
   isDead: 0
   hp: 4
   explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
     type: 3}
---- !u!114 &4339969149223604715
+  actManager: {fileID: 0}
+--- !u!114 &2712374387705948783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,8 +201,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3192431363743399877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c25893a6aa11f6746ba1a918aa289f17, type: 3}
+  m_Script: {fileID: 11500000, guid: a2f40f8e9855783458f9abd51d9e8b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isWalking: 0
   isDead: 0
+  isHitStun: 0
+--- !u!114 &4966913531420348994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192431363743399877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d44ded6b2cee694ebf2ff9ba14caacc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 3
+  type: 6
