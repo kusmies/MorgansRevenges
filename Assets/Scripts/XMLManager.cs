@@ -58,6 +58,7 @@ public class ItemEntry
     public Currency currency;
     public int price;
     public bool got;
+    public bool displayed;
     public bool chestdropped;
 }
 [System.Serializable]
@@ -77,6 +78,7 @@ public class PermItemEntry
     public Currency currency;
     public int price;
     public bool unlocked;
+    public bool displayed;
 }
 [System.Serializable]
 public class PermItemDatabase

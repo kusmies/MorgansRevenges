@@ -9,54 +9,88 @@ using System.Xml.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
 using UnityEngine.UI;
+using System.Linq;
+using System;
+using System.Runtime.InteropServices;
+
 public class TEMP_SHOP_SCRIPT : MonoBehaviour
 {
-    public int ITEMID;
-    List<int> list = new List<int>();
-    public Sprite[] itemsprites;
+   public TEMP_SHOP_SCRIPT tempitemshop;
     public Image itemspriterenderer;
+
+    public Text Name, price, description;
+  
+
+    public int ID;
+
+ 
+
+    private int IDassigner;
+
+    public List<int> storeslots= new List<int>();
+    public static int previousitem = -1;
+    public Sprite[] itemsprites;
     public PLAYER_SCRIPT player;
-    public Text Name, price,description;
     public bool buyonce;
-    private void Awake()
+    public bool openslot;
+    void Awake()
     {
+        tempitemshop = this;
         Load();
+        Roll();
 
 
     }
-    void Start()
+
+
+   
+void Start()
     {
-        Display();
-
-        list = new List<int>(new int[XMLManager.ins.itemDB.list.Count]);
-
-        for (int j = 1; j < XMLManager.ins.itemDB.list.Count; j++)
+        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
-            for (int i = 0; i < XMLManager.ins.itemDB.list.Count; i++)
+            if (item.ID == 1)
             {
-                list.Add(i);
+
+                item.displayed = false;
+
+
             }
-
-            ITEMID = Random.Range(0, XMLManager.ins.itemDB.list.Count);
-            int randomNumber = list[ITEMID];
-            Debug.Log(randomNumber);
-
-
+            if (item.ID == 2)
+            {
+               
+            }
+            if (item.ID == 3)
+            {
+                item.displayed = false;
+               
+            }
+            if (item.ID == 4)
+            {
+                item.displayed = false;
+                
+            }
+            if (item.ID == 5)
+            {
+                item.displayed = false;
+              
+            }
+            if (item.ID == 6)
+            {
+                item.displayed = false;
+               
+            }
         }
+        XMLManager.ins.PermLoadItems();
 
         XMLManager.ins.LoadItems();
+        ID = IDassigner;
 
-        Debug.Log(player.coin);
-    }
-    void Update()
-    {
-        Display();
     }
 
     public void Save()
     {
+        XMLManager.ins.PermSaveItems();
 
-        XMLManager.ins.SaveItems();
         SaveLoadManager.SavePlayer(player);
     }
     public void Load()
@@ -66,274 +100,379 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
         player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];
     }
-    public void cost()
+
+    private void Update()
     {
-       
-        list.RemoveAt(ITEMID);
-
-
-        if (buyonce == false)
+        ID = IDassigner;
+        if (openslot == false)
         {
+            Cost();
+        }
+    }
+    public int Roll()
+    { //function to find a job
 
+
+
+        if (storeslots.Count == 0)
+        { //if list is empty
+            storeslots.Clear();
+        }
+        else
+        { //if not
+            IDassigner = storeslots[UnityEngine.Random.Range(0, storeslots.Count)]; //get a random
+
+        }
+        storeslots.Remove(IDassigner); //remove from list
+
+
+        return IDassigner;
+
+    }
+
+    public void Click()
+    {
+        buyonce = true;
+        Cost();
+    }
+    public void Cost()
+    {
+
+        {
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
 
-         
-                //makes the item if the ID equals the bronze ID and its not been obtained previously
-                if (ITEMID == item.ID && item.ID ==1)
+                if (ID == item.ID && item.ID == 1)
                 {
 
-                    if (player.coin >= item.price)
+
+                    if (item.got == false && item.displayed == false)
                     {
-                        if (item.got == false)
-                        {
+                        item.displayed = true;
+
+                        openslot = true;
+                        itemspriterenderer.sprite = itemsprites[0];
 
 
-                            Debug.Log(player.MaxHealth);
 
-                            player.MaxMana += item.value;
-                            //subtracts the bronze price from the player total
-                            player.coin -= item.price;
-                            item.got = true;
-                            XMLManager.ins.SaveItems();
+                        //subtracts the bronze price from the player total
 
-                            SaveLoadManager.SavePlayer(player);
-                        }
+                        Name.text = item.name;
+                        price.text = "Gold: " + item.price.ToString();
+                        description.text = item.description.ToString();
+
+
+                    }
+                    else if (item.got == true || item.displayed == true && buyonce == false)
+                    {
+                        Roll();
 
                     }
 
-                   
+                    if (player.coin >= item.price && buyonce == true && item.ID == 1)
 
-                }
-                //makes the item if the ID equals the silver ID and its not been obtained previously
-
-                 if (ITEMID == item.ID && item.ID == 2)
-                {
-                    if (player.coin >= item.price)
                     {
-                        if (item.got == false)
-                        {
-                            Debug.Log(player.MaxHealth);
 
-                            player.MaxMana += item.value;
+                        player.MaxMana += item.value;
+                        //subtracts the bronze price from the player total
+                        player.coin -= item.price; 
+                        Name.text = "Thank you";
+                        price.text = "";
+                        itemspriterenderer.sprite = itemsprites[6];
 
-                            //subtracts the bronze price from the player total
-                            player.coin -= item.price;
-                            item.got = true;
-                            XMLManager.ins.SaveItems();
+                        description.text = "Come Again";
+                        item.got = true;
 
-                            SaveLoadManager.SavePlayer(player);
-                        }
-                    }
-                  
-                }
-                //makes the item if the ID equals the steelhelm ID and its not been obtained previously
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
 
-                 if (ITEMID == item.ID && item.ID == 3)
-                {
-                    if (player.coin >= item.price)
-                    {
-                        if (item.got == false)
-                        {
-                            Debug.Log(player.MaxHealth);
-
-                            player.MaxHealth += item.value;
-
-
-                            //subtracts the bronze price from the player total
-                            player.coin -= item.price;
-                            item.got = true;
-                            XMLManager.ins.SaveItems();
-
-                            SaveLoadManager.SavePlayer(player);
-                        }
 
                     }
-
-                  
-
-                }
-                //makes the item if the ID equals the steelshield ID and its not been obtained previously
-
-                 if (ITEMID == item.ID && item.ID == 4)
-                {
-                    if (player.coin >= item.price)
+                    if (player.coin <= item.price && buyonce == true)
                     {
-                        if (item.got == false)
-                        {
-                            Debug.Log(player.MaxHealth);
-
-                            player.MaxHealth += item.value;
-
-
-                            //subtracts the bronze price from the player total
-                            player.coin -= item.price;
-                            item.got = true;
-                            XMLManager.ins.SaveItems();
-
-                            SaveLoadManager.SavePlayer(player);
-                        }
+                        Name.text = "You're short";
+                        price.text = "";
+                        description.text = "ComeBack with more money";
+                        Debug.Log("readingIt");
                     }
 
-                  
                 }
-                if (ITEMID == item.ID && item.ID == 5)
+
+                if (ID == item.ID && item.ID == 2)
                 {
-                    if (player.coin >= item.price)
+
+
+
+                    if (item.got == false && item.displayed == false)
                     {
-                        if (item.got == false)
-                        {
-                            Debug.Log(player.SwordDamage);
+                        openslot = true;
 
-                            player.SwordDamage += item.value;
+                        itemspriterenderer.sprite = itemsprites[1];
 
 
-                            //subtracts the bronze price from the player total
-                            player.coin -= item.price;
-                            item.got = true;
-                            XMLManager.ins.SaveItems();
 
-                            SaveLoadManager.SavePlayer(player);
-                        }
+                        //subtracts the bronze price from the player total
+                        item.displayed = true;
+                        Name.text = item.name;
+                        price.text = "Gold: " + item.price.ToString();
+                        description.text = item.description.ToString();
+                       
+
+
+                    }
+                    else if (item.got == true || item.displayed == true && buyonce == false)
+                    {
+                        Roll();
+
+                    }
+
+                    if (player.coin >= item.price && buyonce == true && item.ID == 2)
+                    {
+                        player.coin -= item.price;
+
+                        player.MaxMana += item.value;
+                        Name.text = "Thank you";
+                        price.text = "";
+                        itemspriterenderer.sprite = itemsprites[6];
+
+                        description.text = "Come Again";
+                        item.got = true;
+
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
+                    }
+                    if (player.coin <= item.price && buyonce == true)
+                    {
+                        Name.text = "You're short";
+                        price.text = "";
+                        description.text = "ComeBack with more money";
+                        Debug.Log("readingIt");
+                    }
+
+                }
+                if (ID == item.ID && item.ID == 3)
+                {
+
+
+                    if (item.got == false && item.displayed == false)
+                    {
+                        openslot = true;
+                        itemspriterenderer.sprite = itemsprites[2];
+
+
+
+                        item.displayed = true;
+
+                        Name.text = item.name;
+                        price.text = "Gold: " + item.price.ToString();
+                        description.text = item.description.ToString();
+                       
+
+
+                    }
+                    else if (item.got == true || item.displayed == true && buyonce == false)
+                    {
+                        Roll();
+
+                    }
+
+                    if (player.coin >= item.price && buyonce == true && item.ID == 3)
+                    {
+
+                        player.coin -= item.price;
+
+                        player.MaxHealth += item.value;
+                        Name.text = "Thank you";
+                        price.text = "";
+                        itemspriterenderer.sprite = itemsprites[6];
+
+                        description.text = "Come Again";
+                        item.got = true;
+
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
+                    }
+                    if (player.coin <= item.price && buyonce == true)
+                    {
+                        Name.text = "You're short";
+                        price.text = "";
+                        description.text = "ComeBack with more money";
+                        Debug.Log("readingIt");
+                    }
+
+                }
+                if (ID == item.ID && item.ID == 4)
+                {
+
+
+                    if (item.got == false && item.displayed == false)
+                    {
+                        openslot = true;
+                        itemspriterenderer.sprite = itemsprites[3];
+
+
+                        item.displayed = true;
+
+
+                        Name.text = item.name;
+                        price.text = "Gold: " + item.price.ToString();
+                        description.text = item.description.ToString();
+                      
+
+
+
+                    }
+                    else if (item.got == true || item.displayed == true && buyonce == false)
+                    {
+                        Roll();
+
+                    }
+
+                    if (player.coin >= item.price && buyonce == true && item.ID == 4)
+                    {
+
+                        player.coin -= item.price;
+
+                        player.MaxHealth += item.value;
+                        Name.text = "Thank you";
+                        price.text = "";
+                        itemspriterenderer.sprite = itemsprites[6];
+
+                        description.text = "Come Again";
+                        item.got = true;
+
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
+                    }
+                    if (player.coin <= item.price && buyonce == true)
+                    {
+                        Name.text = "You're short";
+                        price.text = "";
+                        description.text = "ComeBack with more money";
+                        Debug.Log("readingIt");
+                    }
+                }
+                if (ID == item.ID && item.ID == 5)
+                {
+
+
+                    if (item.got == false && item.displayed == false)
+                    {
+                        openslot = true;
+
+                        itemspriterenderer.sprite = itemsprites[4];
+
+                        item.displayed = true;
+
+                        Name.text = item.name;
+                        price.text = "Gold: " + item.price.ToString();
+                        description.text = item.description.ToString();
+                       
+
+                    }
+                    else if (item.got == true || item.displayed == true && buyonce == false)
+                    {
+                        Roll();
+
+                    }
+
+                    if (player.coin >= item.price && buyonce == true && item.ID == 5)
+                    {
+                        item.ID = 5;
+                        player.coin -= item.price;
+
+                        player.SwordDamage += item.value;
+                        Name.text = "Thank you";
+                        price.text = "";
+                        itemspriterenderer.sprite = itemsprites[6];
+
+                        description.text = "Come Again";
+                        item.got = true;
+
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
+                    }
+                    if (player.coin <= item.price && buyonce == true)
+                    {
+                        Name.text = "You're short";
+                        price.text = "";
+                        description.text = "ComeBack with more money";
+                        Debug.Log("readingIt");
+                    }
+                }
+                if (ID == item.ID && item.ID == 6)
+                {
+
+
+                    if (item.got == false && item.displayed == false)
+                    {
+                        openslot = true;
+
+                        item.displayed = true;
+                        itemspriterenderer.sprite = itemsprites[5];
+
+
+
+
+                        Name.text = item.name;
+                        price.text = "Gold: " + item.price.ToString();
+                        description.text = item.description.ToString();
+                      
+
                     }
 
 
-                }
-                if (ITEMID == item.ID && item.ID == 6)
-                {
-                    if (player.coin >= item.price)
+                    else if (item.got == true || item.displayed == true && buyonce == false)
                     {
-                        if (item.got == false)
-                        {
-                            Debug.Log(player.MaxHealth);
+                        Roll();
 
-                            player.SwordDamage += item.value;
-
-
-                            //subtracts the bronze price from the player total
-                            player.coin -= item.price;
-                            item.got = true;
-                            XMLManager.ins.SaveItems();
-
-                            SaveLoadManager.SavePlayer(player);
-                        }
                     }
 
+                    if (player.coin >= item.price && buyonce == true && item.ID == 6)
+                    {
+                        player.coin -= item.price;
+
+                        player.SwordDamage += item.value;
+                        Name.text = "Thank you";
+                        price.text = "";
+                        itemspriterenderer.sprite = itemsprites[6];
+
+                        description.text = "Come Again";
+                        item.got = true;
+
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
+                    }
+                    if (player.coin <= item.price && buyonce == true)
+                    {
+                        Name.text = "You're short";
+                        price.text = "";
+                        description.text = "ComeBack with more money";
+                        Debug.Log("readingIt");
+                    }
 
                 }
 
 
-                buyonce = true;
+
+
 
             }
+
+            }
+
+
         }
-
-    
-
     }
 
-    public void Display()
-    {
-        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-        {
-
-
-            //makes the item if the ID equals the bronze ID and its not been obtained previously
-            if (ITEMID == item.ID)
-            {
-                Name.text = item.name;
-                price.text = "Gold: " + item.price.ToString();
-                description.text=  item.description.ToString();
-                if (ITEMID == 1)
-
-                {
-                    itemspriterenderer.sprite = itemsprites[0];
-                }
-            }
-            if (ITEMID == item.ID)
-            {
-                Name.text = item.name;
-                price.text = "Gold: " + item.price.ToString();
-                description.text =  item.description.ToString();
-                if (ITEMID == 2)
-
-                {
-                    itemspriterenderer.sprite = itemsprites[1];
-                }
-
-            }
-            if (ITEMID == item.ID)
-            {
-                Name.text = item.name;
-                price.text = "Gold: " + item.price.ToString();
-                description.text =  item.description.ToString();
-                if (ITEMID == 3)
-
-                {
-                    itemspriterenderer.sprite = itemsprites[2];
-                }
-            }
-            if (ITEMID == item.ID)
-            {
-                Name.text = item.name;
-                price.text = "Gold: " + item.price.ToString();
-                description.text =  item.description.ToString();
-                if (ITEMID == 4)
-
-                {
-                    itemspriterenderer.sprite = itemsprites[3];
-                }
-            }
-            if (ITEMID == item.ID)
-            {
-                Name.text = item.name;
-                price.text = "Gold: " + item.price.ToString();
-                description.text = item.description.ToString();
-                if (ITEMID == 5)
-
-                {
-                    itemspriterenderer.sprite = itemsprites[4];
-                }
-            }
-            if (ITEMID == item.ID)
-            {
-                Name.text = item.name;
-                price.text = "Gold: " + item.price.ToString();
-                description.text = item.description.ToString();
-                if (ITEMID == 6)
-
-                {
-                    itemspriterenderer.sprite = itemsprites[5];
-                }
-            }
-
-            if (buyonce == true)
-            {
-                if (player.coin >= item.price)
-                {
-                    Name.text = "Sold Out";
-                    itemspriterenderer.sprite = itemsprites[6];
-                    price.text = "Please Come Again!";
-                    description.text = "";
-                }
-
-                if(player.coin <item.price)
-                {
-                    Name.text = "Sorry you're short.";
-                    price.text = "Come back with more gold!";
-                    description.text = "";
-
-                }
-            }
-        }
-
-   
-
-    }
 
 
 
-   
-}
 
+ 
 

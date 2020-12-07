@@ -8,7 +8,8 @@
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
-      <unlocked>true</unlocked>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>2</ID>
@@ -17,7 +18,8 @@
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
-      <unlocked>true</unlocked>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>3</ID>
@@ -27,6 +29,7 @@
       <currency>Gold</currency>
       <price>5</price>
       <unlocked>false</unlocked>
+      <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>4</ID>
@@ -35,7 +38,8 @@
       <value>4</value>
       <currency>Gold</currency>
       <price>10</price>
-      <unlocked>true</unlocked>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>5</ID>
@@ -45,6 +49,7 @@
       <currency>Gold</currency>
       <price>10</price>
       <unlocked>false</unlocked>
+      <displayed>false</displayed>
     </PermItemEntry>
   </PermItems>
 </PermItemDatabase>
