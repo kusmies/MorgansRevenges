@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\CHESTDROP_SCRIPT.cs" />
     <Compile Include="Assets\DFACT2_HANDLER_SCRIPT.cs" />
+    <Compile Include="Assets\Gold.cs" />
     <Compile Include="Assets\LANCEL_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\LBALL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\ITEMHP_SCRIPT.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets\Scripts\SOLDIER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SPELL_HITBOX_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
+    <Compile Include="Assets\Scripts\ShuffleBag.cs" />
     <Compile Include="Assets\Scripts\TEMP_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\UNIDROP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WARDOG_ANIM_SCRIPT.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="Assets\Scripts\WATSUB_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WATSURF_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\XMLManager.cs" />
+    <Compile Include="Assets\TEMP_ITEM_PREFAB.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

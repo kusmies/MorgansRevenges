@@ -446,7 +446,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         MaxMana -= item.value;
                         item.got = false;
 
+                        item.displayed = false;
                         item.chestdropped = false;
+                        XMLManager.ins.SaveItems();
+
                     }
 
                 }
@@ -457,6 +460,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         MaxMana -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+                        item.displayed = false;
+
+                        XMLManager.ins.SaveItems();
 
                     }
                 }
@@ -467,6 +473,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         MaxHealth -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+                        item.displayed = false;
+                        XMLManager.ins.SaveItems();
+
 
                     }
                 }
@@ -477,6 +486,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         MaxHealth -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+                        item.displayed = false;
+                        XMLManager.ins.SaveItems();
+
 
                     }
 
@@ -489,6 +501,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         SwordDamage -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+                        item.displayed = false;
+
+                        XMLManager.ins.SaveItems();
 
                     }
                 }
@@ -499,10 +514,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         SwordDamage -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+                        item.displayed = false;
+
+                        XMLManager.ins.SaveItems();
 
                     }
                 }
-                XMLManager.ins.SaveItems();
                 SaveLoadManager.SavePlayer(this);
 
                 level.changeScene(4);

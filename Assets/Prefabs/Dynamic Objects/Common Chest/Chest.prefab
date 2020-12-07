@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f33bd9368b8143a1c121ee1999a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ITEM_CONTROL: {fileID: 141832338409469897}
+  chestdrop: {fileID: 6951084005157370528}
   spawn: {fileID: 2242389019705900348}
   items:
   - {fileID: 7213970071519926385, guid: 6304766d7214ec441a009ffb44c07ab3, type: 3}
@@ -190,3 +192,6 @@ MonoBehaviour:
   - {fileID: 7523429832091441668, guid: c49c53ff8cff38744b173fcd8fef8c44, type: 3}
   - {fileID: 8006021749900450716, guid: 916c8926458d03a4b95d4b165895e7ee, type: 3}
   player: {fileID: 3194736562856368177, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f, type: 3}
+  chestslots: 010000000200000003000000040000000500000006000000
+  IDassigner: 0
+  ID: 0

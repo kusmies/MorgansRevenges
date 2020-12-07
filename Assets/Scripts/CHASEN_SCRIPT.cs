@@ -50,6 +50,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
             {
                 item.value = 1;
                 item.got = false;
+                item.displayed = false;
                 item.chestdropped = false;
                 item.name = "BronzeRing";
                 item.description = "A bronze ring that increases mana by one.";
@@ -61,6 +62,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 2;
                 item.got = false;
                 item.chestdropped = false;
+                item.displayed = false;
 
                 item.name = "SilverRing";
                 item.description = "A silver ring that increases mana by two.";
@@ -72,6 +74,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 1;
                 item.got = false;
                 item.chestdropped = false;
+                item.displayed = false;
 
                 item.name = "SteelHelm";
                 item.description = "A steel helmet that increases health by one.";
@@ -81,6 +84,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             }
             if (item.ID == 4)
             {
+                item.displayed = false;
+
                 item.value = 2;
                 item.got = false;
                 item.chestdropped = false;
@@ -93,6 +98,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
 
             if (item.ID == 5)
             {
+                item.displayed = false;
+
                 item.value = 1;
                 item.got = false;
                 item.chestdropped = false;
@@ -103,6 +110,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             }
             if (item.ID == 6)
             {
+                item.displayed = false;
+
                 item.value = 2;
                 item.got = false; 
                 item.chestdropped = false;
@@ -118,6 +127,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
         {
             if(item.ID ==1)
             {
+                item.displayed = false;
+
                 item.value = 0;
                 item.unlocked = false;
 
@@ -128,6 +139,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             }
             if (item.ID == 2)
             {
+                item.displayed = false;
+
                 item.value = 0;
                 item.unlocked = false;
 
@@ -138,6 +151,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             }
             if (item.ID == 3)
             {
+                item.displayed = false;
+
                 item.value = 0;
                 item.unlocked = false;
 
@@ -148,6 +163,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             }
             if (item.ID == 4)
             {
+                item.displayed = false;
+
                 item.value = 4;
                 item.unlocked = false;
 
@@ -159,6 +176,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
 
             if (item.ID == 5)
             {
+                item.displayed = false;
+
                 item.value = 4;
                 item.unlocked = false;
 
