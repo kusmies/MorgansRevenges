@@ -36,7 +36,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
     void Awake()
     {
         tempitemshop = this;
-
+        Load();
         Roll();
 
 
@@ -80,6 +80,7 @@ void Start()
                
             }
         }
+        XMLManager.ins.PermLoadItems();
 
         XMLManager.ins.LoadItems();
         ID = IDassigner;
@@ -91,6 +92,13 @@ void Start()
         XMLManager.ins.PermSaveItems();
 
         SaveLoadManager.SavePlayer(player);
+    }
+    public void Load()
+    {
+        float[] loadedStats = SaveLoadManager.LoadPlayer();
+        player.MaxHealth = loadedStats[0];
+        player.MaxMana = loadedStats[1];
+        player.coin = loadedStats[2];
     }
 
     private void Update()
@@ -161,9 +169,9 @@ void Start()
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 1)
+
                     {
-                        item.ID = 1;
 
                         player.MaxMana += item.value;
                         //subtracts the bronze price from the player total
@@ -174,9 +182,10 @@ void Start()
 
                         description.text = "Come Again";
                         item.got = true;
-                        SaveLoadManager.SavePlayer(player);
 
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -217,11 +226,9 @@ void Start()
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 2)
                     {
-                        item.ID = 2;
                         player.coin -= item.price;
-                        SaveLoadManager.SavePlayer(player);
 
                         player.MaxMana += item.value;
                         Name.text = "Thank you";
@@ -232,6 +239,7 @@ void Start()
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -269,12 +277,10 @@ void Start()
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 3)
                     {
 
-                        item.ID = 3;
                         player.coin -= item.price;
-                        SaveLoadManager.SavePlayer(player);
 
                         player.MaxHealth += item.value;
                         Name.text = "Thank you";
@@ -285,6 +291,7 @@ void Start()
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -323,12 +330,10 @@ void Start()
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 4)
                     {
 
-                        item.ID = 4;
                         player.coin -= item.price;
-                        SaveLoadManager.SavePlayer(player);
 
                         player.MaxHealth += item.value;
                         Name.text = "Thank you";
@@ -339,6 +344,7 @@ void Start()
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -373,7 +379,7 @@ void Start()
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 5)
                     {
                         item.ID = 5;
                         player.coin -= item.price;
@@ -385,9 +391,9 @@ void Start()
 
                         description.text = "Come Again";
                         item.got = true;
-                        SaveLoadManager.SavePlayer(player);
 
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -426,11 +432,9 @@ void Start()
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 6)
                     {
-                        item.ID = 6;
                         player.coin -= item.price;
-                        SaveLoadManager.SavePlayer(player);
 
                         player.SwordDamage += item.value;
                         Name.text = "Thank you";
@@ -441,6 +445,7 @@ void Start()
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
 
                     }
                     if (player.coin <= item.price && buyonce == true)

@@ -34,7 +34,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
     {
         Roll();
         permitemshop = this;
-     
+        Load();
+
     }
     void Start()
     {
@@ -64,12 +65,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
         }
         XMLManager.ins.PermLoadItems();
-
+        XMLManager.ins.LoadItems();
 
         ID = IDassigner;
 
 
-        Load();
         Debug.Log(player.coin);
     }
     void Update()
@@ -90,9 +90,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
     public void Load()
     {
         float[] loadedStats = SaveLoadManager.LoadPlayer();
-
+        player.MaxHealth = loadedStats[0];
+        player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];
     }
+
 
     public int Roll()
     { //function to find a job
@@ -156,9 +158,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 1)
                     {
-                        item.ID = 1;
 
                         player.MaxMana += item.value;
                         //subtracts the bronze price from the player total
@@ -169,9 +170,10 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         description.text = "Come Again";
                         item.unlocked = true;
-                        SaveLoadManager.SavePlayer(player);
 
                         XMLManager.ins.PermSaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -212,11 +214,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 2)
                     {
-                        item.ID = 2;
                         player.coin -= item.price;
-                        SaveLoadManager.SavePlayer(player);
 
                         player.MaxMana += item.value;
                         Name.text = "Thank you";
@@ -227,6 +227,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         item.unlocked = true;
 
                         XMLManager.ins.PermSaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -264,12 +266,10 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID ==3)
                     {
 
-                        item.ID = 3;
                         player.coin -= item.price;
-                        SaveLoadManager.SavePlayer(player);
 
                         player.MaxHealth += item.value;
                         Name.text = "Thank you";
@@ -280,6 +280,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         item.unlocked = true;
 
                         XMLManager.ins.PermSaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -318,12 +320,10 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 4)
                     {
 
-                        item.ID = 4;
                         player.coin -= item.price;
-                        SaveLoadManager.SavePlayer(player);
 
                         player.MaxHealth += item.value;
                         Name.text = "Thank you";
@@ -334,6 +334,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         item.unlocked = true;
 
                         XMLManager.ins.PermSaveItems();
+                        SaveLoadManager.SavePlayer(player);
 
                     }
                     if (player.coin <= item.price && buyonce == true)
@@ -368,7 +369,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true)
+                    if (player.coin >= item.price && buyonce == true && item.ID == 5)
                     {
                         item.ID = 5;
                         player.coin -= item.price;
