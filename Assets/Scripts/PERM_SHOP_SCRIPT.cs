@@ -15,7 +15,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
     public int ID;
     public PERM_SHOP_SCRIPT permitemshop;
     public Image itemspriterenderer;
-
+    bool checkedonce;
+    
 
     public List<int> storeslots = new List<int>();
 
@@ -33,9 +34,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
     {
         Roll();
         permitemshop = this;
+     
     }
     void Start()
     {
+
         foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
         {
             if (item.ID == 1)
@@ -58,9 +61,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
             {
                 item.displayed = false;
             }
-         
-        }
 
+        }
         XMLManager.ins.PermLoadItems();
 
 
@@ -99,6 +101,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
         if (storeslots.Count == 0)
         { //if list is empty
+           
+            storeslots.Clear();
         }
         else
         { //if not
@@ -392,7 +396,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                
 
 
-                if (storeslots.Count== 0)
+                if (storeslots.Count== 0 )
                 {
                     Name.text = "Sold Out";
                     price.text = "";

@@ -18,7 +18,6 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
    public TEMP_SHOP_SCRIPT tempitemshop;
     public Image itemspriterenderer;
 
-
     public Text Name, price, description;
   
 
@@ -43,40 +42,55 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
     }
 
-    void Start()
+
+   
+void Start()
     {
         foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
             if (item.ID == 1)
             {
+
                 item.displayed = false;
+
+
             }
             if (item.ID == 2)
             {
-                item.displayed = false;
+               
             }
             if (item.ID == 3)
             {
                 item.displayed = false;
+               
             }
             if (item.ID == 4)
             {
                 item.displayed = false;
+                
             }
             if (item.ID == 5)
             {
                 item.displayed = false;
+              
             }
             if (item.ID == 6)
             {
                 item.displayed = false;
+               
             }
         }
 
-        
         XMLManager.ins.LoadItems();
         ID = IDassigner;
 
+    }
+
+    public void Save()
+    {
+        XMLManager.ins.PermSaveItems();
+
+        SaveLoadManager.SavePlayer(player);
     }
 
     private void Update()
@@ -132,7 +146,6 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                         itemspriterenderer.sprite = itemsprites[0];
 
 
-                        XMLManager.ins.SaveItems();
 
                         //subtracts the bronze price from the player total
 

@@ -10,7 +10,7 @@ public class Gold : MonoBehaviour
     public PLAYER_SCRIPT player;
 
 
-    private void Start()
+     void Update()
     {
         playergold.text = player.coin.ToString();
         
