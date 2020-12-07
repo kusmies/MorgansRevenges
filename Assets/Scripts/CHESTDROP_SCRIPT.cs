@@ -4,27 +4,67 @@ using UnityEngine;
 
 public class CHESTDROP_SCRIPT : MonoBehaviour
 {
+    public Animator ITEM_CONTROL;
+
+    public  CHESTDROP_SCRIPT chestdrop;
     public Transform spawn;
     public GameObject[] items;
     public PLAYER_SCRIPT player;
-    int ID;
+    public List<int> chestslots = new List<int>();
+    public int IDassigner;
+
+    public int ID;
 
     bool droppedonce;
     void Awake()
     {
-        ID = Random.Range(1, 6);
+        chestdrop = this;
+        Roll();
 
     }
 
+     void Start()
+    {
+        ID = IDassigner;
+        ITEM_CONTROL = GetComponent<Animator>();
+
+    }
+
+    private void Update()
+    {
+        ID = IDassigner;
+    }
 
 
+    public int Roll()
+    { //function to find a job
 
+        
 
+            if (chestslots.Count == 0)
+            { //if list is empty
+            chestslots.Clear();
+            }
+            else
+            { //if not
+                IDassigner = chestslots[Random.Range(0, chestslots.Count)]; //get a random
+
+            }
+        chestslots.Remove(IDassigner); //remove from list
+
+        
+        return IDassigner;
+
+    }
+    public void ObjectDestroy()
+    {
+
+        Destroy(gameObject);
+    }
     public void Drop()
     {
-        if (droppedonce == false)
+       
         {
-            droppedonce = true;
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
 
@@ -37,15 +77,18 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
 
 
 
+
                         //subtracts the bronze price from the player total
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
 
                         Instantiate(items[0], spawn.transform.position, spawn.transform.rotation);
+                        Destroy(gameObject);
+
                     }
-                   else if (item.got == true || item.chestdropped == true)
+                    else if (item.got == true || item.chestdropped == true)
                     {
-                        Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+                        Roll();
 
                     }
 
@@ -55,8 +98,10 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                 {
 
 
+
                     if (item.got == false && item.chestdropped == false)
                     {
+
 
 
 
@@ -64,12 +109,15 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[1], spawn.transform.position, spawn.transform.rotation);
+                        Destroy(gameObject);
+
 
 
                     }
-                 else   if (item.got == true || item.chestdropped == true)
+                    else   if (item.got == true || item.chestdropped == true)
                     {
-                        Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+                        Roll();
+
 
                     }
 
@@ -83,15 +131,18 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
 
 
 
+
                         //subtracts the bronze price from the player total
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[2], spawn.transform.position, spawn.transform.rotation);
+                        Destroy(gameObject);
 
                     }
-                 else   if (item.got == true || item.chestdropped == true)
+                    else   if (item.got == true || item.chestdropped == true)
                     {
-                        Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+
+                        Roll();
 
                     }
 
@@ -109,11 +160,13 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[3], spawn.transform.position, spawn.transform.rotation);
+                        Destroy(gameObject);
+
 
                     }
                     else if (item.got == true || item.chestdropped == true)
                     {
-                        Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+                        Roll();
 
                     }
 
@@ -131,11 +184,13 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[4], spawn.transform.position, spawn.transform.rotation);
+                        Destroy(gameObject);
+
 
                     }
-                  else  if (item.got == true || item.chestdropped == true)
+                    else  if (item.got == true || item.chestdropped == true)
                     {
-                        Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+                        Roll();
 
                     }
 
@@ -149,17 +204,21 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
 
 
 
+
                         //subtracts the bronze price from the player total
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[5], spawn.transform.position, spawn.transform.rotation);
+                        Destroy(gameObject);
+
 
                     }
 
 
-                   else if(item.got ==true || item.chestdropped ==true)
+                    else if(item.got ==true || item.chestdropped ==true)
                     {
-                        Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+                        Roll();
+
 
                     }
 
@@ -168,11 +227,71 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
 
 
 
+
             }
+
+            if (chestslots.Count == 0)
+            {
+                Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+                Destroy(gameObject);
+            }
+
 
         }
     }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerAttack"))
+        {
+
+            ITEM_CONTROL.SetBool("Dead", true);
 
 
 
+
+
+
+        }
+        //fireball damages the barrel
+        else if (collision.gameObject.CompareTag("Fireball"))
+        {
+            ITEM_CONTROL.SetBool("Dead", true);
+
+
+        }
+        //hazards damage the player
+        else if (collision.gameObject.CompareTag("Hazard"))
+        {
+            ITEM_CONTROL.SetBool("Dead", true);
+
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //player attacks damage the object
+        if (collision.gameObject.CompareTag("PlayerAttack"))
+        {
+
+
+
+            ITEM_CONTROL.SetBool("Dead", true);
+
+
+        }
+        //fireball damages the barrel
+        else if (collision.gameObject.CompareTag("Fireball"))
+        {
+            ITEM_CONTROL.SetBool("Dead", true);
+
+
+        }
+        //hazards damage the player
+        else if (collision.gameObject.CompareTag("Hazard"))
+        {
+            ITEM_CONTROL.SetBool("Dead", true);
+
+        }
+    }
+    
 }

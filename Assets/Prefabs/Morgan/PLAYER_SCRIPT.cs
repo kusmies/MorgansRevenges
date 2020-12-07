@@ -26,7 +26,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //additional speed
     public float bonusspeed;
 
-    float barsize = 160;
+    public float barsize = 160;
     //the coin int
     public float coin;
     //invunerable timer ticks up
@@ -446,47 +446,97 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         if (deathtimer >= deathtimertarget)
         {
+            foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+            {
+                if (item.ID == 1)
+                {
+                    item.displayed = false;
+                    XMLManager.ins.PermSaveItems();
+
+                }
+                if (item.ID == 2)
+                {
+                    item.displayed = false;
+                    XMLManager.ins.PermSaveItems();
+
+                }
+                if (item.ID == 3)
+                {
+                    item.displayed = false;
+                    XMLManager.ins.PermSaveItems();
+
+                }
+                if (item.ID == 4)
+                {
+                    item.displayed = false;
+                    XMLManager.ins.PermSaveItems();
+
+                }
+                if (item.ID == 5)
+                {
+                    item.displayed = false;
+                    XMLManager.ins.PermSaveItems();
+
+                }
+
+            }
             foreach (ItemEntry item in XMLManager.ins.itemDB.list)
             {
 
                 if (item.ID == 1)
                 {
+                    item.displayed = false;
+
                     if (item.got == true)
                     {
                         MaxMana -= item.value;
                         item.got = false;
 
                         item.chestdropped = false;
+                 
+
+
                     }
 
                 }
                 if (item.ID == 2)
                 {
+                    item.displayed = false;
+
                     if (item.got == true)
                     {
                         MaxMana -= item.value;
                         item.got = false;
                         item.chestdropped = false;
 
+              
                     }
                 }
                 if (item.ID == 3)
                 {
+                    item.displayed = false;
+
                     if (item.got == true)
                     {
                         MaxHealth -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+     
+
 
                     }
                 }
                 if (item.ID == 4)
                 {
+                    item.displayed = false;
+
                     if (item.got == true)
                     {
                         MaxHealth -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+            
+
 
                     }
 
@@ -496,9 +546,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
                     if (item.got == true)
                     {
+                        item.displayed = false;
+
                         SwordDamage -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+
+                    
 
                     }
                 }
@@ -509,12 +563,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
                         SwordDamage -= item.value;
                         item.got = false;
                         item.chestdropped = false;
+                        item.displayed = false;
 
+                  
                     }
                 }
                 XMLManager.ins.SaveItems();
                 SaveLoadManager.SavePlayer(this);
-
                 level.changeScene(4);
             }
         }
