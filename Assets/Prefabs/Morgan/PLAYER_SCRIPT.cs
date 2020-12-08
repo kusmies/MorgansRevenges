@@ -833,6 +833,39 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
 
+        //gives the player a coin
+      
+        //kills on hazard collision
+         if (collision.gameObject.CompareTag("Water"))
+        {
+            slide.SetBar(CurrentHealth);
+
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) CurrentHealth = 0;
+
+        }
+        
+         //makes enemies do damage
+         else if (collision.gameObject.CompareTag("Enemy"))
+         {
+
+
+
+            slide.SetBar(CurrentHealth);
+
+            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            CurrentHealth -= damage.Damage;
+            invicibility = true;
+            invulnertimer = 2.0f;
+            stuntimer = 0.5f;
+        }
+
+     
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
         if (collision.gameObject.CompareTag("BronzeRing"))
         {
             ID = 1;
@@ -1035,41 +1068,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             }
         }
-        //gives the player a coin
-      
-        //kills on hazard collision
-        else if (collision.gameObject.CompareTag("Water"))
-        {
-            slide.SetBar(CurrentHealth);
 
-            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
-
-            if (!waterScript.isFrozen) CurrentHealth = 0;
-
-        }
-        
-         //makes enemies do damage
-         else if (collision.gameObject.CompareTag("Enemy"))
-         {
-
-
-
-            slide.SetBar(CurrentHealth);
-
-            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-            CurrentHealth -= damage.Damage;
-            invicibility = true;
-            invulnertimer = 2.0f;
-            stuntimer = 0.5f;
-        }
-
-     
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Enemy"))
+        else if (collision.gameObject.CompareTag("Enemy"))
         {
 
           
