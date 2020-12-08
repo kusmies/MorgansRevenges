@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Lancelot might be the most difficult thing I do on this project as far as programming is concerned.
 //The main problem is his general shape. Lancelot is a centaur-like creature and so his shape makes his hit box a bit difficult to figure out.
@@ -22,7 +23,8 @@ public class LANCEL_SCRIPT : MonoBehaviour
     [SerializeField] public LayerMask groundLayer;
     SpriteRenderer mySprite;
     public bool isDead = false;
-    public int hp = 36;
+    int maxHP = 36;
+    int hp;
     public GameObject explosionEffect;
     public GameObject lightningBall;
     int dmgThreshold = 4;
@@ -33,6 +35,7 @@ public class LANCEL_SCRIPT : MonoBehaviour
     public bool spearExtended = false;
     public int bulletsSpawned = 0;
     public DFACT2_HANDLER_SCRIPT actHandler;
+    public Slider hpBar;
 
     // Start is called before the first frame update
     void Start()
@@ -43,12 +46,15 @@ public class LANCEL_SCRIPT : MonoBehaviour
         powerScript = GetComponent<POWER_SCRIPT>();
         lancelAnimScript = GetComponent<LANCEL_ANIM_SCRIPT>();
         chargeCD = Random.Range(4, 7);
+        hp = maxHP;
+        SetMaxBar((float)maxHP);
+        SetBar((float)hp);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        SetBar((float)hp);
         checkForDeath();
         checkForGround();
         handleState();
@@ -56,6 +62,7 @@ public class LANCEL_SCRIPT : MonoBehaviour
 
     void checkForDeath()
     {
+
         if (hp <= 0)
         {
             isDead = true;
@@ -626,6 +633,17 @@ public class LANCEL_SCRIPT : MonoBehaviour
     void endScene()
     {
         actHandler.endScene();
+    }
+
+    void SetMaxBar(float value)
+    {
+        hpBar.maxValue = value;
+        hpBar.value = value;
+    }
+
+    void SetBar(float value)
+    {
+        hpBar.value = value;
     }
 }
 
