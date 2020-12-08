@@ -106,7 +106,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //players ground layer
     [SerializeField] public LayerMask groundLayer;
 
-
+    public GameObject windPushParticleEmitter;
 
     // Start is called before the first frame update
 
