@@ -391,7 +391,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 64d4510c9e0097044882a9ecfbc204b6, type: 3}
   - {fileID: 21300000, guid: 7fac27f95dd41934490ad29be74856fb, type: 3}
   - {fileID: 21300000, guid: e202b7be304d6fd4fa7c2f61bbc20b81, type: 3}
-  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: 4807968ef7a143743b12a904b5633e4c, type: 3}
   player: {fileID: 3194736562856368177, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f, type: 3}
   buyonce: 0
   openslot: 0
@@ -458,8 +458,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4807968ef7a143743b12a904b5633e4c, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
