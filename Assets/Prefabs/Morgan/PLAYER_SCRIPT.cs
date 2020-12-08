@@ -14,9 +14,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
 {
     Vector2 pushDirection;
     //gets rigid body
-    public Rigidbody2D rb;
     //knockback bool
     //thrust force added
+    public static bool IsInputEnabled = true;
+
     public float thrust;
     int ID;
     //jump height
@@ -80,9 +81,12 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public bool midslash;
     public bool crouch;
     public bool invicibility;
+    public bool doublejumped;
     //bool for players death
     public bool death;
     public bool stun;
+    public bool hitstunned;
+
 
     //loads the level the players in
     public CHASEN_SCRIPT level;
@@ -128,7 +132,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Start()
     {
 
-        rb = this.GetComponent<Rigidbody2D>();
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
         XMLManager.ins.PermLoadItems();
@@ -186,9 +189,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
         HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
         RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
         MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
-        coinvalue.text = "X "+ coin.ToString()  ;
+        coinvalue.text = "X " + coin.ToString();
 
-        if (!death)
+        if (!death && PLAYER_SCRIPT.IsInputEnabled == true)
         {
             checkForGround();
 
@@ -213,6 +216,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         {
             //ground is true
             isGrounded = true;
+            doublejumped = false;
 
         }
 
@@ -229,37 +233,66 @@ public class PLAYER_SCRIPT : MonoBehaviour
     {
 
 
-        if (stun == false)
+        if (stun == false||playerstruck ==false)
         {
-            midslash = false;
+           
+                midslash = false;
             castingfireball = false;
             castingfrostWave = false;
             jumpslash = false;
 
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
+          
 
 
 
-                myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
-
-            }
-
-            else if (Input.GetButtonDown("JumpSlash") && !isGrounded)
-            {
-
-
-                jumpslash = true;
-            }
+         
             //left is true
-            else if (Input.GetAxisRaw("Horizontal") > 0)
+             if (Input.GetAxisRaw("Horizontal") > 0)
             {
 
                 myBody.velocity = new Vector2(+speedforce + bonusspeed, myBody.velocity.y);
                 mySprite.flipX = true;
                 isMoving = true;
                 crouch = false;
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
 
+
+                }
+                else if (!isGrounded)
+                {
+                    if (Input.GetButtonDown("JumpSlash"))
+                    {
+
+
+                        jumpslash = true;
+                    }
+
+                    else if (Input.GetButtonDown("WindSlash") && CurrentMana > 0 && doublejumped == false)
+                    {
+                        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+                        {
+                            if (item.ID == 3)
+                            {
+
+                                if (item.unlocked == true)
+                                {
+                                    doublejumped = true;
+                                    CurrentMana--;
+                                    GameObject PartEmitter;
+                                    PartEmitter = Instantiate(windPushParticleEmitter, transform.position, transform.rotation);
+                                    WINPUEM_SCRIPT PartEmitterScript = PartEmitter.GetComponent<WINPUEM_SCRIPT>();
+                                    PartEmitterScript.spawnZoneOrigin = player.transform.position;
+                                    PartEmitterScript.spawnZoneBounds = new Vector2(1.5f, 3f);
+                                    myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
+
+                                }
+                            }
+                        }
+                    }
+
+                }
 
             }
             else if (Input.GetButtonDown("Crouch"))
@@ -270,7 +303,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 isMoving = false;
 
 
-          
+
             }
 
             else if (crouch == true)
@@ -296,7 +329,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 myBody.velocity = new Vector2(0, myBody.velocity.y);
 
                 crouch = false;
-               
+
 
             }
 
@@ -307,7 +340,43 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 isMoving = true;
                 crouch = false;
 
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
 
+
+                }
+                else if (!isGrounded)
+                {
+                    if (Input.GetButtonDown("JumpSlash"))
+                    {
+
+
+                        jumpslash = true;
+                    }
+                    else if (Input.GetButtonDown("WindSlash") && CurrentMana > 0 && doublejumped == false)
+                    {
+                        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+                        {
+                            if (item.ID == 3)
+                            {
+
+                                if (item.unlocked == true)
+                                {
+                                    doublejumped = true;
+                                    CurrentMana--;
+                                    GameObject PartEmitter;
+                                    PartEmitter = Instantiate(windPushParticleEmitter, transform.position, transform.rotation);
+                                    WINPUEM_SCRIPT PartEmitterScript = PartEmitter.GetComponent<WINPUEM_SCRIPT>();
+                                    PartEmitterScript.spawnZoneOrigin = player.transform.position;
+                                    PartEmitterScript.spawnZoneBounds = new Vector2(1.5f, 3f);
+                                    myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
+
+                                }
+                            }
+                        }
+                    }
+                }
 
             }
 
@@ -321,7 +390,45 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 myBody.velocity = new Vector2(0, myBody.velocity.y);
 
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
 
+
+                }
+                else if (!isGrounded)
+                {
+                    if (Input.GetButtonDown("JumpSlash"))
+                    {
+
+
+                        jumpslash = true;
+                    }
+
+                    else if (Input.GetButtonDown("WindSlash") && CurrentMana > 0 &&doublejumped == false)
+                    {
+                        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+                        {
+                            if (item.ID == 3)
+                            {
+
+                                if (item.unlocked == true)
+                                {
+                                    doublejumped = true;
+                                    CurrentMana--;
+                                    GameObject PartEmitter;
+                                    PartEmitter = Instantiate(windPushParticleEmitter, transform.position, transform.rotation);
+                                    WINPUEM_SCRIPT PartEmitterScript = PartEmitter.GetComponent<WINPUEM_SCRIPT>();
+                                    PartEmitterScript.spawnZoneOrigin = player.transform.position;
+                                    PartEmitterScript.spawnZoneBounds = new Vector2(1.5f, 3f);
+                                    myBody.velocity = new Vector2(myBody.velocity.x, jumpforce);
+
+                                }
+                            }
+                        }
+                    }
+
+                }
 
                 if (Input.GetButtonDown("Slash") && isGrounded)
                 {
@@ -343,7 +450,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                                 castingfireball = true;
                             }
                         }
-                       
+
                     }
                 }
 
@@ -365,16 +472,32 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //makes invincibility happen when true
         if (invicibility == true)
         {
+
             if (stuntimer > stuntarget)
             {
-                float horizontalInput = Input.GetAxis("Horizontal");
-                horizontalInput = 0;
                 isMoving = false;
                 playerstruck = true;
 
+                if (mySprite.flipX == true)
+                {
+                    PLAYER_SCRIPT.IsInputEnabled = false;
+                    Vector2 direction = new Vector2(-20f, myBody.velocity.y);
+                    myBody.velocity = direction;
+                }
+
+                if (mySprite.flipX == false)
+                {
+                    PLAYER_SCRIPT.IsInputEnabled = false;
+
+                    Vector2 direction = new Vector2(20f, myBody.velocity.y);
+                    myBody.velocity = direction;
+                }
+
+        
+
+
             }
 
-            stun = true;
             stuntimer -= Time.deltaTime;
             invulnertimer -= Time.deltaTime;
             mySprite.color = new Color32(255, 0, 0, 255);
@@ -384,23 +507,17 @@ public class PLAYER_SCRIPT : MonoBehaviour
             if (stuntimer <= stuntarget)
             {
                 playerstruck = false;
+                PLAYER_SCRIPT.IsInputEnabled = true;
 
                 stun = false;
                 stuntimer = 0.0f;
             }
-            if (invulnertimer <= invulnertarget)
-            {
-                mySprite.color = new Color32(255, 255, 255, 255);
-                Physics2D.IgnoreLayerCollision(12, 9, false);
-                invicibility = false;
-                invulnertimer = 0.0f;
-
-
-            }
+    
         }
 
         if (invulnertimer <= invulnertarget)
         {
+
             mySprite.color = new Color32(255, 255, 255, 255);
             Physics2D.IgnoreLayerCollision(12, 9, false);
             invicibility = false;
@@ -919,6 +1036,62 @@ public class PLAYER_SCRIPT : MonoBehaviour
             }
         }
         //gives the player a coin
+      
+        //kills on hazard collision
+        else if (collision.gameObject.CompareTag("Water"))
+        {
+            slide.SetBar(CurrentHealth);
+
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) CurrentHealth = 0;
+
+        }
+        
+         //makes enemies do damage
+         else if (collision.gameObject.CompareTag("Enemy"))
+         {
+
+
+
+            slide.SetBar(CurrentHealth);
+
+            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            CurrentHealth -= damage.Damage;
+            invicibility = true;
+            invulnertimer = 2.0f;
+            stuntimer = 0.5f;
+        }
+
+     
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+          
+
+            slide.SetBar(CurrentHealth);
+
+            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            CurrentHealth -= damage.Damage;
+            invicibility = true;
+            invulnertimer = 2.0f;
+            stuntimer = 0.5f;
+        }
+
+      else if (collision.gameObject.CompareTag("Water"))
+        {
+            slide.SetBar(CurrentHealth);
+
+            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+            if (!waterScript.isFrozen) CurrentHealth = 0;
+
+        }
         else if (collision.gameObject.CompareTag("Coin"))
         {
             coin++;
@@ -959,90 +1132,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
             coin += 5;
 
             coinvalue.text = coin + "$";
-
-        }
-        //kills on hazard collision
-        else if (collision.gameObject.CompareTag("Water"))
-        {
-            slide.SetBar(CurrentHealth);
-
-            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
-
-            if (!waterScript.isFrozen) CurrentHealth = 0;
-
-        }
-        
-         //makes enemies do damage
-         else if (collision.gameObject.CompareTag("Enemy"))
-         {
-
-            if (mySprite.flipX == true)
-            {
-                Vector2 direction = new Vector2(-1000f, myBody.velocity.y);
-                rb.AddForce(direction);
-                isMoving = false;
-            }
-
-            if (mySprite.flipX == false)
-            {
-                Vector2 direction = new Vector2(1000f, myBody.velocity.y);
-                rb.AddForce(direction);
-                isMoving = false;
-            }
-
-
-            slide.SetBar(CurrentHealth);
-
-
-            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-            CurrentHealth -= damage.Damage;
-            invicibility = true;
-            invulnertimer = 2.0f;
-            stuntimer = 0.5f;
-
-         }
-
-     
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-
-            if (mySprite.flipX == true)
-            {
-                Vector2 direction = new Vector2(-1000f, myBody.velocity.y);
-                rb.AddForce(direction);
-                isMoving = false;
-            }
-
-            if (mySprite.flipX == false)
-            {
-                Vector2 direction = new Vector2(1000f, myBody.velocity.y);
-                rb.AddForce(direction);
-                isMoving = false;
-            }
-
-
-            slide.SetBar(CurrentHealth);
-
-
-            var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
-            CurrentHealth -= damage.Damage;
-            invicibility = true;
-            invulnertimer = 2.0f;
-            stuntimer = 0.5f;
-        }
-
-        if (collision.gameObject.CompareTag("Water"))
-        {
-            slide.SetBar(CurrentHealth);
-
-            WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
-
-            if (!waterScript.isFrozen) CurrentHealth = 0;
 
         }
     }

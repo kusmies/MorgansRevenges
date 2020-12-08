@@ -5,12 +5,15 @@ using UnityEngine;
 public class DTRYLT_SCRIPT: MonoBehaviour
 {
     //destroys loot objects on player collision
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
     }
+ 
 
 }
