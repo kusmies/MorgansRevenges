@@ -186,7 +186,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         HpSliderRect.sizeDelta = new Vector2(hpUp, HpSliderRect.sizeDelta.y);
         RectTransform MpSliderRect = slide2.GetComponent<RectTransform>();
         MpSliderRect.sizeDelta = new Vector2(MpUp, MpSliderRect.sizeDelta.y);
-        coinvalue.text = coin.ToString();
+        coinvalue.text = "X "+ coin.ToString()  ;
 
         if (!death)
         {

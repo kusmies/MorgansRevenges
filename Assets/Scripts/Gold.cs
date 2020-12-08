@@ -12,7 +12,7 @@ public class Gold : MonoBehaviour
 
      void Update()
     {
-        playergold.text = player.coin.ToString();
+        playergold.text ="Morgan's Gold:" + player.coin.ToString();
         
     }
     public void Load()

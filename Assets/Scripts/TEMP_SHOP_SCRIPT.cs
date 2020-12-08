@@ -1,33 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Serialization;
-using System.IO;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Xml.Linq;
 //using UnityEditor.Build.Content;
-using System.Runtime.Serialization;
-using JetBrains.Annotations;
 using UnityEngine.UI;
-using System.Linq;
-using System;
-using System.Runtime.InteropServices;
-
+using UnityEngine.EventSystems;
 public class TEMP_SHOP_SCRIPT : MonoBehaviour
 {
-   public TEMP_SHOP_SCRIPT tempitemshop;
+    public SHOPSCENEMANAGER_SCRIPT scenemanager;
+    public TEMP_SHOP_SCRIPT tempitemshop;
     public Image itemspriterenderer;
 
-    public Text Name, price, description;
-  
+   string Name, price, description;
+
 
     public int ID;
 
- 
+
 
     private int IDassigner;
 
-    public List<int> storeslots= new List<int>();
+    public List<int> storeslots = new List<int>();
     public static int previousitem = -1;
     public Sprite[] itemsprites;
     public PLAYER_SCRIPT player;
@@ -43,8 +34,8 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
     }
 
 
-   
-void Start()
+
+    void Start()
     {
         foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {
@@ -57,27 +48,27 @@ void Start()
             }
             if (item.ID == 2)
             {
-               
+
             }
             if (item.ID == 3)
             {
                 item.displayed = false;
-               
+
             }
             if (item.ID == 4)
             {
                 item.displayed = false;
-                
+
             }
             if (item.ID == 5)
             {
                 item.displayed = false;
-              
+
             }
             if (item.ID == 6)
             {
                 item.displayed = false;
-               
+
             }
         }
         XMLManager.ins.PermLoadItems();
@@ -132,8 +123,13 @@ void Start()
 
     public void Click()
     {
+        Debug.Log("still workin");
+
         buyonce = true;
         Cost();
+        scenemanager.Name.text = Name;
+        scenemanager.Price.text = price;
+        scenemanager.Description.text = description;
     }
     public void Cost()
     {
@@ -157,9 +153,9 @@ void Start()
 
                         //subtracts the bronze price from the player total
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
+                        Name = item.name.ToString();
+                        price= "Gold: " + item.price.ToString();
+                        description= item.description.ToString();
 
 
                     }
@@ -172,15 +168,16 @@ void Start()
                     if (player.coin >= item.price && buyonce == true && item.ID == 1)
 
                     {
+                        Name = "Thank you";
+                        price = "";
+                        description = "Come Again";
 
                         player.MaxMana += item.value;
                         //subtracts the bronze price from the player total
-                        player.coin -= item.price; 
-                        Name.text = "Thank you";
-                        price.text = "";
+                        player.coin -= item.price;
+
                         itemspriterenderer.sprite = itemsprites[6];
 
-                        description.text = "Come Again";
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
@@ -190,10 +187,9 @@ void Start()
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                     }
 
                 }
@@ -213,10 +209,11 @@ void Start()
 
                         //subtracts the bronze price from the player total
                         item.displayed = true;
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
-                       
+
+                        Name = item.name.ToString();
+                        price = "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
+
 
 
                     }
@@ -228,14 +225,15 @@ void Start()
 
                     if (player.coin >= item.price && buyonce == true && item.ID == 2)
                     {
+                        Name = "Thank you";
+                        price = "";
+                        description = "Come Again";
                         player.coin -= item.price;
 
                         player.MaxMana += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+
                         itemspriterenderer.sprite = itemsprites[6];
 
-                        description.text = "Come Again";
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
@@ -244,10 +242,9 @@ void Start()
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                     }
 
                 }
@@ -264,10 +261,11 @@ void Start()
 
                         item.displayed = true;
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
-                       
+
+                        Name= item.name.ToString();
+                        price = "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
+
 
 
                     }
@@ -279,15 +277,15 @@ void Start()
 
                     if (player.coin >= item.price && buyonce == true && item.ID == 3)
                     {
-
+                        Name = "Thank you";
+                        price = "";
+                        description = "Come Again";
                         player.coin -= item.price;
 
                         player.MaxHealth += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+
                         itemspriterenderer.sprite = itemsprites[6];
 
-                        description.text = "Come Again";
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
@@ -296,10 +294,9 @@ void Start()
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                     }
 
                 }
@@ -316,10 +313,10 @@ void Start()
                         item.displayed = true;
 
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
-                      
+
+                        Name = item.name.ToString();
+                        price= "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
 
 
 
@@ -332,15 +329,16 @@ void Start()
 
                     if (player.coin >= item.price && buyonce == true && item.ID == 4)
                     {
-
+                        Name = "Thank you";
+                        price = "";
+                        description = "Come Again";
                         player.coin -= item.price;
 
                         player.MaxHealth += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+
                         itemspriterenderer.sprite = itemsprites[6];
 
-                        description.text = "Come Again";
+
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
@@ -349,10 +347,9 @@ void Start()
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                     }
                 }
                 if (ID == item.ID && item.ID == 5)
@@ -367,10 +364,11 @@ void Start()
 
                         item.displayed = true;
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
-                       
+
+
+                        Name = item.name.ToString();
+                        price= "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
 
                     }
                     else if (item.got == true || item.displayed == true && buyonce == false)
@@ -381,15 +379,16 @@ void Start()
 
                     if (player.coin >= item.price && buyonce == true && item.ID == 5)
                     {
+                        Name = "Thank you";
+                        price = "";
+                        description = "Come Again";
                         item.ID = 5;
                         player.coin -= item.price;
 
                         player.SwordDamage += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+
                         itemspriterenderer.sprite = itemsprites[6];
 
-                        description.text = "Come Again";
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
@@ -398,10 +397,10 @@ void Start()
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
-                        Debug.Log("readingIt");
+
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                     }
                 }
                 if (ID == item.ID && item.ID == 6)
@@ -418,10 +417,9 @@ void Start()
 
 
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
-                      
+                        Name= item.name.ToString();
+                        price = "Gold: " + item.price;
+                        description = item.description;
 
                     }
 
@@ -434,14 +432,15 @@ void Start()
 
                     if (player.coin >= item.price && buyonce == true && item.ID == 6)
                     {
+                        Name = "Thank you";
+                        price = "";
+                        description = "Come Again";
                         player.coin -= item.price;
 
                         player.SwordDamage += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+
                         itemspriterenderer.sprite = itemsprites[6];
 
-                        description.text = "Come Again";
                         item.got = true;
 
                         XMLManager.ins.SaveItems();
@@ -450,10 +449,9 @@ void Start()
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                     }
 
                 }
@@ -464,15 +462,23 @@ void Start()
 
             }
 
-            }
-
-
         }
+
+
     }
+    public void Whenhovered()
+    {
+        scenemanager.Name.text = Name;
+        scenemanager.Price.text = price;
+        scenemanager.Description.text = description;
+        Debug.Log("Mouse is over GameObject.");
+
+    }
+}
 
 
 
 
 
- 
+
 
