@@ -198,6 +198,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
         SceneManager.LoadScene(index);
 
     }
+
+  
     public void Load(int index)
     {
         float[] loadedStats = SaveLoadManager.LoadPlayer();

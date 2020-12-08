@@ -24,7 +24,7 @@ public class LANCEL_SCRIPT : MonoBehaviour
     SpriteRenderer mySprite;
     public bool isDead = false;
     int maxHP = 36;
-    int hp;
+    public int hp;
     public GameObject explosionEffect;
     public GameObject lightningBall;
     int dmgThreshold = 4;

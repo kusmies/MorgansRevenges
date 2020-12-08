@@ -268,6 +268,13 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                 crouch = true;
                 isMoving = false;
+
+
+          
+            }
+
+            else if (crouch == true)
+            {
                 foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
                 {
                     if (item.ID == 2)
@@ -278,13 +285,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
                             {
 
                                 castingfrostWave = true;
-
                             }
+
                         }
                     }
                 }
-
-
             }
             else if (Input.GetButtonUp("Crouch"))
             {
@@ -338,18 +343,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                                 castingfireball = true;
                             }
                         }
-                        if (item.ID == 2)
-                        {
-                            if (item.unlocked == true)
-                            {
-                                if (Input.GetButtonDown("FrostWave") && item.unlocked == true && crouch == true)
-                                {
-
-                                    castingfrostWave = true;
-
-                                }
-                            }
-                        }
+                       
                     }
                 }
 
@@ -362,6 +356,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
 
 
+    void failsafe()
+    {
+        stun = false;
+    }
     void invulerability()
     {
         //makes invincibility happen when true
@@ -420,6 +418,137 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
 
 
+    public void itemcleaner()
+    {
+        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+        {
+            if (item.ID == 1)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 2)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 3)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 4)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 5)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+
+        }
+
+        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+        {
+
+            if (item.ID == 1)
+            {
+                item.displayed = false;
+
+                if (item.got == true)
+                {
+                    MaxMana -= item.value;
+                    item.got = false;
+
+                    item.chestdropped = false;
+
+
+
+                }
+
+            }
+            if (item.ID == 2)
+            {
+                item.displayed = false;
+
+                if (item.got == true)
+                {
+                    MaxMana -= item.value;
+                    item.got = false;
+                    item.chestdropped = false;
+
+
+                }
+            }
+            if (item.ID == 3)
+            {
+                item.displayed = false;
+
+                if (item.got == true)
+                {
+                    MaxHealth -= item.value;
+                    item.got = false;
+                    item.chestdropped = false;
+
+
+
+                }
+            }
+            if (item.ID == 4)
+            {
+                item.displayed = false;
+
+                if (item.got == true)
+                {
+                    MaxHealth -= item.value;
+                    item.got = false;
+                    item.chestdropped = false;
+
+
+
+                }
+
+
+            }
+            if (item.ID == 5)
+            {
+                if (item.got == true)
+                {
+                    item.displayed = false;
+
+                    SwordDamage -= item.value;
+                    item.got = false;
+                    item.chestdropped = false;
+
+
+
+                }
+            }
+            if (item.ID == 6)
+            {
+                if (item.got == true)
+                {
+                    SwordDamage -= item.value;
+                    item.got = false;
+                    item.chestdropped = false;
+                    item.displayed = false;
+
+
+                }
+            }
+        }
+        XMLManager.ins.SaveItems();
+        XMLManager.ins.PermSaveItems();
+
+        SaveLoadManager.SavePlayer(this);
+    }
     void Dead()
     {
         //kills out of bound
@@ -446,132 +575,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         if (deathtimer >= deathtimertarget)
         {
-            foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
-            {
-                if (item.ID == 1)
-                {
-                    item.displayed = false;
-                    XMLManager.ins.PermSaveItems();
-
-                }
-                if (item.ID == 2)
-                {
-                    item.displayed = false;
-                    XMLManager.ins.PermSaveItems();
-
-                }
-                if (item.ID == 3)
-                {
-                    item.displayed = false;
-                    XMLManager.ins.PermSaveItems();
-
-                }
-                if (item.ID == 4)
-                {
-                    item.displayed = false;
-                    XMLManager.ins.PermSaveItems();
-
-                }
-                if (item.ID == 5)
-                {
-                    item.displayed = false;
-                    XMLManager.ins.PermSaveItems();
-
-                }
-
-            }
-            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-            {
-
-                if (item.ID == 1)
-                {
-                    item.displayed = false;
-
-                    if (item.got == true)
-                    {
-                        MaxMana -= item.value;
-                        item.got = false;
-
-                        item.chestdropped = false;
-                 
-
-
-                    }
-
-                }
-                if (item.ID == 2)
-                {
-                    item.displayed = false;
-
-                    if (item.got == true)
-                    {
-                        MaxMana -= item.value;
-                        item.got = false;
-                        item.chestdropped = false;
-
-              
-                    }
-                }
-                if (item.ID == 3)
-                {
-                    item.displayed = false;
-
-                    if (item.got == true)
-                    {
-                        MaxHealth -= item.value;
-                        item.got = false;
-                        item.chestdropped = false;
-     
-
-
-                    }
-                }
-                if (item.ID == 4)
-                {
-                    item.displayed = false;
-
-                    if (item.got == true)
-                    {
-                        MaxHealth -= item.value;
-                        item.got = false;
-                        item.chestdropped = false;
-            
-
-
-                    }
-
-
-                }
-                if (item.ID == 5)
-                {
-                    if (item.got == true)
-                    {
-                        item.displayed = false;
-
-                        SwordDamage -= item.value;
-                        item.got = false;
-                        item.chestdropped = false;
-
-                    
-
-                    }
-                }
-                if (item.ID == 6)
-                {
-                    if (item.got == true)
-                    {
-                        SwordDamage -= item.value;
-                        item.got = false;
-                        item.chestdropped = false;
-                        item.displayed = false;
-
-                  
-                    }
-                }
-                XMLManager.ins.SaveItems();
-                SaveLoadManager.SavePlayer(this);
+            itemcleaner();
+             
                 level.changeScene(4);
-            }
+            
         }
     }
     public void CastFireball()
@@ -671,7 +678,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //make a bullet
         if (mySprite.flipX == false)
         {
-            Vector2 bladeSpawn = new Vector2(SwordSpawn.transform.position.x + -8.31f, SwordSpawn.transform.position.y);
+            Vector2 bladeSpawn = new Vector2(SwordSpawn.transform.position.x +-5.71f, SwordSpawn.transform.position.y);
             blade = (Instantiate(HighSwordPrefab, bladeSpawn, transform.rotation)) as GameObject;
             blade.GetComponent<POWER_SCRIPT>().Damage += (int)SwordDamage;
 
