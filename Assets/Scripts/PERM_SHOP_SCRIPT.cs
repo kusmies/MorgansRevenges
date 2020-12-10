@@ -12,6 +12,7 @@ using UnityEngine.UI;
 
 public class PERM_SHOP_SCRIPT : MonoBehaviour
 {
+    public SHOPSCENEMANAGER_SCRIPT scenemanager;
     public int ID;
     public PERM_SHOP_SCRIPT permitemshop;
     public Image itemspriterenderer;
@@ -26,7 +27,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
     public Sprite[] itemsprites;
     public PLAYER_SCRIPT player;
-    public Text Name, price, description;
+    string Name, price, description;
     public bool buyonce;
     public bool openslot;
 
@@ -122,8 +123,13 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
     {
         buyonce = true;
         Cost();
-    }
-    public void Cost()
+        
+            scenemanager.Name.text = Name;
+            scenemanager.Price.text = price;
+            scenemanager.Description.text = description;
+
+      }
+        public void Cost()
     {
 
         {
@@ -146,9 +152,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         //subtracts the bronze price from the player total
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
+                        Name= item.name;
+                        price = "Gold: " + item.price.ToString();
+                        description= item.description.ToString();
 
 
                     }
@@ -164,11 +170,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         player.MaxMana += item.value;
                         //subtracts the bronze price from the player total
                         player.coin -= item.price;
-                        Name.text = "Thank you";
-                        price.text = "";
+                        Name = "Thank you";
+                        price = "";
                         itemspriterenderer.sprite = itemsprites[5];
 
-                        description.text = "Come Again";
+                        description = "Come Again";
                         item.unlocked = true;
 
                         XMLManager.ins.PermSaveItems();
@@ -178,9 +184,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                         Debug.Log("readingIt");
                     }
 
@@ -201,9 +207,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         //subtracts the bronze price from the player total
                         item.displayed = true;
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
+                        Name = item.name;
+                        price = "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
 
 
 
@@ -219,11 +225,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         player.coin -= item.price;
 
                         player.MaxMana += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+                        Name= "Thank you";
+                        price= "";
                         itemspriterenderer.sprite = itemsprites[5];
 
-                        description.text = "Come Again";
+                        description = "Come Again";
                         item.unlocked = true;
 
                         XMLManager.ins.PermSaveItems();
@@ -233,9 +239,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                         Debug.Log("readingIt");
                     }
 
@@ -253,9 +259,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         item.displayed = true;
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
+                        Name= item.name;
+                        price = "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
 
 
 
@@ -272,11 +278,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         player.coin -= item.price;
 
                         player.MaxHealth += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+                        Name = "Thank you";
+                        price = "";
                         itemspriterenderer.sprite = itemsprites[5];
 
-                        description.text = "Come Again";
+                        description = "Come Again";
                         item.unlocked = true;
 
                         XMLManager.ins.PermSaveItems();
@@ -286,9 +292,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                         Debug.Log("readingIt");
                     }
 
@@ -306,9 +312,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         item.displayed = true;
 
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
+                        Name = item.name;
+                        price = "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
 
 
 
@@ -326,11 +332,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         player.coin -= item.price;
 
                         player.MaxHealth += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+                        Name= "Thank you";
+                        price = "";
                         itemspriterenderer.sprite = itemsprites[5];
 
-                        description.text = "Come Again";
+                        description = "Come Again";
                         item.unlocked = true;
 
                         XMLManager.ins.PermSaveItems();
@@ -339,9 +345,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                         Debug.Log("readingIt");
                     }
                 }
@@ -357,9 +363,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         item.displayed = true;
 
-                        Name.text = item.name;
-                        price.text = "Gold: " + item.price.ToString();
-                        description.text = item.description.ToString();
+                        Name= item.name;
+                        price= "Gold: " + item.price.ToString();
+                        description = item.description.ToString();
 
 
                     }
@@ -375,11 +381,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         player.coin -= item.price;
 
                         player.MaxMana += item.value;
-                        Name.text = "Thank you";
-                        price.text = "";
+                        Name = "Thank you";
+                        price = "";
                         itemspriterenderer.sprite = itemsprites[5];
 
-                        description.text = "Come Again";
+                        description = "Come Again";
                         item.unlocked = true;
                         SaveLoadManager.SavePlayer(player);
 
@@ -388,9 +394,9 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     }
                     if (player.coin <= item.price && buyonce == true)
                     {
-                        Name.text = "You're short";
-                        price.text = "";
-                        description.text = "ComeBack with more money";
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
                         Debug.Log("readingIt");
                     }
                 }
@@ -399,11 +405,11 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                 if (storeslots.Count== 0 )
                 {
-                    Name.text = "Sold Out";
-                    price.text = "";
+                    Name = "Sold Out";
+                    price = "";
                     itemspriterenderer.sprite = itemsprites[5];
 
-                    description.text = "Our Apologies";
+                    description = "We're out of that sorry";
                 }
 
 
@@ -414,6 +420,15 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
 
     }
+    public void Whenhovered()
+    {
+        scenemanager.Name.text = Name;
+        scenemanager.Price.text = price;
+        scenemanager.Description.text = description;
+        Debug.Log("Mouse is over GameObject.");
+
+    }
+
 }
     
 

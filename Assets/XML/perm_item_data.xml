@@ -3,8 +3,8 @@
   <PermItems>
     <PermItemEntry>
       <ID>1</ID>
-      <name>FireRune</name>
-      <description>A rune crackiling with magic, unlocks the fireball uses the O key to fire. This item is permanent.</description>
+      <name>Fire Rune</name>
+      <description>Permanent: press O to throw a Fireball. Destroys some walls Costs 4 Magic.</description>
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
@@ -13,8 +13,8 @@
     </PermItemEntry>
     <PermItemEntry>
       <ID>2</ID>
-      <name>IceRune</name>
-      <description>A rune ice cold with arcanic energy, unlocks the frost wave uses the S key and  O key to summon it. This item is permanent.</description>
+      <name>Ice Rune</name>
+      <description>Permanent: press Down and O to unleash a Frost Wave. Freezes bodies of water. Costs 3 Magic.</description>
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
@@ -23,8 +23,8 @@
     </PermItemEntry>
     <PermItemEntry>
       <ID>3</ID>
-      <name>WindRune</name>
-      <description>A breezey rune with runic powers, unlocks the wind sheathe uses O key in the air to soar with it. This item is permanent.</description>
+      <name>Wind Rune</name>
+      <description>Permanent: able to jump while in air once by pressing space bar. Costs 1 magic.</description>
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
@@ -33,8 +33,8 @@
     </PermItemEntry>
     <PermItemEntry>
       <ID>4</ID>
-      <name>MithrilBangil</name>
-      <description>An enchanted Bangil that makes the user feel stronger.This item is permanent.</description>
+      <name>Mitril Bangil</name>
+      <description>Health +4 Permanently</description>
       <value>4</value>
       <currency>Gold</currency>
       <price>10</price>
@@ -43,8 +43,8 @@
     </PermItemEntry>
     <PermItemEntry>
       <ID>5</ID>
-      <name>ruby bracelet</name>
-      <description>A bracelet empowered by magic. This item is permanent.</description>
+      <name>Ruby Bracelet</name>
+      <description>Magic +4 Permanently</description>
       <value>4</value>
       <currency>Gold</currency>
       <price>10</price>

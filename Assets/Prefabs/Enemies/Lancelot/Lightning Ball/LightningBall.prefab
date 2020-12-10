@@ -118,9 +118,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTran: {fileID: 8774657842928633714}
+  lancelot: {fileID: 0}
   actHandler: {fileID: 0}
   electricHellIDNumber: 0
   stage: 0
+  explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
+    type: 3}
 --- !u!58 &958043646467456003
 CircleCollider2D:
   m_ObjectHideFlags: 0

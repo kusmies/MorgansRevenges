@@ -52,8 +52,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.got = false;
                 item.displayed = false;
                 item.chestdropped = false;
-                item.name = "BronzeRing";
-                item.description = "A bronze ring that increases mana by one.";
+                item.name = "Bronze Ring";
+                item.description = "Magic +1";
                 item.currency = Currency.Gold;
                 item.price = 2;
             }
@@ -64,8 +64,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.chestdropped = false;
                 item.displayed = false;
 
-                item.name = "SilverRing";
-                item.description = "A silver ring that increases mana by two.";
+                item.name = "Silver Ring";
+                item.description = "Magic +2";
                 item.currency = Currency.Gold;
                 item.price = 4;
             }
@@ -76,8 +76,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.chestdropped = false;
                 item.displayed = false;
 
-                item.name = "SteelHelm";
-                item.description = "A steel helmet that increases health by one.";
+                item.name = "Steel Helm";
+                item.description = "Health +1";
 
                 item.currency = Currency.Gold;
                 item.price = 2;
@@ -89,8 +89,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 2;
                 item.got = false;
                 item.chestdropped = false;
-                item.name = "SteelShield";
-                item.description = "A steel shield that increases health by two.";
+                item.name = "Steel Shield";
+                item.description = "Health +2";
                 item.currency = Currency.Gold;
                 item.price = 4;
             }
@@ -104,7 +104,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.got = false;
                 item.chestdropped = false;
                 item.name = "Dagger";
-                item.description = "A dagger that increases the players damage by one.";
+                item.description = "Sword Damage +1";
                 item.currency = Currency.Gold;
                 item.price = 2;
             }
@@ -116,7 +116,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.got = false; 
                 item.chestdropped = false;
                 item.name = "Long Sword";
-                item.description = "A  long sword that increases the players damage by two.";
+                item.description = "Sword Damage +2";
 
                 item.currency = Currency.Gold;
                 item.price = 4;
@@ -132,8 +132,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 0;
                 item.unlocked = false;
 
-                item.name = "FireRune";
-                item.description = "A rune crackiling with magic, unlocks the fireball uses the O key to fire. This item is permanent.";
+                item.name = "Fire Rune";
+                item.description = "Permanent: press O to throw a Fireball. Destroys some walls Costs 4 Magic.";
                 item.currency = Currency.Gold;
                 item.price = 5;
             }
@@ -144,8 +144,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 0;
                 item.unlocked = false;
 
-                item.name = "IceRune";
-                item.description = "A rune ice cold with arcanic energy, unlocks the frost wave uses the S key and  O key to summon it. This item is permanent.";
+                item.name = "Ice Rune";
+                item.description = "Permanent: press Down and O to unleash a Frost Wave. Freezes bodies of water. Costs 3 Magic.";
                 item.currency = Currency.Gold;
                 item.price = 5;
             }
@@ -156,8 +156,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 0;
                 item.unlocked = false;
 
-                item.name = "WindRune";
-                item.description = "A breezey rune with runic powers, unlocks the wind sheathe uses O key in the air to soar with it. This item is permanent.";
+                item.name = "Wind Rune";
+                item.description = "Permanent: able to jump while in air once by pressing space bar. Costs 1 magic.";
                 item.currency = Currency.Gold;
                 item.price = 5;
             }
@@ -168,8 +168,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 4;
                 item.unlocked = false;
 
-                item.name = "MithrilBangil";
-                item.description = "An enchanted Bangil that makes the user feel stronger.This item is permanent.";
+                item.name = "Mitril Bangil";
+                item.description = "Health +4 Permanently";
                 item.currency = Currency.Gold;
                 item.price = 10;
             }
@@ -181,8 +181,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
                 item.value = 4;
                 item.unlocked = false;
 
-                item.name = "ruby bracelet";
-                item.description = "A bracelet empowered by magic. This item is permanent.";
+                item.name = "Ruby Bracelet";
+                item.description = "Magic +4 Permanently";
                 item.currency = Currency.Gold;
                 item.price = 10;
             }
@@ -198,6 +198,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
         SceneManager.LoadScene(index);
 
     }
+
+  
     public void Load(int index)
     {
         float[] loadedStats = SaveLoadManager.LoadPlayer();

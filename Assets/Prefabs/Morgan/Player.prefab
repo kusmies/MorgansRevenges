@@ -291,6 +291,7 @@ MonoBehaviour:
   jumpforce: 50
   speedforce: 20
   bonusspeed: 0
+  barsize: 160
   coin: 0
   invulnertimer: 0
   stuntimer: 0
@@ -338,6 +339,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  windPushParticleEmitter: {fileID: 3316842229688906836, guid: 1b1e3342247595f498f52fc9ca1a3d4b,
+    type: 3}
 --- !u!114 &7256701329708582109
 MonoBehaviour:
   m_ObjectHideFlags: 0

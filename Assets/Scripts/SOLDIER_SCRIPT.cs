@@ -17,16 +17,18 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     float attackCD = 0f;
     float turnAroundCD = 0f;
     public bool isDead = false;
-    public int hp = 6;
+    public int hp = 5;
     public GameObject bladePrefab;
     public bool isHighAttacking2 = false;
     public bool isHighAttacking3 = false;
     public GameObject explosionEffect;
     int dmgThreshold = 2;
-    float invinCD = 0;
     bool beenActivated = false;
-    bool isHitStun = false;
-    
+    float colorChangeCD = 0f;
+    float hitStunCD = 0f;
+    public DFACT1_HANDLER_SCRIPT actManager;
+    public UNIDROP_SCRIPT dropScript;
+
     void Start() // Start is called before the first frame update
     {
         powerScript = GetComponent<POWER_SCRIPT>();
@@ -36,7 +38,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
         soldierAnimatorScript = GetComponent<SOLDIER_ANIM_SCRIPT>();
-        //Debug.Log(myBox.bounds);
+        dropScript = GetComponent<UNIDROP_SCRIPT>();
     }
 
     // Update is called once per frame
@@ -51,6 +53,10 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         {
             isDead = true;
         }
+        if (actManager.levelComplete)
+        {
+            isDead = true;
+        }
 
         if (isPlayerNearby())
         {
@@ -59,21 +65,32 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
         if(beenActivated)
         {
+            handleColor();
+
             checkForGround();
             if (!isDead)
             {
-                invincibilty();
-
-                checkForPlayer();
-
-                if (!isAttacking)
+                if (hitStunCD <= 0)
                 {
-                    walkingAround();
+                    soldierAnimatorScript.isHitStun = false;
+
+                    checkForPlayer();
+
+                    powerScript.Damage = 4;
+
+                    if (!isAttacking)
+                    {
+                        walkingAround();
+                    }
+                    else
+                    {
+                        isHighAttacking2 = soldierAnimatorScript.isHighAttacking2;
+                        isHighAttacking3 = soldierAnimatorScript.isHighAttacking3;
+                    }
                 }
                 else
                 {
-                    isHighAttacking2 = soldierAnimatorScript.isHighAttacking2;
-                    isHighAttacking3 = soldierAnimatorScript.isHighAttacking3;
+                    hitStun();
                 }
             }
             else
@@ -344,21 +361,30 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
             hp -= playerPower.Damage;
 
-            if (!isHitStun)
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myBox);
+
+            if (hitStunCD <= 0)
             {
                 if (playerPower.Damage >= dmgThreshold)
                 {
-                    activateHitStunState();
+                    hitStunCD = 2f;
+                    soldierAnimatorScript.endAttack();
                 }
                 else
                 {
-                    invinCD = 1f;
+                    colorChangeCD = 1f;
                 }
             }
+            else
+            {
+                colorChangeCD = 1f;
+            }
+
         }
 
         if (collision.gameObject.CompareTag("Water"))
@@ -373,20 +399,28 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
             hp -= playerPower.Damage;
 
-            if (!isHitStun)
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myBox);
+
+            if (hitStunCD <= 0)
             {
                 if (playerPower.Damage >= dmgThreshold)
                 {
-                    activateHitStunState();
+                    hitStunCD = 2f;
+                    soldierAnimatorScript.endAttack();
                 }
                 else
                 {
-                    invinCD = 1f;
+                    colorChangeCD = 1f;
                 }
+            }
+            else
+            {
+                colorChangeCD = 1f;
             }
 
         }
@@ -401,11 +435,13 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
     void killSoldier()
     {
-        
+        soldierAnimatorScript.endAttack();
 
         GameObject explosion;
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
+
+        dropScript.Drop();
 
         Destroy(gameObject);
     }
@@ -417,28 +453,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
     }
 
-    void invincibilty()
-    {
-        if(invinCD > 0)
-        {
-            invinCD -= Time.deltaTime;
-
-            mySprite.color = new Color32(255, 255, 0, 255);
-
-            Physics2D.IgnoreLayerCollision(9, 12, true);
-            Physics2D.IgnoreLayerCollision(9, 10, true);
-        }
-        else
-        {
-            if(!isHitStun)
-            {
-                mySprite.color = new Color32(255, 255, 255, 255);
-            }
-            Physics2D.IgnoreLayerCollision(9, 12, false);
-            Physics2D.IgnoreLayerCollision(9, 10, false);
-        }
-    }
-
+   
     bool isPlayerNearby()//This function checks if the player is close enough for this enemy to begin acting.
     {
         Vector2 boxCastSize = new Vector2(64f, 30f);
@@ -453,32 +468,32 @@ public class SOLDIER_SCRIPT : MonoBehaviour
         return false;
     }
 
-    void activateHitStunState()
+    void hitStun()
     {
-        mySprite.color = new Color32(0, 255, 0, 255);
-
-        soldierAnimatorScript.endAttack();
-
         soldierAnimatorScript.isHitStun = true;
-
-        if(!mySprite)
+        powerScript.Damage = 0;
+        if (hitStunCD > 0)
         {
-            myBody.velocity = new Vector2(-5f, 10f);
+            hitStunCD -= Time.deltaTime;
+        }
+
+    }
+
+    void handleColor()
+    {
+        if (hitStunCD > 0)
+        {
+            mySprite.color = new Color32(255, 255, 0, 255);
+        }
+        else if (colorChangeCD > 0)
+        {
+            colorChangeCD -= Time.deltaTime;
+
+            mySprite.color = new Color32(255, 0, 0, 255);
         }
         else
         {
-            myBody.velocity = new Vector2(5f, 10f);
+            mySprite.color = new Color32(255, 255, 255, 255);
         }
-    }
-
-    public void deactivateHitStunState()
-    {
-        mySprite.color = new Color32(255, 255, 255, 255);
-
-        myBody.velocity = new Vector2(0f, 0f);
-
-        invinCD = 1f;
-
-        soldierAnimatorScript.isHitStun = false;
     }
 }

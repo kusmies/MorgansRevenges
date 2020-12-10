@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Lancelot might be the most difficult thing I do on this project as far as programming is concerned.
 //The main problem is his general shape. Lancelot is a centaur-like creature and so his shape makes his hit box a bit difficult to figure out.
@@ -22,17 +23,19 @@ public class LANCEL_SCRIPT : MonoBehaviour
     [SerializeField] public LayerMask groundLayer;
     SpriteRenderer mySprite;
     public bool isDead = false;
-    public int hp = 36;
+    int maxHP = 36;
+    public int hp;
     public GameObject explosionEffect;
     public GameObject lightningBall;
     int dmgThreshold = 4;
-    float invinCD = 0;
-    bool isHitStun = false;
+    float hitStunCD = 0;
+    float colorChangeCD = 0;
     float chargeCD;
     public int state = 1; //1 is charging, 2 is ball lightning (attack 1), 3 is electric hell part 1 (attack 2, part 1), 4 is electric hell part 2 (attck 2, part 2), 5 is idle, 6 is hitstun, 7 is dead
     public bool spearExtended = false;
     public int bulletsSpawned = 0;
     public DFACT2_HANDLER_SCRIPT actHandler;
+    public Slider hpBar;
 
     // Start is called before the first frame update
     void Start()
@@ -40,14 +43,18 @@ public class LANCEL_SCRIPT : MonoBehaviour
         myTran = GetComponent<Transform>();
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
+        powerScript = GetComponent<POWER_SCRIPT>();
         lancelAnimScript = GetComponent<LANCEL_ANIM_SCRIPT>();
         chargeCD = Random.Range(4, 7);
+        hp = maxHP;
+        SetMaxBar((float)maxHP);
+        SetBar((float)hp);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        SetBar((float)hp);
         checkForDeath();
         checkForGround();
         handleState();
@@ -55,13 +62,16 @@ public class LANCEL_SCRIPT : MonoBehaviour
 
     void checkForDeath()
     {
+
         if (hp <= 0)
         {
             isDead = true;
+            state = 7;
         }
         if (myBody.position.y < -20)
         {
             isDead = true;
+            state = 7;
         }
     }
 
@@ -81,6 +91,10 @@ public class LANCEL_SCRIPT : MonoBehaviour
 
     void handleState()
     {
+        checkForDeath();
+
+        handleColor();
+
         switch(state)
         {
         case 1: //Charging
@@ -102,7 +116,7 @@ public class LANCEL_SCRIPT : MonoBehaviour
             hitStunState();
             break;
         case 7: // Dead
-
+            death();
             break;
         case 8:
 
@@ -161,7 +175,7 @@ public class LANCEL_SCRIPT : MonoBehaviour
         else
         {
             float whichAttack = Random.Range(0f, 1f);
-            //Debug.Log("whichAttack " + whichAttack);
+            
             if(bulletsSpawned > 1)
             {
                 state = 1;
@@ -267,7 +281,7 @@ public class LANCEL_SCRIPT : MonoBehaviour
         myTopBox.size = new Vector2(4.8f, 5.2f);
         myBottomBox.size = new Vector2(8.8f, 6.4f);
 
-        if (bulletsSpawned <= 2 && !isHitStun)
+        if (bulletsSpawned <= 2)
         {
             state = 1;
             lancelAnimScript.turnOffAllBools();
@@ -276,7 +290,9 @@ public class LANCEL_SCRIPT : MonoBehaviour
 
     void hitStunState()
     {
-        if(!mySprite.flipX)
+
+
+        if (!mySprite.flipX)
         {
             myTopBox.offset = new Vector2(-1.65f, 3.1f);
             myBottomBox.offset = new Vector2(.36f, -2.67f);
@@ -289,6 +305,45 @@ public class LANCEL_SCRIPT : MonoBehaviour
 
         myTopBox.size = new Vector2(4.8f, 3.1f);
         myBottomBox.size = new Vector2(8.8f, 6.4f);
+        
+        powerScript.Damage = 0;
+
+        if(hitStunCD <= 0)
+        {
+            float whichAttack = Random.Range(0f, 1f);
+
+            if (bulletsSpawned > 1)
+            {
+                state = 1;
+                chargeCD = Random.Range(4, 7);
+                lancelAnimScript.turnOffAllBools();
+            }
+            else if (whichAttack <= .5f)
+            {
+                state = 2;
+                lancelAnimScript.turnOffAllBools();
+            }
+            else
+            {
+                state = 3;
+                if (mySprite.flipX && myTran.position.x > actHandler.playerPosition.x)
+                {
+                    mySprite.flipX = false;
+                }
+                else if (!mySprite.flipX && myTran.position.x < actHandler.playerPosition.x)
+                {
+                    mySprite.flipX = true;
+                }
+            }
+
+            powerScript.Damage = 6;
+
+            lancelAnimScript.turnOffAllBools();
+        }
+        else
+        {
+            hitStunCD -= Time.deltaTime;
+        }
     }
 
     void electricHellPart1()
@@ -448,21 +503,147 @@ public class LANCEL_SCRIPT : MonoBehaviour
         lancelAnimScript.turnOffAllBools();
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+            if (collision.gameObject.CompareTag("PlayerAttack"))
+            {
+                var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
+
+                hp -= playerPower.Damage;
+
+                Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myTopBox);
+
+                Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myBottomBox);
+
+                if (state != 6)
+                {
+                    if (playerPower.Damage >= dmgThreshold)
+                    {
+                        state = 6;
+                        hitStunCD = 2f;
+                        lancelAnimScript.turnOffAllBools();
+                    }
+                    else
+                    {
+                        colorChangeCD = 1f;
+                    }
+                }
+                else
+                {
+                    colorChangeCD = 1f;
+                }
+
+            }
+
+            if (collision.gameObject.CompareTag("Water"))
+            {
+                WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+                if (!waterScript.isFrozen) hp = 0;
+            }
+        
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+            if (collision.gameObject.CompareTag("PlayerAttack"))
+            {
+
+                var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
+
+                hp -= playerPower.Damage;
+
+                   
+
+                Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myTopBox);
+
+                Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myBottomBox);
+
+                if (state != 6)
+                {
+                    if (playerPower.Damage >= dmgThreshold)
+                    {
+                        state = 6;
+                        hitStunCD = 2f;
+                        lancelAnimScript.turnOffAllBools();
+                    }
+                    else
+                    {
+                        colorChangeCD = 1f;
+                    }
+                }
+                else
+                {
+                    colorChangeCD = 1f;
+                }
+
+            }
+
+            if (collision.gameObject.CompareTag("Water"))
+            {
+                WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+
+                if (!waterScript.isFrozen) hp = 0;
+            }
+        
+    }
+
+
     void death()
     {
+        powerScript.Damage = 0;
+
+        actHandler.lancelotDefeated = true;
+
         if (!mySprite.flipX)
         {
-            myTopBox.offset = new Vector2(-1.43f, 3.1f);
-            myBottomBox.offset = new Vector2(.56f, 6.4f);
+            myTopBox.offset = new Vector2(-3.08f, 2.67f);
+            myBottomBox.offset = new Vector2(-1.04f, -2.67f);
         }
         else
         {
-            myTopBox.offset = new Vector2(2.45f, 3.1f);
-            myBottomBox.offset = new Vector2(.38f, 6.4f);
+            myTopBox.offset = new Vector2(3.12f, 2.67f);
+            myBottomBox.offset = new Vector2(1.11f, -2.67f);
         }
 
-        myTopBox.size = new Vector2(4.8f, 3.1f);
-        myBottomBox.size = new Vector2(8.8f, 6.4f);
+        myTopBox.size = new Vector2(4.65f, 4.24f);
+        myBottomBox.size = new Vector2(10.7f, 6.4f);
+    }
+
+    void handleColor()
+    {
+        if(hitStunCD>0)
+        {
+            mySprite.color = new Color32(255, 255, 0, 255);
+        }
+        else if(colorChangeCD > 0)
+        {
+            colorChangeCD -= Time.deltaTime;
+
+            mySprite.color = new Color32(255, 0, 0, 255);
+        }
+        else
+        {
+            mySprite.color = new Color32(255, 255, 255, 255);
+        }
+    }
+
+    void endScene()
+    {
+        actHandler.endScene();
+    }
+
+    void SetMaxBar(float value)
+    {
+        hpBar.maxValue = value;
+        hpBar.value = value;
+    }
+
+    void SetBar(float value)
+    {
+        hpBar.value = value;
     }
 }
 

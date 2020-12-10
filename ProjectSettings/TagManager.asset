@@ -39,6 +39,7 @@ TagManager:
   - SilverRing
   - Dagger
   - LongSword
+  - Particle
   layers:
   - Default
   - TransparentFX
@@ -55,8 +56,8 @@ TagManager:
   - Player
   - fireBall
   - Flag
-  - 
-  - 
+  - Particle
+  - Item
   - 
   - 
   - 

@@ -3,8 +3,8 @@
   <TempItems>
     <ItemEntry>
       <ID>1</ID>
-      <name>BronzeRing</name>
-      <description>A bronze ring that increases mana by one.</description>
+      <name>Bronze Ring</name>
+      <description>Magic +1</description>
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
@@ -14,8 +14,8 @@
     </ItemEntry>
     <ItemEntry>
       <ID>2</ID>
-      <name>SilverRing</name>
-      <description>A silver ring that increases mana by two.</description>
+      <name>Silver Ring</name>
+      <description>Magic +2</description>
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>
@@ -25,8 +25,8 @@
     </ItemEntry>
     <ItemEntry>
       <ID>3</ID>
-      <name>SteelHelm</name>
-      <description>A steel helmet that increases health by one.</description>
+      <name>Steel Helm</name>
+      <description>Health +1</description>
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
@@ -36,19 +36,19 @@
     </ItemEntry>
     <ItemEntry>
       <ID>4</ID>
-      <name>SteelShield</name>
-      <description>A steel shield that increases health by two.</description>
+      <name>Steel Shield</name>
+      <description>Health +2</description>
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>
-      <got>false</got>
+      <got>true</got>
       <displayed>false</displayed>
-      <chestdropped>false</chestdropped>
+      <chestdropped>true</chestdropped>
     </ItemEntry>
     <ItemEntry>
       <ID>5</ID>
       <name>Dagger</name>
-      <description>A dagger that increases the players damage by one.</description>
+      <description>Sword Damage +1</description>
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
@@ -59,7 +59,7 @@
     <ItemEntry>
       <ID>6</ID>
       <name>Long Sword</name>
-      <description>A  long sword that increases the players damage by two.</description>
+      <description>Sword Damage +2</description>
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>

@@ -13,18 +13,18 @@ public class WARDOG_SCRIPT : MonoBehaviour
     [SerializeField] public LayerMask groundLayer;
     [SerializeField] public LayerMask playerLayer;
     SpriteRenderer mySprite;
-    public bool isAttacking = false;
     public bool isDead = false;
     public int hp = 4;
     public GameObject explosionEffect;
     int dmgThreshold = 1;
-    float invinCD = 0;
     float jumpCD = 0f;
     float prevY;
     float prevX;
-    bool wallTry = false;
     bool beenActivated = false;
-    bool isHitStun = false;
+    float hitStunCD = 0;
+    float colorChangeCD = 0;
+    public DFACT1_HANDLER_SCRIPT actManager;
+    public UNIDROP_SCRIPT dropScript;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class WARDOG_SCRIPT : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
         warDogAnimScript = GetComponent<WARDOG_ANIM_SCRIPT>();
-
+        dropScript = GetComponent<UNIDROP_SCRIPT>();
         prevY = myTran.position.y;
     }
 
@@ -51,7 +51,13 @@ public class WARDOG_SCRIPT : MonoBehaviour
         {
             isDead = true;
         }
-        
+
+        if(actManager.levelComplete)
+        {
+            isDead = true;
+        }
+        handleColor();
+
         if(isPlayerNearby())
         {
             beenActivated = true;
@@ -63,23 +69,26 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
             if (!isDead)
             {
-
-                invincibilty();
-                if (!isHitStun)
+                if (hitStunCD <= 0)
                 {
-                walkingAround();
+                    powerScript.Damage = 3;
+                    warDogAnimScript.isWalking = true;
+                    warDogAnimScript.isHitStun = false;
+                    walkingAround();
                 }
                 else
                 {
                     warDogAnimScript.isWalking = false;
+                    warDogAnimScript.isHitStun = true;
+                    powerScript.Damage = 0;
+                    hitStun();
                 }
             }
             else
             {
-                mySprite.color = new Color32(255, 0, 0, 255);
-                Physics.IgnoreLayerCollision(9, 12, true);
-                Physics.IgnoreLayerCollision(9, 10, true);
-                Physics.IgnoreLayerCollision(9, 0, true);
+                warDogAnimScript.isWalking = false;
+                warDogAnimScript.isHitStun = false;
+                powerScript.Damage = 0;
             }
         }
 
@@ -199,16 +208,22 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
             hp -= playerPower.Damage;
 
-            if (!isHitStun)
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myBox);
+
+            if (hitStunCD<=0)
             {
                 if (playerPower.Damage >= dmgThreshold)
                 {
-                    activateHitStunState();
+                    hitStunCD = 2f;
                 }
                 else
                 {
-                    invinCD = 1f;
+                    colorChangeCD = 1f;
                 }
+            }
+            else
+            {
+                colorChangeCD = 1f;
             }
         }
 
@@ -230,16 +245,22 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
             hp -= playerPower.Damage;
 
-            if (!isHitStun)
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), myBox);
+
+            if (hitStunCD <= 0)
             {
                 if (playerPower.Damage >= dmgThreshold)
                 {
-                    activateHitStunState();
+                    hitStunCD = 2f;
                 }
                 else
                 {
-                    invinCD = 1f;
+                    colorChangeCD = 1f;
                 }
+            }
+            else
+            {
+                colorChangeCD = 1f;
             }
 
         }
@@ -252,32 +273,21 @@ public class WARDOG_SCRIPT : MonoBehaviour
         }
     }
 
-    void invincibilty()
+    void hitStun()
     {
-        if (invinCD > 0)
-        {        
-            invinCD -= Time.deltaTime;
-
-            mySprite.color = new Color32(255, 255, 0, 255);
-
-            Physics2D.IgnoreLayerCollision(9, 12, true);
-            Physics2D.IgnoreLayerCollision(9, 10, true);
-        }
-        else
+        if (hitStunCD > 0)
         {
-            mySprite.color = new Color32(255, 255, 255, 255);
-            Physics2D.IgnoreLayerCollision(9, 12, false);
-            Physics2D.IgnoreLayerCollision(9, 10, false);
+            hitStunCD -= Time.deltaTime;
         }
     }
 
     void killWarDog()
     {
-        
-
         GameObject explosion;
 
         explosion = Instantiate(explosionEffect, myTran.position, myTran.rotation);
+
+        dropScript.Drop();
 
         Destroy(gameObject);
     }
@@ -303,34 +313,22 @@ public class WARDOG_SCRIPT : MonoBehaviour
         return false;
     }
 
-    void activateHitStunState()
+    void handleColor()
     {
-        mySprite.color = new Color32(0, 255, 0, 255);
-
-        isHitStun = true;
-
-        warDogAnimScript.isHitStun = true;
-
-        if (!mySprite)
+        if (hitStunCD > 0)
         {
-            myBody.velocity = new Vector2(-5f, 10f);
+            mySprite.color = new Color32(255, 255, 0, 255);
+        }
+        else if (colorChangeCD > 0)
+        {
+            colorChangeCD -= Time.deltaTime;
+
+            mySprite.color = new Color32(255, 0, 0, 255);
         }
         else
         {
-            myBody.velocity = new Vector2(5f, 10f);
+            mySprite.color = new Color32(255, 255, 255, 255);
         }
     }
 
-    public void deactivateHitStunState()
-    {
-        mySprite.color = new Color32(255, 255, 255, 255);
-
-        myBody.velocity = new Vector2(0f, 0f);
-
-        invinCD = 1f;
-
-        warDogAnimScript.isHitStun = false;
-
-        isHitStun = false;
-    }
 }
