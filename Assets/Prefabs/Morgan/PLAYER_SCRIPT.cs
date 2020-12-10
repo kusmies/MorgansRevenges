@@ -305,7 +305,14 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
 
             }
+            else if (Input.GetButtonUp("Crouch"))
+            {
+                myBody.velocity = new Vector2(0, myBody.velocity.y);
 
+                crouch = false;
+
+
+            }
             else if (crouch == true)
             {
                 foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
@@ -324,14 +331,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                     }
                 }
             }
-            else if (Input.GetButtonUp("Crouch"))
-            {
-                myBody.velocity = new Vector2(0, myBody.velocity.y);
-
-                crouch = false;
-
-
-            }
+ 
 
             else if (Input.GetAxisRaw("Horizontal") < 0)
             {
@@ -466,6 +466,11 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void failsafe()
     {
         stun = false;
+    }
+
+    void crouchsafe()
+    {
+        crouch = false;
     }
     void invulerability()
     {
