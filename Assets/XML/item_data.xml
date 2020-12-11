@@ -52,7 +52,7 @@
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
-      <got>false</got>
+      <got>true</got>
       <displayed>false</displayed>
       <chestdropped>true</chestdropped>
     </ItemEntry>
