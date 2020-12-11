@@ -41,6 +41,7 @@ TagManager:
   - LongSword
   - Particle
   - Canvas
+  - SilverShoes
   layers:
   - Default
   - TransparentFX

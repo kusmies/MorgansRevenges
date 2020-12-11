@@ -41,30 +41,8 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
     void Start()
     {
 
-        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
-        {
-            if (item.ID == 1)
-            {
-                item.displayed = false;
-            }
-            if (item.ID == 2)
-            {
-                item.displayed = false;
-            }
-            if (item.ID == 3)
-            {
-                item.displayed = false;
-            }
-            if (item.ID == 4)
-            {
-                item.displayed = false;
-            }
-            if (item.ID == 5)
-            {
-                item.displayed = false;
-            }
+        player.itemcleaner();
 
-        }
         XMLManager.ins.PermLoadItems();
         XMLManager.ins.LoadItems();
 

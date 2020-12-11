@@ -105,7 +105,6 @@
     <Compile Include="Assets\Scripts\SPELL_HITBOX_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\ShuffleBag.cs" />
-    <Compile Include="Assets\Scripts\TEMP_ITEM_PREFAB.cs" />
     <Compile Include="Assets\Scripts\TEMP_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\UNIDROP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WARDOG_ANIM_SCRIPT.cs" />

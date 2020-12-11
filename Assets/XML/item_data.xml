@@ -52,9 +52,9 @@
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
-      <got>true</got>
+      <got>false</got>
       <displayed>false</displayed>
-      <chestdropped>true</chestdropped>
+      <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
       <ID>6</ID>
@@ -63,6 +63,17 @@
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>
+      <got>false</got>
+      <displayed>false</displayed>
+      <chestdropped>false</chestdropped>
+    </ItemEntry>
+    <ItemEntry>
+      <ID>7</ID>
+      <name>Silver Shoes</name>
+      <description>Move Speed +1</description>
+      <value>1</value>
+      <currency>Gold</currency>
+      <price>2</price>
       <got>false</got>
       <displayed>false</displayed>
       <chestdropped>false</chestdropped>
