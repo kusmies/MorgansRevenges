@@ -63,6 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\CHESTDROP_SCRIPT.cs" />
+    <Compile Include="Assets\DFACT2_HANDLER_SCRIPT.cs" />
+    <Compile Include="Assets\Gold.cs" />
+    <Compile Include="Assets\LANCEL_ANIM_SCRIPT.cs" />
+    <Compile Include="Assets\LBALL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Common Chest\ITEMHP_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Destructible Block\EXPLWAL_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Dynamic Objects\Dynamic Object Scripts\DTRYBLK_SCRIPT.cs" />
@@ -80,23 +85,13 @@
     <Compile Include="Assets\Prefabs\Morgan\PLAYERANIM_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\PLAYER_SCRIPT.cs" />
     <Compile Include="Assets\Prefabs\Morgan\SLIDER_SCRIPT.cs" />
-    <Compile Include="Assets\Prefabs\Shop\SHOPSCENEMANAGER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ACTIVE_SOLDIER_BLADE_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\ARCHER_ANIM_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\ARCHER_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\ARROW_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\CHASEN_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\CHESTDROP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\DETHSPWN_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\DFACT1_HANDLER_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\DFACT2_HANDLER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\ENDAPP_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\Gold.cs" />
     <Compile Include="Assets\Scripts\HTBXDTH_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\KNCKBCK_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\LANCEL_ANIM_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\LANCEL_SCRIPT.cs" />
-    <Compile Include="Assets\Scripts\LBALL_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\PERM_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\POWER_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SOLDIER_ANIM_SCRIPT.cs" />
@@ -104,7 +99,6 @@
     <Compile Include="Assets\Scripts\SPELL_HITBOX_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\SaveLoadManager.cs" />
     <Compile Include="Assets\Scripts\ShuffleBag.cs" />
-    <Compile Include="Assets\Scripts\TEMP_ITEM_PREFAB.cs" />
     <Compile Include="Assets\Scripts\TEMP_SHOP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\UNIDROP_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WARDOG_ANIM_SCRIPT.cs" />
@@ -113,8 +107,7 @@
     <Compile Include="Assets\Scripts\WATSUB_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\WATSURF_SCRIPT.cs" />
     <Compile Include="Assets\Scripts\XMLManager.cs" />
-    <Compile Include="Assets\WINPUEM_SCRIPT.cs" />
-    <Compile Include="Assets\WIPUPAR_SCRIPT.cs" />
+    <Compile Include="Assets\TEMP_ITEM_PREFAB.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
