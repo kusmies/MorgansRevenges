@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1586317539822480062}
   - component: {fileID: 6202238692042470177}
   - component: {fileID: 3765629461431282677}
+  - component: {fileID: -7636869116849336324}
   m_Layer: 16
   m_Name: Dagger
   m_TagString: Dagger
@@ -143,3 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b734c0d6ac6642e4f95919e568b65578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7636869116849336324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141632938367962746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c473d82d5b46d864e8570847768d8d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 5
+  floatingTextPrefab: {fileID: 2858163663089099275, guid: 8cc400f0af09cff4ebee5ea43ed36824,
+    type: 3}

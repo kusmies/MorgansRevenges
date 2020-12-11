@@ -7,6 +7,7 @@ public class ITEMHP_SCRIPT : MonoBehaviour
     public Animator ITEM_CONTROL;
     public GameObject explosionEffect;
     public Transform myTran;
+  
      void Start()
     {
         ITEM_CONTROL = GetComponent<Animator>();

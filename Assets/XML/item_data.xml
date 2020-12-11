@@ -41,9 +41,9 @@
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>
-      <got>true</got>
+      <got>false</got>
       <displayed>false</displayed>
-      <chestdropped>true</chestdropped>
+      <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
       <ID>5</ID>
@@ -54,7 +54,7 @@
       <price>2</price>
       <got>false</got>
       <displayed>false</displayed>
-      <chestdropped>false</chestdropped>
+      <chestdropped>true</chestdropped>
     </ItemEntry>
     <ItemEntry>
       <ID>6</ID>
