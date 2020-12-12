@@ -526,7 +526,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
         {
 
             mySprite.color = new Color32(255, 255, 255, 255);
-            Physics2D.IgnoreLayerCollision(12, 9, false);
+            if (death == false)
+            {
+                Physics2D.IgnoreLayerCollision(12, 9, false);
+            }
             invicibility = false;
             invulnertimer = 0.0f;
 
@@ -687,6 +690,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
     }
     void Dead()
     {
+        Physics2D.IgnoreLayerCollision(12, 9, true);
+
+
         //kills out of bound
         if (myBody.position.y < -2000)
         {
@@ -711,6 +717,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
         if (deathtimer >= deathtimertarget)
         {
+            Physics2D.IgnoreLayerCollision(12, 9, false);
+
             itemcleaner();
              
                 level.changeScene(4);
