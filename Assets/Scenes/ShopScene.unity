@@ -177,7 +177,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 769ba889cda0ba142b47718b0dba8064, type: 3}
+    m_Font: {fileID: 12800000, guid: 06ef0791c1eae474eabb54562ffe68bc, type: 3}
     m_FontSize: 21
     m_FontStyle: 0
     m_BestFit: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 769ba889cda0ba142b47718b0dba8064, type: 3}
+    m_Font: {fileID: 12800000, guid: 06ef0791c1eae474eabb54562ffe68bc, type: 3}
     m_FontSize: 21
     m_FontStyle: 0
     m_BestFit: 0
@@ -23016,9 +23016,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
         type: 3}
+      propertyPath: itemsprites.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: storeslots.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
       propertyPath: scenemanager
       value: 
       objectReference: {fileID: 1747084047}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: itemsprites.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: c8abef52e72f1b7478b5852656a74531,
+        type: 3}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: storeslots.Array.data[6]
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aae421f367fe184e9c9f99de8a097a7, type: 3}
 --- !u!1 &436813050
@@ -23274,6 +23295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: itemDB.list.Array.data[1].got
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202200516904219463, guid: 1743c4636362082498f89b3688e5e16f,
+        type: 3}
+      propertyPath: itemDB.list.Array.data[6].ID
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1743c4636362082498f89b3688e5e16f, type: 3}
@@ -23726,9 +23752,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
         type: 3}
+      propertyPath: itemsprites.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: storeslots.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
       propertyPath: scenemanager
       value: 
       objectReference: {fileID: 1747084047}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: itemsprites.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: c8abef52e72f1b7478b5852656a74531,
+        type: 3}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: storeslots.Array.data[6]
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aae421f367fe184e9c9f99de8a097a7, type: 3}
 --- !u!1001 &859696774
@@ -30864,7 +30911,7 @@ PrefabInstance:
     - target: {fileID: 4012768577650337690, guid: 3aae421f367fe184e9c9f99de8a097a7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4012768577650337690, guid: 3aae421f367fe184e9c9f99de8a097a7,
         type: 3}
@@ -30938,9 +30985,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
         type: 3}
+      propertyPath: itemsprites.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: storeslots.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
       propertyPath: scenemanager
       value: 
       objectReference: {fileID: 1747084047}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: itemsprites.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: c8abef52e72f1b7478b5852656a74531,
+        type: 3}
+    - target: {fileID: 5514823218250897880, guid: 3aae421f367fe184e9c9f99de8a097a7,
+        type: 3}
+      propertyPath: storeslots.Array.data[6]
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aae421f367fe184e9c9f99de8a097a7, type: 3}
 --- !u!1 &2133629526
@@ -31358,7 +31426,7 @@ PrefabInstance:
     - target: {fileID: 7297127719274610901, guid: 8b16bee9e5b6fe84db726c7af3379033,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7297127719274610901, guid: 8b16bee9e5b6fe84db726c7af3379033,
         type: 3}

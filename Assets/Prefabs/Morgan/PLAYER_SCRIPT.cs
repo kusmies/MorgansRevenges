@@ -25,7 +25,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     //inital speed
     public float speedforce;
     //additional speed
-    public float bonusspeed;
 
     public float barsize = 160;
     //the coin int
@@ -47,7 +46,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public float MaxMana;
     public float CurrentMana;
     public float SwordDamage;
+    public float bonusspeed;
 
+    public float speedup;
     public GameObject player;
     public GameObject SwordSpawn;
     public GameObject HighSwordPrefab;
@@ -131,14 +132,14 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Start()
     {
-
+        bonusspeed = speedup;
+      
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
         XMLManager.ins.PermLoadItems();
         XMLManager.ins.LoadItems();
         slide.SetMaxBar(MaxHealth);
         slide2.SetMaxBar(MaxMana);
-
         var MpUp = barsize + (MaxMana * 10);
         var hpUp = barsize + (MaxHealth * 10);
 
@@ -168,6 +169,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         MaxMana = loadedStats[1];
         coin = loadedStats[2];
         SwordDamage = loadedStats[3];
+        speedup = loadedStats[4];
     }
     // Update is called once per frame
 
@@ -250,7 +252,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
              if (Input.GetAxisRaw("Horizontal") > 0)
             {
 
-                myBody.velocity = new Vector2(+speedforce + bonusspeed, myBody.velocity.y);
+                myBody.velocity = new Vector2(+speedforce + speedup, myBody.velocity.y);
                 mySprite.flipX = true;
                 isMoving = true;
                 crouch = false;
@@ -335,7 +337,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             else if (Input.GetAxisRaw("Horizontal") < 0)
             {
-                myBody.velocity = new Vector2(-speedforce - bonusspeed, myBody.velocity.y);
+                myBody.velocity = new Vector2(-speedforce - speedup, myBody.velocity.y);
                 mySprite.flipX = false;
                 isMoving = true;
                 crouch = false;
@@ -658,6 +660,18 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 if (item.got == true)
                 {
                     SwordDamage -= item.value;
+                    item.got = false;
+                    item.chestdropped = false;
+                    item.displayed = false;
+
+
+                }
+            }
+            if (item.ID == 7)
+            {
+                if (item.got == true)
+                {
+                    speedup -= item.value;
                     item.got = false;
                     item.chestdropped = false;
                     item.displayed = false;
@@ -1073,7 +1087,34 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
             }
         }
+        else if (collision.gameObject.CompareTag("SilverShoes"))
+        {
+            ID = 7;
+            foreach (ItemEntry item in XMLManager.ins.itemDB.list)
+            {
 
+                if (item.ID == ID)
+                {
+                    if (item.got == false)
+                    {
+                        item.got = true;
+
+                        speedup += item.value;
+                        ID = 0;
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(this);
+                    }
+                }
+
+
+
+                else
+                {
+
+                }
+
+            }
+        }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
 

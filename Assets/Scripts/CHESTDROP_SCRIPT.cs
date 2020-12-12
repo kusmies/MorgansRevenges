@@ -83,6 +83,8 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         XMLManager.ins.SaveItems();
 
                         Instantiate(items[0], spawn.transform.position, spawn.transform.rotation);
+                      
+
                         Destroy(gameObject);
 
                     }
@@ -109,6 +111,7 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[1], spawn.transform.position, spawn.transform.rotation);
+        
                         Destroy(gameObject);
 
 
@@ -136,6 +139,8 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[2], spawn.transform.position, spawn.transform.rotation);
+                    
+
                         Destroy(gameObject);
 
                     }
@@ -160,6 +165,7 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[3], spawn.transform.position, spawn.transform.rotation);
+                    
                         Destroy(gameObject);
 
 
@@ -184,6 +190,7 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[4], spawn.transform.position, spawn.transform.rotation);
+                    
                         Destroy(gameObject);
 
 
@@ -209,6 +216,7 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
                         item.chestdropped = true;
                         XMLManager.ins.SaveItems();
                         Instantiate(items[5], spawn.transform.position, spawn.transform.rotation);
+                     
                         Destroy(gameObject);
 
 
@@ -224,7 +232,35 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
 
                 }
 
+                if (ID == item.ID && item.ID == 7)
+                {
 
+
+                    if (item.got == false && item.chestdropped == false)
+                    {
+
+
+
+
+                        //subtracts the bronze price from the player total
+                        item.chestdropped = true;
+                        XMLManager.ins.SaveItems();
+                        Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+
+                        Destroy(gameObject);
+
+
+                    }
+
+
+                    else if (item.got == true || item.chestdropped == true)
+                    {
+                        Roll();
+
+
+                    }
+
+                }
 
 
 
@@ -232,7 +268,7 @@ public class CHESTDROP_SCRIPT : MonoBehaviour
 
             if (chestslots.Count == 0)
             {
-                Instantiate(items[6], spawn.transform.position, spawn.transform.rotation);
+                Instantiate(items[7], spawn.transform.position, spawn.transform.rotation);
                 Destroy(gameObject);
             }
 

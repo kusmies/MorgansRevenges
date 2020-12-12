@@ -33,6 +33,8 @@ public class CHASEN_SCRIPT : MonoBehaviour
             player.MaxMana = 12;
             player.coin = 0;
             player.SwordDamage = 0;
+            player.speedup = 0;
+
             SaveLoadManager.SavePlayer(player);
 
             PlayerPrefs.DeleteAll();
@@ -120,6 +122,19 @@ public class CHASEN_SCRIPT : MonoBehaviour
 
                 item.currency = Currency.Gold;
                 item.price = 4;
+            }
+            if (item.ID == 7)
+            {
+                item.displayed = false;
+
+                item.value = 1;
+                item.got = false;
+                item.chestdropped = false;
+                item.name = "Silver Shoes";
+                item.description = "Move Speed +1";
+
+                item.currency = Currency.Gold;
+                item.price = 2;
             }
         }
 
@@ -209,6 +224,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
         player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];
         player.SwordDamage = loadedStats[3];
+        player.speedup = loadedStats[5];
         SceneManager.LoadScene(index);
 
     }

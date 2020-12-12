@@ -35,7 +35,7 @@ public static class SaveLoadManager
         else
         {
             Debug.LogError("Nothing");
-            return new float[4];
+            return new float[5];
         }
     }
 }
@@ -48,12 +48,14 @@ public class PlayerData
   
     public PlayerData(PLAYER_SCRIPT player)
     {
-        stats = new float[4];
+        stats = new float[5];
 
         stats[0] = player.MaxHealth;
         stats[1] = player.MaxMana;
         stats[2] = player.coin;
         stats[3] = player.SwordDamage;
+        stats[4] = player.speedup;
+
     }
 
 

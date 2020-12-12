@@ -47,52 +47,67 @@ MonoBehaviour:
   itemDB:
     list:
     - ID: 1
-      name: bronze
-      description: A bronze ring that increases mana by one
+      name: Bronze Ring
+      description: Magic +1
       value: 1
       currency: 0
       price: 4
       got: 0
+      displayed: 0
       chestdropped: 0
     - ID: 2
-      name: silver
-      description: A silver ring that increases mana by two
+      name: Silver Ring
+      description: Magic +2
       value: 2
       currency: 0
       price: 8
       got: 0
+      displayed: 0
       chestdropped: 0
     - ID: 3
-      name: steelhelm
-      description: A steel helmet that increases health by one
+      name: Steel Helm
+      description: Health +1
       value: 1
       currency: 0
       price: 2
       got: 0
+      displayed: 0
       chestdropped: 0
     - ID: 4
-      name: steelshield
-      description: a steel shield that increases health by two
+      name: Steel Shield
+      description: Health +2
       value: 2
       currency: 0
       price: 4
       got: 0
+      displayed: 0
       chestdropped: 0
     - ID: 5
-      name: steelshield
-      description: a steel shield that increases health by two
-      value: 2
+      name: Dagger
+      description: Sword Damage +1
+      value: 1
       currency: 0
-      price: 4
+      price: 2
       got: 0
+      displayed: 0
       chestdropped: 0
     - ID: 6
-      name: steelshield
-      description: a steel shield that increases health by two
+      name: Long Sword
+      description: Sword Damage +2
       value: 2
       currency: 0
       price: 4
       got: 0
+      displayed: 0
+      chestdropped: 0
+    - ID: 7
+      name: Silver Shoes
+      description: Move Speed +1
+      value: 1
+      currency: 0
+      price: 2
+      got: 0
+      displayed: 0
       chestdropped: 0
   PitemDB:
     list:
@@ -104,6 +119,7 @@ MonoBehaviour:
       currency: 0
       price: 8
       unlocked: 0
+      displayed: 0
     - ID: 2
       name: MithirilBangil
       description: An enchanted Bangil that makes the user feel stronger
@@ -111,6 +127,7 @@ MonoBehaviour:
       currency: 0
       price: 4
       unlocked: 0
+      displayed: 0
     - ID: 3
       name: AdamantiumBracer
       description: A bracer that makes the user feel even stronger.
@@ -118,6 +135,7 @@ MonoBehaviour:
       currency: 0
       price: 6
       unlocked: 0
+      displayed: 0
     - ID: 4
       name: AdamantiumBracer
       description: A bracer that makes the user feel even stronger.
@@ -125,6 +143,7 @@ MonoBehaviour:
       currency: 0
       price: 6
       unlocked: 0
+      displayed: 0
     - ID: 5
       name: AdamantiumBracer
       description: A bracer that makes the user feel even stronger.
@@ -132,6 +151,7 @@ MonoBehaviour:
       currency: 0
       price: 6
       unlocked: 0
+      displayed: 0
 --- !u!114 &7757165925541541197
 MonoBehaviour:
   m_ObjectHideFlags: 0

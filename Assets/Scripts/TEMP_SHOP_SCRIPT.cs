@@ -37,40 +37,8 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
     void Start()
     {
-        foreach (ItemEntry item in XMLManager.ins.itemDB.list)
-        {
-            if (item.ID == 1)
-            {
-
-                item.displayed = false;
-
-
-            }
-            if (item.ID == 2)
-            {
-
-            }
-            if (item.ID == 3)
-            {
-                item.displayed = false;
-
-            }
-            if (item.ID == 4)
-            {
-                item.displayed = false;
-
-            }
-            if (item.ID == 5)
-            {
-                item.displayed = false;
-
-            }
-            if (item.ID == 6)
-            {
-                item.displayed = false;
-
-            }
-        }
+        player.itemcleaner();
+        
         XMLManager.ins.PermLoadItems();
 
         XMLManager.ins.LoadItems();
@@ -457,7 +425,58 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                 }
 
 
+                if (ID == item.ID && item.ID == 7)
+                {
 
+
+                    if (item.got == false && item.displayed == false)
+                    {
+                        openslot = true;
+
+                        item.displayed = true;
+                        itemspriterenderer.sprite = itemsprites[7];
+
+
+
+
+                        Name = item.name.ToString();
+                        price = "Gold: " + item.price;
+                        description = item.description;
+
+                    }
+
+
+                    else if (item.got == true || item.displayed == true && buyonce == false)
+                    {
+                        Roll();
+
+                    }
+
+                    if (player.coin >= item.price && buyonce == true && item.ID == 7)
+                    {
+                        Name = "Thank you";
+                        price = "";
+                        description = "Come Again";
+                        player.coin -= item.price;
+
+                        player.speedup += item.value;
+
+                        itemspriterenderer.sprite = itemsprites[6];
+
+                        item.got = true;
+
+                        XMLManager.ins.SaveItems();
+                        SaveLoadManager.SavePlayer(player);
+
+                    }
+                    if (player.coin <= item.price && buyonce == true)
+                    {
+                        Name = "You're short";
+                        price = "";
+                        description = "ComeBack with more money";
+                    }
+
+                }
 
 
             }
