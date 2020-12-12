@@ -3,51 +3,51 @@
   <PermItems>
     <PermItemEntry>
       <ID>1</ID>
-      <name>Fire Rune</name>
-      <description>Permanent: press O to throw a Fireball. Destroys some walls Costs 4 Magic.</description>
+      <name>FireRune</name>
+      <description>A rune crackiling with magic, unlocks the fireball uses the O key to fire.</description>
       <value>0</value>
       <currency>Gold</currency>
-      <price>5</price>
+      <price>8</price>
       <unlocked>false</unlocked>
       <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>2</ID>
-      <name>Ice Rune</name>
-      <description>Permanent: press Down and O to unleash a Frost Wave. Freezes bodies of water. Costs 3 Magic.</description>
-      <value>0</value>
+      <name>MithirilBangil</name>
+      <description>An enchanted Bangil that makes the user feel stronger</description>
+      <value>3</value>
       <currency>Gold</currency>
-      <price>5</price>
+      <price>4</price>
       <unlocked>false</unlocked>
       <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>3</ID>
-      <name>Wind Rune</name>
-      <description>Permanent: able to jump while in air once by pressing space bar. Costs 1 magic.</description>
-      <value>0</value>
+      <name>AdamantiumBracer</name>
+      <description>A bracer that makes the user feel even stronger.</description>
+      <value>6</value>
       <currency>Gold</currency>
-      <price>5</price>
+      <price>6</price>
       <unlocked>false</unlocked>
       <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>4</ID>
-      <name>Mitril Bangil</name>
-      <description>Health +4 Permanently</description>
-      <value>4</value>
+      <name>AdamantiumBracer</name>
+      <description>A bracer that makes the user feel even stronger.</description>
+      <value>6</value>
       <currency>Gold</currency>
-      <price>10</price>
+      <price>6</price>
       <unlocked>false</unlocked>
       <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>5</ID>
-      <name>Ruby Bracelet</name>
-      <description>Magic +4 Permanently</description>
-      <value>4</value>
+      <name>AdamantiumBracer</name>
+      <description>A bracer that makes the user feel even stronger.</description>
+      <value>6</value>
       <currency>Gold</currency>
-      <price>10</price>
+      <price>6</price>
       <unlocked>false</unlocked>
       <displayed>false</displayed>
     </PermItemEntry>
