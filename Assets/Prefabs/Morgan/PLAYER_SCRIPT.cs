@@ -169,7 +169,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         MaxMana = loadedStats[1];
         coin = loadedStats[2];
         SwordDamage = loadedStats[3];
-        speedup = loadedStats[4];
+        //speedup = loadedStats[4];
     }
     // Update is called once per frame
 
