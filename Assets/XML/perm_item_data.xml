@@ -9,7 +9,7 @@
       <currency>Gold</currency>
       <price>8</price>
       <unlocked>false</unlocked>
-      <displayed>false</displayed>
+      <displayed>true</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>2</ID>
@@ -19,7 +19,7 @@
       <currency>Gold</currency>
       <price>4</price>
       <unlocked>false</unlocked>
-      <displayed>false</displayed>
+      <displayed>true</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>3</ID>
