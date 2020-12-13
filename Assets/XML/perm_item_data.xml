@@ -3,13 +3,13 @@
   <PermItems>
     <PermItemEntry>
       <ID>1</ID>
-      <name>FireRune</name>
+      <name>Fire Rune</name>
       <description>Permanent: press O to throw a Fireball. Destroys some walls Costs 4 Magic.</description>
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
       <unlocked>false</unlocked>
-      <displayed>false</displayed>
+      <displayed>true</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>2</ID>
@@ -18,18 +18,18 @@
       <value>0</value>
       <currency>Gold</currency>
       <price>5</price>
-      <unlocked>true</unlocked>
+      <unlocked>false</unlocked>
       <displayed>true</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>3</ID>
       <name>Wind Rune</name>
       <description>Permanent: able to jump while in air once by pressing space bar. Costs 1 magic.</description>
-      <value>6</value>
+      <value>0</value>
       <currency>Gold</currency>
-      <price>6</price>
+      <price>5</price>
       <unlocked>false</unlocked>
-      <displayed>false</displayed>
+      <displayed>true</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>4</ID>
@@ -38,8 +38,8 @@
       <value>4</value>
       <currency>Gold</currency>
       <price>10</price>
-      <unlocked>false</unlocked>
-      <displayed>true</displayed>
+      <unlocked>true</unlocked>
+      <displayed>false</displayed>
     </PermItemEntry>
     <PermItemEntry>
       <ID>5</ID>
@@ -49,7 +49,7 @@
       <currency>Gold</currency>
       <price>10</price>
       <unlocked>false</unlocked>
-      <displayed>true</displayed>
+      <displayed>false</displayed>
     </PermItemEntry>
   </PermItems>
 </PermItemDatabase>

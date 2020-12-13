@@ -47,7 +47,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
     public void Save()
     {
-        XMLManager.ins.PermSaveItems();
+        XMLManager.ins.SaveItems();
 
         SaveLoadManager.SavePlayer(player);
     }
@@ -57,6 +57,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
         player.MaxHealth = loadedStats[0];
         player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];
+        player.speedup = loadedStats[3];
     }
 
     private void Update()

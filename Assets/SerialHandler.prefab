@@ -51,7 +51,7 @@ MonoBehaviour:
       description: Magic +1
       value: 1
       currency: 0
-      price: 4
+      price: 2
       got: 0
       displayed: 0
       chestdropped: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
       description: Magic +2
       value: 2
       currency: 0
-      price: 8
+      price: 4
       got: 0
       displayed: 0
       chestdropped: 0
@@ -133,9 +133,9 @@ MonoBehaviour:
       name: Wind Rune
       description: 'Permanent: able to jump while in air once by pressing space bar.
         Costs 1 magic.'
-      value: 6
+      value: 0
       currency: 0
-      price: 6
+      price: 5
       unlocked: 0
       displayed: 0
     - ID: 4
