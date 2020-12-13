@@ -26,12 +26,13 @@ public class WARDOG_SCRIPT : MonoBehaviour
     float colorChangeCD = 0;
     public DFACT1_HANDLER_SCRIPT actManager;
     public UNIDROP_SCRIPT dropScript;
-
+    public AudioClip warDogHit;
+    public AudioSource soundPlayer;
     // Start is called before the first frame update
     void Start()
     {
         damageNumbers = GetComponent<FLOATING_FONT>();
-
+        soundPlayer = GetComponent<AudioSource>();
         powerScript = GetComponent<POWER_SCRIPT>();
         myTran = GetComponent<Transform>();
         myBox = GetComponent<BoxCollider2D>();
@@ -206,6 +207,8 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            soundPlayer.clip = warDogHit;
+            soundPlayer.Play();
 
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
@@ -250,6 +253,8 @@ public class WARDOG_SCRIPT : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            soundPlayer.clip = warDogHit;
+            soundPlayer.Play();
 
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 

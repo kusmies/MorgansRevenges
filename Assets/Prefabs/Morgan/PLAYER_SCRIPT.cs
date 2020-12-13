@@ -90,7 +90,6 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public bool stun;
     public bool hitstunned;
 
-
     //loads the level the players in
     public CHASEN_SCRIPT level;
     //int for fireball unlock
@@ -115,6 +114,10 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     public GameObject windPushParticleEmitter;
 
+    AudioSource soundPlayer;
+    public AudioClip swordSwingSound;
+    public AudioClip windPushSound;
+    public AudioClip morganHitSound;
     // Start is called before the first frame update
 
     void Awake()
@@ -134,6 +137,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Start()
     {
+        soundPlayer = GetComponent<AudioSource>();
         bonusspeed = speedup;
         damageNumbers = GetComponent<FLOATING_FONT>();
 
@@ -283,6 +287,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                                 if (item.unlocked == true)
                                 {
+                                    soundPlayer.clip = windPushSound;
+                                    soundPlayer.Play();
                                     doublejumped = true;
                                     CurrentMana--;
                                     GameObject PartEmitter;
@@ -368,6 +374,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                                 if (item.unlocked == true)
                                 {
+                                    soundPlayer.clip = windPushSound;
+                                    soundPlayer.Play();
                                     doublejumped = true;
                                     CurrentMana--;
                                     GameObject PartEmitter;
@@ -419,6 +427,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
                                 if (item.unlocked == true)
                                 {
+                                    soundPlayer.clip = windPushSound;
+                                    soundPlayer.Play();
                                     doublejumped = true;
                                     CurrentMana--;
                                     GameObject PartEmitter;
@@ -820,7 +830,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //have a bullet
         GameObject blade;
 
+        soundPlayer.clip = swordSwingSound;
 
+        soundPlayer.Play();
 
         //make a bullet
         if (mySprite.flipX == false)
@@ -881,7 +893,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
          else if (collision.gameObject.CompareTag("Enemy"))
          {
 
-
+            soundPlayer.clip = morganHitSound;
+            soundPlayer.Play();
 
             slide.SetBar(CurrentHealth);
 
@@ -1132,7 +1145,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
         else if (collision.gameObject.CompareTag("Enemy"))
         {
 
-          
+            soundPlayer.clip = morganHitSound;
+            soundPlayer.Play();
 
             slide.SetBar(CurrentHealth);
 

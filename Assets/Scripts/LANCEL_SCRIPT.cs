@@ -37,12 +37,16 @@ public class LANCEL_SCRIPT : MonoBehaviour
     public int bulletsSpawned = 0;
     public DFACT2_HANDLER_SCRIPT actHandler;
     public Slider hpBar;
-
+    AudioSource soundPlayer;
+    public AudioClip lancelotHit;
+    public AudioClip lancelotChargeSound;
+    public AudioClip electricHellSound;
+    public AudioClip ballLightningSound;
     // Start is called before the first frame update
     void Start()
     {
         damageNumbers = GetComponent<FLOATING_FONT>();
-
+        soundPlayer = GetComponent<AudioSource>();
         myTran = GetComponent<Transform>();
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
@@ -137,6 +141,14 @@ public class LANCEL_SCRIPT : MonoBehaviour
     {
         if (chargeCD >= 0)
         {
+            if (!soundPlayer.isPlaying)
+            {
+            soundPlayer.clip = lancelotChargeSound;
+            soundPlayer.loop = true;
+            soundPlayer.volume = 2f;
+            soundPlayer.Play();
+            }
+
             chargeCD -= Time.deltaTime;
             myTopBox.size = new Vector2(4.8f, 5.2f);
             myBottomBox.size = new Vector2(8.8f, 6.4f);
@@ -177,6 +189,11 @@ public class LANCEL_SCRIPT : MonoBehaviour
         }
         else
         {
+            
+            soundPlayer.loop = false;
+            soundPlayer.volume = 1f;
+            soundPlayer.Stop();
+
             float whichAttack = Random.Range(0f, 1f);
             
             if(bulletsSpawned > 1)
@@ -232,7 +249,10 @@ public class LANCEL_SCRIPT : MonoBehaviour
 
     void spawnBallLightningBullet()
     {
-        if(!mySprite.flipX)
+        soundPlayer.clip = ballLightningSound;
+        soundPlayer.Play();
+
+        if (!mySprite.flipX)
         {
             Vector2 spawnLocation = new Vector2(myTran.position.x + -5.72f, myTran.position.y + 7.89f);
 
@@ -404,6 +424,9 @@ public class LANCEL_SCRIPT : MonoBehaviour
     {
         flipSpear();
 
+        soundPlayer.clip = electricHellSound;
+        soundPlayer.Play();
+
         if (!mySprite.flipX)
         {
             for(int i = 0; i < 10; i++)
@@ -511,6 +534,11 @@ public class LANCEL_SCRIPT : MonoBehaviour
         
             if (collision.gameObject.CompareTag("PlayerAttack"))
             {
+
+            
+                soundPlayer.clip = lancelotHit;
+                soundPlayer.Play();
+            
                 var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
                 hp -= playerPower.Damage;
@@ -559,6 +587,9 @@ public class LANCEL_SCRIPT : MonoBehaviour
         
             if (collision.gameObject.CompareTag("PlayerAttack"))
             {
+
+                soundPlayer.clip = lancelotHit;
+                soundPlayer.Play();
 
                 var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 

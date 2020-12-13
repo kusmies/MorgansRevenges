@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<PermItemDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PermItems>
+    <PermItemEntry>
+      <ID>1</ID>
+      <name>Fire Rune</name>
+      <description>Permanent: press O to throw a Fireball. Destroys some walls Costs 4 Magic.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>2</ID>
+      <name>Ice Rune</name>
+      <description>Permanent: press Down and O to unleash a Frost Wave. Freezes bodies of water. Costs 3 Magic.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>3</ID>
+      <name>Wind Rune</name>
+      <description>Permanent: able to jump while in air once by pressing space bar. Costs 1 magic.</description>
+      <value>0</value>
+      <currency>Gold</currency>
+      <price>5</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>4</ID>
+      <name>Mitril Bangil</name>
+      <description>Health +4 Permanently</description>
+      <value>4</value>
+      <currency>Gold</currency>
+      <price>10</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+    <PermItemEntry>
+      <ID>5</ID>
+      <name>Ruby Bracelet</name>
+      <description>Magic +4 Permanently</description>
+      <value>4</value>
+      <currency>Gold</currency>
+      <price>10</price>
+      <unlocked>false</unlocked>
+      <displayed>false</displayed>
+    </PermItemEntry>
+  </PermItems>
+</PermItemDatabase>

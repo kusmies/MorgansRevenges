@@ -29,12 +29,14 @@ public class ARCHER_SCRIPT : MonoBehaviour
     public DFACT1_HANDLER_SCRIPT actManager;
     public int state = 6; //1 is walking, 2 is dead, 3 is hitstun, 4 straight shot, 5 is arc shot, 6 is idle
     public UNIDROP_SCRIPT dropScript;
-
+    AudioSource soundPlayer;
+    public AudioClip archerHit;
+    public AudioClip arrowWoosh;
     // Start is called before the first frame update
     void Start()
     {
         damageNumbers = GetComponent<FLOATING_FONT>();
-
+        soundPlayer = GetComponent<AudioSource>();
         archerAnimatorScript = GetComponent<ARCHER_ANIM_SCRIPT>();
         powerScript = GetComponent<POWER_SCRIPT>();
         myTran = GetComponent<Transform>();
@@ -261,6 +263,8 @@ public class ARCHER_SCRIPT : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            soundPlayer.clip = archerHit;
+            soundPlayer.Play();
 
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
@@ -306,6 +310,8 @@ public class ARCHER_SCRIPT : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            soundPlayer.clip = archerHit;
+            soundPlayer.Play();
 
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
@@ -479,6 +485,9 @@ public class ARCHER_SCRIPT : MonoBehaviour
 
     void spawnArrow()
     {
+        soundPlayer.clip = arrowWoosh;
+        soundPlayer.Play();
+
         Vector2 spawnLocation = new Vector2(0f,0f);
 
         Vector2 arrowVelocity = new Vector2(0f, 0f);

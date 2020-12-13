@@ -29,9 +29,12 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     float hitStunCD = 0f;
     public DFACT1_HANDLER_SCRIPT actManager;
     public UNIDROP_SCRIPT dropScript;
-
+    AudioSource soundPlayer;
+    public AudioClip soldierHit;
+    public AudioClip soldierSword;
     void Start() // Start is called before the first frame update
     {
+        soundPlayer = GetComponent<AudioSource>();
         powerScript = GetComponent<POWER_SCRIPT>();
         myTran = GetComponent<Transform>();
         damageNumbers = GetComponent<FLOATING_FONT>();
@@ -276,7 +279,10 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
     void lowAttackPush()
     {
-        if(mySprite.flipX)
+        soundPlayer.clip = soldierSword;
+        soundPlayer.Play();
+
+        if (mySprite.flipX)
         {
             myBody.velocity = new Vector2(35f, myBody.velocity.y);
             
@@ -319,7 +325,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
     void highAttackLeap()
     {
-       
+        soundPlayer.clip = soldierSword;
+        soundPlayer.Play();
 
         if (mySprite.flipX)
         {
@@ -362,6 +369,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            soundPlayer.clip = soldierHit;
+            soundPlayer.Play();
 
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
@@ -404,6 +413,8 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerAttack"))
         {
+            soundPlayer.clip = soldierHit;
+            soundPlayer.Play();
 
             var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 

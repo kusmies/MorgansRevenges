@@ -7,7 +7,7 @@
       <description>Magic +1</description>
       <value>1</value>
       <currency>Gold</currency>
-      <price>2</price>
+      <price>4</price>
       <got>false</got>
       <displayed>false</displayed>
       <chestdropped>false</chestdropped>
@@ -18,7 +18,7 @@
       <description>Magic +2</description>
       <value>2</value>
       <currency>Gold</currency>
-      <price>4</price>
+      <price>8</price>
       <got>false</got>
       <displayed>false</displayed>
       <chestdropped>false</chestdropped>

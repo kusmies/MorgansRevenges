@@ -48,8 +48,6 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
         ID = IDassigner;
 
-
-        Debug.Log(player.coin);
     }
     void Update()
     {
@@ -403,7 +401,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
         scenemanager.Name.text = Name;
         scenemanager.Price.text = price;
         scenemanager.Description.text = description;
-        Debug.Log("Mouse is over GameObject.");
+
 
     }
 

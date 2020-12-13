@@ -224,7 +224,7 @@ public class CHASEN_SCRIPT : MonoBehaviour
         player.MaxMana = loadedStats[1];
         player.coin = loadedStats[2];
         player.SwordDamage = loadedStats[3];
-        player.speedup = loadedStats[5];
+        player.speedup = loadedStats[4];
         SceneManager.LoadScene(index);
 
     }
