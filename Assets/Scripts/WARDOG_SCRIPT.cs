@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WARDOG_SCRIPT : MonoBehaviour
 {
+    public FLOATING_FONT damageNumbers;
     POWER_SCRIPT powerScript;
     WARDOG_ANIM_SCRIPT warDogAnimScript;
     Transform myTran;
@@ -29,6 +30,8 @@ public class WARDOG_SCRIPT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damageNumbers = GetComponent<FLOATING_FONT>();
+
         powerScript = GetComponent<POWER_SCRIPT>();
         myTran = GetComponent<Transform>();
         myBox = GetComponent<BoxCollider2D>();
@@ -214,15 +217,22 @@ public class WARDOG_SCRIPT : MonoBehaviour
             {
                 if (playerPower.Damage >= dmgThreshold)
                 {
+                    damageNumbers.showText(playerPower.Damage.ToString() + "!");
+
                     hitStunCD = 2f;
                 }
                 else
                 {
+                    damageNumbers.showText(playerPower.Damage.ToString());
+
+
                     colorChangeCD = 1f;
                 }
             }
             else
             {
+                damageNumbers.showText(playerPower.Damage.ToString());
+
                 colorChangeCD = 1f;
             }
         }
@@ -252,10 +262,14 @@ public class WARDOG_SCRIPT : MonoBehaviour
                 if (playerPower.Damage >= dmgThreshold)
                 {
                     hitStunCD = 2f;
+                    damageNumbers.showText(playerPower.Damage.ToString() + "!");
+
                 }
                 else
                 {
                     colorChangeCD = 1f;
+                    damageNumbers.showText(playerPower.Damage.ToString());
+
                 }
             }
             else

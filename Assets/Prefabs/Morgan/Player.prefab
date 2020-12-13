@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 7256701329708582109}
   - component: {fileID: 6960284353168495048}
   - component: {fileID: 9120627585721326273}
+  - component: {fileID: 8698873434030374189}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -286,11 +287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbf42a42120fd54e96ced9343f8b0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6012946319879546381}
   thrust: 4500
   jumpforce: 50
   speedforce: 20
-  bonusspeed: 0
   barsize: 160
   coin: 0
   invulnertimer: 0
@@ -304,6 +303,8 @@ MonoBehaviour:
   MaxMana: 12
   CurrentMana: 0
   SwordDamage: 0
+  bonusspeed: 0
+  speedup: 0
   player: {fileID: 6012946319879546383}
   SwordSpawn: {fileID: 6012946319112455098}
   HighSwordPrefab: {fileID: 7170642208858042978, guid: 0cea95d06639bf747ab6eb1848d72fb5,
@@ -328,8 +329,10 @@ MonoBehaviour:
   midslash: 0
   crouch: 0
   invicibility: 0
+  doublejumped: 0
   death: 0
   stun: 0
+  hitstunned: 0
   level: {fileID: 7256701329708582109}
   coinvalue: {fileID: 0}
   slide: {fileID: 0}
@@ -393,6 +396,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2, y: 6.3}
   m_EdgeRadius: 0
+--- !u!114 &8698873434030374189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012946319879546383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c473d82d5b46d864e8570847768d8d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTextPrefab: {fileID: 2858163663089099275, guid: 8cc400f0af09cff4ebee5ea43ed36824,
+    type: 3}
 --- !u!1001 &7578991466328680059
 PrefabInstance:
   m_ObjectHideFlags: 0

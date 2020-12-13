@@ -12,6 +12,7 @@ using UnityEngine.UI;
 //But in this circumstance (with the time I have left) this is the way.
 public class LANCEL_SCRIPT : MonoBehaviour
 {
+    public FLOATING_FONT damageNumbers;
 
     POWER_SCRIPT powerScript;
     public Transform myTran;
@@ -40,6 +41,8 @@ public class LANCEL_SCRIPT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damageNumbers = GetComponent<FLOATING_FONT>();
+
         myTran = GetComponent<Transform>();
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
@@ -519,19 +522,25 @@ public class LANCEL_SCRIPT : MonoBehaviour
                 if (state != 6)
                 {
                     if (playerPower.Damage >= dmgThreshold)
-                    {
-                        state = 6;
+                {
+                    damageNumbers.showText(playerPower.Damage.ToString() + "!");
+
+                    state = 6;
                         hitStunCD = 2f;
                         lancelAnimScript.turnOffAllBools();
                     }
                     else
-                    {
-                        colorChangeCD = 1f;
+                {
+                    damageNumbers.showText(playerPower.Damage.ToString());
+
+                    colorChangeCD = 1f;
                     }
                 }
                 else
                 {
-                    colorChangeCD = 1f;
+                damageNumbers.showText(playerPower.Damage.ToString());
+
+                colorChangeCD = 1f;
                 }
 
             }
@@ -564,19 +573,25 @@ public class LANCEL_SCRIPT : MonoBehaviour
                 if (state != 6)
                 {
                     if (playerPower.Damage >= dmgThreshold)
-                    {
+                {
+                        damageNumbers.showText(playerPower.Damage.ToString() + "!");
+
                         state = 6;
-                        hitStunCD = 2f;
+                         hitStunCD = 2f;
                         lancelAnimScript.turnOffAllBools();
                     }
                     else
                     {
-                        colorChangeCD = 1f;
+                             damageNumbers.showText(playerPower.Damage.ToString());
+
+                             colorChangeCD = 1f;
                     }
                 }
                 else
-                {
-                    colorChangeCD = 1f;
+                 {
+                damageNumbers.showText(playerPower.Damage.ToString());
+
+                colorChangeCD = 1f;
                 }
 
             }

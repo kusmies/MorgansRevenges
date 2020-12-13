@@ -12,6 +12,8 @@ using Vector2 = UnityEngine.Vector2;
 
 public class PLAYER_SCRIPT : MonoBehaviour
 {
+    public FLOATING_FONT damageNumbers;
+
     Vector2 pushDirection;
     //gets rigid body
     //knockback bool
@@ -133,7 +135,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
     void Start()
     {
         bonusspeed = speedup;
-      
+        damageNumbers = GetComponent<FLOATING_FONT>();
+
         CurrentHealth = MaxHealth;
         CurrentMana = MaxMana;
         XMLManager.ins.PermLoadItems();
@@ -169,7 +172,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         MaxMana = loadedStats[1];
         coin = loadedStats[2];
         SwordDamage = loadedStats[3];
-        //speedup = loadedStats[4];
+        speedup = loadedStats[4];
     }
     // Update is called once per frame
 
@@ -436,7 +439,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
                 {
 
                     midslash = true;
-                    Debug.Log("Animation called");
+
                 }
 
                 foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
@@ -817,7 +820,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
         //have a bullet
         GameObject blade;
 
-        Debug.Log("normalShot");
+
 
         //make a bullet
         if (mySprite.flipX == false)
@@ -868,6 +871,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             slide.SetBar(CurrentHealth);
 
             WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+            damageNumbers.showText("999");
 
             if (!waterScript.isFrozen) CurrentHealth = 0;
 
@@ -882,6 +886,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
             slide.SetBar(CurrentHealth);
 
             var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+            damageNumbers.showText(damage.Damage.ToString());
+
             CurrentHealth -= damage.Damage;
             invicibility = true;
             invulnertimer = 2.0f;
@@ -1131,6 +1137,9 @@ public class PLAYER_SCRIPT : MonoBehaviour
             slide.SetBar(CurrentHealth);
 
             var damage = collision.gameObject.GetComponent<POWER_SCRIPT>();
+
+            damageNumbers.showText(damage.Damage.ToString());
+
             CurrentHealth -= damage.Damage;
             invicibility = true;
             invulnertimer = 2.0f;
@@ -1142,6 +1151,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             slide.SetBar(CurrentHealth);
 
             WATSUB_SCRIPT waterScript = collision.gameObject.GetComponent<WATSUB_SCRIPT>();
+                        damageNumbers.showText("999");
 
             if (!waterScript.isFrozen) CurrentHealth = 0;
 

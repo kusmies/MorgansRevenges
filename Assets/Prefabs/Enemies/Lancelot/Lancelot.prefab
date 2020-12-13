@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4704038466403659741}
   - component: {fileID: 6222617023940673016}
   - component: {fileID: 1304486083102584730}
+  - component: {fileID: 3396226627570027638}
   m_Layer: 9
   m_Name: Lancelot
   m_TagString: Enemy
@@ -152,6 +153,7 @@ MonoBehaviour:
   spearExtended: 0
   bulletsSpawned: 0
   actHandler: {fileID: 0}
+  hpBar: {fileID: 0}
 --- !u!95 &276613318454276593
 Animator:
   serializedVersion: 3
@@ -235,3 +237,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.8, y: 6.4}
   m_EdgeRadius: 0
+--- !u!114 &3396226627570027638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767551622162862273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c473d82d5b46d864e8570847768d8d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTextPrefab: {fileID: 2858163663089099275, guid: 8cc400f0af09cff4ebee5ea43ed36824,
+    type: 3}

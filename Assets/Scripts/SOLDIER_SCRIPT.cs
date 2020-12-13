@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SOLDIER_SCRIPT : MonoBehaviour
 {
+    public FLOATING_FONT damageNumbers;
     POWER_SCRIPT powerScript;
     public Transform myTran;
     public SOLDIER_ANIM_SCRIPT soldierAnimatorScript;
@@ -33,7 +34,7 @@ public class SOLDIER_SCRIPT : MonoBehaviour
     {
         powerScript = GetComponent<POWER_SCRIPT>();
         myTran = GetComponent<Transform>();
-        
+        damageNumbers = GetComponent<FLOATING_FONT>();
         myBox = GetComponent<BoxCollider2D>();
         myBody = GetComponent<Rigidbody2D>();
         mySprite = GetComponent<SpriteRenderer>();
@@ -372,17 +373,21 @@ public class SOLDIER_SCRIPT : MonoBehaviour
             {
                 if (playerPower.Damage >= dmgThreshold)
                 {
+                    damageNumbers.showText(playerPower.Damage.ToString() + "!");
                     hitStunCD = 2f;
                     soldierAnimatorScript.endAttack();
                 }
                 else
                 {
+                    damageNumbers.showText(playerPower.Damage.ToString());
                     colorChangeCD = 1f;
                 }
             }
             else
             {
                 colorChangeCD = 1f;
+                damageNumbers.showText(playerPower.Damage.ToString());
+
             }
 
         }
@@ -410,16 +415,20 @@ public class SOLDIER_SCRIPT : MonoBehaviour
             {
                 if (playerPower.Damage >= dmgThreshold)
                 {
+                    damageNumbers.showText(playerPower.Damage.ToString() + "!");
                     hitStunCD = 2f;
                     soldierAnimatorScript.endAttack();
                 }
                 else
                 {
+                    damageNumbers.showText(playerPower.Damage.ToString());
                     colorChangeCD = 1f;
                 }
             }
             else
             {
+                damageNumbers.showText(playerPower.Damage.ToString());
+
                 colorChangeCD = 1f;
             }
 

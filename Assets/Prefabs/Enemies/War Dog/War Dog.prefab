@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2712374387705948783}
   - component: {fileID: 4966913531420348994}
   - component: {fileID: 1250835360527417821}
+  - component: {fileID: 4243833299406663405}
   m_Layer: 9
   m_Name: War Dog
   m_TagString: Enemy
@@ -181,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867753d9cb2b2bc4bb24d555811d16b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageNumbers: {fileID: 0}
   isGrounded: 0
   groundLayer:
     serializedVersion: 2
@@ -193,6 +195,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 3450917013773705661, guid: fc04b3781d7a9b34ebf6ad3210596b0b,
     type: 3}
   actManager: {fileID: 0}
+  dropScript: {fileID: 0}
 --- !u!114 &2712374387705948783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,3 +251,17 @@ MonoBehaviour:
     - ID: 4
       dropped: {fileID: 5667388634067837605, guid: 53d0e0ac2e2a70a4b80a0a1f1634b34e,
         type: 3}
+--- !u!114 &4243833299406663405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192431363743399877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c473d82d5b46d864e8570847768d8d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTextPrefab: {fileID: 2858163663089099275, guid: 8cc400f0af09cff4ebee5ea43ed36824,
+    type: 3}

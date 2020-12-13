@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class DestroyText : MonoBehaviour
@@ -11,5 +12,9 @@ public class DestroyText : MonoBehaviour
         Destroy(gameObject, secondsToDestroy);
     }
 
-  
+    private void Update()
+    {
+        transform.position = new UnityEngine.Vector2(transform.position.x, transform.position.y + 0.1f);
+    }
+
 }
