@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3322383941549152062}
   - component: {fileID: 466570349223172804}
   - component: {fileID: 6178984604543089261}
-  - component: {fileID: 3922481525423206521}
+  - component: {fileID: 8060831871409625751}
   m_Layer: 5
   m_Name: permimage
   m_TagString: Untagged
@@ -157,7 +157,7 @@ MonoBehaviour:
   player: {fileID: 3194736562856368177, guid: 1d72c3698bb86f34cb1cd4a5b4995e6f, type: 3}
   buyonce: 0
   openslot: 0
---- !u!114 &3922481525423206521
+--- !u!114 &8060831871409625751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

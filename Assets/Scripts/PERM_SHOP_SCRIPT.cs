@@ -33,18 +33,49 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
     private void Awake()
     {
-        Roll();
         permitemshop = this;
-        Load();
 
+        Roll();
+        Load();
+        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
+        {
+            if (item.ID == 1)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 2)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 3)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 4)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+            if (item.ID == 5)
+            {
+                item.displayed = false;
+                XMLManager.ins.PermSaveItems();
+
+            }
+
+        }
     }
     void Start()
     {
 
-        player.itemcleaner();
-
         XMLManager.ins.PermLoadItems();
-        XMLManager.ins.LoadItems();
 
         ID = IDassigner;
 
@@ -80,7 +111,6 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
         if (storeslots.Count == 0)
         { //if list is empty
-           
             storeslots.Clear();
         }
         else
@@ -103,11 +133,12 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
             scenemanager.Name.text = Name;
             scenemanager.Price.text = price;
             scenemanager.Description.text = description;
+        gameObject.GetComponent<Button>().interactable = false;
 
-      }
-        public void Cost()
+
+    }
+    public void Cost()
     {
-
         {
             foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
             {
@@ -116,7 +147,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                 {
 
 
-                    if (item.unlocked == false && item.displayed == false)
+                    if (item.unlocked == false  && item.displayed == false)
                     {
                         item.displayed = true;
 
@@ -128,7 +159,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                         //subtracts the bronze price from the player total
 
-                        Name= item.name;
+                        Name = item.name;
                         price = "Gold: " + item.price.ToString();
                         description= item.description.ToString();
 
@@ -162,8 +193,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     {
                         Name = "You're short";
                         price = "";
-                        description = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        description = "Come back with more money";
                     }
 
                 }
@@ -175,14 +205,16 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     if (item.unlocked == false && item.displayed == false)
                     {
+                        item.displayed = true;
+
                         openslot = true;
 
                         itemspriterenderer.sprite = itemsprites[1];
 
+                        XMLManager.ins.PermSaveItems();
 
 
                         //subtracts the bronze price from the player total
-                        item.displayed = true;
                         Name = item.name;
                         price = "Gold: " + item.price.ToString();
                         description = item.description.ToString();
@@ -196,7 +228,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     }
 
-                    if (player.coin >= item.price && buyonce == true && item.ID == 2)
+                    if (player.coin >= item.price || buyonce == true && item.ID == 2)
                     {
                         player.coin -= item.price;
 
@@ -217,8 +249,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     {
                         Name = "You're short";
                         price = "";
-                        description = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        description = "Come back with more money";
                     }
 
                 }
@@ -228,12 +259,14 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     if (item.unlocked == false && item.displayed == false)
                     {
+                        item.displayed = true;
+
                         openslot = true;
                         itemspriterenderer.sprite = itemsprites[2];
 
+                        XMLManager.ins.PermSaveItems();
 
 
-                        item.displayed = true;
 
                         Name= item.name;
                         price = "Gold: " + item.price.ToString();
@@ -270,8 +303,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                     {
                         Name = "You're short";
                         price = "";
-                        description = "ComeBack with more money";
-                        Debug.Log("readingIt");
+                        description = "Come back with more money";
                     }
 
                 }
@@ -281,11 +313,13 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     if (item.unlocked == false && item.displayed == false)
                     {
+                        item.displayed = true;
+
                         openslot = true;
                         itemspriterenderer.sprite = itemsprites[3];
 
+                        XMLManager.ins.PermSaveItems();
 
-                        item.displayed = true;
 
 
                         Name = item.name;
@@ -324,7 +358,6 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         Name = "You're short";
                         price = "";
                         description = "ComeBack with more money";
-                        Debug.Log("readingIt");
                     }
                 }
                 if (ID == item.ID && item.ID == 5)
@@ -333,11 +366,13 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
 
                     if (item.unlocked == false && item.displayed == false)
                     {
+                        item.displayed = true;
+
                         openslot = true;
 
                         itemspriterenderer.sprite = itemsprites[4];
+                        XMLManager.ins.PermSaveItems();
 
-                        item.displayed = true;
 
                         Name= item.name;
                         price= "Gold: " + item.price.ToString();
@@ -361,6 +396,7 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         price = "";
                         itemspriterenderer.sprite = itemsprites[5];
 
+                        
                         description = "Come Again";
                         item.unlocked = true;
                         SaveLoadManager.SavePlayer(player);
@@ -376,21 +412,18 @@ public class PERM_SHOP_SCRIPT : MonoBehaviour
                         Debug.Log("readingIt");
                     }
                 }
-               
 
-
-                if (storeslots.Count== 0 )
+               if(storeslots.Count ==0)
                 {
-                    Name = "Sold Out";
+                    Debug.Log("procked");
+                    Name = "We're out of that";
                     price = "";
-                    itemspriterenderer.sprite = itemsprites[5];
-
-                    description = "We're out of that sorry";
+                    description = "Come back later";
                 }
-
-
-
             }
+       
+
+
 
         }
 

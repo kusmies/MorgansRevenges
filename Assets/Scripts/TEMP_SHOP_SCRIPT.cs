@@ -37,8 +37,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
     void Start()
     {
-        player.itemcleaner();
-        
+ 
         XMLManager.ins.PermLoadItems();
 
         XMLManager.ins.LoadItems();
@@ -91,13 +90,13 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
 
     public void Click()
     {
-        Debug.Log("still workin");
 
         buyonce = true;
         Cost();
         scenemanager.Name.text = Name;
         scenemanager.Price.text = price;
         scenemanager.Description.text = description;
+        gameObject.GetComponent<Button>().interactable = false;
     }
     public void Cost()
     {
@@ -473,6 +472,7 @@ public class TEMP_SHOP_SCRIPT : MonoBehaviour
                     {
                         Name = "You're short";
                         price = "";
+                        description = "ComeBack with more money";
                         description = "ComeBack with more money";
                     }
 

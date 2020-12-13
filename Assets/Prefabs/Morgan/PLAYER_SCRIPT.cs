@@ -137,6 +137,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     void Start()
     {
+     
         soundPlayer = GetComponent<AudioSource>();
         bonusspeed = speedup;
         damageNumbers = GetComponent<FLOATING_FONT>();
@@ -560,40 +561,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
 
     public void itemcleaner()
     {
-        foreach (PermItemEntry item in XMLManager.ins.PitemDB.list)
-        {
-            if (item.ID == 1)
-            {
-                item.displayed = false;
-                XMLManager.ins.PermSaveItems();
-
-            }
-            if (item.ID == 2)
-            {
-                item.displayed = false;
-                XMLManager.ins.PermSaveItems();
-
-            }
-            if (item.ID == 3)
-            {
-                item.displayed = false;
-                XMLManager.ins.PermSaveItems();
-
-            }
-            if (item.ID == 4)
-            {
-                item.displayed = false;
-                XMLManager.ins.PermSaveItems();
-
-            }
-            if (item.ID == 5)
-            {
-                item.displayed = false;
-                XMLManager.ins.PermSaveItems();
-
-            }
-
-        }
+     
 
         foreach (ItemEntry item in XMLManager.ins.itemDB.list)
         {

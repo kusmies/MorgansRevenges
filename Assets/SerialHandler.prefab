@@ -113,43 +113,45 @@ MonoBehaviour:
     list:
     - ID: 1
       name: FireRune
-      description: A rune crackiling with magic, unlocks the fireball uses the O
-        key to fire.
+      description: 'Permanent: press O to throw a Fireball. Destroys some walls Costs
+        4 Magic.'
       value: 0
       currency: 0
-      price: 8
+      price: 5
       unlocked: 0
       displayed: 0
     - ID: 2
-      name: MithirilBangil
-      description: An enchanted Bangil that makes the user feel stronger
-      value: 3
+      name: Ice Rune
+      description: 'Permanent: press Down and O to unleash a Frost Wave. Freezes
+        bodies of water. Costs 3 Magic.'
+      value: 0
       currency: 0
-      price: 4
+      price: 5
       unlocked: 0
       displayed: 0
     - ID: 3
-      name: AdamantiumBracer
-      description: A bracer that makes the user feel even stronger.
+      name: Wind Rune
+      description: 'Permanent: able to jump while in air once by pressing space bar.
+        Costs 1 magic.'
       value: 6
       currency: 0
       price: 6
       unlocked: 0
       displayed: 0
     - ID: 4
-      name: AdamantiumBracer
-      description: A bracer that makes the user feel even stronger.
-      value: 6
+      name: Mitril Bangil
+      description: Health +4 Permanently
+      value: 4
       currency: 0
-      price: 6
+      price: 10
       unlocked: 0
       displayed: 0
     - ID: 5
-      name: AdamantiumBracer
-      description: A bracer that makes the user feel even stronger.
-      value: 6
+      name: Ruby Bracelet
+      description: Magic +4 Permanently
+      value: 4
       currency: 0
-      price: 6
+      price: 10
       unlocked: 0
       displayed: 0
 --- !u!114 &7757165925541541197
