@@ -20,28 +20,28 @@ public class CAMERA_SCRIPT : MonoBehaviour
         {
             myTran.position = new Vector3(parentTran.position.x, 20f, myTran.position.z);
 
-            if (myTran.position.x < 30f)
+            if (myTran.position.x < 24f)
             {
-                myTran.position = new Vector3(30f, 20f, myTran.position.z);
+                myTran.position = new Vector3(24f, 20f, myTran.position.z);
             }
 
-            if (myTran.position.x > 385f)
+            if (myTran.position.x > 391f)
             {
-                myTran.position = new Vector3(385f, 20f, myTran.position.z);
+                myTran.position = new Vector3(391f, 20f, myTran.position.z);
             }
         }
         else if (type == 2)
         {
             myTran.position = new Vector3(parentTran.position.x, 20f, myTran.position.z);
 
-            if (myTran.position.x < -15.46f)
+            if (myTran.position.x < -21.46f)
             {
-                myTran.position = new Vector3(-15.46f, 20f, myTran.position.z);
+                myTran.position = new Vector3(-21.46f, 20f, myTran.position.z);
             }
 
-            if (myTran.position.x > 17.17f)
+            if (myTran.position.x > 23.17f)
             {
-                myTran.position = new Vector3(17.17f, 20f, myTran.position.z);
+                myTran.position = new Vector3(23.17f, 20f, myTran.position.z);
             }
         }
     }

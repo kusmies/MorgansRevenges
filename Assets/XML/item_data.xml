@@ -8,8 +8,8 @@
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
-      <got>true</got>
-      <displayed>true</displayed>
+      <got>false</got>
+      <displayed>false</displayed>
       <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
@@ -19,8 +19,8 @@
       <value>2</value>
       <currency>Gold</currency>
       <price>4</price>
-      <got>true</got>
-      <displayed>true</displayed>
+      <got>false</got>
+      <displayed>false</displayed>
       <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
@@ -52,8 +52,8 @@
       <value>1</value>
       <currency>Gold</currency>
       <price>2</price>
-      <got>true</got>
-      <displayed>true</displayed>
+      <got>false</got>
+      <displayed>false</displayed>
       <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>
@@ -64,7 +64,7 @@
       <currency>Gold</currency>
       <price>4</price>
       <got>false</got>
-      <displayed>true</displayed>
+      <displayed>false</displayed>
       <chestdropped>false</chestdropped>
     </ItemEntry>
     <ItemEntry>

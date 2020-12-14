@@ -365,7 +365,7 @@ public class ARCHER_SCRIPT : MonoBehaviour
 
     bool isPlayerNearby()//This function checks if the player is close enough for this enemy to begin acting.
     {
-        Vector2 boxCastSize = new Vector2(64f, 30f);
+        Vector2 boxCastSize = new Vector2(66f, 30f);
 
         RaycastHit2D raycastHit2d1 = Physics2D.BoxCast(myBox.bounds.center, boxCastSize, 0f, Vector2.right, 0f, playerLayer);
 

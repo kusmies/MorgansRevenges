@@ -11,12 +11,15 @@ public class XPLSN_SCRIPT: MonoBehaviour
     public float timer;
     public float timerTarget;
 
+    AudioSource soundPlayer;
+    public AudioClip explosionSound;
+
     POWER_SCRIPT powerScript;
     // Start is called before the first frame update
     void Start()
     {
         timerTarget = 0.8f;
-
+        soundPlayer = GetComponent<AudioSource>();
         powerScript = GetComponent<POWER_SCRIPT>();
     }
 
@@ -30,6 +33,8 @@ public class XPLSN_SCRIPT: MonoBehaviour
         //triggers to explode if timer reaches timer target
         if (timer >= timerTarget)
         {
+            soundPlayer.clip = explosionSound;
+            soundPlayer.Play();
             //have a bullet
             GameObject Explosion;
 
@@ -56,7 +61,8 @@ public class XPLSN_SCRIPT: MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-
+            soundPlayer.clip = explosionSound;
+            soundPlayer.Play();
             Destroy(gameObject);
             GameObject Explosion;
 
@@ -71,6 +77,8 @@ public class XPLSN_SCRIPT: MonoBehaviour
         }
          if (collision.gameObject.CompareTag("Ground"))
         {
+            soundPlayer.clip = explosionSound;
+            soundPlayer.Play();
             Destroy(gameObject);
 
             GameObject Explosion;
@@ -85,6 +93,8 @@ public class XPLSN_SCRIPT: MonoBehaviour
 
          if (collision.gameObject.CompareTag("Loot"))
         {
+            soundPlayer.clip = explosionSound;
+            soundPlayer.Play();
             Destroy(gameObject);
 
             GameObject Explosion;
@@ -97,6 +107,7 @@ public class XPLSN_SCRIPT: MonoBehaviour
             //give it force
 
             //destroy after 0.8 seconds
+            
             Destroy(Explosion, 0.8f);
         }
     }

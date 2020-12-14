@@ -58,6 +58,6 @@ public class DFACT2_HANDLER_SCRIPT : MonoBehaviour
           XMLManager.ins.SaveItems();
         SaveLoadManager.SavePlayer(morgan);
         XMLManager.ins.PermSaveItems();
-        sceneChangeScript.changeScene(3);
+        sceneChangeScript.changeScene(7);
     }
 }

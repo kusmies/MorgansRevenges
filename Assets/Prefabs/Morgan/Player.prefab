@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTran: {fileID: 6012946319879546379}
+  type: 0
 --- !u!1 &6012946319047710638
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,16 +308,16 @@ MonoBehaviour:
   jumpforce: 50
   speedforce: 20
   barsize: 160
-  coin: 0
+  coin: 28
   invulnertimer: 0
   stuntimer: 0
   invulnertarget: 0
   stuntarget: 0
   deathtimer: 0
   deathtimertarget: 0
-  MaxHealth: 12
+  MaxHealth: 16
   CurrentHealth: 0
-  MaxMana: 12
+  MaxMana: 16
   CurrentMana: 0
   SwordDamage: 0
   bonusspeed: 0
@@ -363,6 +364,7 @@ MonoBehaviour:
   swordSwingSound: {fileID: 8300000, guid: ebf3f25da2b4ad84dbe026313755d83f, type: 3}
   windPushSound: {fileID: 8300000, guid: 5f8bd376aff507440aaef4ae69446753, type: 3}
   morganHitSound: {fileID: 8300000, guid: 083521fff4dde234091076ddb7f09c36, type: 3}
+  frostWaveSound: {fileID: 8300000, guid: 7f6453d309759b9419a3fdd19e355fbf, type: 3}
 --- !u!114 &7256701329708582109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,7 +443,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0

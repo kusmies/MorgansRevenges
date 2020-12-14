@@ -118,6 +118,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
     public AudioClip swordSwingSound;
     public AudioClip windPushSound;
     public AudioClip morganHitSound;
+    public AudioClip frostWaveSound;
     // Start is called before the first frame update
 
     void Awake()
@@ -790,6 +791,8 @@ public class PLAYER_SCRIPT : MonoBehaviour
     {
         if (CurrentMana > 0)
         {
+            soundPlayer.clip = frostWaveSound;
+            soundPlayer.Play();
             //sets the shoot equal to true
             CurrentMana -= 3;
             if(CurrentMana < 0)
@@ -799,7 +802,7 @@ public class PLAYER_SCRIPT : MonoBehaviour
             slide2.SetBar(CurrentMana);
             //have a bullet
 
-            Debug.Log("normalShot");
+
 
 
             //makes a bullet

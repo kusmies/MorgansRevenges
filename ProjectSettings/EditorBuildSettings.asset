@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DourFieldsAct2.unity
     guid: 53d6d32c56508074095e5ef5631a0f6e
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: d318a6b9592075d40be04068af9eb345
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: b56d4e5a29a379a48ad978eed4f2248b
   m_configObjects: {}

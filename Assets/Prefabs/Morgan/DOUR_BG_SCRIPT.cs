@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DOUR_BG_SCRIPT : MonoBehaviour
 {
-    float parallaxEffectMultiplier = .99f;
+    public float parallaxEffect;
     public GameObject player;
     Transform myTran;
     Transform playerTran;
@@ -15,12 +15,21 @@ public class DOUR_BG_SCRIPT : MonoBehaviour
         playerTran = player.GetComponent<Transform>();
         myTran = GetComponent<Transform>();
         lastPlayerPosition = playerTran.position;
+
     }
 
     private void LateUpdate()
     {
-        Vector3 deltaMovement = playerTran.position - lastPlayerPosition;
-        myTran.position += deltaMovement * parallaxEffectMultiplier;
+        if (playerTran.position.x < lastPlayerPosition.x - .1f)
+        {
+
+            myTran.position = new Vector3(myTran.position.x - parallaxEffect, myTran.position.y, myTran.position.z);
+        }
+        else if (playerTran.position.x > lastPlayerPosition.x + .1f)
+        {
+
+            myTran.position = new Vector3(myTran.position.x + parallaxEffect, myTran.position.y, myTran.position.z);
+        }
         lastPlayerPosition = playerTran.position;
     }
 }

@@ -56,6 +56,7 @@ public class LANCEL_SCRIPT : MonoBehaviour
         hp = maxHP;
         SetMaxBar((float)maxHP);
         SetBar((float)hp);
+
     }
 
     // Update is called once per frame
@@ -534,10 +535,12 @@ public class LANCEL_SCRIPT : MonoBehaviour
         
             if (collision.gameObject.CompareTag("PlayerAttack"))
             {
+                if (!soundPlayer.isPlaying)
+                {
+                    soundPlayer.clip = lancelotHit;
+                    soundPlayer.Play();
+                }
 
-            
-                soundPlayer.clip = lancelotHit;
-                soundPlayer.Play();
             
                 var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
@@ -588,8 +591,12 @@ public class LANCEL_SCRIPT : MonoBehaviour
             if (collision.gameObject.CompareTag("PlayerAttack"))
             {
 
-                soundPlayer.clip = lancelotHit;
-                soundPlayer.Play();
+                if(!soundPlayer.isPlaying)
+                {
+                    soundPlayer.clip = lancelotHit;
+                    soundPlayer.Play();
+                }
+                
 
                 var playerPower = collision.gameObject.GetComponent<POWER_SCRIPT>();
 
